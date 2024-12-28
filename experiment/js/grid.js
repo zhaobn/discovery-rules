@@ -2,6 +2,8 @@
 const gridWorld = document.getElementById("task-grid");
 let items_list = Object.keys(items);
 
+let currentlyCarrying = null;
+
 // Create the grid
 function createGrid() {
   for (let y = 0; y < gridSize; y++) {
@@ -48,6 +50,14 @@ function updatePlayerPosition() {
   playerElement.classList.add("player");
   playerCell.appendChild(playerElement);
 
+  // Check if player is moving into an item position
+  if (playerCell.querySelector(".item-image")) {
+    let itemKey = playerCell.querySelector(".item-image").id;
+    getEl("task-info-location").innerHTML = `<img src="${items[itemKey].item_icon}" style="width: 24px; height: 24px;">`;
+  } else {
+    getEl("task-info-location").innerHTML = "";
+  }
+
 }
 
 // Handle player movement
@@ -67,10 +77,68 @@ function handleKeyPress(event) {
   updatePlayerPosition();
 }
 
+// Handle item pick-up
+function handleSpacePress() {
+  if (currentlyCarrying) {
+    return;
+  }
 
+  const playerCell = document.querySelector(
+    `.grid-cell[data-x="${playerPosition.x}"][data-y="${playerPosition.y}"]`
+  );
+
+  const itemElement = playerCell.querySelector(".item-image");
+  if (!itemElement) {
+    return;
+  }
+
+  currentlyCarrying = itemElement.id;
+  getEl(currentlyCarrying).remove();
+
+  updatePlayerPosition();
+  getEl("task-info-carrying").innerHTML = `<img src="${items[currentlyCarrying].item_icon}" style="width: 24px; height: 24px;">`;
+
+
+}
+
+function handleDropPress() {
+
+  if (currentlyCarrying) {
+    const dropX = playerPosition.x;
+    const dropY = playerPosition.y;
+
+    const currentCell = document.querySelector(`.grid-cell[data-x="${dropX}"][data-y="${dropY}"]`);
+
+    // Check if there is already an item in the cell
+    if (currentCell.querySelector(".item-image")) {
+      return;
+    }
+
+    const itemElement = document.createElement("img");
+    itemElement.src = items[currentlyCarrying].item_icon;
+    itemElement.id = currentlyCarrying;
+    itemElement.style.width = "30px";
+    itemElement.style.height = "30px";
+    itemElement.classList.add("item-image");
+    currentCell.appendChild(itemElement);
+
+    currentlyCarrying = null;
+  }
+
+  updatePlayerPosition();
+  getEl("task-info-carrying").innerHTML = "";
+}
 
 // Event listener for keyboard input
-document.addEventListener("keydown", handleKeyPress);
+document.addEventListener("keydown", (event) => {
+  if (event.key === " ") {
+    handleSpacePress();
+  } else if (event.key === "d" || event.key === "D") {
+    handleDropPress();
+  } else {
+    handleKeyPress(event);
+  }
+});
 
 // Initialize the grid
 createGrid();
