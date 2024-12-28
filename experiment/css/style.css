@@ -136,3 +136,11 @@ thead th {
   width: 25vw;
   float:right;
 }
+.item-image {
+  position: absolute;
+  z-index: 1;
+}
+.player {
+  position: absolute;
+  z-index: 2;
+}

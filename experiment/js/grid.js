@@ -1,16 +1,6 @@
-const gridSize = 15;
+
 const gridWorld = document.getElementById("task-grid");
-
-// Player state
-let playerPosition = { x: 7, y: 7 };
-
-// Item positions
-const items = [
-  { x: 5, y: 5, figure: "circle_plain_0" },
-  { x: 10, y: 10, figure: "triangle_plain_0" },
-  { x: 12, y: 3, figure: "circle_checkered_0" },
-  { x: 8, y: 12, figure: "triangle_checkered_0" },
-];
+let items_list = Object.keys(items);
 
 // Create the grid
 function createGrid() {
@@ -22,16 +12,16 @@ function createGrid() {
       cell.dataset.y = y;
 
       // Add items
-      const item = items.find((item) => item.x === x && item.y === y);
-      if (item) {
-        const itemElement = document.createElement("div");
+      const itemKey = items_list.find((key) => items[key].x === x && items[key].y === y);
+      if (itemKey) {
+        const item = items[itemKey];
         const img = document.createElement("img");
-        img.src = `../img/${item.figure}.svg`;
+        img.src = item.item_icon;
+        img.id = itemKey;
         img.style.width = "30px";
         img.style.height = "30px";
-        itemElement.classList.add("item");
-        itemElement.appendChild(img);
-        cell.appendChild(itemElement);
+        img.classList.add("item-image");
+        cell.appendChild(img);
       }
 
       // Add player to initial position
@@ -58,22 +48,6 @@ function updatePlayerPosition() {
   playerElement.classList.add("player");
   playerCell.appendChild(playerElement);
 
-  // Re-add the item if it's in the current position
-  const item = items.find(
-    (item) => item.x === playerPosition.x && item.y === playerPosition.y
-  );
-
-  if (item) {
-    const itemElement = document.createElement("div");
-    itemElement.classList.add("item");
-    const img = document.createElement("img");
-    img.src = `../img/${item.figure}.svg`; // Load the image
-    img.style.width = "30px";
-    img.style.height = "30px";
-    img.classList.add("item-image");
-    itemElement.appendChild(img);
-    playerCell.appendChild(itemElement);
-  }
 }
 
 // Handle player movement
@@ -89,10 +63,6 @@ function handleKeyPress(event) {
   const currentCell = document.querySelector(
     `.grid-cell[data-x="${playerPosition.x}"][data-y="${playerPosition.y}"]`
   );
-
-  if (currentCell.querySelector(".item")) {
-    currentCell.querySelector(".item").remove(); // Remove item if player steps on it
-  }
 
   updatePlayerPosition();
 }
