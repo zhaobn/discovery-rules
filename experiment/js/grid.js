@@ -5,7 +5,7 @@ let currentlyCarrying = null;
 let attemptedItems = new Set();
 let actionData = {};
 let eventData = {};
-
+let eventCounter = 0;
 
 // Draw player
 var hash = 'd6fe8c82fb0abac17a702fd2a94eff37';
@@ -18,6 +18,22 @@ var options = {
 };
 var data = new Identicon(hash, options).toString();
 var playerImgSrc = 'data:image/png;base64,' + data;
+
+// Log event data
+function logEvent(actionType) {
+  eventCounter++;
+  const eventKey = `event-${eventCounter}`;
+  eventData[eventKey] = {
+    timestamp: new Date().toISOString(),
+    action: actionType,
+    x: playerPosition.x,
+    y: playerPosition.y,
+    actionsLeft: ACTIONS,
+    currentPoints: POINTS,
+    currentlyCarrying: (currentlyCarrying === null) ? '' : currentlyCarrying,
+    token: token
+  }
+}
 
 
 // Create the grid
@@ -139,13 +155,30 @@ function updatePlayerPosition() {
 // Handle player movement
 function handleKeyPress(event) {
   const { x, y } = playerPosition;
+  let actionType = null;
 
-  if (event.key === "ArrowUp" && y > 0) playerPosition.y--;
-  if (event.key === "ArrowDown" && y < gridSize - 1) playerPosition.y++;
-  if (event.key === "ArrowLeft" && x > 0) playerPosition.x--;
-  if (event.key === "ArrowRight" && x < gridSize - 1) playerPosition.x++;
+  if (event.key === "ArrowUp" && y > 0) {
+    playerPosition.y--;
+    actionType = "moveUp";
 
-  updatePlayerPosition();
+  } else if (event.key === "ArrowDown" && y < gridSize - 1) {
+    playerPosition.y++;
+    actionType = "moveDown";
+
+  } else if (event.key === "ArrowLeft" && x > 0) {
+    playerPosition.x--;
+    actionType = "moveLeft";
+
+  } else if (event.key === "ArrowRight" && x < gridSize - 1) {
+    playerPosition.x++;
+    actionType = "moveRight";
+
+  }
+
+  if (actionType) {
+    logEvent(actionType);
+    updatePlayerPosition();
+  }
 }
 
 // Handle item pick-up or combination
@@ -155,13 +188,16 @@ function handleSpacePress() {
   );
 
   const itemElement = playerCell.querySelector(".item-image");
+  let actionType = null;
 
   // If there's an item on the spot
   if (itemElement) {
     if (currentlyCarrying) {
+      actionType = "combine";
       combineItem(currentlyCarrying, itemElement.id);
 
     } else {
+      actionType = "pickUp";
       currentlyCarrying = itemElement.id;
       getEl(currentlyCarrying).remove();
       getEl("task-info-carrying").innerHTML = nameToIcon(currentlyCarrying);
@@ -171,6 +207,7 @@ function handleSpacePress() {
   } else {
     // If the spot is empty and the player is carrying an item
     if (currentlyCarrying) {
+      actionType = "consume";
       consumeItem(currentlyCarrying);
 
       currentlyCarrying = null;
@@ -178,6 +215,10 @@ function handleSpacePress() {
 
       updatePlayerPosition();
     }
+  }
+
+  if (actionType) {
+    logEvent(actionType);
   }
 }
 
@@ -198,6 +239,7 @@ function handleDropPress() {
     currentCell.appendChild(drawItem(currentlyCarrying, item.item_icon));
 
     currentlyCarrying = null;
+    logEvent("drop");
 
   }
 
@@ -206,17 +248,17 @@ function handleDropPress() {
 
 }
 
-function updateAction(actionData) {
+function updateAction(data) {
 
   ACTIONS = ACTIONS - 1
   getEl("task-info-actions").innerHTML = ACTIONS;
-  actionData['token'] = token;
 
-  if (ACTIONS > 0) {
-    var actionId = 'act-' + (MAX_ACTIONS - ACTIONS);
-    actionData[actionId] = actionData;
+  var actionId = 'act-' + (MAX_ACTIONS - ACTIONS);
+  data['token'] = token;
+  actionData[actionId] = data;
 
-  } else {
+
+  if (ACTIONS == 0) {
     // Add a semi-transparent cover to the grid
     const cover = document.createElement("div");
     cover.id = "grid-cover";
