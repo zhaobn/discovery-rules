@@ -57,15 +57,24 @@ function compIsFilled () {
   return (checked > checks.length-1)
 }
 function isFilled (formID) {
-  let notFilled = false;
-  const nulls = [ '', '--', '', '--', '', '--' ];
-  const form = document.getElementById(formID);
+  const form = getEl(formID);
   const inputs = form.elements;
-  (Object.keys(inputs)).forEach((input, idx) => {
-    let field = inputs[input];
-    notFilled = (notFilled || (field.value === nulls[idx]));
-  });
-  return (!notFilled)
+  for (let i = 0; i < inputs.length; i++) {
+    if (inputs[i].type !== "submit" && inputs[i].value === "") {
+      return false;
+    }
+  }
+  return true;
+
+  // let notFilled = false;
+  // const nulls = [ '', '--', '', '--', '', '--' ];
+  // const form = document.getElementById(formID);
+  // const inputs = form.elements;
+  // (Object.keys(inputs)).forEach((input, idx) => {
+  //   let field = inputs[input];
+  //   notFilled = (notFilled || (field.value === nulls[idx]));
+  // });
+  // return (!notFilled)
 }
 
 

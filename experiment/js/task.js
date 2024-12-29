@@ -32,7 +32,23 @@ function handle_submit() {
 }
 
 // Bebrief
-getEl('postquiz').onchange = () => isFilled('postquiz')? getEl('done-btn').disabled = false: null;
+function enableDoneButton() {
+  const doneButton = getEl('done-btn');
+  if (isFilled('postquiz')) {
+    doneButton.disabled = false;
+  } else {
+    doneButton.disabled = true;
+  }
+}
+// Add event listeners to form inputs
+const postquizForm = getEl('postquiz');
+const inputs = postquizForm.elements;
+for (let i = 0; i < inputs.length; i++) {
+  if (inputs[i].type !== "submit") {
+    inputs[i].addEventListener('input', enableDoneButton);
+  }
+}
+
 function is_done(complete_code) {
   let inputs = getEl('postquiz').elements;
   Object.keys(inputs).forEach(id => subjectData[inputs[id].name] = inputs[id].value);
@@ -52,6 +68,7 @@ function is_done(complete_code) {
   clientData.subject.token = token;
 
   clientData.actions = actionData;
+  clientData.events = eventData;
 
 
   // Show completion

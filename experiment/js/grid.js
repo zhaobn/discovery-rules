@@ -353,7 +353,7 @@ function combineItem(heldItem, targetItem) {
     }
 
     if (COND == 'hard' && complexRule([heldItem, targetItem])) {
-      yieldItem = newObj([heldItem, targetItem])
+      yieldItem = newObj(heldItem, targetItem)
     }
 
     let record = {'held': heldItem, 'target': targetItem, 'yield': yieldItem}
