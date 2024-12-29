@@ -149,7 +149,7 @@
     <div id="task" class="base" >
 
       <div id="task-info" style="height: 130px; margin-top: 20px; margin-bottom: 20px;">
-        <p><span id="task-info-points">0</span> points, <span id="task-info-actions">30</span> actions remaining</p>
+        <p><span id="task-info-points">0</span> points, <span id="task-info-actions"></span> actions remaining</p>
         <br>
         <p>[SPACE bar: pick a crystal, harvest a crystal, fuse crystals. D key: drop a crystal]</p>
         <p>Currently Carrying: <span id="task-info-carrying"></span></p>
@@ -304,7 +304,6 @@
     // Consent info
     const checkScrollHeight = (text, btn) => ((text.scrollTop + text.offsetHeight) >= text.scrollHeight) ? btn.disabled = false : null;
     getEl('consent-info').addEventListener("scroll", () => checkScrollHeight(getEl('consent-info'), getEl('consent-btn')), false);
-
   </script>
 
   <script type="text/javascript" src="../js/consent.js"></script>

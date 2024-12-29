@@ -1,9 +1,14 @@
-const ACTIONS = 10;
+let ACTIONS = 10;
+getEl('task-info-actions').innerHTML = ACTIONS;
+
 const gridSize = 15;
+const COND = 'easy';
+const MAXLEVEL = 6;
 
 // Global variables
 let items = [];
 let transitions = [];
+
 
 // Player state
 let playerPosition = { x: 7, y: 7 };
@@ -47,7 +52,12 @@ function getLevel(item) { return item.split("_")[2] }
 
 function newObj(item1, item2) {
   const newLevel = Math.max(getLevel(item1), getLevel(item2)) + 1;
-  return `${getShape(item1)}_${getTexture(item2)}_${newLevel}`;
+  if(newLevel > MAXLEVEL) {
+     return ''
+
+  } else {
+    return `${getShape(item1)}_${getTexture(item2)}_${newLevel}`;
+  }
 }
 
 function isSameShape(item_list) {
