@@ -1,12 +1,14 @@
 const ACTIONS = 10;
 const gridSize = 15;
 
+// Global variables
+let items = [];
+let transitions = [];
+
 // Player state
 let playerPosition = { x: 7, y: 7 };
 
 // Item positions
-let items = {};
-
 let baseItems = [];
 let shapes = ["triangle", "circle", "square", "diamond"];
 let textures = ["plain", "checkered", "stripes", "dots"];
@@ -15,7 +17,7 @@ shapes.forEach(s => {
     baseItems.push(`${s}_${t}_0`);
   });
 });
-let usedPositions = new Set(`${playerPosition.x},${playerPosition.y}`); // player position
+let usedPositions = new Set();
 for (let i = 0; i < baseItems.length; i++) {
   let x, y, position;
   do {
@@ -26,14 +28,40 @@ for (let i = 0; i < baseItems.length; i++) {
 
   usedPositions.add(position);
   item_name = baseItems[i];
-  items[item_name] = {
+  items.push({
+    'item_name': item_name,
     'x': x,
     'y': y,
     'item_level': 0,
     'item_icon': `../img/${item_name}.svg`
-  };
+  });
 }
 // console.log(items);
 
-// generate transitions
-const transitions = [];
+// Transitions helper functions
+function getShape(item) { return item.split("_")[0] }
+
+function getTexture(item) { return item.split("_")[1] }
+
+function getLevel(item) { return item.split("_")[2] }
+
+function newObj(item1, item2) {
+  const newLevel = Math.max(getLevel(item1), getLevel(item2)) + 1;
+  return `${getShape(item1)}_${getTexture(item2)}_${newLevel}`;
+}
+
+function isSameShape(item_list) {
+  return getShape(item_list[0]) === getShape(item_list[1]);
+}
+
+function isDiffShapeAndPlain(item_list) {
+  return getShape(item_list[0]) !== getShape(item_list[1]) && getTexture(item_list[0]) === "plain";
+}
+
+function complexRule(item_list) {
+  return (
+    (getShape(item_list[0]) === 'circle' || getShape(item_list[0]) === 'square') &&
+    (getTexture(item_list[1]) === 'plain' || getTexture(item_list[1]) === 'dots') &&
+    getShape(item_list[1]) !== 'circle'
+  );
+}
