@@ -1,19 +1,20 @@
+/** Game configs */
 let ACTIONS = 10;
-getEl('task-info-actions').innerHTML = ACTIONS;
-
 const gridSize = 15;
 const COND = 'easy';
-const MAXLEVEL = 6;
 
-// Global variables
+/** Global variables */
 let items = [];
 let transitions = [];
+let POINTS = 0;
+const MAXLEVEL = 6;
 
-
-// Player state
+/** Player state */
 let playerPosition = { x: 7, y: 7 };
+getEl('task-info-actions').innerHTML = ACTIONS;
+getEl('task-info-points').innerHTML = POINTS;
 
-// Item positions
+/** Item positions */
 let baseItems = [];
 let shapes = ["triangle", "circle", "square", "diamond"];
 let textures = ["plain", "checkered", "stripes", "dots"];
@@ -43,7 +44,7 @@ for (let i = 0; i < baseItems.length; i++) {
 }
 // console.log(items);
 
-// Transitions helper functions
+/** Helper functions */
 function getShape(item) { return item.split("_")[0] }
 
 function getTexture(item) { return item.split("_")[1] }
@@ -60,6 +61,7 @@ function newObj(item1, item2) {
   }
 }
 
+/** Transitions functions */
 function isSameShape(item_list) {
   return getShape(item_list[0]) === getShape(item_list[1]);
 }

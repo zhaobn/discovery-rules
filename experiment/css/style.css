@@ -83,14 +83,6 @@ ul li, ol li {
   position: relative;
 }
 
-.item {
-  width: 30px;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .player {
   background-color: green;
   width: 100%;
@@ -131,6 +123,12 @@ thead th {
   background-color: #116466;
 } */
 
+#task-reward-table th:first-child,
+#task-reward-table td:first-child {
+  width: 60px;
+  text-align: left; /* Optional: Align the content */
+  white-space: nowrap; /* Optional: Prevent wrapping */
+}
 
 .recipes {
   width: 25vw;

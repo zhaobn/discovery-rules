@@ -2,6 +2,20 @@
 const gridWorld = document.getElementById("task-grid");
 
 let currentlyCarrying = null;
+let attemptedItems = new Set();
+
+// Draw player
+var hash = 'd6fe8c82fb0abac17a702fd2a94eff37';
+var options = {
+  foreground: [0, 0, 0, 255],
+  background: [255, 255, 255, 255],
+  margin: 0.05,
+  size: 30,
+  format: 'png'
+};
+var data = new Identicon(hash, options).toString();
+var playerImgSrc = 'data:image/png;base64,' + data;
+
 
 // Create the grid
 function createGrid() {
@@ -22,6 +36,7 @@ function createGrid() {
       if (x === playerPosition.x && y === playerPosition.y) {
         const player = document.createElement("div");
         player.classList.add("player");
+        player.style.backgroundImage = `url(${playerImgSrc})`;
         cell.appendChild(player);
       }
 
@@ -50,6 +65,21 @@ function nameToIcon (itemName, size='24px') {
   } else {
     return itemName
   }
+}
+function consumeItem(itemName) {
+  // Collect points
+  let item = items.find((item) => item.item_name === itemName);
+  let itemPoints = 10 ** item.item_level;
+  POINTS += itemPoints;
+
+  // Update inventory
+  if (!attemptedItems.has(itemName)){
+    attemptedItems.add(itemName);
+    updateItemTable(item);
+  }
+
+  getEl("task-info-points").innerHTML = POINTS;
+  updateAction();
 }
 
 // Check transitions
@@ -84,6 +114,7 @@ function updatePlayerPosition() {
 
   const playerElement = document.createElement("div");
   playerElement.classList.add("player");
+  playerElement.style.backgroundImage = `url(${playerImgSrc})`;
   playerCell.appendChild(playerElement);
 
   // Check if player is moving into an item position
@@ -121,18 +152,29 @@ function handleSpacePress() {
   );
 
   const itemElement = playerCell.querySelector(".item-image");
-  if (!itemElement) {
-    return;
-  }
 
-  if (currentlyCarrying) {
-    combineItem(currentlyCarrying, itemElement.id);
+  // If there's an item on the spot
+  if (itemElement) {
+    if (currentlyCarrying) {
+      combineItem(currentlyCarrying, itemElement.id);
+
+    } else {
+      currentlyCarrying = itemElement.id;
+      getEl(currentlyCarrying).remove();
+      getEl("task-info-carrying").innerHTML = nameToIcon(currentlyCarrying);
+
+      updatePlayerPosition();
+    }
   } else {
-    currentlyCarrying = itemElement.id;
-    getEl(currentlyCarrying).remove();
-    getEl("task-info-carrying").innerHTML = nameToIcon(currentlyCarrying);
+    // If the spot is empty and the player is carrying an item
+    if (currentlyCarrying) {
+      consumeItem(currentlyCarrying);
 
-    updatePlayerPosition();
+      currentlyCarrying = null;
+      getEl("task-info-carrying").innerHTML = "";
+
+      updatePlayerPosition();
+    }
   }
 }
 
@@ -184,7 +226,37 @@ function updateInventory (record) {
 
   cellTransitions.innerHTML = `${nameToIcon(record.held)} + ${nameToIcon(record.target)} = ${yieldItemIcon}`;
   row.scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+function updateItemTable(itemObj) {
+  // Find table on dashboard and insert new row
+  const tableBody = document.getElementById('task-reward-table').getElementsByTagName('tbody')[0];
+  let row = tableBody.insertRow();
+  let cellSprite = row.insertCell(0);
+  let cellCalories = row.insertCell(1);
 
+  // Find item sprite from game config and add to row
+  cellSprite.innerHTML = nameToIcon(itemObj.item_name);
+  cellCalories.innerHTML = 10 ** itemObj.item_level;
+
+  // Sort the table
+  let tbody = document.getElementById('task-reward-table').getElementsByTagName('tbody')[0];
+  let rows = Array.from(tbody.getElementsByTagName('tr'))
+  const rowData = rows.map(row => {
+    const cells = row.getElementsByTagName('td');
+    return {
+      element: row,
+      item: cells[0].innerText,
+      calories: parseInt(cells[1].innerText, 10)
+    };
+  });
+  rowData.sort((a, b) => b.calories - a.calories);
+  while (tbody.firstChild) {
+    tbody.removeChild(tbody.firstChild);
+  }
+  rowData.forEach(data => {
+    tbody.appendChild(data.element);
+  });
+  row.scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
 
 // Combine items

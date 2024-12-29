@@ -4,7 +4,7 @@
 
 
   <head>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> -->
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <title>Experiment</title>
   </head>
@@ -149,7 +149,7 @@
     <div id="task" class="base" >
 
       <div id="task-info" style="height: 130px; margin-top: 20px; margin-bottom: 20px;">
-        <p><span id="task-info-points">0</span> points, <span id="task-info-actions"></span> actions remaining</p>
+        <p><span id="task-info-points"></span> points, <span id="task-info-actions"></span> actions remaining</p>
         <br>
         <p>[SPACE bar: pick a crystal, harvest a crystal, fuse crystals. D key: drop a crystal]</p>
         <p>Currently Carrying: <span id="task-info-carrying"></span></p>
@@ -180,7 +180,7 @@
         </div>
 
 
-        <div id="task-lib-wrapper" style="margin-left:20px; width: 300px; height: 500px;">
+        <div id="task-lib-wrapper" style="margin-left:20px; width: 150px; height: 500px;">
 
           <table id="task-recipe-table" class="scrolldown">
             <thead>
@@ -194,10 +194,10 @@
           </table>
 
 
-          <table id="task-reward-table" class="scrolldown">
+          <table id="task-reward-table" class="scrolldown" style="margin-top:10px;">
             <thead>
               <tr>
-                <th style="width:60px;text-align:left;">Item</th>
+                <th>Item</th>
                 <th>Points</th>
               </tr>
             </thead>
@@ -305,6 +305,9 @@
     const checkScrollHeight = (text, btn) => ((text.scrollTop + text.offsetHeight) >= text.scrollHeight) ? btn.disabled = false : null;
     getEl('consent-info').addEventListener("scroll", () => checkScrollHeight(getEl('consent-info'), getEl('consent-btn')), false);
   </script>
+  <script type="text/javascript" src="../js/identicon/pnglib.js"></script>
+  <script type="text/javascript" src="../js/identicon/identicon.js"></script>
+
 
   <script type="text/javascript" src="../js/consent.js"></script>
   <script type="text/javascript" src="../js/instruction.js"></script>
