@@ -1,15 +1,18 @@
 /** Game configs */
-let ACTIONS = 10;
+const MAX_ACTIONS = 3;
 const gridSize = 15;
 const COND = 'easy';
 
 /** Global variables */
 let items = [];
 let transitions = [];
+let ACTIONS = MAX_ACTIONS;
 let POINTS = 0;
 const MAXLEVEL = 6;
 
+
 /** Player state */
+let token = generateToken(8); // pseudo player id
 let playerPosition = { x: 7, y: 7 };
 getEl('task-info-actions').innerHTML = ACTIONS;
 getEl('task-info-points').innerHTML = POINTS;

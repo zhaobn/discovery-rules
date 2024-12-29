@@ -73,6 +73,7 @@ ul li, ol li {
   grid-template-columns: repeat(15, 30px);
   grid-template-rows: repeat(15, 30px);
   gap: 2px;
+  position: relative;
   /* border: 2px solid #ccc; */
 }
 .grid-cell {
@@ -150,4 +151,23 @@ thead th {
 }
 #task-info-points {
   color: green;
+}
+
+#grid-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(128, 128, 128, 0.7); /* Semi-transparent grey */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it is on top of other elements */
+}
+
+#grid-cover h1 {
+  color: white;
+  font-size: 48px;
+  font-weight: bold;
 }

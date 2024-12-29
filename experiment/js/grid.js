@@ -3,6 +3,9 @@ const gridWorld = document.getElementById("task-grid");
 
 let currentlyCarrying = null;
 let attemptedItems = new Set();
+let actionData = {};
+let eventData = {};
+
 
 // Draw player
 var hash = 'd6fe8c82fb0abac17a702fd2a94eff37';
@@ -79,7 +82,7 @@ function consumeItem(itemName) {
   }
 
   getEl("task-info-points").innerHTML = POINTS;
-  updateAction();
+  updateAction({'action': 'consume', 'held': itemName, 'target': '', 'yield': '', 'points': itemPoints});
 }
 
 // Check transitions
@@ -203,13 +206,27 @@ function handleDropPress() {
 
 }
 
-function updateAction() {
+function updateAction(actionData) {
+
+  ACTIONS = ACTIONS - 1
+  getEl("task-info-actions").innerHTML = ACTIONS;
+  actionData['token'] = token;
+
   if (ACTIONS > 0) {
-    ACTIONS = ACTIONS - 1
-    getEl("task-info-actions").innerHTML = ACTIONS;
+    var actionId = 'act-' + (MAX_ACTIONS - ACTIONS);
+    actionData[actionId] = actionData;
 
   } else {
-    grid_done();
+    // Add a semi-transparent cover to the grid
+    const cover = document.createElement("div");
+    cover.id = "grid-cover";
+    cover.innerHTML = "<h1>Game End</h1>";
+    getEl('task-grid').appendChild(cover);
+
+    // Wait for 2 seconds before transitioning to grid_done()
+    setTimeout(() => {
+      grid_done();
+    }, 1000);
   }
 }
 function updateInventory (record) {
@@ -219,7 +236,6 @@ function updateInventory (record) {
   let yieldItemIcon = '❌';
 
   let yieldItem = record.yield;
-  console.log(yieldItem);
   if (yieldItem.length > 1) {
     yieldItemIcon = nameToIcon(yieldItem);
   }
@@ -261,13 +277,14 @@ function updateItemTable(itemObj) {
 
 // Combine items
 function combineItem(heldItem, targetItem) {
+  let yieldItem = '';
+
   let transition = transitions.find(record => record.held === heldItem && record.target === targetItem);
   if (transition) {
-    let yieldItem = transition.yield;
+    yieldItem = transition.yield;
 
     if (yieldItem.length < 1) {
       getEl('task-info-hint').innerHTML = '';
-      updateAction();
 
     } else {
       // Update the current cell
@@ -281,14 +298,10 @@ function combineItem(heldItem, targetItem) {
       getEl("task-info-carrying").innerHTML = nameToIcon(currentlyCarrying);
 
       updatePlayerPosition();
-      updateAction();
     }
 
   } else {
-
     // check conditions
-    let yieldItem = ''
-
     if (COND == 'easy' && isSameShape([heldItem, targetItem])) {
       yieldItem = newObj(heldItem, targetItem);
     }
@@ -327,18 +340,16 @@ function combineItem(heldItem, targetItem) {
       currentlyCarrying = yieldItem;
 
       getEl("task-info-carrying").innerHTML = nameToIcon(currentlyCarrying);
-
       updatePlayerPosition();
-      updateAction();
 
     } else {
       getEl('task-info-hint').innerHTML = '';
-      updateAction();
     }
 
     updateInventory(record);
-
   }
+
+  updateAction({'action': 'combine', 'held': heldItem, 'target': targetItem, 'yield': yieldItem, 'points': 0});
 
  }
 

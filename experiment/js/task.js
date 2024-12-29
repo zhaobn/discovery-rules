@@ -2,50 +2,13 @@
 // Data
 let start_task_time = 0;
 let subjectData = {};
-
+let messageData = '';
 
 // Collect prolific id
 function handle_prolific() {
   subjectData['prolific_id'] = getEl('prolific_id_text').value;
   hideAndShowNext('prolific_id', 'instruction', 'block');
 }
-
-
-// // Comprehension quiz
-// const checks = [ 'check1', 'check2', 'check3', 'check4', 'check5' ];
-// const answers = [ true, true, false, true, false ];
-
-// function check_quiz() {
-//   getEl('check-btn').style.display = 'none';
-
-//   let inputs = [];
-//   checks.map(check => {
-//     const vals = document.getElementsByName(check);
-//     inputs.push(vals[0].checked);
-//   });
-//   const pass = (inputs.join('') === answers.join(''));
-
-//   if (pass) {
-//     showNext('pass', 'block');
-//   } else {
-//     showNext('retry', 'block');
-//   }
-// }
-// function handle_pass() {
-//   start_task_time = Date.now();
-//   hide("pass");
-//   hide("quiz");
-//   showNext("task", "block");
-// }
-// function handle_retry() {
-//   hide("retry");
-//   hide("quiz");
-//   showNext("instruction", "block");
-//   hideAndShowNext('instruction-2', 'instruction-1', 'block');
-//   getEl('check-btn').style.display = 'flex';
-// }
-// getEl('prequiz').onchange = () => compIsFilled() ? getEl('check-btn').disabled = false : null;
-
 
 // Grid world task
 function grid_done() {
@@ -55,7 +18,18 @@ function grid_done() {
   showNext('task-composer', 'block');
 }
 
+// Message composer
+function handle_submit() {
+  const composerText = document.getElementById('composer-text').value;
 
+  if (composerText === "") {
+    alert("Please type your message. You will be bonused for the quality of your message.");
+    return;
+  }
+
+  subjectData['message'] = composerText;
+  hideAndShowNext('task', 'debrief', 'block');
+}
 
 // Bebrief
 getEl('postquiz').onchange = () => isFilled('postquiz')? getEl('done-btn').disabled = false: null;
@@ -65,9 +39,10 @@ function is_done(complete_code) {
 
   // Get data
   subjectData['feedback'] = removeSpecial(subjectData['feedback']);
+  subjectData['condition'] = COND;
+  subjectData['total_points'] = POINTS;
 
   const end_time = new Date();
-  let token = generateToken(8);
 
   let clientData = {};
   clientData.subject = subjectData;
@@ -75,6 +50,8 @@ function is_done(complete_code) {
   clientData.subject.time = formatDates(end_time, 'time');
   clientData.subject.task_duration = end_time - start_task_time;
   clientData.subject.token = token;
+
+  clientData.actions = actionData;
 
 
   // Show completion
