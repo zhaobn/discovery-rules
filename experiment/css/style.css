@@ -142,3 +142,12 @@ thead th {
   position: absolute;
   z-index: 2;
 }
+#task-info-points,
+#task-info-actions {
+  font-size: 30px;
+  font-weight: bold;
+  color: red;
+}
+#task-info-points {
+  color: green;
+}
