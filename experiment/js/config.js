@@ -1,7 +1,9 @@
 /** Game configs */
-const MAX_ACTIONS = 3;
+const MAX_ACTIONS = 20;
 const gridSize = 15;
-const COND = 'easy';
+const conditions = ['easy', 'medium', 'hard'];
+const COND = conditions[Math.floor(Math.random() * conditions.length)];
+
 
 /** Global variables */
 let items = [];
@@ -16,6 +18,7 @@ let token = generateToken(8); // pseudo player id
 let playerPosition = { x: 7, y: 7 };
 getEl('task-info-actions').innerHTML = ACTIONS;
 getEl('task-info-points').innerHTML = POINTS;
+
 
 /** Item positions */
 let baseItems = [];
@@ -47,6 +50,7 @@ for (let i = 0; i < baseItems.length; i++) {
 }
 // console.log(items);
 
+
 /** Helper functions */
 function getShape(item) { return item.split("_")[0] }
 
@@ -64,15 +68,14 @@ function newObj(item1, item2) {
   }
 }
 
+
 /** Transitions functions */
 function isSameShape(item_list) {
   return getShape(item_list[0]) === getShape(item_list[1]);
 }
-
 function isDiffShapeAndPlain(item_list) {
   return getShape(item_list[0]) !== getShape(item_list[1]) && getTexture(item_list[0]) === "plain";
 }
-
 function complexRule(item_list) {
   return (
     (getShape(item_list[0]) === 'circle' || getShape(item_list[0]) === 'square') &&

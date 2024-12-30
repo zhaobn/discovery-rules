@@ -50,12 +50,6 @@ ul li, ol li {
   opacity: 0.5;
   cursor: not-allowed;
 }
-#consent-info {
-  height: 500px;
-  overflow: scroll;
-  padding: 0 25px 20px 25px;
-}
-
 .instruct-heading {
   font-size: 1.2em; /* Slightly larger than main text */
   font-weight: 600; /* Slightly bolded */

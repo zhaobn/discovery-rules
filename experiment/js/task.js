@@ -1,3 +1,4 @@
+const isDev = false;
 
 // Data
 let start_task_time = 0;
@@ -78,6 +79,38 @@ function is_done(complete_code) {
 
 
   // Save data
-  console.log(clientData)
-  // download(JSON.stringify(clientData), 'data.txt', '"text/csv"');
+  if (isDev) {
+    console.log(clientData);
+    // download(JSON.stringify(clientData), 'data.txt', '"text/csv"');
+
+  } else {
+    save_data(prep_data_for_server(clientData));
+  }
+}
+
+function prep_data_for_server(data) {
+  retObj = {};
+  retObj['worker'] = data.subject.prolific_id;
+  retObj['assignment'] = COND;
+  retObj['hit'] = 'rules';
+  retObj['version'] = '0.1';
+  retObj['total'] = data.subject.total_points;
+  retObj['subject'] = JSON.stringify(data.subject);
+  retObj['actions'] = JSON.stringify(data.actions);
+  retObj['events'] = JSON.stringify(data.events);
+
+  return retObj;
+}
+function save_data(data) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', '../php/save_data.php');
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.onload = function() {
+    if(xhr.status == 200){
+      console.log(xhr.responseText);
+      // var response = JSON.parse(xhr.responseText);
+      // console.log(response.success);
+    }
+  };
+  xhr.send('['+JSON.stringify(data)+']');
 }

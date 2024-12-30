@@ -12,11 +12,11 @@
 
   <body>
 
-    <div id="welcome" class="base" style="display:none;">
+    <div id="welcome" class="base" >
       <h1>Information for participants</h1>
       <div id="consent-info"></div>
       <div class="button-group-vc">
-        <button class="big-button" id="consent-btn" disabled onclick="hideAndShowNext('welcome','prolific_id','block')">I agree</button>
+        <button class="big-button" id="consent-btn" onclick="hideAndShowNext('welcome','prolific_id','block')">I agree</button>
       </div>
     </div>
 
@@ -146,7 +146,7 @@
       </div>
     </div>
 
-    <div id="task" class="base" >
+    <div id="task" class="base" style="display:none;">
 
       <div id="task-info" style="height: 130px; margin-top: 20px; margin-bottom: 30px;">
         <p><span id="task-info-points"></span> points, <span id="task-info-actions"></span> actions remaining</p>
@@ -300,14 +300,8 @@
 
   </body>
   <script type="text/javascript" src="../js/utilities.js"></script>
-  <script type='text/javascript'>
-    // Consent info
-    const checkScrollHeight = (text, btn) => ((text.scrollTop + text.offsetHeight) >= text.scrollHeight) ? btn.disabled = false : null;
-    getEl('consent-info').addEventListener("scroll", () => checkScrollHeight(getEl('consent-info'), getEl('consent-btn')), false);
-  </script>
   <script type="text/javascript" src="../js/identicon/pnglib.js"></script>
   <script type="text/javascript" src="../js/identicon/identicon.js"></script>
-
 
   <script type="text/javascript" src="../js/consent.js"></script>
   <script type="text/javascript" src="../js/instruction.js"></script>

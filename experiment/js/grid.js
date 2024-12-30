@@ -19,6 +19,7 @@ var options = {
 var data = new Identicon(hash, options).toString();
 var playerImgSrc = 'data:image/png;base64,' + data;
 
+
 // Log event data
 function logEvent(actionType) {
   eventCounter++;
@@ -101,6 +102,7 @@ function consumeItem(itemName) {
   updateAction({'action': 'consume', 'held': itemName, 'target': '', 'yield': '', 'points': itemPoints});
 }
 
+
 // Check transitions
 function updateTransitions(carriedItem, targetItem) {
   const hintDiv = getEl("task-info-hint");
@@ -180,6 +182,7 @@ function handleKeyPress(event) {
     updatePlayerPosition();
   }
 }
+
 
 // Handle item pick-up or combination
 function handleSpacePress() {
