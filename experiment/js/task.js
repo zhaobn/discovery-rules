@@ -12,11 +12,26 @@ function handle_prolific() {
 }
 
 // Grid world task
+// function grid_done() {
+//   hide('task-info');
+//   getEl("task-content").style.marginTop = "40px";
+//   hide('task-grid');
+//   showNext('task-composer', 'block');
+// }
 function grid_done() {
-  hide('task-info');
-  getEl("task-content").style.marginTop = "40px";
-  hide('task-grid');
-  showNext('task-composer', 'block');
+  // Add a semi-transparent cover to the grid
+  const cover = document.createElement("div");
+  cover.id = "grid-cover";
+  cover.innerHTML = "<h1>Game End</h1>";
+  getEl('task-grid').appendChild(cover);
+
+  // Wait for 2 seconds before transitioning to grid_done()
+  setTimeout(() => {
+    hide('task-info');
+    getEl("task-content").style.marginTop = "40px";
+    hide('task-grid');
+    showNext('task-composer', 'block');
+  }, 1000);
 }
 
 // Message composer

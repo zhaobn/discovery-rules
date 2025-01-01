@@ -1,5 +1,6 @@
 
 const gridWorld = document.getElementById("task-grid");
+let itemCount = 0;
 
 let currentlyCarrying = null;
 let attemptedItems = new Set();
@@ -50,6 +51,7 @@ function createGrid() {
       const item = items.find((item) => item.x === x && item.y === y);
       if (item) {
         cell.appendChild(drawItem(item.item_name, item.item_icon));
+        itemCount++;
       }
 
       // Add player to initial position
@@ -217,6 +219,9 @@ function handleSpacePress() {
       getEl("task-info-carrying").innerHTML = "";
 
       updatePlayerPosition();
+
+      itemCount--;
+      checkItemCount();
     }
   }
 
@@ -262,16 +267,7 @@ function updateAction(data) {
 
 
   if (ACTIONS == 0) {
-    // Add a semi-transparent cover to the grid
-    const cover = document.createElement("div");
-    cover.id = "grid-cover";
-    cover.innerHTML = "<h1>Game End</h1>";
-    getEl('task-grid').appendChild(cover);
-
-    // Wait for 2 seconds before transitioning to grid_done()
-    setTimeout(() => {
-      grid_done();
-    }, 1000);
+    grid_done();
   }
 }
 function updateInventory (record) {
@@ -343,6 +339,9 @@ function combineItem(heldItem, targetItem) {
       getEl("task-info-carrying").innerHTML = nameToIcon(currentlyCarrying);
 
       updatePlayerPosition();
+
+      itemCount--;
+      checkItemCount();
     }
 
   } else {
@@ -387,6 +386,9 @@ function combineItem(heldItem, targetItem) {
       getEl("task-info-carrying").innerHTML = nameToIcon(currentlyCarrying);
       updatePlayerPosition();
 
+      itemCount--;
+      checkItemCount();
+
     } else {
       getEl('task-info-hint').innerHTML = '';
     }
@@ -397,7 +399,13 @@ function combineItem(heldItem, targetItem) {
   updateAction({'action': 'combine', 'held': heldItem, 'target': targetItem, 'yield': yieldItem, 'points': 0});
 
  }
-
+function checkItemCount() {
+  if (itemCount <= 0) {
+    setTimeout(() => {
+      grid_done();
+    }, 1000);
+  }
+}
 // Event listener for keyboard input
 document.addEventListener("keydown", (event) => {
   if (event.key === " ") {
