@@ -11,6 +11,9 @@ function handle_prolific() {
   hideAndShowNext('prolific_id', 'instruction', 'block');
 }
 
+// Instruction
+getEl('instruct-action').innerHTML = MAX_ACTIONS;
+
 // Grid world task
 // function grid_done() {
 //   hide('task-info');
