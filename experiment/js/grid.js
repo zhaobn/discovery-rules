@@ -350,7 +350,11 @@ function combineItem(heldItem, targetItem) {
       yieldItem = newObj(heldItem, targetItem);
     }
 
-    if (COND == 'medium' && diffObjs([heldItem, targetItem])) {
+    if (COND == 'medium-1' && diffObjs1([heldItem, targetItem])) {
+      yieldItem = newObj(heldItem, targetItem);
+    }
+
+    if (COND == 'medium-2' && diffObjs2([heldItem, targetItem])) {
       yieldItem = newObj(heldItem, targetItem);
     }
 

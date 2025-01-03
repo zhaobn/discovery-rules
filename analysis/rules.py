@@ -20,12 +20,12 @@ def get_shape(obj): return obj.split('_')[0]
 
 def get_texture(obj): return obj.split('_')[1]
 
-def diff_objs (obj_arr):
-  shapeMatch = all_shapes.index(get_shape(obj_arr[0])) != all_shapes.index(get_shape(obj_arr[1]));
-  textureMatch = get_texture(obj_arr[0]) in ('plain', 'dots') and get_texture(obj_arr[1]) in ('stripes', 'checkered')
-  return (shapeMatch and textureMatch)
+def sameAndMore (obj_arr):
+  shapeMatch = all_shapes.index(get_shape(obj_arr[0])) + all_shapes.index(get_shape(obj_arr[1])) == 3
+  textureMatch = True
+  return ( shapeMatch and textureMatch )
 
-sum([diff_objs([el[0], el[1]]) for el in all_pairs])
+sum([sameAndMore([el[0], el[1]]) for el in all_pairs])
 
 # %%
 def is_same_shape (obj_arr):

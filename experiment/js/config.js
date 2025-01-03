@@ -1,8 +1,9 @@
 /** Game configs */
-const MAX_ACTIONS = 40;
+const MAX_ACTIONS = 30;
 const gridSize = 15;
-const conditions = ['easy', 'medium', 'hard'];
-const COND = 'medium' //conditions[Math.floor(Math.random() * conditions.length)];
+const conditions = ['medium-1', 'medium-2', 'hard'];
+const COND = conditions[Math.floor(Math.random() * conditions.length)];
+console.log(COND)
 
 
 /** Global variables */
@@ -88,8 +89,13 @@ function capSet(item_list) {
   const textureMatch = textures.indexOf(getTexture(item_list[0])) >= textures.indexOf(getTexture(item_list[1]));
   return shapeMatch && textureMatch;
 }
-function diffObjs(obj_arr) {
-  const shapeMatch = shapes.indexOf(getShape(obj_arr[0])) != shapes.indexOf(getShape(obj_arr[1]));
-  const textureMatch = textures.indexOf(getTexture(obj_arr[0])) + textures.indexOf(getTexture(obj_arr[1])) == 3;
+function diffObjs1(item_list) {
+  const shapeMatch = shapes.indexOf(getShape(item_list[0])) + shapes.indexOf(getShape(item_list[1])) === 3;
+  const textureMatch = getTexture(item_list[0]) != getTexture(item_list[1]);
+  return shapeMatch && textureMatch;
+}
+function diffObjs2(item_list) {
+  const shapeMatch = shapes.indexOf(getShape(item_list[0])) + shapes.indexOf(getShape(item_list[1])) === 3;
+  const textureMatch = true
   return shapeMatch && textureMatch;
 }
