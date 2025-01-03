@@ -2,7 +2,7 @@
 const MAX_ACTIONS = 40;
 const gridSize = 15;
 const conditions = ['easy', 'medium', 'hard'];
-const COND = conditions[Math.floor(Math.random() * conditions.length)];
+const COND = 'medium' //conditions[Math.floor(Math.random() * conditions.length)];
 
 
 /** Global variables */
@@ -60,7 +60,7 @@ function getLevel(item) { return item.split("_")[2] }
 
 function newObj(item1, item2) {
   const newLevel = Math.max(getLevel(item1), getLevel(item2)) + 1;
-  if(newLevel > MAXLEVEL) {
+  if(newLevel >= MAXLEVEL) {
      return ''
 
   } else {
@@ -82,4 +82,14 @@ function complexRule(item_list) {
     (getTexture(item_list[1]) === 'plain' || getTexture(item_list[1]) === 'dots') &&
     getShape(item_list[1]) !== 'circle'
   );
+}
+function capSet(item_list) {
+  const shapeMatch = shapes.indexOf(getShape(item_list[0])) + shapes.indexOf(getShape(item_list[1])) === 3;
+  const textureMatch = textures.indexOf(getTexture(item_list[0])) >= textures.indexOf(getTexture(item_list[1]));
+  return shapeMatch && textureMatch;
+}
+function diffObjs(obj_arr) {
+  const shapeMatch = shapes.indexOf(getShape(obj_arr[0])) != shapes.indexOf(getShape(obj_arr[1]));
+  const textureMatch = textures.indexOf(getTexture(obj_arr[0])) + textures.indexOf(getTexture(obj_arr[1])) == 3;
+  return shapeMatch && textureMatch;
 }

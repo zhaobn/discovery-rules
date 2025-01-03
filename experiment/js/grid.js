@@ -350,11 +350,11 @@ function combineItem(heldItem, targetItem) {
       yieldItem = newObj(heldItem, targetItem);
     }
 
-    if (COND == 'medium' && isDiffShapeAndPlain([heldItem, targetItem])) {
+    if (COND == 'medium' && diffObjs([heldItem, targetItem])) {
       yieldItem = newObj(heldItem, targetItem);
     }
 
-    if (COND == 'hard' && complexRule([heldItem, targetItem])) {
+    if (COND == 'hard' && capSet([heldItem, targetItem])) {
       yieldItem = newObj(heldItem, targetItem)
     }
 

@@ -102,7 +102,7 @@ max_digits = len(str(int(bonus_data['total_points'].max())))
 bonus_data['bonus'] = bonus_data['total_points'].apply(lambda x: calculate_bonus(x, max_digits))
 
 bonus_data[['prolific_id', 'bonus']].to_csv("../data/bonus_data.csv", index=False)
-
+bonus_data['bonus'].mean() # 0.418
 
 # %% output self reports
 message_data = subject_data[['id', 'version', 'assignment', 'message', 'total_points']]

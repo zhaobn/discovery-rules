@@ -1,4 +1,4 @@
-const isDev = false;
+const isDev = true;
 
 // Data
 let start_task_time = 0;
