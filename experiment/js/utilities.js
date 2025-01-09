@@ -109,3 +109,13 @@ function download(content, fileName, contentType) {
   a.download = fileName;
   a.click();
 }
+
+
+/** Math */
+function gaussianRandom(mean, stdDev) {
+  let u = 0, v = 0;
+  while (u === 0) u = Math.random(); // Convert [0,1) to (0,1)
+  while (v === 0) v = Math.random();
+  let z = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+  return z * stdDev + mean; // Scale and shift
+}

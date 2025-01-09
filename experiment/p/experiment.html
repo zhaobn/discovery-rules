@@ -12,7 +12,7 @@
 
   <body>
 
-    <div id="welcome" class="base" >
+    <div id="welcome" class="base" style="display:none;">
       <h1>Information for participants</h1>
       <div id="consent-info"></div>
       <div class="button-group-vc">
@@ -146,7 +146,7 @@
       </div>
     </div>
 
-    <div id="task" class="base"  style="display:none;">
+    <div id="task" class="base" >
 
       <div id="task-info" style="height: 130px; margin-top: 20px; margin-bottom: 30px;">
         <p><span id="task-info-points"></span> points, <span id="task-info-actions"></span> actions remaining</p>
@@ -165,11 +165,16 @@
 
           <div id="task-composer" style="display: none;">
 
-            <p style="padding: 0; margin: 0;">You can now leave a <b>message for a future player</b>. This message will be passed on to someone who will play the <b>same game</b> you just played, starting with the <b>same initial settings</b>.</p>
-            <p>Think about what you've learned—strategies, combinations, or tips that could help the next player score more points.</p>
+            <p style="padding: 0; margin: 0;">You can now leave some <b>messages for a future player</b>. This message will be passed on to someone who will play the <b>same game</b> you just played, starting with the <b>same initial settings</b>.</p>
+            <!-- <p>Think about what you've learned—strategies, combinations, or tips that could help the next player score more points.</p>-->
+            <p>Share tips or strategies that could help the next player score more points:</p>
+            <textarea id="composer-text-how" style="height: 100px; width: 92%;" placeholder="Type your message here..."></textarea>
+
+            <p>Explain any rules or patterns you noticed when combining items:</p>
+            <textarea id="composer-text-rules" style="height: 100px; width: 92%;" placeholder="Type your message here..."></textarea>
+
             <p>You will earn a bonus based on how well the future player who reads your message performs in their game. The more points they earn, the bigger your reward!</p>
 
-            <textarea id="composer-text" style="height: 300px; width: 92%;" placeholder="Type your message here..."></textarea>
             <div>
                 <button class="big-button" id="composer-submit" onclick="handle_submit()">Submit</button>
             </div>

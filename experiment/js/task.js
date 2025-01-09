@@ -1,9 +1,8 @@
-const isDev = false;
+const isDev = true;
 
 // Data
 let start_task_time = 0;
 let subjectData = {};
-let messageData = '';
 
 // Collect prolific id
 function handle_prolific() {
@@ -39,14 +38,16 @@ function grid_done() {
 
 // Message composer
 function handle_submit() {
-  const composerText = document.getElementById('composer-text').value;
+  const composerTextHow = document.getElementById('composer-text-how').value;
+  const composerTextRules = document.getElementById('composer-text-rules').value;
 
-  if (composerText === "") {
-    alert("Please type your message. You will be bonused for the quality of your message.");
+  if (composerTextHow === "" || composerTextRules === "") {
+    alert("Please type your message in both text areas. You will be bonused for the quality of your message.");
     return;
   }
 
-  subjectData['message'] = composerText;
+  subjectData['messageHow'] = composerTextHow;
+  subjectData['messageRules'] = composerTextRules;
   hideAndShowNext('task', 'debrief', 'block');
 }
 

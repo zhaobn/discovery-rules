@@ -126,6 +126,36 @@ function updateTransitions(carriedItem, targetItem) {
   hintDiv.innerHTML =`${heldItemIcon} + ${targetItemIcon} = ${yieldItemIcon}`;
 }
 
+// Add comsumed items back to grid
+function regenerateItems(itemsToRegenerate) {
+  const baseItems = itemsToRegenerate.filter((itemName) => itemName.endsWith("_0"));
+
+  baseItems.forEach((itemName, index) => {
+    const baseWaitTime = Math.max(500, gaussianRandom(5000, 2000));
+    const staggerDelay = index * 2000;
+    const waitTime = baseWaitTime + staggerDelay;
+
+    setTimeout(() => {
+      // Find random empty cell
+      const emptyCells = Array.from(document.querySelectorAll(".grid-cell")).filter(
+        (cell) => !cell.querySelector(".item-image") && !cell.querySelector(".player")
+      );
+
+      if (emptyCells.length > 0) {
+        const randomCell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+        const item = items.find((i) => i.item_name === itemName);
+
+        if (item) {
+          item.x = parseInt(randomCell.dataset.x);
+          item.y = parseInt(randomCell.dataset.y);
+
+          // Add the item back to the grid
+          randomCell.appendChild(drawItem(item.item_name, item.item_icon));
+        }
+      }
+    }, waitTime);
+  });
+}
 
 // Update player position
 function updatePlayerPosition() {
@@ -208,20 +238,19 @@ function handleSpacePress() {
       getEl("task-info-carrying").innerHTML = nameToIcon(currentlyCarrying);
 
       updatePlayerPosition();
+
     }
   } else {
     // If the spot is empty and the player is carrying an item
     if (currentlyCarrying) {
       actionType = "consume";
       consumeItem(currentlyCarrying);
+      regenerateItems([currentlyCarrying]);
 
       currentlyCarrying = null;
       getEl("task-info-carrying").innerHTML = "";
 
       updatePlayerPosition();
-
-      itemCount--;
-      checkItemCount();
     }
   }
 
@@ -339,9 +368,7 @@ function combineItem(heldItem, targetItem) {
       getEl("task-info-carrying").innerHTML = nameToIcon(currentlyCarrying);
 
       updatePlayerPosition();
-
-      itemCount--;
-      checkItemCount();
+      regenerateItems([heldItem, targetItem]);
     }
 
   } else {
@@ -390,8 +417,7 @@ function combineItem(heldItem, targetItem) {
       getEl("task-info-carrying").innerHTML = nameToIcon(currentlyCarrying);
       updatePlayerPosition();
 
-      itemCount--;
-      checkItemCount();
+      regenerateItems([heldItem, targetItem]);
 
     } else {
       getEl('task-info-hint').innerHTML = '';
