@@ -2,3 +2,6 @@
 experiment/php/db_config.php
 
 venv/
+
+.RData
+.Rhistory

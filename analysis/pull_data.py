@@ -3,36 +3,38 @@ import pandas as pd
 import numpy as np
 import json
 
-
 # %%
 file_path = "../data/gridrules.tsv"
 
 data = pd.read_csv(file_path, sep="\t")
-data['subject'] = data['subject'].str.replace(r'{\\prolific', '"{\\"prolific', regex=True)
+data = data[data['worker'].str.len() > 4]
+data = data[data['version'] > 0.2]
 
-prolific_data = data[data['worker'].str.len() > 4]
-prolific_data['subject_parsed'] = prolific_data['subject'].apply(json.loads)
+data['subject'] = data['subject'].str.replace(r'{\\prolific', '"{\\"prolific', regex=True)
+data['actions'] = data['actions'].str.replace(r'\\\\', r'\\', regex=True)
+data['actions'] = data['actions'].str.replace(r'{\\act-1', '"{\\\"act-1', regex=True)
+data['events'] = data['events'].str.replace(r'{\\event-1', '"{\\\"event-1', regex=True)
+
+
+# %%
+data['subject_parsed'] = data['subject'].apply(json.loads)
 
 def extract_json_fields(json_str):
   try:
     data = json.loads(json_str)
     return pd.Series(data)
   except json.JSONDecodeError:
-    return pd.Series([None] * len(prolific_data.columns))
+    return pd.Series([None] * len(data.columns))
 
-subject_data = prolific_data['subject_parsed'].apply(extract_json_fields)
-subject_full_data = pd.concat([prolific_data[['id', 'assignment', 'version']], subject_data], axis=1)
+subject_data = data['subject_parsed'].apply(extract_json_fields)
+subject_full_data = pd.concat([data[['id', 'assignment', 'version']], subject_data], axis=1)
 
 subject_full_data.reset_index(drop=True, inplace=True)
 subject_full_data.to_csv("../data/subject_data.csv", index=False)
 
 # %%
-data = pd.read_csv(file_path, sep="\t")
-data['actions'] = data['actions'].str.replace(r'\\\\', r'\\', regex=True)
-data['actions'] = data['actions'].str.replace(r'{\\act-1', '"{\\\"act-1', regex=True)
 
-prolific_data = data[data['worker'].str.len() > 4]
-prolific_data['actions_parsed'] = prolific_data['actions'].apply(json.loads)
+data['actions_parsed'] = data['actions'].apply(json.loads)
 
 def extract_actions(actions_str):
   actions_dict = json.loads(actions_str)
@@ -42,7 +44,7 @@ def extract_actions(actions_str):
     actions_list.append(action_data)
   return actions_list
 
-expanded_actions = prolific_data['actions_parsed'].apply(extract_actions)
+expanded_actions = data['actions_parsed'].apply(extract_actions)
 expanded_actions_df = pd.json_normalize(expanded_actions.explode())
 
 id_token = subject_full_data[['id', 'token', 'assignment', 'version']]
@@ -54,12 +56,8 @@ merged_df.to_csv("../data/action_data.csv", index=False)
 
 
 # %%
-data = pd.read_csv(file_path, sep="\t")
-data['actions'] = data['actions'].str.replace(r'\\\\', r'\\', regex=True)
-data['events'] = data['events'].str.replace(r'{\\event-1', '"{\\\"event-1', regex=True)
 
-prolific_data = data[data['worker'].str.len() > 4]
-prolific_data['events_parsed'] = prolific_data['events'].apply(json.loads)
+data['events_parsed'] = data['events'].apply(json.loads)
 
 def extract_event_details(event_str):
   event_data = json.loads(event_str)
@@ -78,7 +76,7 @@ def extract_event_details(event_str):
     })
   return details
 
-expanded_data = prolific_data['events_parsed'].apply(extract_event_details)
+expanded_data = data['events_parsed'].apply(extract_event_details)
 expanded_df = pd.json_normalize(expanded_data.explode())
 
 merged_df = expanded_df.merge(id_token, on='token', how='left')

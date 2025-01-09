@@ -3,6 +3,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+# %%
+subject_data =
+
 
 # %%
 subject_data = pd.read_csv("../data/subject_data.csv")
