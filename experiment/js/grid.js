@@ -1,6 +1,8 @@
 
 const gridWorld = document.getElementById("task-grid");
 let itemCount = 0;
+let allowRegeneration = true;
+const regeneratedItems = new Set();
 
 let currentlyCarrying = null;
 let attemptedItems = new Set();
@@ -128,14 +130,23 @@ function updateTransitions(carriedItem, targetItem) {
 
 // Add comsumed items back to grid
 function regenerateItems(itemsToRegenerate) {
+  if (!allowRegeneration) {
+    return;
+  }
+
   const baseItems = itemsToRegenerate.filter((itemName) => itemName.endsWith("_0"));
 
   baseItems.forEach((itemName, index) => {
-    const baseWaitTime = Math.max(500, gaussianRandom(5000, 2000));
+    const baseWaitTime = Math.max(1000, gaussianRandom(5000, 2000));
     const staggerDelay = index * 2000;
     const waitTime = baseWaitTime + staggerDelay;
 
     setTimeout(() => {
+      // only regenerate once
+      if (regeneratedItems.has(itemName)) {
+        return;
+      }
+
       // Find random empty cell
       const emptyCells = Array.from(document.querySelectorAll(".grid-cell")).filter(
         (cell) => !cell.querySelector(".item-image") && !cell.querySelector(".player")
@@ -151,6 +162,7 @@ function regenerateItems(itemsToRegenerate) {
 
           // Add the item back to the grid
           randomCell.appendChild(drawItem(item.item_name, item.item_icon));
+          regeneratedItems.add(itemName);
         }
       }
     }, waitTime);
@@ -288,11 +300,17 @@ function handleDropPress() {
 function updateAction(data) {
 
   ACTIONS = ACTIONS - 1
-  getEl("task-info-actions").innerHTML = ACTIONS;
+  const actionsSpan = document.getElementById("task-info-actions");
+  actionsSpan.innerHTML = ACTIONS;
+  actionsSpan.classList.add("flash");
 
   var actionId = 'act-' + (MAX_ACTIONS - ACTIONS);
   data['token'] = token;
   actionData[actionId] = data;
+
+  setTimeout(() => {
+    actionsSpan.classList.remove("flash");
+  }, 500);
 
 
   if (ACTIONS == 0) {

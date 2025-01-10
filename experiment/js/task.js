@@ -1,4 +1,5 @@
-const isDev = true;
+const isDev = false;
+isDev? console.log(COND): null;
 
 // Data
 let start_task_time = 0;
@@ -77,6 +78,7 @@ function is_done(complete_code) {
   subjectData['feedback'] = removeSpecial(subjectData['feedback']);
   subjectData['condition'] = COND;
   subjectData['total_points'] = POINTS;
+  subjectData['allow_regeneration'] = allowRegeneration;
 
   const end_time = new Date();
 
@@ -112,7 +114,7 @@ function prep_data_for_server(data) {
   retObj['worker'] = data.subject.prolific_id;
   retObj['assignment'] = COND;
   retObj['hit'] = 'rules';
-  retObj['version'] = '0.3';
+  retObj['version'] = '0.4';
   retObj['total'] = data.subject.total_points;
   retObj['subject'] = JSON.stringify(data.subject);
   retObj['actions'] = JSON.stringify(data.actions);

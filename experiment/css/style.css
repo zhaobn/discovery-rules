@@ -165,3 +165,16 @@ thead th {
   font-size: 48px;
   font-weight: bold;
 }
+@keyframes flash {
+  0% {
+    color: transparent;
+    /* background-color: yellow; */
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+.flash {
+  animation: flash 0.5s ease-out;
+}

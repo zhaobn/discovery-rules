@@ -12,7 +12,7 @@
 
   <body>
 
-    <div id="welcome" class="base" style="display:none;">
+    <div id="welcome" class="base">
       <h1>Information for participants</h1>
       <div id="consent-info"></div>
       <div class="button-group-vc">
@@ -93,16 +93,16 @@
           <h2 class="instruct-heading">Fusion guide:</h2>
           <ul>
 
-            <li>On this planet, naturally-occurring crystals are <b>red</b>. Each red crystal is worth 1 energy point. </li>
+            <li>On this planet, naturally-occurring crystals are <b>red</b>. Each red crystal is worth 1 energy point, and they can regenerate once. </li>
 
             <li>Each crystal's color shows how many energy points it's worth:
               <ul>
-                <li>🟥 1 point</li>
-                <li>🟧 10 points</li>
-                <li>🟨 100 points</li>
-                <li>🟩 1,000 points</li>
-                <li>🟦 100,00 points</li>
-                <li>🟪 1,000,000 points</li>
+                <li>&#x1F7E5; 1 point</li> <!-- Red Square -->
+                <li>&#x1F7E7; 10 points</li> <!-- Orange Square -->
+                <li>&#x1F7E8; 100 points</li> <!-- Yellow Square -->
+                <li>&#x1F7E9; 1,000 points</li> <!-- Green Square -->
+                <li>&#x1F7E6; 100,000 points</li> <!-- Blue Square -->
+                <li>&#x1F7EA; 1,000,000 points</li> <!-- Purple Square -->
               </ul>
             </li>
 
@@ -146,7 +146,7 @@
       </div>
     </div>
 
-    <div id="task" class="base" >
+    <div id="task" class="base" style="display:none;">
 
       <div id="task-info" style="height: 130px; margin-top: 20px; margin-bottom: 30px;">
         <p><span id="task-info-points"></span> points, <span id="task-info-actions"></span> actions remaining</p>

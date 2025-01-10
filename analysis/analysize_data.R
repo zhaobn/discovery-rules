@@ -95,7 +95,7 @@ ggplot(action_all, aes(x=factor(action_id), y=total_points_log)) +
   facet_grid(assignment~.)
 
 selected_actions = action_all %>%
-  filter(assignment %in% c('easy-2', 'medium-4', 'hard-3')) %>%
+  filter(assignment %in% c('easy-2', 'medium-3', 'hard-3')) %>%
   filter(action_id<31)
 selected_actions_summary <- selected_actions %>%
   group_by(action_id, assignment) %>%
