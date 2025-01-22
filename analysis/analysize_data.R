@@ -3,6 +3,65 @@ library(tidyr)
 library(ggplot2)
 library(gghalves)
 
+#### Pilot 3 ####
+subject_data = read.csv('../data/pilot-3/subject_data.csv')
+assignment_orders = c('easy', 'medium', 'hard')
+
+subject_data = subject_data %>%
+  mutate(condition=ifelse(condition=='medium-1', 'medium', condition)) %>%
+  mutate(condition=factor(condition, levels=assignment_orders)) %>%
+  select(id, condition, messageHow, messageRules, total_points, task_duration)
+
+# Points per condition
+subject_data$total_points_log = log(subject_data$total_points)
+ggplot(subject_data, aes(x = condition, y = total_points_log, fill = condition)) +
+  geom_half_violin(side = "l", width = 0.8, trim = FALSE, alpha = 0.6) +
+  stat_summary(
+    fun = mean, geom = "bar", width = 0.4, color = "black", fill = "white",
+    position = position_nudge(x = 0.2)
+  ) +
+  stat_summary(
+    fun.data = mean_cl_normal, geom = "errorbar", width = 0.2,
+    position = position_nudge(x = 0.2)
+  ) +
+  theme_minimal() +
+  labs(title = "Total Points per Condition",
+       x = "Condition", y = "Total Points (log)") +
+  theme(legend.position = "none")
+
+
+# Message length per condition
+subject_data$message_length = nchar(subject_data$messageRules)
+ggplot(subject_data, aes(x = condition, y = message_length, fill = condition)) +  stat_summary(
+    fun = mean, geom = "bar", width = 0.4, color = "black", fill = "white",
+   # position = position_nudge(x = 0.2)
+  ) +
+  stat_summary(
+    fun.data = mean_cl_normal, geom = "errorbar", width = 0.2,
+    #position = position_nudge(x = 0.2)
+  ) +
+  geom_jitter(width = 0.15, size = 2, alpha = 0.6, color = "black") + 
+  
+  theme_minimal() +
+  labs(title = "Rules Nchar per Condition",
+       x = "Condition", y = "Nchar") +
+  theme(legend.position = "none")
+
+
+# Points and lengths
+ggplot(subject_data, aes(x=total_points_log, y=message_length, color=condition)) +
+  geom_point(aes(shape=condition), size=3) +
+  geom_smooth(method = "lm", se = TRUE, aes(fill = condition), alpha = 0.1) +
+  theme_minimal() +
+  labs(title = "Total Points and Message Lengths across Conditions",
+       x = "Total points (log)", y = "Message length (nchar)")
+
+
+# Points per action
+
+
+
+#### Pilots 1-2 ####
 # load data
 assignment_orders = c('easy-1', 'medium-1', 'hard-1',
                       'easy-2', 'medium-2', 'hard-2',

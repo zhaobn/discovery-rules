@@ -1,158 +1,156 @@
-id,version,assignment,message,total_points
-5,0.1,medium,I think there is a much better strategy than whatever it is I was trying to do. Good luck!,6
-6,0.1,easy,Go with your gut and move fast,11
-7,0.1,hard,do not combine any crystal,4
-8,0.1,hard,try to make as much pairs as possible ,0
-9,0.1,easy,"Combine same shapes and colours: the patterns on the shapes don't seem to matter. E.g. two red triangles will combine, but not a red triangle and a red square, nor a red triangle and an orange triangle.",121
-10,0.1,hard,Similar shapes and patterns will fuse. ,0
-11,0.1,easy,Pick up two shapes the same to earn points.,0
-12,0.1,hard,"Many of the combinations did not work, so I think it might be a good idea to go for two circles. Also, remember the rules with regards to fusing the crystals as these are not repeated.",9
-13,0.1,medium,Pick and combine  blocks with the same shading is all I managed to learn so far,25
-14,0.1,easy,"to fuse the crystals, just start by picking up a random one. If you pick up a triangle, fuse it with another triangle and so on. If you pick up a square, fuse it with another square and so on. This applies to all the shapes. Just fuse it with the same shape that you are carrying.",4000
-15,0.1,easy,The same shapes work well together.,4000
-16,0.1,hard,It is an interesting game do not overthink your moves.,10
-17,0.1,easy,"It's a game that is not easy to play, do your best",0
-18,0.1,medium,It seems like shapes with similar designs can join. Take your time to make good decisions and do not rush.,14
-19,0.1,medium,"To gain the most points try and mix what you find, the only combination I got to work was a plain red squar with a red striped diamond. No combination of circles seemed to work",15
-20,0.1,medium,"Try and connect figures with the same color, and try to find the connections between figures",0
-21,0.1,easy,"If you pick up one shape, then while carrying it you go to pick up the same shape again on another box, it will fuse it. You can then press the space bar in an empty box to harvest the energy",161
-22,0.1,medium,Circle Square and then Circle and Triangle usually worked. But Never used triangle first which was my issue. Worth investigating triangles to see what results they come up with.,1
-23,0.1,easy,"I tried to combine like for like shapes (regardless of their pattern). I fused each to create an orange piece which wasnt the highest earner.
+id,condition,messageHow,messageRules,total_points
+2,hard,Match the right one!,good points are high,132
+3,easy,Try to get the purple crystals as getting higher tier crystals is exponentially better ,Merge with the same shape,100110
+4,hard,Copy the information in the explanation to be able to read it again as there is no instructions when you start.,I could not find any pattern,31
+5,easy,just continue too pair up the red shapes with the ones you create too make purple ,"start with one shape at a time and pair up all the same shapes first, for example the squares, once you get too purple colour cash it in for points, continue to do that with all the other shapes ",400013
+6,medium-1,"Once you find a combo that works, max that out before moving on",Shape matching doesn't seem to be relevent (squares with squares etc),0
+7,hard,"Circles and Squares tend to have the best fusion, usually the ones with solid patterns ","Circles and Squares tend to have the best fusion , usually the ones with solid patterns ",0
+8,easy,You have to put together the same kind of shapes,"triangles go with triangles, square with squarer, ecc",302002
+9,hard,I don't have any strategies to share,"A solid square and solid circle gives 10 points, a solid triangle and solid diamond gives 10 points",65
+10,hard,honeslty just keep trying random things,find the orange square ,30
+11,medium-1,Combining crystals,the points multiplied,0
+12,medium-1,use arrows to cotrol the game ,using space bar to combine or fuse items,124
+13,hard,Take your time and try to think before playing the game. Just because you are getting a hint it does not mean you will get a crystal.,WIth a cycle and a solid colur square you can get a crystal. It is always 2 different shapes that get you a crystal.,0
+14,hard,i try to make variatons on the lines and points,"some of them was random for me, even i think all of them, i don't undestrand how to hold the points :/",101
+15,hard,Match the same patterns together. ,"Match the same patterns together, doesn't have to be the same shape. ",29
+16,easy,"Pay close attention to which crystal combinations work
+Remember that successful fusion creates a crystal worth 10x the original value",Crystals with similar shapes or geometric patterns seem more likely to fuse successfully,1
+17,medium-1,square plus circle no matter the patterns works well. Triangle plus diamond too. Dont fuse two of the same shape it never works. For example dont fuse two triangles or two circles.,the shapes never fuze with the same shape. For example cicle and circle,341
+18,easy,you should be observant on the arrows,collect the items by using space,108
+19,easy,Match the same shapes first,match patterns that are similar first.,112
+20,hard,I have no idea,Did not notice anything,220
+21,medium-1,"Do not mindlessly click, try and figure out a pattern of what combines first. It is simpler than you think - if two shapes mix, keep mixing the new crystal with the same shape to create new colours!","If you combine two shapes together and keep combing them, you move up in the crystal points rank",200021
+22,medium-1,I was just going randomly. ,N/a,100000
+23,hard,Carefully read the rule. Even if they don't help you in action (,I didn't catch exactly what this game is leading to. It is not as it is described before,130
+24,medium-1,"Remember to drop off your colours (if its a good one) pressing space before you try and merge again, its very possible to go backwards in colour tiers I think so you can potentially lose points rather than accidentally merge into a lower colour. Always check out the hints for each block at the top, you can plan your moves this way before randomly trying to find out what works best. ","I could not find any rules/patterns, everything seemed fairly random. ",101015
+25,hard,Dont hold down the space bar as you will quickly loose the number of turns,I don't think the actions to combine crystals was working or I didn't understand the rules correctly. Maybe add a test section to get people used to playing the game ,0
+26,hard,Please follow rules and be patient,Same color,31
+27,hard,"I was just picking randomly and hoping for the best, I found no noticable pattern",I seen no noticeable patterns ,1013
+28,hard,try   match them  if can ,no sure ,5
+29,medium-1,nothing works,the plain goes with the dots ,1
+30,easy,Match same shapes,Try to match or fuse the same shapes. for example: Tringle with Triangle,1
+31,medium-1,I formed the most new crystals by combining a square crystal with a round one. ,"I didn't know if it was a pattern or coincidence, but combining a square with a circle formed a new crystal. ",100042
+32,easy,Long space adds extra points,Long spacing,1133
+33,hard,Use the found receipes along the side to find the best pairings and notice how many points you get once fused.,n/a,121
+34,hard,Find successful crystal combinations and then drop them. Pair the dropped combinations to create more combinations.,Combinations always take on the shape of the first crystal. Combinations always take on the texture of the second crystal.,111
+35,medium-1,Just experiment to find which combinations fuse: not many do. ,Fusions seem to occur when a circle is combined with a square. But not all combinations of circles and squares fuse. ,0
+36,hard,I really don't understand this game. I thought I was playing it right but I didn't do very well. Tip: start with the closest gem and move outwards. Make lots of variations.,that I was not doing it right! Shapes that are the same don't seem to combine well.,26
+37,medium-1,"
+Remember to harvest the highest scoring symbols you find by the end of the moves, so keep track of the number of moves","
+I noticed that not all symbols of the same color combined and above all that equal symbols do not necessarily combine",140
+38,easy,"Same shape fuses and increases the harvest
+Ensure you drop high value harvest to free the space hover",Same shape fused and increased harvest,300000
+39,easy,"You will need to focus more, dont rush into finishing","when collecting, combining, and harvesting crystals make sure you pay attension inorder to get the correct patterns",110000
+40,easy,pay attention to pieces in your hand beforr merging ,blue circle plus red equals purple circle,100000
+41,hard,No identified pattern on how the fusion can yield more pointd,None. Random confusion ,0
+42,medium-1,collecting the green circles is more valuable since it gives you more points,i noticed collecting the diamonds gives less points than the circles and rectangles,111
+43,easy,"Combine forms: no mattern + a pattern = leads to a orange symbol 
 
-When i tried to combine different shapes, i got an X resulting in nothing so avoid that!",161
-24,0.1,medium,Nothing seems to merge with the Squares. Don't waste your time on this,3
-25,0.1,medium,Merge two solids with each other - a solid red triangle and a solid red circle will give you an orange triangle. Solid red square and solid red rhombus will give you an orange square. Orange square and striped rhombus will give you a green square. The orange triangle and checkered rhombus will give you a green triangle. Green two figures will give you nothing - don't do it. Good luck!,202
-26,0.1,medium,The only parings that provided even small returns were the solid colours,26
-27,0.1,medium,"Do not just randomly choose the crystal on the map , have a pattern and combination of shapes. ",16
-28,0.1,easy,"It seems you can fuse items of the same shape, the pattern is not important. For example a circle can fuse with another circle of any pattern, but a circle can never fuse with a square, even if the pattern is the same.
+As soon as youas holding an orange symbol (by picking one symbol with no pattern, and the same symbol with one pattern), pick a third symbol with squared-pattern, this will lead to a yellow. ","Same format:
+1. Pattern + Non-pattern = Orange 
+2. Orange + Squared-pattern = yellow",382
+44,easy,start with the same shapes,I have not noticed a pattern accept selecting the same shapes to morph,300031
+45,hard,I tried to combine the crystals in accordance to the matching patterns.  ,They are best combined when they look alike.,1018
+46,hard,A square with a pattern in and a solid red circle gave me more points,Diamond circle and square circle seemed to give me more points,175
+47,easy,Gems of the same shape merge to make new gems.  Colour and pattern doesn't seem to matter.,Merging gems of the same shape produced new gems.  Attempting to merge gems of differing shapes failed every time in my trials.,400031
+48,hard,Make sure that your patterns in your shapes somehow correspond to each other to make a match,I noticed that shapes are almost similar when playing and doing the game,1105
+49,hard,"Don't fuse two items of the same shape, rectangles fuse with circles, triangles fuse with rhombus","Rectangles fuse with circles, triangles fuse with rhombus",0
+50,hard,Don't press spacebar when carrying an item on an empty square as this will bank that item,In this particular game the only combo I found was square and circle,27
+51,easy,the higher energy crystals have to fuse with crystals that have higher energy than them,the rule is that if the crystal has lower energy it can fuse with a crystal that has an energy that is higher than theirs,0
+52,medium-1,"SQUARE AND CIRCLE OF DIFFERENT PATTERNS CAN FUSE, TRIANGLE AND DIAMOND OF DIFFERENT PATTERNS CAN FUSE","SQUARE AND CIRCLE OF DIFFERENT PATTERNS CAN FUSE, TRIANGLE AND DIAMOND OF DIFFERENT PATTERNS CAN FUSE",112
+53,hard,Keep trying new recipes,I didn't find any.,100
+54,easy,trying to move as quickly as possible is the trick to get more points ,mostly the same shapes were combining as compared to different shapes,11000
+55,medium-1,be attentive and focused. don't look for identical figures with identical patterns.,items must have the same pattern,7
+56,hard,Be methodical in trying the combinations.,Check the hint box as it shows what you have tried previously.  None of the shapes shown combine with a green crystal to make another colour.,0
+57,medium-1,"Chose a starting shape like circle. Try matching with another circle first and if it fuses keep choosing circle. If not, then chose another shape until you find the fusing match. When you get to purple drop it and find another match. Make sure to cash in the purple when you only have a few moves left.","I found that the patterns didn't make much difference, but once I found a matching pair, for example square and circle, I could hold a square and click any circle and it would fuse.",301101
+58,hard,"Try harvesting thred and four sided shapes, they seem to combine better",Like shapes and patterns typically won't combine. Triangles and diamonds more likely.,100
+59,easy,Matching the same shapes with different patterns lets you fuse them for bonus points.,"Different shapes don't fuse together, similar ones do.",119
+60,hard,be patient and do not cash in any item before finding patters.,"circles and squares need to have the same pattern. rhombus and triangles have to not have the same pattern or dotted pattern with lines. Also it's important to pay attention to what the order the items are fused, fusing a square with a circle creates a square while fusing a circle with a square creates a circle.",350
+61,easy,This game was enjoyable and when fusing together try to make sure they are the same pattern.,when fusing together try to make sure they are the same pattern.,11
+62,easy,picking same shapes will be helpful,combining 2 or more with same shape will give us points,213
+63,medium-1,I have no tips,It appears to be random,1006
+64,medium-1,"When you find a combination of two objects, make note of the pattern inside the newly created object, fuse the new object (the one that you're holding) with the same shaped object that allowed you to create the new object, but with a different pattern than the new object.","I noticed that the pattern on the inside of the object that is combined with the held object is retained when combining, while the held object's shape was retained when combining.",200002
+65,hard,Circle and square matched patterns equals orange crystal,Circle and square matched patterns equals orange crystal,76
+66,medium-1,do not be afraid to use your points,the solid colours mixed with the striped ones severally can produce new colours,1011
+67,easy,"try to get as many purple shapes as possible, don't activate other colours, be sure not to double tap space by accident because you gonna activate them","2 of lesser color = 1 of higher, BUT
+red + orange = light green
+red + light green = dark green
+orange + green = blue
+red + blue = purple",210040
+68,medium-1,combine square and circle with different patterns,"I did not use any patterns, just try",24
+69,hard,link shapes of the same colour,same coloured shapes give you a new colour with the shape of the first shape,0
+70,hard,I started sorting them at one point but it didn't seem to help me much so I didn't bother.,"Similar patterns worked better but not always and identical ones never fused. Matching red patterned triangle and diamond fused, matching red pattern circle and square fused. The only oranges I got to fuse were dotted triangle and solid diamond. I did very badly btw, hope this helps!",130
+71,medium-1,"So what I have discovered is that to get more points, you have to double-click on each crystal.",I noticed that most combined crystals do not yield the desirable results.,144
+72,easy,This game is a bit challenging however if you focus you will find the clues and receive the points in the game.,The more you try to form patterns with the shapes if they don't go hand in hand you will see an X sign on found recipes,24
+73,hard,lookout for matching patterns and pay special attention to shapes,"Square and circles appear to pair very well, and so are trianges and diagonal shapes. ",157
+74,medium-1,be patient and try and look for patterns,it was dificult for me,218
+75,medium-1,no strategy honestly ,none,111
+76,easy,"dear future player
+when you pick your crystals make sure they are of the same shape even if its different colors, you will be given different shapes to choose from. the first shape you choose stick to it, good luck.","the rule was crystals come in many shapes, forms and colors, let go of crystals ones you done picking to allow for space to pick up more, combining same shape different colors is best because some colors have more points than others.",10
+77,hard,finish all your moves. ,"combine diamond with triangle always and keep going. 
+I did not find other shape's pairs you need to figure which shape is paired with.",10020
+78,easy,The game needs a lot of strategy.,"The fusion of the colors is easy, and the red color fusion is quite easy when combined with red.",0
+79,easy,make sure you check / look up on the messages on top for the type of item you are carrying tobe matched,i noticed i obtained more points when combing the square ones,21015
+80,medium-1,Coming up with fusions is really difficult so don't waste your actions on them.,"The striped(diagonal stripes) square + the checked circle was a fusion.
+And the striped(diagonal stripes) circle + checked square was a fusion.
+The tilted square (diagonal stripes) + checked triangle was a fusion.
+Using the same shapes or patterns doesn't give you any fusions.",58
+81,medium-1,just pick up with the space bar and drop them into your points with the space bar immediatly,None of the patterns i tried to match worked out at all,23
+82,hard,Dont forget to harvest when you feel like its the right time.,Circles and squares are usually the two to fuse together.Patterns are also a hint sometimes. Diamond and Triangles fuse.,112
+83,medium-1,"Look for patterns, for me it was circle + square of different inner lines made new circles, square + circle of different inner patterns made new squares. The shape you hold determined (was the same) as the new shape it forms and the pattern you fuse onto (the second shape) determines the inner pattern of the new shape. The other shapes were completely useless to me and I could not create recipes from them.  ",Only circles with squares could make new shapes. With the shape being determined by what you are holding (either a circle or square) and the inner pattern being determined by the shape you are not holding.,1001
+84,easy,Don't rush during the game and take time to see how the recipes form to make the best judgement. Observe how the shapes merge.,You can only combine similarly shaped crystals. a circular crystal will only combine with another circular crystal,111
+85,easy,"Combine the same shapes and collect all the same shapes until they are finished. Don't rush to drop a shape because new ones of the same type may pop up. When finished with a certain set of shapes, be sure to drop the one you are holding, then pick up another one and repeat the same pattern. Never mix two different shapes.","When you mix different shapes, you get an error, but mixing the same shape can give you a new shape and color and therefore points, depending on the patterns on the shapes that you mixed.",111143
+86,easy,"When selecting, select the same shape. For instance if you are are going for circle, you combine all circle. To select a shape press the space bar key on your keyboard. To move around use the arrow keys ie the up, down, left and right keys on your keyboard. If you want to drop the shape you are holding, you press the D key on your keyboard"," Now for the pattern a plan red circle  ie without any pattern and a square patterned orange circle will give a plan yellow circle
+A plan red diamond shape combined with a square red diamond will give an orange squared patterned diamond, an orange  patterned diamond with a red dotted diamond will give a yellow dotted diamond. A yellow dotted diamond with a slight lined patterned  red diamond will give a blue slight lined patterned diamond shape. In essence just play around and combine the same shapes together
 
-After you fuse one type of shape, go around and collect all of the same shapes, to maximise points.",1302
-29,0.1,hard,"Circles don't combine from what I have learned. I have successfully combined squares (diagonal lines + solid red = solid orange).
-You can make a dotted orange circle by combining doted red circle and doted red square. That combines with solid triange to make solid yellow circle. That combined with doted red triange makes doted green circle (which is worth 1000 points).
-Other combinations I discovered:
-solid red circle + solid red rhombus = solid orange circle
-any combination of dots + grid (multiple lines intersecting) that I tried, did not work
 
-Good luck, stay safe!",1010
-30,0.1,hard,look out for the same colors,100
-31,0.1,medium,red circle plus red diamond creates orange circle,12
-32,0.1,medium,"A circel and a dimanond match well, a circle and a diamond can match. I think the internal patterns need to be different to match.",11
-33,0.1,easy,"Hi, my recommendation is that first choose a shape with a spacebar and go to the same shape. For example, first choose a triangle by clicking the spacebar, then go to another triangle, click the spacebar, and continue to go to the other triangle. (drawing in the triangle is not important.) 
-When you finish a triangle, click D, and go to square and choose by pressing spacebar, finish all squares by clicking spacebar.",0
-34,0.1,hard,fuse the circles with triangles. most of the are fusible like they can me merged.,0
-35,0.1,hard,I tried to group them as per shapes however t is too difficut,0
-36,0.1,medium,Don't try to combine similar shapes. Try different shape combinations when fusing.,1
-37,0.1,medium,"To have a successful fuse, first read well the instruction and ensure you have understood them. Without understanding the game, it will difficult to have a successful fuse. I have only managed to have one and hence agree with the scientist on the difficult in fusing.",17
-38,0.1,easy,"Don't absorb red ones - build up to absorb a higher value at the end.
-Red solid circle + Red diag stripe circle=orange
-Orange diag + Red hatch circle= Yellow hatch circle
-Yellow hatch circle + Red circle with dots = Green circle dots
+",100012
+87,medium-1,I have no idea what i waws doing. Guess game,I tried to match ,11001
+88,hard,It was quite confusing at some point,shapes perhaps color pattern,1
+89,hard,i could'nt get the trick,i didnt notice the patterns,0
+90,medium-1,before you save a mineral try to combine as many as possible to the most points,"1. Same shapes cannot be combined
+2. Shapes with the same pattern cannot combined
+3. Recipes -> blank square + checkered circle, vice versa
+           -> blank rhombus + checkered triangle, vice versa
+           -> blank triangle + dotted rhombus, vice versa
+           -> dotted triangle + diagonal rhombus, vice versa
+           -> diagonal triangle + checkered rhombus, vice versa
+4. Any resulting fusion can also be combined according to the recipes to make an even more valuable mineral",362
+91,medium-1,Iam sorry if i cannot be of much help but i would like to say goodluck before anything.So to earn more you would pick a random crystal and try to fuse it with a fe others untl you get it right.If you fail after 3 attempts take another one and fuse it too.,"a square and circle make a recipe.
+a kite and triangle make a recipe",1
+92,easy,combine same shape crystals and if possible same colour though from my experience the colour is not really necessary except it is been displayed.,if you combine different shape crystal it score you low. give it your full concentration.,201
+93,medium-1,I clicked randomly until I got points,I didn't notice any,212
+94,hard,I was holding the rover to fuse the crystals more,i don't remember ,62
+95,medium-1,"Do not go with the shape or pattern that are similar. The pattern changes all the time, the first few moves are crucial.","Always check the hint on the top when moving the arrows, it sometimes show your outcome for a second before the question mark.",27
+96,hard,I just trusted my instincts when combining. ,shapes that are the same are not to be combined.,20
+97,medium-1,"The triangles combine only with the diamonds and vice versa. The squares combine only with the circles and vice versa. Following this, choose a figure to start with and start matching with its geometric partner that has a different color or pattern. 
+Example: I start with a square of stripes and combine it with a plain circle. Imagine that a plain square with different colour turns out, which I will combine with another circle with dots. And so on. When you can't combine more drop for later or collect depending on the moves you have left.","You can combine with colors or patterns that are different.
+The triangles combine only with the diamonds and vice versa. The squares combine only with the circles and vice versa. ",110120
+98,hard,"Guys, if you press the space bar continuosly you will loss the game as it will reduce the steps.",There are only red available despite many colours were shown and similar colours are very rare to produce more energy.,16
+99,easy,Try to match the shapes according to their colors ,Make sure the patterns are well coordinated. ,100026
+100,medium-1,Pick a crystal up and merge it with other crystals.,I was seeing different colors in the crystals and seeing how valuable they was.,10102
+101,easy,Match alike shapes with different shades each transition,alike shapes lead to better values,310100
+102,easy,Try matching only the same shapes until you reach the purple color of this shape. ,I noticed that only the same shapes could be combined.,301020
+103,easy,Try to take take the time to strategize properly. I didn't get it even after 40 moves.,I noticed none. I was kept guessing all the way through.,126
+104,easy,Pick the same shapes for the recipes. Be aware that some colour/patterns for the shapes can't fuse.,Shapes had to be the same for the recipes to fuse. Certain colours/patterns will not fuse.,100000
+105,medium-1,I have no clue what makes a match. I just systematically went row by row and checked.,I do not know any patterns or rules other than what was explained eearlier.,30
+106,easy,Fuse similar shapes,Only identical shapes fuse,1006
+107,medium-1,"No tips, have fun","All seemed wrong, all the best!",0
+108,easy,"Form seems to be a determinant factor for the capacity of fusion (triangle fuses with triangle, etc.).",Form seems to be more important than the pattern.,400023
+109,medium-1,If you try a few matches and they don't work drop the crystal and start with another. my first match was a spotty red triangle and red diamond then a red checked diamond then a striped diamond. Most of my matches were with diamonds ,most of my matches seemed to be diamonds so maybe try these first ,1000
+110,easy,Shapes seem to influence fusion more than patterns do. ,"Similar shapes are more likely to combine - square with square, etc. The solid shapes do not seem to combine with anything from what I could tell, but I may be wrong about that. Good luck! ",100000
+111,easy,"I had none, just went with my gut.",I didn't notice any patterns.,124
+112,medium-1,"diamond matches with triangle. circle matches with square. blank plus lines makes lines, blank plus crosshatch makes crosshatch. 
 
-LEAVE A MOVE AT THE END TO ABSORB FINAL CRYSTAL
-",1002
-39,0.1,medium,No successfull conbinations found. Matching patterns and matching shapes did not produce successfull fusions (not all combinations were attempted). Trying to match shapes with nothing in common also did not produce successfull fusions. Successfull matching might be based on initial position of the cristals. Good luck!,5
-40,0.1,easy,"I found this to be a bit frustrating, maybe if I played video games my brain would have picked it up more quickly",211
-41,0.1,hard,Read the notice carrefully and memorise the instructions,0
-42,0.1,easy,The game is somewhat confusing and I went with intuition rather than a set method. A method is too complicated to establish after one solitary game. ,2100
-43,0.1,hard,I didnt manage to figure out a strategy ,20
-44,0.1,medium,"I will refer to the rotated square/diamond shape as a ""rhombus.""
-
-I was able to determine that combining a solid red shape (without a pattern) with a different red shape featuring dots resulted in an orange shape with the dot pattern.
-
-Combinations that worked:
-
-    - Solid red circle + dotted red rhombus = dotted orange circle
-    - Solid red square + dotted red circle = dotted orange square
-    - Solid red rhombus + dotted red square = dotted orange rhombus
-
-Combinations that did not work:
-
-    - Striped rhombus + dotted square
-    - Dotted triangle + striped rhombus
-    - Dotted triangle + dotted square
-    - Dotted triangle + checkered square
-    - Dotted triangle + checkered circle
-    - Dotted triangle + checkered triangle
-    - Dotted triangle + striped triangle
-    - Dotted triangle + solid triangle
-    - Striped circle + checkered rhombus
-    - Striped circle + striped rhombus
-    - Striped circle + checkered triangle
-    - Striped circle + striped triangle
-
-I also tried combining a dotted orange square with a dotted orange circle, but this combination did not work.",32
-45,0.1,medium,The game was very difficult and I did not have any strategy.,1
-46,0.1,hard,"red + red gives orange, orange + red gives yellow, yellow + red gives green, green + red gives blue, blue + red gives purple",100000
-47,0.1,easy,same shape gems can be fused to create a stronger gem. already fused gems can be fused together to make an even more powerful gem but the shape must be the same,240
-48,0.1,medium,"I think you combine same colours, patterns and shapes that will fit into the second shape that you will choose.",11
-49,0.1,hard,the square shaped ones goes well with plain coloured crystals,0
-50,0.2,hard,Practice putting together different types of rock combinations and use the recipes to try different combos. ,0
-51,0.2,easy,"Combine matching shapes, it seems that different shapes with the same pattern do not fuse.",320
-52,0.2,hard,"dots plus no dots, clean orange+ clean red",2
-53,0.2,easy,Crystals of the same shape can fuse together and then harvest once you fused all the same shape.,4000
-54,0.2,medium,Remember that you can drop crystals by pressing D.,32
-55,0.2,medium,"the plain squares and circles and triangles fuse together and you keep fusing with plain shapes, then i fused with patterned shapes and it fused but i only did this once
-
-Patterned shapes didn't fuse with anything",1016
-56,0.2,hard,Initially its randomisation until you notice a pattern to gain higher scores.,100014
-57,0.2,hard,"Stick with one crystal and try as many combinations as possible until you get to the highest value crystal.  Once you have the highest value, drop that crystal and start again with the same process.  Use all your moves until you get the highest score possible.  Remember, stick with one to get the multiples - this is much more lucrative than picking up and dropping all the time.",1000001
-58,0.2,hard,"Dotted red square + Plane red diagonal = Orange.
-
-Then combine that with dotted triangle for dotted green square.
-
-Combine that with plane red triangle for plane Green square.
-
-Plane green square + Plane Red square = plane blue square.
-
-Plane blue square + dotted red diagonal = dotted purple square.  ",100010
-59,0.2,easy,"Crystals of the same shape e.g. circles, triangles, squares tend to combine better than when crystals are different shapes like a triangle and a circle",160
-60,0.2,hard,"I found little correlation between shapes or patterns - if I was to give one piece of advice, though, it would be to use a mix of solid colours/solid colours and patterns/patterns.",10
-61,0.2,hard,You will need to read the instructions properly.Goodluck!,20
-62,0.2,easy,it is a nice game,2032
-63,0.2,easy,"Look for patterns, in my case it was same shapes, for example red circle + red circle = orange circle, orange circle + red circle = yellow and so on",3020
-64,0.2,easy,"You can only fuse shapes that are the same i.e. squares with squares, and circles with circles etc, but can't fuse a square and a different shape ",0
-65,0.2,hard,"i found when i got to the item after purple, you may have to drop it and start a new set as it does not combine with any of the remaining items on the map.",0
-66,0.2,hard,Make sure to choose random selections and find as many recipes as possible before you drop the crystals.,10010
-67,0.2,easy,game is tricky yet mind training to help concentrate,2024
-68,0.2,easy,"Combining different shapes does nothing.
-
-Aim for a fusion of same shaped crystals.
-
-Combining orange and red crystals will create a yellow crystal worth 100 points.
-
-I haven't been able to harvest further but I assume you can continue harvesting more precious crystal with the same logic. Create a new colored crystal worth more points then combine it with a crystal of a lover tier.",153
-69,0.2,medium,-,1004
-70,0.2,easy,"The same shapes combine to create better points, no matter the color or pattern. ",2121
-71,0.2,hard,Must remember to drop the item before going to the next.,16
-72,0.2,easy,Match shape with shape and carry new shape to another and harvest for 100 points,160
-73,0.2,easy,fuse same shapes,4000
-74,0.2,easy,"Combining like shapes and colors seems to be the route to go, I don't believe I was able to combine shapes that aren't the same. ",3100
-75,0.2,easy,"You can multiply your points by 10 everytime you fuse two crystals of the same shape. For example, you would get 1000 points by fusing all the circles together. This way you can get up to 4000 points with the four different shapes. 
-
-I would also recommend trying to combine the different shapes between each other once you get the green crystals, instead of directly harvesting them. I did not test it and I think that could help you maximize your points even more.",4000
-76,0.2,medium,"It seemed the only thing that worked for me was to start with a circle.  I used a solid colored circle first and combined it with a solid colored square, then the other shapes.",0
-77,0.2,easy,Same shape and pattern are most likely to earn you oints but not guranteed,142
-78,0.2,hard,"mix crystals from the bottom and top of the planet, dont just stick to the ones around. harvest immediately or you lose the crystal. keep an eye on the combos that worked on the right hand side for help",130
-79,0.2,hard,TRY TO COMBINR SQUAR AND LOSANGE,124
-80,0.2,easy,its very easy to pick up and drop items into bag . fusing the shaoes (shapes) is  a bit more difficult i used the best stragety i sy 9(strategy) i could think if of and it was to comnbine the shapes that are similar and that resluted in fusing of shapes for more points.,40
-81,0.2,hard,"I got two combinations to work, but I don't know why. 
-First the square with the vertical and horizontal lines with the rotated solid square. Then add the square with the square with lots of dots then the solid red square to get 1000 points. 
-
-The second combo was, the circle with horizontal and vertical lines with the triangle with dots. Then combine with the rotated square with white dots. 
-
-That is as far as I managed to get with getting higher point crystals",1106
-82,0.2,easy,same shapes fuse i think!,80
-83,0.2,medium,You must pay attention when picking the crystals.,16
-84,0.2,hard,It looks to me like you need to pick up and fuse squares to get the most points.,10012
-85,0.2,hard,"I was able to fuse crystals two times. The combination for that is as follows: A striped red square and solid red square. Then, a striped red circle and a red triangle with white dots. Good luck!",20
-86,0.2,easy,just make sure you pick the crystal that have more point.,16
-87,0.2,hard,"This game is very interesting, to earn a very big bonus make sure you pick deep red square crystal and attach with deep red triangle crystal. When the results gives an orange box use 'D' to drop it and pick it again using space bar. After which you can move to the top of any crystal color then press space bar for your points.",1031
-88,0.2,easy,it was easy game,1
-89,0.2,easy,The combination of the crystals is very important to maximize the energy points. I have learned that the more I drop crystals the mmore I am likely to harvest crystals with more energy points.,119
-90,0.2,hard,All the fusions that I found involved a square and either a diamond or a triangle. ,10004
-91,0.2,easy,choose colors that are not the some but some shapes,120
-92,0.2,medium,"I only found out the following combinations: red square + striped rotated square (diagonal stripes)  = striped orange square;
-red triangle + striped red square = striped orange triangle;
-red circle + red rotated square = orange circle;
-orange circle + dotted red square  = dotted yellow circle.",123
-93,0.2,medium,Mastering the combinations and the dropping the crystals is very important if you want to maximize the energy points.,44
+Make sure to mine the gems at the end when you have enough moves left!!","diamond matches with triangle. circle matches with square. blank plus lines makes lines, blank plus crosshatch makes crosshatch. ",431
+113,medium-1,Try combining a circle with a square and a triangle with other triangles. ,"In most cases, its one with a pattern and one without that a pattern that produce results",1210
+114,easy,"I suggest fusing together all the ones of the same shape (e.g. triangles) but not if you've already fused one with the same pattern. So you could fuse a plain triangle and a dotty triangle and a triangle with a checked pattern, but then don't fuse another dotty triangle after that. This technique worked every single time except once.","You can usually fuse together objects of the same shape, but you can't repeat objects with the same pattern. So you can't fuse a plain triangle, then a dotty triangle, then a plain triangle, for example. But you could fuse a plain triangle, then a dotty triangle, then a checked triangle, and so on.",211140
+115,medium-1,Memprize the instructions because I didn't take enough time to do that and it hurt my ability to play well.,I didn't spend enough time on the rules so my play was mostly luck to get any points.,202
+116,medium-1,Never go with two similar shaped crystals. combining different shapes might help to fuse. After you fuse it. Take it and harvest it in an empty space. ,I didn't notice any pattern but I believe it never fuses when you try to combine two similar shaped crystals.,48
+117,medium-1,"Try and merge different shapes together to create high coloured shapes, once found 2 shapes that merge well together, keep merging with the same shape consistentely.",Circle + square helps get a higher colour circle.,301000
+118,medium-1,"Can combine different colors together. Unsure of whether can fuse same shapes as I was unsuccessful. Checkered shapes can be combined with near full (checkered) shapes. The combined shape will combined properties, one of each shape (not color). Pressing spacebar will consume the item on an empty space, so make sure to press D to drop and not waste points!","Combined shapes retain properties of each items, the first item will be the shape, the pattern of the second. And colors do not have to be the same to be combined.",221
+119,easy,Try to start with solid colored shape and then combine it with striped one for the same color and shape. Keep combining same shape with different pattern within the same shape. ,Start with solid colored one shape and go for the same shape that has striped pattern inside. ,100
+120,medium-1,I found that once I found a combination of shapes if I kept going for the same shape then the points would keep multiplying. I didn't notice any patterns between the different shadings of shapes only the actual shapes themselves. Once you get a purple gem don't forget to bank it as any other combinations won't increase value!,"Triangle + Diamond (can keep stacking more diamonds)
+Square + Circle (again keep stacking circles)
+REMEMBER to pick up in the order stated (not sure what'll happen the opposite way)
+",200213

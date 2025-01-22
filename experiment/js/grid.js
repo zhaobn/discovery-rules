@@ -321,7 +321,7 @@ function updateInventory (record) {
   const tableBody = document.getElementById('task-recipe-table').getElementsByTagName('tbody')[0];
   let row = tableBody.insertRow();
   let cellTransitions = row.insertCell(0);
-  let yieldItemIcon = '❌';
+  let yieldItemIcon = '&#x274C;';
 
   let yieldItem = record.yield;
   if (yieldItem.length > 1) {

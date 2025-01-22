@@ -1,5 +1,5 @@
 /** Game configs */
-const MAX_ACTIONS = 30;
+const MAX_ACTIONS = 40;
 const gridSize = 15;
 const conditions = ['easy', 'medium-1', 'hard'];
 const COND = conditions[Math.floor(Math.random() * conditions.length)];
