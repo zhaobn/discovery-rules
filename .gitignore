@@ -2,6 +2,9 @@
 experiment/php/db_config.php
 
 venv/
+.venv/
+__pycache__/
+
 
 .RData
 .Rhistory

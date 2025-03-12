@@ -1,0 +1,3 @@
+id,condition,messageHow,messageRules,total_points,coded
+2,hard,Match the right one!,good points are high,132,"""{\n  \""Tips\"": [\""Match the right one!\"", \""good points are high\""],\n  \""Patterns\"": [],\n  \""NA\"": [],\n  \""patterns_summary\"": \""No patterns observed.\""\n}"""
+3,easy,Try to get the purple crystals as getting higher tier crystals is exponentially better ,Merge with the same shape,100110,"""{\n\""Tips\"": [\""Try to get the purple crystals as getting higher tier crystals is exponentially better\""],\n\""Patterns\"": [\""Merge with the same shape\""],\n\""NA\"": [],\n\""patterns_summary\"": \""Merging items of the same shape impacts the game outcome\""\n}"""

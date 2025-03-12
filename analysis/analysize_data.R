@@ -3,14 +3,61 @@ library(tidyr)
 library(ggplot2)
 library(gghalves)
 
-#### Pilot 3 ####
-subject_data = read.csv('../data/pilot-3/subject_data.csv')
+library(effectsize)
+options(scipen=999)
+
+
+l_colors = moma.colors("Levine1", 3)
+p_colors = moma.colors("Picabia", 3)
+
+subject_data = read.csv('../data/subject_data.csv')
+subject_data = subject_data %>%
+  #mutate(condition=ifelse(condition=='medium-1', 'medium', condition)) %>%
+  mutate(condition=ifelse(condition=='easy', 'high', 
+                          ifelse(condition=='hard', 'low', condition))) %>%
+  select(id, condition, messageHow, messageRules, total_points, 
+         age, sex, engagement, difficulty, feedback, date, time, duration)
+
+
+
+
+#### Demographics ####
+subject_data = read.csv('../data/subject_data.csv')
 assignment_orders = c('easy', 'medium', 'hard')
 
 subject_data = subject_data %>%
-  mutate(condition=ifelse(condition=='medium-1', 'medium', condition)) %>%
+  #mutate(condition=ifelse(condition=='medium-1', 'medium', condition)) %>%
   mutate(condition=factor(condition, levels=assignment_orders)) %>%
-  select(id, condition, messageHow, messageRules, total_points, task_duration)
+  select(id, condition, messageHow, messageRules, total_points, 
+         age, sex, engagement, difficulty, feedback, date, time, duration)
+
+
+reportStats <- function(vec, digits=2) {
+  return(paste0(round(mean(vec, na.rm = TRUE), digits), '\\pm', 
+                round(sd(vec, na.rm = TRUE), digits)))
+}
+reportStats(subject_data$age)
+
+
+#### Fix task duration ####
+# prolific_data = read.csv('../data/prolific_export.csv') 
+# prolific_starttime = prolific_data %>%
+#   select(prolific_id = Participant.id, start_time = Started.at, duration=Time.taken)
+#   
+# id_data = read.csv('../data/id_data.csv')
+# time_data = id_data %>%
+#   left_join(prolific_starttime, by='prolific_id') %>%
+#   select(id, start_time, duration)
+# reportStats(time_data$duration/60)
+# 
+# subject_data = subject_data %>%
+#   left_join(time_data, by = 'id') %>%
+#   select(-c('start_time', 'task_duration'))
+# write.csv(subject_data, file='../data/subject_data.csv')
+reportStats(subject_data$duration/60)
+
+reportStats(subject_data$sex=='female')
+
 
 # Points per condition
 subject_data$total_points_log = log(subject_data$total_points)
@@ -30,8 +77,126 @@ ggplot(subject_data, aes(x = condition, y = total_points_log, fill = condition))
   theme(legend.position = "none")
 
 
-# Message length per condition
-subject_data$message_length = nchar(subject_data$messageRules)
+subject_data$total_points_log <- log(subject_data$total_points + 1)
+anova_result <- aov(total_points_log ~ condition, data = subject_data)
+summary(anova_result)
+shapiro.test(residuals(anova_result)) # passed, W=0.96, p=0.2
+eta_squared(anova_result) # 0.19
+
+
+anova_raw <- aov(total_points ~ condition, data = subject_data)
+shapiro.test(residuals(anova_raw))
+
+# points per action
+action_data = read.csv('../data/action_data.csv') %>% select(-X)
+# action_data = action_data %>%
+  # mutate(condition=ifelse(assignment=='easy', 'high',
+  #                         ifelse(assignment=='hard', 'low', 'medium'))) %>%
+  # select(-assignment) %>%
+  # filter(action_id < 41)
+# write.csv(action_data, file = '../data/action_data.csv')
+
+action_data = action_data %>%
+  group_by(id) %>%
+  arrange(action_id) %>%
+  mutate(total_points = cumsum(points)) %>%
+  mutate(total_points_log = ifelse(total_points < 1, 0, ifelse(total_points == 1, 0.1, log(total_points))))
+action_data_summary = action_data %>%
+  group_by(action_id, condition) %>%
+  summarise(
+    mean_total_points_log = mean(total_points_log, na.rm = TRUE),
+    se_total_points_log = sd(total_points_log, na.rm = TRUE) / sqrt(n())
+  )
+ggplot(action_data_summary, aes(x = action_id, y = mean_total_points_log, color = condition)) +
+  geom_line() +
+  geom_ribbon(aes(ymin = mean_total_points_log - se_total_points_log, 
+                  ymax = mean_total_points_log + se_total_points_log, 
+                  fill = condition), alpha = 0.2, color = NA) + 
+  geom_point(aes(shape = condition), size = 3) + 
+  theme_minimal() +   
+  labs(x = "Action ID", y = "Mean Log of Total Points") + 
+  theme(legend.position = "bottom")
+
+
+
+# highest levels per condition
+level_data = action_data %>%
+  select(id, action_id, action, held, target, yield, condition) %>%
+  mutate(level = ifelse(
+    nchar(yield) > 1 & !is.na(yield),
+    as.numeric(sub(".*_(\\d+)$", "\\1", yield)),
+    0
+  ))
+level_data <- level_data %>%
+  group_by(id) %>%
+  arrange(action_id) %>%
+  mutate(highest_level = cummax(level)) %>%
+  ungroup()
+
+
+levels_per_condition = level_data %>%
+  group_by(condition, id) %>%
+  summarise(highest_level = max(highest_level)) %>%
+  ungroup()
+
+ggplot(levels_per_condition, aes(x = condition, y = highest_level, fill = condition)) +
+  geom_half_violin(side = "l", width = 0.8, trim = FALSE, alpha = 0.6) +
+  stat_summary(
+    fun = mean, geom = "bar", width = 0.4, color = "black", fill = "white",
+    position = position_nudge(x = 0.2)
+  ) +
+  stat_summary(
+    fun.data = mean_cl_normal, geom = "errorbar", width = 0.2,
+    position = position_nudge(x = 0.2)
+  ) +
+  theme_minimal() +
+  labs(title = "Highest Levels per Condition",
+       x = "Condition", y = "Highest Levels") +
+  theme(legend.position = "none")
+
+anova_result <- aov(highest_level ~ condition, data = levels_per_condition)
+summary(anova_result)
+shapiro.test(residuals(anova_result)) # passed, W=0.94, p<0.0001
+eta_squared(anova_result) # 0.22
+
+
+# highest levels per action
+level_data_summary = level_data %>%
+  group_by(action_id, condition) %>%
+  summarise(
+    mean_highest_level = mean(highest_level, na.rm = TRUE),
+    se_highest_level = sd(highest_level, na.rm = TRUE) / sqrt(n())
+  )
+ggplot(level_data_summary, aes(x = action_id, y = mean_highest_level, color = condition)) +
+  geom_line() +
+  geom_ribbon(aes(ymin = mean_highest_level - se_highest_level, 
+                  ymax = mean_highest_level + se_highest_level, 
+                  fill = condition), alpha = 0.2, color = NA) + 
+  geom_point(aes(shape = condition), size = 3) + 
+  theme_minimal() +   
+  labs(x = "Action ID", y = "Mean Highest Levels") + 
+  theme(legend.position = "bottom")
+
+
+##### Message length per condition
+subject_data$raw_rule_length = nchar(subject_data$messageRules)
+ggplot(subject_data, aes(x = condition, y = raw_rule_length, fill = condition)) +  stat_summary(
+  fun = mean, geom = "bar", width = 0.4, color = "black", fill = "white",
+  # position = position_nudge(x = 0.2)
+) +
+  stat_summary(
+    fun.data = mean_cl_normal, geom = "errorbar", width = 0.2,
+    #position = position_nudge(x = 0.2)
+  ) +
+  geom_jitter(width = 0.15, size = 2, alpha = 0.6, color = "black") + 
+  
+  theme_minimal() +
+  labs(title = "Rules Nchar per Condition",
+       x = "Condition", y = "Nchar") +
+  theme(legend.position = "none")
+
+
+subject_data$message_length = nchar(subject_data$messageRules) + nchar(subject_data$messageHow)
 ggplot(subject_data, aes(x = condition, y = message_length, fill = condition)) +  stat_summary(
     fun = mean, geom = "bar", width = 0.4, color = "black", fill = "white",
    # position = position_nudge(x = 0.2)
@@ -47,6 +212,34 @@ ggplot(subject_data, aes(x = condition, y = message_length, fill = condition)) +
        x = "Condition", y = "Nchar") +
   theme(legend.position = "none")
 
+anova_result <- aov(message_length ~ condition, data = subject_data)
+summary(anova_result)
+shapiro.test(residuals(anova_result)) # passed, W=0.96, p=0.2
+eta_squared(anova_result) # 0.06
+
+
+
+
+subject_data$message_diff = nchar(subject_data$messageRules) - nchar(subject_data$messageHow)
+ggplot(subject_data, aes(x = condition, y = message_diff, fill = condition)) +  stat_summary(
+  fun = mean, geom = "bar", width = 0.4, color = "black", fill = "white",
+  # position = position_nudge(x = 0.2)
+) +
+  stat_summary(
+    fun.data = mean_cl_normal, geom = "errorbar", width = 0.2,
+    #position = position_nudge(x = 0.2)
+  ) +
+  geom_jitter(width = 0.15, size = 2, alpha = 0.6, color = "black") + 
+  
+  theme_minimal() +
+  labs(title = "Rules Nchar per Condition",
+       x = "Condition", y = "Nchar") +
+  theme(legend.position = "none")
+
+
+
+
+
 
 # Points and lengths
 ggplot(subject_data, aes(x=total_points_log, y=message_length, color=condition)) +
@@ -57,35 +250,18 @@ ggplot(subject_data, aes(x=total_points_log, y=message_length, color=condition))
        x = "Total points (log)", y = "Message length (nchar)")
 
 
-# Points per action
 
 
 
-#### Pilots 1-2 ####
-# load data
-assignment_orders = c('easy-1', 'medium-1', 'hard-1',
-                      'easy-2', 'medium-2', 'hard-2',
-                      'medium-3', 'medium-4', 'hard-3')
+#### Message stats after processing ####
 
-subject_1 = read.csv('../data/pilot-1/subject_data.csv')
-subject_1 = subject_1 %>% 
-  mutate(assignment=ifelse(version==0.1, paste0(assignment, '-1'), paste0(assignment, '-2')))
+response_data = read.csv('../data/responses_processed.csv') %>% select(-X)
+# response_data = response_data %>%
+#   mutate(condition=ifelse(condition=='medium-1', 'medium', 
+#                           ifelse(condition=='easy', 'high', 'low')))
+# write.csv(response_data, file = '../data/responses_processed.csv')
 
-subject_2 = read.csv('../data/pilot-2/subject_data.csv')
-subject_2 = subject_2 %>% 
-  mutate(assignment = case_when(
-    assignment == 'medium-1' ~ 'medium-3',
-    assignment == 'medium-2' ~ 'medium-4',
-    assignment == 'hard' ~ 'hard-3',
-    TRUE ~ assignment
-  ))
-subject_all = rbind(subject_1, subject_2)
-subject_all$assignment = factor(subject_all$assignment, levels = assignment_orders)
-
-subject_all$total_points_log = log(subject_all$total_points)
-
-# all points
-ggplot(subject_all, aes(x = assignment, y = total_points_log, fill = assignment)) +
+ggplot(response_data, aes(x = condition, y = n_NAs, fill = condition)) +
   geom_half_violin(side = "l", width = 0.8, trim = FALSE, alpha = 0.6) +
   stat_summary(
     fun = mean, geom = "bar", width = 0.4, color = "black", fill = "white",
@@ -96,14 +272,39 @@ ggplot(subject_all, aes(x = assignment, y = total_points_log, fill = assignment)
     position = position_nudge(x = 0.2)
   ) +
   theme_minimal() +
-  labs(title = "Total Points per Condition",
-       x = "Condition", y = "Total Points (log)") +
+  # labs(title = "Numer of Patterns Reported per Condition",
+  #      x = "Condition", y = "N Patterns") +
   theme(legend.position = "none")
 
+anova_result <- aov(n_NAs ~ condition, data = response_data)
+summary(anova_result)
+shapiro.test(residuals(anova_result)) # passed
+eta_squared(anova_result) # 0.11
 
-# message lengths
-subject_all$message_length = nchar(subject_all$message)
-ggplot(subject_all, aes(x = assignment, y = message_length, fill = assignment)) +
+
+ggplot(response_data, aes(x = condition, y = len_NAs, fill = condition)) +
+  geom_half_violin(side = "l", width = 0.8, trim = FALSE, alpha = 1) +
+  stat_summary(
+    fun = mean, geom = "bar", width = 0.4, color = "black",
+    position = position_nudge(x = 0.2), aes(fill = condition), alpha = 0.4
+  ) +
+  stat_summary(
+    fun.data = mean_cl_normal, geom = "errorbar", width = 0.2,
+    position = position_nudge(x = 0.2)
+  ) +
+  geom_point(position = position_jitter(width = 0.1, height = 0), alpha = 0.8, size = 1) + 
+  scale_fill_manual(values=l_colors)+
+  theme_minimal() +
+  labs(title = "Number of Unknowns",
+       x = "Compressibility", y = "N sentences") +
+  theme(legend.position = "none", axis.text = element_text(size = 10))
+anova_result <- aov(len_NAs ~ condition, data = response_data)
+summary(anova_result)
+eta_squared(anova_result) # 0.11
+
+
+
+ggplot(response_data, aes(x = condition, y = len_rules, fill = condition)) +
   geom_half_violin(side = "l", width = 0.8, trim = FALSE, alpha = 0.6) +
   stat_summary(
     fun = mean, geom = "bar", width = 0.4, color = "black", fill = "white",
@@ -114,93 +315,69 @@ ggplot(subject_all, aes(x = assignment, y = message_length, fill = assignment)) 
     position = position_nudge(x = 0.2)
   ) +
   theme_minimal() +
-  labs(title = "Message Nchar per Condition",
-       x = "Condition", y = "Nchar") +
+  # labs(title = "Numer of Patterns Reported per Condition",
+  #      x = "Condition", y = "N Patterns") +
   theme(legend.position = "none")
+anova_result <- aov(len_rules ~ condition, data = response_data)
+summary(anova_result)
 
 
+response_selected = response_data %>%
+  select(id, condition, n_tips, len_tips, n_rules, len_rules, n_NAs, len_NAs, len_summary)
 
-# accumulated points over actions
-action_1 = read.csv('../data/pilot-1/action_data.csv')
-action_2 = read.csv('../data/pilot-2/action_data.csv')
+identify_outliers <- function(data_column) {
+  Q1 <- quantile(data_column, 0.25)
+  Q3 <- quantile(data_column, 0.75)
+  IQR_value <- IQR(data_column)
+  
+  lower_bound <- Q1 - 1.5 * IQR_value
+  upper_bound <- Q3 + 1.5 * IQR_value
+  
+  # Mark outliers as TRUE if they are outside the bounds
+  outliers <- data_column < lower_bound | data_column > upper_bound
+  return(outliers)
+}
 
-action_1 = action_1 %>% 
-  mutate(assignment=ifelse(version==0.1, paste0(assignment, '-1'), paste0(assignment, '-2')))
-action_2 = action_2 %>% mutate(assignment = case_when(
-  assignment == 'medium-1' ~ 'medium-3',
-  assignment == 'medium-2' ~ 'medium-4',
-  assignment == 'hard' ~ 'hard-3',
-  TRUE ~ assignment
-))
-
-action_all = rbind(action_1, action_2)
-action_all$assignment = factor(action_all$assignment, levels = assignment_orders)
-
-action_all$action_id = as.numeric(substr(action_all$action_id, 5, nchar(action_all$action_id)))
-action_all <- action_all %>%
-  filter(
-    !(version == 0.1 & action_id > 20) &
-      !(version == 0.2 & action_id > 40) &
-      !(version == 0.3 & action_id > 30)
-  ) %>%
-  group_by(id) %>% 
-  arrange(action_id) %>%
-  mutate(total_points = cumsum(points)) %>%
-  mutate(total_points_log = ifelse(total_points<1, 0, 
-                                   ifelse(total_points==1, 0.1, log(total_points)) ))
-
-ggplot(action_all, aes(x=factor(action_id), y=total_points_log)) +
-  geom_boxplot() + 
-  facet_grid(assignment~.)
-
-selected_actions = action_all %>%
-  filter(assignment %in% c('easy-2', 'medium-3', 'hard-3')) %>%
-  filter(action_id<31)
-selected_actions_summary <- selected_actions %>%
-  group_by(action_id, assignment) %>%
-  summarise(
-    mean_total_points_log = mean(total_points_log, na.rm = TRUE),
-    se_total_points_log = sd(total_points_log, na.rm = TRUE) / sqrt(n())
-  )
-ggplot(selected_actions_summary, aes(x = action_id, y = mean_total_points_log, color = assignment)) +
-  geom_line() +
-  geom_ribbon(aes(ymin = mean_total_points_log - se_total_points_log, 
-                  ymax = mean_total_points_log + se_total_points_log, 
-                  fill = assignment), alpha = 0.2, color = NA) + 
-  geom_point(aes(shape = assignment), size = 3) + 
-  theme_minimal() +   
-  labs(x = "Action ID", y = "Mean Log of Total Points") + 
-  theme(legend.position = "bottom")   
-
-
-# success rates over actions
-selected_combinations <- selected_actions %>%
-  filter(action == 'combine') %>%
-  mutate(success = ifelse(nchar(yield) > 1, 1, 0)) %>%
-  group_by(id) %>%
-  mutate(
-    combination_id = row_number(),
-    cumulative_success = cumsum(success)
-  ) %>%
+# Apply the function to 'len_tips' and 'len_rules'
+response_data_filtered = response_data %>%
+  filter(len_rules > 0) %>%
+  group_by(condition) %>%
+  mutate(outlier_len_rules = identify_outliers(len_rules)) %>%
   ungroup() %>%
-  mutate(cumulative_success_rate = cumulative_success/combination_id)
-combination_summary <- selected_combinations %>%
-  group_by(combination_id, assignment) %>%
-  summarise(
-    mean_cumulative_success_rate = mean(cumulative_success_rate), 
-    se_success_rate = sd(cumulative_success_rate, na.rm = TRUE) / sqrt(n()),  
-    .groups = "drop"
-  )
-ggplot(combination_summary, aes(x = combination_id, y = mean_cumulative_success_rate, color = assignment)) +
-  geom_line() +
-  geom_point(aes(color = assignment), size = 3) +
-  geom_ribbon(aes(ymin = mean_cumulative_success_rate - se_success_rate, 
-                  ymax = mean_cumulative_success_rate + se_success_rate, 
-                  fill = assignment), 
-              alpha = 0.2, color = NA) +
+  filter(!outlier_len_rules) 
+
+response_data_filtered %>%
+  ggplot(aes(x = condition, y = len_rules, fill = condition)) +
+  geom_half_violin(side = "l", width = 0.8, trim = FALSE, alpha = 0.6) +
+  stat_summary(
+    fun = mean, geom = "bar", width = 0.4, color = "black", fill = "white",
+    position = position_nudge(x = 0.2)
+  ) +
+  stat_summary(
+    fun.data = mean_cl_normal, geom = "errorbar", width = 0.2,
+    position = position_nudge(x = 0.2)
+  ) +
+  geom_text(aes(label = id), vjust = -0.5, hjust = 0.5, size = 3)+
   theme_minimal() +
-  labs(x = "Combination ID", y = "Cumulative Success Rate") +
-  theme(legend.position = "bottom")
+  # labs(title = "Numer of Patterns Reported per Condition",
+  #      x = "Condition", y = "N Patterns") +
+  theme(legend.position = "none")
+
+anova_result <- aov(len_rules ~ condition, data = response_data_filtered)
+summary(anova_result)
+eta_squared(anova_result)
+eta_squared_to_d <- function(eta_squared) {
+  d <- sqrt(eta_squared) / sqrt(1 - eta_squared)
+  return(d)
+}
+eta_squared_to_d(0.09)
+
+
+
+
+
+
+
 
 
 

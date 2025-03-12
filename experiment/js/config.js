@@ -2,7 +2,7 @@
 const MAX_ACTIONS = 40;
 const gridSize = 15;
 const conditions = ['easy', 'medium-1', 'hard'];
-const COND = conditions[Math.floor(Math.random() * conditions.length)];
+const COND = 'easy'; //conditions[Math.floor(Math.random() * conditions.length)];
 
 
 /** Global variables */

@@ -29,6 +29,8 @@ def extract_json_fields(json_str):
 subject_data = data['subject_parsed'].apply(extract_json_fields)
 subject_full_data = pd.concat([data[['id', 'assignment', 'version']], subject_data], axis=1)
 
+prolific_ids = subject_full_data[['id', 'prolific_id']]
+prolific_ids.to_csv("../data/id_data.csv", index=False)
 
 # %% calc bonus
 bonus_data = subject_data[['prolific_id', 'total_points']]
@@ -108,8 +110,6 @@ merged_df = expanded_df.merge(id_token, on='token', how='left')
 cols = ['id', 'event_id'] + [col for col in merged_df.columns if col not in ['id', 'event_id']]
 merged_df = merged_df[cols]
 merged_df.to_csv("../data/events_data.csv", index=False)
-
-
 
 
 
