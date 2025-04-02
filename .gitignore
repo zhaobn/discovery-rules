@@ -1,5 +1,8 @@
 .DS_Store
-experiment/php/db_config.php
+
+db_config.php
+save_data.php
+bonus_data.csv
 
 venv/
 .venv/
@@ -8,3 +11,5 @@ __pycache__/
 
 .RData
 .Rhistory
+
+
