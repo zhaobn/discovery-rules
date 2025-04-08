@@ -2,12 +2,9 @@
 # Load packages
 import numpy as np
 import matplotlib.pyplot as plt
+from multiprocessing import Pool
+import time
 
-import multiprocessing
-multiprocessing.set_start_method("spawn", force=True)
-
-from concurrent.futures import ProcessPoolExecutor, as_completed
-from tqdm import tqdm
 
 # %%
 # Set up task and environment
@@ -33,31 +30,51 @@ def hard_task (pair):
 
 # %%
 # Base PSRL agent
-def check_highest_level_improvable(objs_idx, state_objs, state_levels, sampled_transitions):
-    if not objs_idx.size:
-        return None
+def find_combination(state_objs, state_levels, sampled_transitions):
+    # Create a mapping from level to object indices, sorted by level (highest to lowest)
+    level_to_objects = {}
+    for i, level in enumerate(state_levels):
+        # Only include non-negative levels
+        if level >= 0:
+            if level not in level_to_objects:
+                level_to_objects[level] = []
+            level_to_objects[level].append(i)
+    sorted_levels = sorted(level_to_objects.keys(), reverse=True)
 
-    obj = state_objs[objs_idx[0]]
-    obj_level = state_levels[objs_idx[0]]
+    # Check each level from highest to lowest
+    for level in sorted_levels:
+        # Get all objects at this level
+        obj_indices = level_to_objects[level].copy()
 
-    matched_pairs = [pair for pair in norm_pairs if sampled_transitions[norm_pairs.index(pair)] == 1 and (pair[0] == obj or pair[1] == obj)]
-    if not matched_pairs:
-        # return check_highest_level_improvable(objs_idx[1:], state_objs, state_levels, sampled_transitions)
-        return [ (obj[0], obj[1], obj_level) ]
-    
-    matched_objs = [pair[0] if pair[1] == obj else pair[1] for pair in matched_pairs]
-    intersection = list(set(state_objs) & set(matched_objs))
-    if not intersection:
-        # return check_highest_level_improvable(objs_idx[1:], state_objs, state_levels, sampled_transitions)
-        return [ (obj[0], obj[1], obj_level) ]
-    
-    chosen_obj = intersection[np.random.choice(range(len(intersection)))]
-    state_objs_list = list(state_objs)
-    chosen_obj_idx = state_objs_list.index(chosen_obj)
-    return [(obj[0], obj[1], obj_level), (state_objs[chosen_obj_idx][0], state_objs[chosen_obj_idx][1], state_levels[chosen_obj_idx])]
-    
+        # Continue until all objects at this level have been checked
+        while obj_indices:
+            # Randomly sample the next object to check
+            random_idx = np.random.choice(len(obj_indices))
+            obj_idx = obj_indices.pop(random_idx)
+            obj = state_objs[obj_idx]
+
+            # Find pairs where this object can be combined (transitions == 1)
+            matched_pairs = [pair for pair in norm_pairs 
+                            if sampled_transitions[norm_pairs.index(pair)] == 1 
+                            and (pair[0] == obj or pair[1] == obj)]            
+            if matched_pairs:
+                matched_objs = [pair[0] if pair[1] == obj else pair[1] for pair in matched_pairs]
+                intersection = [matched_obj for matched_obj in matched_objs if matched_obj in state_objs]
+                
+                if intersection:
+                    chosen_obj = intersection[np.random.choice(len(intersection))]
+                    chosen_obj_idx = state_objs.index(chosen_obj)
+
+                    return [(state_objs[obj_idx][0], state_objs[obj_idx][1], state_levels[obj_idx]), 
+                            (state_objs[chosen_obj_idx][0], state_objs[chosen_obj_idx][1], state_levels[chosen_obj_idx])]
+        
+    # No valid combination found
+    return None
 
 def policy(actions_left, state_objs, state_levels, sampled_transitions):
+
+    if len(state_objs) == 0:
+        return None
 
     highest_level = np.max(state_levels)
     highest_level_obj_idx = np.where(state_levels == highest_level)[0]
@@ -68,11 +85,10 @@ def policy(actions_left, state_objs, state_levels, sampled_transitions):
         return [ (selected_obj[0], selected_obj[1], highest_level) ]
     
     else:
-        # order objs by levels
-        objs_idx_by_level = np.argsort(state_levels)[::-1]
-        result = check_highest_level_improvable(objs_idx_by_level, state_objs, state_levels, sampled_transitions)
-        if result is not None:
-            return result
+        action = find_combination(state_objs, state_levels, sampled_transitions)
+        if action is not None:
+            return action
+        
         else:
             # check if there is any item left
             left_items = np.where(state_levels > -1)[0]
@@ -170,20 +186,19 @@ def update_states(task, action, action_left, state_objs, state_levels, regenerat
     return (action_left, new_state_objs, new_state_levels, regeneratable)
 
 # %%
-def run_condition(condition, num_episodes=1000, num_actions=40):
+def run_condition(condition, num_episodes=10, num_actions=40):
     print(f"Running condition: {condition}")
 
     # Initialize variables
     task = condition
     cum_rewards = np.zeros((num_episodes, num_actions))
     highst_levels = np.zeros((num_episodes, num_actions))
-    actions = np.full((num_episodes, num_actions), None)
+    # actions = np.full((num_episodes, num_actions), None)
     epi_probs = np.zeros(num_episodes)
 
     # Initialize the prior
-    prior_alphas = np.ones(len(norm_pairs))
-    prior_betas = np.ones(len(norm_pairs))
-    np.random.shuffle(norm_objs)
+    prior_alphas = np.full(len(norm_pairs), 0.001)
+    prior_betas = np.full(len(norm_pairs), 0.001)
 
     # Run base PSRL agent
     for episode in range(num_episodes):
@@ -201,18 +216,20 @@ def run_condition(condition, num_episodes=1000, num_actions=40):
         max_level = 0
         for t in range(num_actions):
             action = policy(num_actions - t, state_objs, state_levels, sampled_transitions)
-            reward += get_reward(action)
-            cum_rewards[episode, t] = reward
-
             if action is None:
-                break   
+                cum_rewards[episode, t] = cum_rewards[episode, t-1]
+                highst_levels[episode, t] = highst_levels[episode, t-1]    
             else:
                 #actions[episode, t] = action
+                reward += get_reward(action)
+                cum_rewards[episode, t] = max(cum_rewards[episode, t-1], reward)
+
                 (_, state_objs, state_levels, regeneratable) = update_states(task, action, num_actions - t, state_objs, state_levels, regeneratable)
 
-                new_highest_level = np.max(state_levels)
-                if new_highest_level > max_level:
-                    max_level = new_highest_level
+                if len(state_objs) > 0:
+                    new_highest = np.max(state_levels)
+                    max_level = max(max_level, new_highest)
+                
                 highst_levels[episode, t] = max_level
 
                 if len(action) == 2:
@@ -221,30 +238,35 @@ def run_condition(condition, num_episodes=1000, num_actions=40):
                     norm_n = (n[0], n[1])
                     pair_idx = norm_pairs.index((norm_m, norm_n))
                     
-                    if task == 'simple' and simple_task((norm_m, norm_n)):
-                        prior_alphas[pair_idx] += 1 * 10
+                    if task == 'simple':
+                        if simple_task((norm_m, norm_n)):
+                            prior_alphas[pair_idx] += 1
+                        else:
+                            prior_betas[pair_idx] += 1
                     
-                    elif task == 'med' and med_task((norm_m, norm_n)):
-                        prior_alphas[pair_idx] += 1 * 10
+                    if task == 'med':
+                        if med_task((norm_m, norm_n)):
+                            prior_alphas[pair_idx] += 1
+                        else:
+                            prior_betas[pair_idx] += 1
 
-                    elif task == 'hard' and hard_task((norm_m, norm_n)):
-                        prior_alphas[pair_idx] += 1 * 10
-                    
-                    else:
-                        prior_betas[pair_idx] += 1 * 10
+                    if task == 'hard':
+                        if hard_task((norm_m, norm_n)):
+                            prior_alphas[pair_idx] += 1
+                        else:
+                            prior_betas[pair_idx] += 1
 
     return condition, cum_rewards, highst_levels, epi_probs
-
 
 # %%
 # Plot the results
 def plot_results(condition, cum_rewards, highst_levels, epi_probs):
     """ Plotting function runs only in the main process. """
     fig, axs = plt.subplots(3, 1, figsize=(8, 10))
-    axs[0].plot(np.mean(cum_rewards, axis=0))
+    axs[0].plot(np.max(cum_rewards, axis=0))
     axs[0].set_title(f"Cumulative Rewards ({condition})")
     
-    axs[1].plot(np.mean(highst_levels, axis=0))
+    axs[1].plot(np.max(highst_levels, axis=0))
     axs[1].set_title(f"Highest Levels ({condition})")
     
     axs[2].plot(epi_probs)
@@ -255,63 +277,115 @@ def plot_results(condition, cum_rewards, highst_levels, epi_probs):
     print(f"✅ Saved plot for {condition}")
 
 
-# %%
-conditions = ["simple", "med", "hard"]
-plot_colors = ['blue', 'orange', 'green']
-results = []
 
+# %%
+condition, cum_rewards, highst_levels, epi_probs = run_condition("simple", num_episodes=100, num_actions=40)
+plot_results("simple", cum_rewards, highst_levels, epi_probs)
+
+condition, cum_rewards, highst_levels, epi_probs = run_condition("med", num_episodes=100, num_actions=40)
+plot_results(condition, cum_rewards, highst_levels, epi_probs)
+
+
+condition, cum_rewards, highst_levels, epi_probs = run_condition("hard", num_episodes=100, num_actions=40)
+plot_results(condition, cum_rewards, highst_levels, epi_probs)
+
+
+# %%
+def run_single_condition(condition):
+    result = run_condition(condition, num_episodes=400, num_actions=40)
+    return result
+
+def run_all_conditions_parallel():
+    conditions = ["simple", "med", "hard"]
+    
+    # Create a pool of workers and run the conditions in parallel
+    with Pool(processes=3) as pool:
+        results = pool.map(run_single_condition, conditions)
+    
+    # Unpack the results
+    all_results = {}
+    for i, condition in enumerate(conditions):
+        all_results[condition] = {
+            'condition': results[i][0],
+            'cum_rewards': results[i][1],
+            'highst_levels': results[i][2],
+            'epi_probs': results[i][3]
+        }
+        
+        # Save individual plots
+        plot_results(
+            condition,
+            all_results[condition]['cum_rewards'],
+            all_results[condition]['highst_levels'],
+            all_results[condition]['epi_probs']
+        )
+    
+    return all_results
+
+# %%
+def plot_combined_results(all_results):
+    """Plot all three conditions together in three separate graphs"""
+    conditions = list(all_results.keys())
+    
+    # Define colors and line styles for each condition
+    styles = {
+        'simple': {'color': 'blue', 'linestyle': '-'},
+        'med': {'color': 'green', 'linestyle': '--'},
+        'hard': {'color': 'red', 'linestyle': ':'}
+    }
+    
+    # Create three subplots
+    fig, axs = plt.subplots(3, 1, figsize=(10, 12))
+    
+    # Plot rewards
+    for condition in conditions:
+        log_rewards = np.log1p(np.mean(all_results[condition]['cum_rewards'], axis=0))
+        axs[0].plot(
+            log_rewards,
+            label=condition,
+            color=styles[condition]['color'],
+            linestyle=styles[condition]['linestyle']
+        )
+    axs[0].set_title("Cumulative Rewards (All Conditions)")
+    axs[0].set_xlabel("Episode")
+    axs[0].set_ylabel("Reward")
+    axs[0].legend()
+    
+    # Plot levels
+    for condition in conditions:
+        axs[1].plot(
+            np.max(all_results[condition]['highst_levels'], axis=0),
+            label=condition,
+            color=styles[condition]['color'],
+            linestyle=styles[condition]['linestyle']
+        )
+    axs[1].set_title("Highest Levels (All Conditions)")
+    axs[1].set_xlabel("Episode")
+    axs[1].set_ylabel("Level")
+    axs[1].legend()
+    
+    # Plot probabilities
+    for condition in conditions:
+        axs[2].plot(
+            all_results[condition]['epi_probs'],
+            label=condition,
+            color=styles[condition]['color'],
+            linestyle=styles[condition]['linestyle']
+        )
+    axs[2].set_title("Episode Probabilities (All Conditions)")
+    axs[2].set_xlabel("Episode")
+    axs[2].set_ylabel("Probability")
+    axs[2].legend()
+    
+    plt.tight_layout()
+    plt.savefig("combined_results.png")
+    print("✅ Saved combined plot")
+
+# %%
+# Execute the parallel runs and create the combined plot
 if __name__ == "__main__":
-    with ProcessPoolExecutor() as executor:
-        futures = {executor.submit(run_condition, cond): cond for cond in conditions}
-        for future in tqdm(as_completed(futures), total=len(conditions), desc="Processing Conditions"):
-            try:
-                results.append(future.result())
-            except Exception as e:
-                print(f"❌ Error in condition {futures[future]}: {e}")
-
-        # After parallel work, plot in main thread
-        # for condition, cum_rewards, highst_levels, epi_probs in results:
-        #     plot_results(condition, cum_rewards, highst_levels, epi_probs)
-
-# %%
-fig, axes = plt.subplots(3, 1, figsize=(10, 15))
-
-# Plot cumulative rewards in log scale
-ax1 = axes[0]
-for i, (condition, cum_rewards, _, _) in enumerate(results):
-    mean_rewards = np.mean(cum_rewards+1, axis=0)  # Mean across episodes
-    print(mean_rewards)
-    ax1.plot(mean_rewards, label=condition, color=plot_colors[i])
-ax1.set_yscale('log')
-ax1.set_title("Cumulative Rewards (Log Scale)")
-ax1.set_xlabel("Action")
-ax1.set_ylabel("Cumulative Rewards (Log)")
-ax1.legend()
-
-# Plot highest levels
-ax2 = axes[1]
-for i, (condition, _, highst_levels, _) in enumerate(results):
-    mean_highst_levels = np.mean(highst_levels, axis=0)  # Mean across episodes
-    ax2.plot(mean_highst_levels, label=condition, color=plot_colors[i])
-ax2.set_title("Highest Levels")
-ax2.set_xlabel("Action")
-ax2.set_ylabel("Highest Levels")
-ax2.legend()
-
-# Plot episode probabilities
-ax3 = axes[2]
-for i, (condition, _, _, epi_probs) in enumerate(results):
-    ax3.plot(epi_probs, label=condition, color=plot_colors[i])
-ax3.set_title("Episode Probabilities")
-ax3.set_xlabel("Episode")
-ax3.set_ylabel("Probability")
-ax3.legend()
-
-# Layout adjustment to avoid overlap
-plt.tight_layout()
-
-# Save the figure automatically
-plt.savefig("conditions_plots.png")
-plt.show()
-
+    start_time = time.time()
+    all_results = run_all_conditions_parallel()
+    plot_combined_results(all_results)
+    print(f"Total execution time: {time.time() - start_time:.2f} seconds")
 # %%
