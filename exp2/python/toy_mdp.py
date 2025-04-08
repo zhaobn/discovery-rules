@@ -3,11 +3,13 @@ import numpy as np
 from itertools import combinations
 
 # %%
-colors = [0, 1, 2]
+colors = [0, 1, 2] # up to 5 (six values) in actual experiment
 max_color = max(colors)
 
-shapes = [0, 1]
-textures = [0, 1]
+shapes = [0, 1] # up to 3 (four values) in actual experiment
+textures = [0, 1] # up to 3 (four values) in n actual experiment
+
+num_actions = 10 # num_actions = 40 in actual experiment
 
 base_items = [ f"{s}{t}0" for s in shapes for t in textures]
 all_items = [ f"{s}{t}{c}" for s in shapes for t in textures for c in colors]
@@ -20,6 +22,7 @@ for i in range(1, len(base_items)+1):
         state = frozenset(combo)
         all_states.append(state)
 
+
 # Get all actions
 combination_actions = list(combinations(all_items, 2))
 consume_actions = [(item,) for item in all_items]
@@ -31,9 +34,13 @@ idx_to_state = {idx: state for idx, state in enumerate(all_states)}
 action_to_idx = {action: idx for idx, action in enumerate(all_actions)}
 idx_to_action = {idx: action for idx, action in enumerate(all_actions)}
 
+# Initial state
+initial_states = [frozenset(base_items)]
+initial_state_idx = state_to_idx[initial_states[0]]
+
+# Print number of states and actions
 num_states = len(all_states)
 num_actions = len(all_actions)
-
 print(f"Number of states: {num_states}") #794
 print(f"Number of actions: {num_actions}") #78
 
@@ -54,6 +61,14 @@ def combine_items(item1, item2, rule='simple'):
         return None
 
     if rule == 'simple' and shape1 == shape2:
+        new_item = f"{shape1}{texture2}{new_color}"
+        return new_item
+
+    if rule == 'med' and shape1 + shape2 == 3 and texture1 != texture2:
+        new_item = f"{shape1}{texture2}{new_color}"
+        return new_item
+
+    if rule == 'hard' and shape1 + shape2 == 3 and texture1 >= texture2:
         new_item = f"{shape1}{texture2}{new_color}"
         return new_item
 
