@@ -27,10 +27,19 @@ def hard_task (pair):
     (m, n) = pair
     return m[0] + n[0] == 3 and m[1] >= n[1]
 
+def task_func(task, pair):
+    if task == 'simple':
+        return simple_task(pair)
+    elif task == 'med':
+        return med_task(pair)
+    elif task == 'hard':
+        return hard_task(pair)
 
 # %%
 # Base PSRL agent
 def find_combination(state_objs, state_levels, sampled_transitions):
+    state_objs = np.array(state_objs)
+
     # Create a mapping from level to object indices, sorted by level (highest to lowest)
     level_to_objects = {}
     for i, level in enumerate(state_levels):
@@ -54,19 +63,35 @@ def find_combination(state_objs, state_levels, sampled_transitions):
             obj = state_objs[obj_idx]
 
             # Find pairs where this object can be combined (transitions == 1)
-            matched_pairs = [pair for pair in norm_pairs 
-                            if sampled_transitions[norm_pairs.index(pair)] == 1 
-                            and (pair[0] == obj or pair[1] == obj)]            
-            if matched_pairs:
-                matched_objs = [pair[0] if pair[1] == obj else pair[1] for pair in matched_pairs]
-                intersection = [matched_obj for matched_obj in matched_objs if matched_obj in state_objs]
-                
-                if intersection:
-                    chosen_obj = intersection[np.random.choice(len(intersection))]
-                    chosen_obj_idx = state_objs.index(chosen_obj)
+            matched_pairs = [pair for pair in norm_pairs
+                if sampled_transitions[norm_pairs.index(pair)] == 1
+                and any(np.array_equal(p, obj) for p in pair)
+            ]
 
+            if matched_pairs:
+                matched_objs = [pair[0] if np.array_equal(pair[1], obj) else pair[1] for pair in matched_pairs]
+                intersection = []
+                for matched_obj in matched_objs:
+                    for i, state_obj in enumerate(state_objs):
+                        if np.array_equal(matched_obj, state_obj):
+                            intersection.append(i)         
+
+                if intersection:
+                    potential_partners = []
+                    for idx in intersection:
+                        # Compare face values (the first and second elements in the tuple)
+                        if (state_objs[idx][0] != obj[0] or state_objs[idx][1] != obj[1]):
+                            potential_partners.append(idx)
+
+                    if potential_partners:
+                        # Randomly choose a partner with different face value
+                        chosen_idx = np.random.choice(len(potential_partners))
+                        partner_idx = potential_partners[chosen_idx]
+                    
                     return [(state_objs[obj_idx][0], state_objs[obj_idx][1], state_levels[obj_idx]), 
-                            (state_objs[chosen_obj_idx][0], state_objs[chosen_obj_idx][1], state_levels[chosen_obj_idx])]
+                            (state_objs[partner_idx][0], state_objs[partner_idx][1], state_levels[partner_idx])]
+       
+                    
         
     # No valid combination found
     return None
@@ -105,88 +130,66 @@ def get_reward(action):
     else:
         return 10 ** action[0][2]
 
-
+# %%
 def update_states(task, action, action_left, state_objs, state_levels, regeneratable):
 
     action_left = action_left - 1
     if action is None or action_left < 0:
         return None
 
-    state_objs_list = list(state_objs)
+    state_objs = np.array(state_objs)
+    state_levels = np.array(state_levels)
+    regeneratable = np.array(regeneratable)
+
+    new_state_objs = state_objs
+    new_state_levels = state_levels
+    new_regeneratable = regeneratable
+
     if len(action) == 2:
         [m, n] = action
         norm_m = (m[0], m[1])
         norm_n = (n[0], n[1])
         
-        is_valid = False
-        if task == 'simple':
-            is_valid = simple_task((norm_m, norm_n))
-        if task == 'med':
-            is_valid = med_task((norm_m, norm_n))
-        if task == 'hard':
-            is_valid = hard_task((norm_m, norm_n))
-
+        is_valid = task_func(task, (norm_m, norm_n))
         
         if is_valid:
             new_obj = (norm_m[0], norm_n[1])
-            
-            # Find indices where the object matches m and n
-            m_indices = [i for i, (obj, level) in enumerate(zip(state_objs_list, state_levels)) 
-                 if obj == norm_m and level == m[2]]
-            n_indices = [i for i, (obj, level) in enumerate(zip(state_objs_list, state_levels)) 
-                 if obj == norm_n and level == n[2]]
-            
-            if m_indices and n_indices:
-                m_idx = m_indices[0]
-                n_idx = n_indices[0]
+            new_level = np.max([m[2], n[2]]) + 1
 
-                if regeneratable[m_idx] == 1 and regeneratable[n_idx] == 1:
-                    regeneratable[m_idx] = 0
-                    regeneratable[n_idx] = 0
-                
-                if regeneratable[m_idx] == 1 and  regeneratable[n_idx] == 0:
-                    regeneratable[m_idx] = 0
-                    new_state_objs = np.delete(state_objs, [n_idx], axis=0)
-                    new_state_levels = np.delete(state_levels, [n_idx], axis=0)
+            # check if remove or keep the used objects
+            for item in [norm_m, norm_n]:
+                m_index = np.where(np.all(state_objs == item, axis=1))[0][0]
+                #m_index = state_objs.index(item)
+                if state_levels[m_index] == 0 and regeneratable[m_index] == 1:
+                    new_regeneratable[m_index] = 0
 
-                if regeneratable[m_idx] == 0 and regeneratable[n_idx] == 1:
-                    regeneratable[n_idx] = 0
-                    new_state_objs = np.delete(state_objs, [m_idx], axis=0)
-                    new_state_levels = np.delete(state_levels, [m_idx], axis=0)
+                else:
+                    new_state_objs = np.delete(state_objs, [m_index], axis=0)
+                    new_state_levels = np.delete(state_levels, [m_index], axis=0)
+                    new_regeneratable = np.delete(regeneratable, [m_index], axis=0)
 
-                if regeneratable[m_idx] == 0 and regeneratable[n_idx] == 0:
-                    new_state_objs = np.delete(state_objs, [m_idx, n_idx], axis=0)
-                    new_state_levels = np.delete(state_levels, [m_idx, n_idx], axis=0)
-
-                # Add new_obj and new_level to state_objs and state_levels
-                new_state_objs = np.append(new_state_objs, [new_obj], axis=0)
-                new_level = np.max([m[2], n[2]]) + 1
-                new_state_levels = np.append(new_state_levels, new_level)
-                regeneratable = np.append(regeneratable, 0)
-        
-        else:   
-            return (action_left, state_objs, state_levels, regeneratable)
-    
+            # Add new_obj and new_level to state_objs and state_levels
+            new_state_objs = np.append(new_state_objs, [new_obj], axis=0)
+            new_state_levels = np.append(new_state_levels, new_level)
+            new_regeneratable = np.append(regeneratable, 0)
     else:
         (m, n, l) = action[0]
-        obj_indices = [i for i, (obj, level) in enumerate(zip(state_objs_list, state_levels)) 
-                 if obj == (m, n) and level == l]
-        obj_idx = obj_indices[0]
-
-        if regeneratable[obj_idx] == 1:
-            regeneratable[obj_idx] = 0
-            new_state_objs = state_objs
-            new_state_levels = state_levels
+        item = (m, n)
+        item_idx = np.where(np.all(state_objs == item, axis=1))[0][0]
+        #item_idx = state_objs.index(item)
+        if state_levels[item_idx] == 0 and regeneratable[item_idx] == 1:
+            new_regeneratable[item_idx] = 0
+        
         else:
-            new_state_objs = np.delete(state_objs, [obj_idx], axis=0)
-            new_state_levels = np.delete(state_levels, [obj_idx], axis=0)
+            new_state_objs = np.delete(state_objs, [item_idx], axis=0)
+            new_state_levels = np.delete(state_levels, [item_idx], axis=0)
+            new_regeneratable = np.delete(regeneratable, [item_idx], axis=0)
 
-    new_state_objs = [(i,j) for i,j in new_state_objs]
+    return (action_left, new_state_objs, new_state_levels, new_regeneratable)
 
-    return (action_left, new_state_objs, new_state_levels, regeneratable)
 
 # %%
-def run_condition(condition, num_episodes=10, num_actions=40):
+def run_condition(condition, num_episodes=100, num_actions=40):
     print(f"Running condition: {condition}")
 
     # Initialize variables
@@ -195,10 +198,14 @@ def run_condition(condition, num_episodes=10, num_actions=40):
     highst_levels = np.zeros((num_episodes, num_actions))
     # actions = np.full((num_episodes, num_actions), None)
     epi_probs = np.zeros(num_episodes)
+    recover_rate = np.zeros(num_episodes)
 
     # Initialize the prior
     prior_alphas = np.full(len(norm_pairs), 0.001)
     prior_betas = np.full(len(norm_pairs), 0.001)
+
+    # Prep for ground truth measure
+    true_transitions =  np.array([task_func(task, pair) for pair in norm_pairs]).astype(int)
 
     # Run base PSRL agent
     for episode in range(num_episodes):
@@ -206,6 +213,8 @@ def run_condition(condition, num_episodes=10, num_actions=40):
         sampled_probs = np.random.beta(prior_alphas, prior_betas)
         sampled_transitions = np.random.binomial(1, sampled_probs)
         epi_probs[episode] = sum(sampled_transitions)/len(sampled_transitions)
+        recover_rate[episode] = (true_transitions == sampled_transitions).sum() / len(sampled_transitions)
+        
     
         state_objs = norm_objs.copy()
         state_levels = np.zeros(len(norm_objs))
@@ -238,31 +247,20 @@ def run_condition(condition, num_episodes=10, num_actions=40):
                     norm_n = (n[0], n[1])
                     pair_idx = norm_pairs.index((norm_m, norm_n))
                     
-                    if task == 'simple':
-                        if simple_task((norm_m, norm_n)):
-                            prior_alphas[pair_idx] += 1
-                        else:
-                            prior_betas[pair_idx] += 1
+
+                    if task_func(task, (norm_m, norm_n)):
+                        prior_alphas[pair_idx] += 1
+                    else:
+                        prior_betas[pair_idx] += 1
                     
-                    if task == 'med':
-                        if med_task((norm_m, norm_n)):
-                            prior_alphas[pair_idx] += 1
-                        else:
-                            prior_betas[pair_idx] += 1
 
-                    if task == 'hard':
-                        if hard_task((norm_m, norm_n)):
-                            prior_alphas[pair_idx] += 1
-                        else:
-                            prior_betas[pair_idx] += 1
-
-    return condition, cum_rewards, highst_levels, epi_probs
+    return condition, cum_rewards, highst_levels, epi_probs, recover_rate
 
 # %%
 # Plot the results
-def plot_results(condition, cum_rewards, highst_levels, epi_probs):
+def plot_results(condition, cum_rewards, highst_levels, epi_probs, recover_rate):
     """ Plotting function runs only in the main process. """
-    fig, axs = plt.subplots(3, 1, figsize=(8, 10))
+    fig, axs = plt.subplots(4, 1, figsize=(8, 10))
     axs[0].plot(np.max(cum_rewards, axis=0))
     axs[0].set_title(f"Cumulative Rewards ({condition})")
     
@@ -272,35 +270,34 @@ def plot_results(condition, cum_rewards, highst_levels, epi_probs):
     axs[2].plot(epi_probs)
     axs[2].set_title(f"Episode Probabilities ({condition})")
     
+    axs[3].plot(recover_rate)
+    axs[3].set_title(f"Recovered True Transitions ({condition})")
+    
+
     plt.tight_layout()
     plt.savefig(f"{condition}_results.png")
     print(f"✅ Saved plot for {condition}")
 
 
+condition, cum_rewards, highst_levels, epi_probs, recover_rate = run_condition("simple", num_episodes=100, num_actions=40)
+plot_results("simple", cum_rewards, highst_levels, epi_probs, recover_rate)
+
+
+condition, cum_rewards, highst_levels, epi_probs, recover_rate = run_condition("med", num_episodes=100, num_actions=40)
+plot_results(condition, cum_rewards, highst_levels, epi_probs, recover_rate)
+
+
+condition, cum_rewards, highst_levels, epi_probs, recover_rate = run_condition("hard", num_episodes=100, num_actions=40)
+plot_results(condition, cum_rewards, highst_levels, epi_probs, recover_rate)
+
 
 # %%
-condition, cum_rewards, highst_levels, epi_probs = run_condition("simple", num_episodes=100, num_actions=40)
-plot_results("simple", cum_rewards, highst_levels, epi_probs)
-
-condition, cum_rewards, highst_levels, epi_probs = run_condition("med", num_episodes=100, num_actions=40)
-plot_results(condition, cum_rewards, highst_levels, epi_probs)
-
-
-condition, cum_rewards, highst_levels, epi_probs = run_condition("hard", num_episodes=100, num_actions=40)
-plot_results(condition, cum_rewards, highst_levels, epi_probs)
-
-
-# %%
-def run_single_condition(condition):
-    result = run_condition(condition, num_episodes=400, num_actions=40)
-    return result
-
 def run_all_conditions_parallel():
     conditions = ["simple", "med", "hard"]
     
     # Create a pool of workers and run the conditions in parallel
     with Pool(processes=3) as pool:
-        results = pool.map(run_single_condition, conditions)
+        results = pool.map(run_condition, conditions)
     
     # Unpack the results
     all_results = {}
@@ -309,16 +306,18 @@ def run_all_conditions_parallel():
             'condition': results[i][0],
             'cum_rewards': results[i][1],
             'highst_levels': results[i][2],
-            'epi_probs': results[i][3]
+            'epi_probs': results[i][3],
+            'recover_rate': results[i][4]
         }
         
-        # Save individual plots
-        plot_results(
-            condition,
-            all_results[condition]['cum_rewards'],
-            all_results[condition]['highst_levels'],
-            all_results[condition]['epi_probs']
-        )
+        # # Save individual plots
+        # plot_results(
+        #     condition,
+        #     all_results[condition]['cum_rewards'],
+        #     all_results[condition]['highst_levels'],
+        #     all_results[condition]['epi_probs'],
+        #     all_results[condition]['recover_rate']
+        # )
     
     return all_results
 
@@ -335,7 +334,7 @@ def plot_combined_results(all_results):
     }
     
     # Create three subplots
-    fig, axs = plt.subplots(3, 1, figsize=(10, 12))
+    fig, axs = plt.subplots(4, 1, figsize=(10, 12))
     
     # Plot rewards
     for condition in conditions:
@@ -347,7 +346,7 @@ def plot_combined_results(all_results):
             linestyle=styles[condition]['linestyle']
         )
     axs[0].set_title("Cumulative Rewards (All Conditions)")
-    axs[0].set_xlabel("Episode")
+    axs[0].set_xlabel("Action")
     axs[0].set_ylabel("Reward")
     axs[0].legend()
     
@@ -360,7 +359,7 @@ def plot_combined_results(all_results):
             linestyle=styles[condition]['linestyle']
         )
     axs[1].set_title("Highest Levels (All Conditions)")
-    axs[1].set_xlabel("Episode")
+    axs[1].set_xlabel("Action")
     axs[1].set_ylabel("Level")
     axs[1].legend()
     
@@ -376,6 +375,19 @@ def plot_combined_results(all_results):
     axs[2].set_xlabel("Episode")
     axs[2].set_ylabel("Probability")
     axs[2].legend()
+
+    # Plot recovery rates
+    for condition in conditions:
+        axs[3].plot(
+            all_results[condition]['recover_rate'],
+            label=condition,
+            color=styles[condition]['color'],
+            linestyle=styles[condition]['linestyle']
+        )
+    axs[3].set_title("Recovered True Transitions (All Conditions)")
+    axs[3].set_xlabel("Episode")
+    axs[3].set_ylabel("Recovery Rate")
+    axs[3].legend()
     
     plt.tight_layout()
     plt.savefig("combined_results.png")
