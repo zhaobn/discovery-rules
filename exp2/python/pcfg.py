@@ -1,6 +1,8 @@
 # %%
 from random import sample
 from math import log
+import numpy as np
+import pandas as pd
 
 # %%
 class Rational_rules:
@@ -54,42 +56,159 @@ class Rational_rules:
 
 
 # %%
-#### For evaluation
+# Evaluation functions
 def fand(x, y): return x and y
 def fdisj(x, y): return x or y
 
-def ftriangle(): return 'triangle'
-def fcircle(): return 'circle'
-def fsquare(): return 'square'
-def fdiamond(): return 'diamond'
-def fplain(): return 'plain'
-def fcheckered(): return 'checkered'
-def fstripes(): return 'stripes'
-def fdots(): return 'dots'
+def ftriangle(): return 0
+def fcircle(): return 1
+def fsquare(): return 2
+def fdiamond(): return 3
 
-# Example data ('Egg(S1,O0)', '3', '3')
-def stripe(d): return d[0][4:-1].split(',')[0][1:]
-def spot(d): return d[0][4:-1].split(',')[1][1:]
-def stick(d): return d[1]
+def fplain(): return 0
+def fcheckered(): return 1
+def fstripes(): return 2
+def fdots(): return 3
 
+# Example data ((0,0),(1,1))
+def sameshape(d): return d[0][0] == d[1][0]
+def diffshape(d): return d[0][0] != d[1][0]
 
-# %% Debug
+def sametexture(d): return d[0][1] == d[1][1]
+def difftexture(d): return d[0][1] != d[1][1]
+
+def pairshape(d, val1, val2): return (d[0][0] == val1 and d[1][0] == val2) or (d[0][0] == val2 and d[1][0] == val1)
+def pairtexture(d, val1, val2): return (d[0][1] == val1 and d[1][1] == val2) or (d[0][1] == val2 and d[1][1] == val1)
+
+def obj_1(d): return d[0]
+def obj_2(d): return d[1]
+
+def isshape(obj, val): return obj[0] == val
+def istexture(obj, val): return obj[1] == val
+
+# %% 
 productions = [
   ['S', ['A', 'B', 'fand(A,B)']],
   ['A', ['sameshape(d)', 'diffshape(d)', 'C', 'fdisj(C,C)']],
   ['B', ['sametexture(d)', 'difftexture(d)', 'D', 'fdisj(D,D)']],
-  ['C', ['isshape(obj_1(d),X)', 'isshape(obj_2(d),X)', 'fand(isshape(obj_1(d),X),isshape(obj_2(d),X))']],
-  ['D', ['istexture(obj_1(d),Y)', 'istexture(obj_2(d),Y)', 'fand(istexture(obj_1(d),Y),istexture(obj_2(d),Y))']],
+  ['C', ['isshape(obj_1(d),X)', 'isshape(obj_2(d),X)', 'fand(isshape(obj_1(d),X),isshape(obj_2(d),X))', 'pairshape(d,X,X)']],
+  ['D', ['istexture(obj_1(d),Y)', 'istexture(obj_2(d),Y)', 'fand(istexture(obj_1(d),Y),istexture(obj_2(d),Y))', 'pairtexture(d,Y,Y)']],
   ['X', ["ftriangle()", "fcircle()", "fsquare()", "fdiamond()"]],
   ['Y', ["fplain()", "fcheckered()", "fstripes()", "fdots()"]],
 ]
 test = Rational_rules(productions, cap=100)
 
-test.generate_tree()
+# %% Debug
+# x = test.generate_tree()
+# x
+# d = ((0, 0), (0, 0))
+# eval(x[0])
+
+# %% 
+# First, generate a lot of trees and save them to a table
+generator = Rational_rules(productions, cap=1000)
+results = {}
+
+for _ in range(100000):
+  (generated_string, log_prob) = generator.generate_tree(logging=False)
+  
+  if generated_string is not None:
+    
+    if generated_string in results:
+      # String exists, update its values
+      current_avg_prob, current_count = results[generated_string]
+      new_avg_prob = ((current_avg_prob * current_count) + log_prob) / (current_count + 1)
+      results[generated_string] = [
+          new_avg_prob,
+          current_count + 1
+      ]
+    
+    else:
+      # New string, initialize its values
+      results[generated_string] = [log_prob, 1]
+
+# Convert results to pandas DataFrame
+data = [
+    {"string": string, "log_prob": avg_log_prob, "count": count}
+    for string, (avg_log_prob, count) in results.items()
+]
+df = pd.DataFrame(data)
+df = df.sort_values(by=["count", "log_prob"], ascending=[False, False]).reset_index(drop=True)
+
+df.to_csv('tree_prob.csv', index=False)
+
+# %% 
+# Next, get MDPs for each tree
+shapes = np.arange(4)   # ["triangle", "circle", "square", "diamond"]
+textures = np.arange(4) # ["plain", "checkered", "stripes", "dots"]
+norm_objs = [(s, t) for s in shapes for t in textures]
+norm_pairs = [(m, n) for m in norm_objs for n in norm_objs if m != n]
 
 
+# %%
+df = pd.read_csv('tree_prob.csv')
+test_df = df.head(10).copy()  # Copy the first 10 rows for testing
+test_pairs = norm_pairs[:5]  # Use the first 5 pairs for testing
 
-# # x = test.generate_tree()
-# # x = test.generate_tree(logging=False)
+def functions_to_transitions(test_df, test_pairs):
+  num_pairs = len(test_pairs)
+  num_rows = len(test_df)
+    
+  # Use array to store results
+  result_array = np.zeros((num_rows, num_pairs), dtype=int)
+    
+  for i in range(num_pairs):
+    d = test_pairs[i]
+      
+    # For each row, evaluate the string using each pair
+    for idx, (j, row) in enumerate(test_df.iterrows()):
+      expr = row['string']
+      
+      try:
+        result = eval(expr)
+        result_array[idx, i] = int(bool(result))
+      except Exception as e:
+        print(f"Error evaluating expression: {expr}, Error: {e}")
+        result_array[idx, i] = -1
+  
+    # Create a DataFrame with the results
+    result_df = pd.DataFrame(result_array, columns=[f'pair_{i}' for i in range(num_pairs)])
+    final_df = pd.concat([test_df.reset_index(drop=True), result_df], axis=1)
+  
+  return final_df
+
+
+new_df = functions_to_transitions(df, norm_pairs)
+new_df.to_csv('tree_mdps.csv', index=False)
+
+
+# %%
+# out of curiosity, check if the ground truths are covered
+def simple_task (pair):
+    (m, n) = pair
+    return m[0] == n[0]
+
+def med_task (pair):
+    (m, n) = pair
+    return m[0] + n[0] == 3 and m[1] != n[1]
+
+def hard_task (pair):
+    (m, n) = pair
+    return m[0] + n[0] == 3 and m[1] >= n[1]
+
+simple_mdp = [simple_task(pair) for pair in norm_pairs]
+med_mdp = [med_task(pair) for pair in norm_pairs]
+hard_mdp = [hard_task(pair) for pair in norm_pairs]
+
+def check_ground_truth(df, ground_truth):
+  for _, row in df.iterrows():
+    if all(row[f'pair_{j}'] == ground_truth[j] for j in range(len(ground_truth))):
+      return True
+  
+  return False
+
+simple_covered = check_ground_truth(new_df, simple_mdp)
+med_covered = check_ground_truth(new_df, med_mdp)
+hard_covered = check_ground_truth(new_df, hard_mdp)
 
 # %%
