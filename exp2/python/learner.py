@@ -1,10 +1,11 @@
 # %% 
 # Load packages
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
 from multiprocessing import Pool
 import time
-
+import traceback
 
 # %%
 # Set up task and environment
@@ -130,7 +131,6 @@ def get_reward(action):
     else:
         return 10 ** action[0][2]
 
-# %%
 def update_states(task, action, action_left, state_objs, state_levels, regeneratable):
 
     action_left = action_left - 1
@@ -188,9 +188,98 @@ def update_states(task, action, action_left, state_objs, state_levels, regenerat
     return (action_left, new_state_objs, new_state_levels, new_regeneratable)
 
 
+
+# %%
+# load prior beliefs
+def softmax(x, tau=1.0):
+    x = np.array(x) / tau  # Scale by temperature
+    exp_x = np.exp(x - np.max(x))  # Subtract max for numerical stability
+    return exp_x / exp_x.sum()
+
+def run_pcfg_condition(condition, num_episodes=10, num_actions=40):
+    print(f"Running pcfg condition: {condition}")
+
+    # Initialize variables
+    task = condition
+    cum_rewards = np.zeros((num_episodes, num_actions))
+    highst_levels = np.zeros((num_episodes, num_actions))
+    # actions = np.full((num_episodes, num_actions), None)
+    epi_probs = np.zeros(num_episodes)
+    recover_rate = np.zeros(num_episodes)
+
+    # Initialize the prior
+    prior_mdps = pd.read_csv('tree_mdps.csv')
+    pair_columns = [f'pair_{i}' for i in range(240)]
+    
+    # Prep for ground truth measure
+    true_transitions =  np.array([task_func(task, pair) for pair in norm_pairs]).astype(int)
+
+    # Run base PSRL agent
+    for episode in range(num_episodes):
+
+        # Sample from the prior
+        counts =prior_mdps['count']
+        norm_probs = counts / counts.sum()
+        scaled_probs = softmax(norm_probs, tau=0.1)
+
+        prior_mdp_index = np.random.choice(prior_mdps.index, size=1, p=scaled_probs)[0]
+        sampled_transitions = prior_mdps.loc[prior_mdp_index][pair_columns].to_numpy()
+
+        # Compute stats
+        epi_probs[episode] = sum(sampled_transitions)/len(sampled_transitions)
+        recover_rate[episode] = (true_transitions == sampled_transitions).sum() / len(sampled_transitions)
+
+        # Prepare for the episode
+        state_objs = norm_objs.copy()
+        state_levels = np.zeros(len(norm_objs))
+
+        reward = 0
+        regeneratable = np.ones(len(norm_objs))
+
+        max_level = 0
+        for t in range(num_actions):
+            action = policy(num_actions - t, state_objs, state_levels, sampled_transitions)
+            if action is None:
+                cum_rewards[episode, t] = cum_rewards[episode, t-1]
+                highst_levels[episode, t] = highst_levels[episode, t-1]    
+            else:
+                #actions[episode, t] = action
+                reward += get_reward(action)
+                cum_rewards[episode, t] = max(cum_rewards[episode, t-1], reward)
+
+                (_, state_objs, state_levels, regeneratable) = update_states(task, action, num_actions - t, state_objs, state_levels, regeneratable)
+
+                if len(state_objs) > 0:
+                    new_highest = np.max(state_levels)
+                    max_level = max(max_level, new_highest)
+                
+                highst_levels[episode, t] = max_level
+
+                if len(action) == 2:
+                    [m, n] = action
+                    norm_m = (m[0], m[1])
+                    norm_n = (n[0], n[1])
+
+                    pair_idx = norm_pairs.index((norm_m, norm_n))
+                    pair_column = f'pair_{pair_idx}'
+
+                    # remove inconsistent entries from prior_mdps
+                    if task_func(task, (norm_m, norm_n)) is False:
+                        prior_mdps = prior_mdps[prior_mdps[pair_column] == 0]
+
+                    # if task_func(task, (norm_m, norm_n)):
+                    #     prior_mdps = prior_mdps[prior_mdps[pair_column] == 1]
+                    
+                    # else:
+                    #     prior_mdps = prior_mdps[prior_mdps[pair_column] == 0]
+
+                    
+
+    return condition, cum_rewards, highst_levels, epi_probs, recover_rate
+
 # %%
 def run_condition(condition, num_episodes=100, num_actions=40):
-    print(f"Running condition: {condition}")
+    print(f"Running base condition: {condition}")
 
     # Initialize variables
     task = condition
@@ -258,7 +347,7 @@ def run_condition(condition, num_episodes=100, num_actions=40):
 
 # %%
 # Plot the results
-def plot_results(condition, cum_rewards, highst_levels, epi_probs, recover_rate):
+def plot_results(condition, prefix, cum_rewards, highst_levels, epi_probs, recover_rate):
     """ Plotting function runs only in the main process. """
     fig, axs = plt.subplots(4, 1, figsize=(8, 10))
     axs[0].plot(np.max(cum_rewards, axis=0))
@@ -275,30 +364,125 @@ def plot_results(condition, cum_rewards, highst_levels, epi_probs, recover_rate)
     
 
     plt.tight_layout()
-    plt.savefig(f"{condition}_results.png")
-    print(f"✅ Saved plot for {condition}")
+    plt.savefig(f"{prefix}_{condition}_results.png")
+    print(f"✅ Saved plot for {prefix} {condition}")
 
-
+# %%
 condition, cum_rewards, highst_levels, epi_probs, recover_rate = run_condition("simple", num_episodes=100, num_actions=40)
-plot_results("simple", cum_rewards, highst_levels, epi_probs, recover_rate)
-
+plot_results(condition, 'base', cum_rewards, highst_levels, epi_probs, recover_rate)
 
 condition, cum_rewards, highst_levels, epi_probs, recover_rate = run_condition("med", num_episodes=100, num_actions=40)
-plot_results(condition, cum_rewards, highst_levels, epi_probs, recover_rate)
+plot_results(condition, 'base', cum_rewards, highst_levels, epi_probs, recover_rate)
 
 
 condition, cum_rewards, highst_levels, epi_probs, recover_rate = run_condition("hard", num_episodes=100, num_actions=40)
-plot_results(condition, cum_rewards, highst_levels, epi_probs, recover_rate)
+plot_results(condition, 'base', cum_rewards, highst_levels, epi_probs, recover_rate)
 
 
 # %%
-def run_all_conditions_parallel():
+condition, cum_rewards, highst_levels, epi_probs, recover_rate = run_pcfg_condition("simple", num_episodes=10, num_actions=40)
+plot_results(condition, 'pcfg', cum_rewards, highst_levels, epi_probs, recover_rate)
+
+condition, cum_rewards, highst_levels, epi_probs, recover_rate = run_pcfg_condition("med", num_episodes=10, num_actions=40)
+plot_results(condition, 'pcfg', cum_rewards, highst_levels, epi_probs, recover_rate)
+
+condition, cum_rewards, highst_levels, epi_probs, recover_rate = run_pcfg_condition("hard", num_episodes=10, num_actions=40)
+plot_results(condition, 'pcfg', cum_rewards, highst_levels, epi_probs, recover_rate)
+
+
+
+# %%
+episodes = 100
+max_retries = 5
+all_results = {}    
+for agent in ['base', 'pcfg']:
+    all_results[agent] = {}
+    for condition in ["simple", "med", "hard"]:
+        for attempt in range(max_retries):
+            try:
+                if agent == 'base':
+                    results = run_condition(condition, episodes)
+                elif agent == 'pcfg':
+                    results = run_pcfg_condition(condition, episodes)
+                
+                all_results[agent][condition] = {
+                    'condition': results[0],
+                    'cum_rewards': results[1],
+                    'highst_levels': results[2],
+                    'epi_probs': results[3],
+                    'recover_rate': results[4]
+                }
+                break
+            
+            except Exception as e:
+                print(f"Error running {agent} on {condition} (attempt {attempt + 1}): {e}")
+                traceback.print_exc()
+
+                if attempt == max_retries - 1:
+                    print(f"Max retries reached for {agent} on {condition}.")
+
+measures = ['cum_rewards', 'highst_levels', 'epi_probs', 'recover_rate']
+conditions = ['simple', 'med', 'hard']
+agents = ['base', 'pcfg']
+num_actions = 40
+# %%
+fig, axes = plt.subplots(nrows=4, ncols=2, figsize=(12, 16), sharex=True)
+for col, agent in enumerate(agents):
+    for row, measure in enumerate(measures):
+        ax = axes[row, col]
+        for condition in conditions:
+            data = all_results[agent][condition][measure]
+
+            # Determine x-axis based on the measure
+            if measure in ['cum_rewards', 'highst_levels']:
+                # Use num_actions as the x-axis
+                x_axis = np.arange(data.shape[1])  # Actions
+                if measure == 'cum_rewards':
+                    y_data = np.log1p(np.mean(data, axis=0))  # Log scale for rewards
+                else:
+                    y_data = np.mean(data, axis=0)  # Average across episodes
+                
+            
+            else:
+                # Use num_episodes as the x-axis
+                x_axis = np.arange(data.shape[0])  # Episodes
+                y_data = data  # Directly use the data
+                ax.set_xlim(0, len(data))  # Set x-axis limit to the number of episodes
+                if measure == 'epi_probs':
+                    ax.set_ylim(0, 0.6)
+                else:
+                    ax.set_ylim(0.5, 1.1) 
+
+            ax.plot(x_axis, y_data, label=condition)
+            
+
+        if col == 0:
+            ax.set_ylabel(measure.replace('_', ' ').title(), fontsize=10)
+        if row == 0:
+            ax.set_title(f"{agent.title()} Agent", fontsize=12)
+        if row < 2:
+            ax.set_xlim(0, num_actions) 
+            ax.set_xlabel("Action", fontsize=10)
+        if row >= 2:
+            ax.set_xlabel("Episode", fontsize=10)
+        if row == 0 and col == 1:
+            ax.legend(title="Condition", loc='upper right')
+
+plt.tight_layout()
+plt.savefig(f"both_combined_results.png")
+# %%
+def run_all_conditions_parallel(agent='base'):
     conditions = ["simple", "med", "hard"]
     
     # Create a pool of workers and run the conditions in parallel
     with Pool(processes=3) as pool:
-        results = pool.map(run_condition, conditions)
-    
+        if agent == 'base':
+            results = pool.map(run_condition, conditions)
+        elif agent == 'pcfg':
+            results = pool.map(run_pcfg_condition, conditions)
+        else:
+            raise ValueError("Invalid agent type. Use 'base' or 'pcfg'.")
+
     # Unpack the results
     all_results = {}
     for i, condition in enumerate(conditions):
@@ -309,20 +493,11 @@ def run_all_conditions_parallel():
             'epi_probs': results[i][3],
             'recover_rate': results[i][4]
         }
-        
-        # # Save individual plots
-        # plot_results(
-        #     condition,
-        #     all_results[condition]['cum_rewards'],
-        #     all_results[condition]['highst_levels'],
-        #     all_results[condition]['epi_probs'],
-        #     all_results[condition]['recover_rate']
-        # )
     
     return all_results
 
 # %%
-def plot_combined_results(all_results):
+def plot_combined_results(all_results, agent):
     """Plot all three conditions together in three separate graphs"""
     conditions = list(all_results.keys())
     
@@ -390,14 +565,16 @@ def plot_combined_results(all_results):
     axs[3].legend()
     
     plt.tight_layout()
-    plt.savefig("combined_results.png")
+    plt.savefig(f"{agent}_combined_results.png")
     print("✅ Saved combined plot")
 
 # %%
 # Execute the parallel runs and create the combined plot
 if __name__ == "__main__":
     start_time = time.time()
-    all_results = run_all_conditions_parallel()
-    plot_combined_results(all_results)
+    for agent in ['base', 'pcfg']:
+        all_results = run_all_conditions_parallel(agent)
+        plot_combined_results(all_results, agent)
+    
     print(f"Total execution time: {time.time() - start_time:.2f} seconds")
 # %%
