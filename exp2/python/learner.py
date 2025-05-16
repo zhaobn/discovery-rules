@@ -214,20 +214,38 @@ def run_pcfg_condition(condition, num_episodes=10, num_actions=40):
     # Prep for ground truth measure
     true_transitions =  np.array([task_func(task, pair) for pair in norm_pairs]).astype(int)
 
-    # Run base PSRL agent
+    # Run PCFG PSRL agent
     for episode in range(num_episodes):
 
+        if len(prior_mdps) == 0:
+            print("No valid prior MDPs left.")
+            break
+
         # Sample from the prior
-        counts =prior_mdps['count']
+        counts = prior_mdps['count']
         norm_probs = counts / counts.sum()
-        scaled_probs = softmax(norm_probs, tau=0.1)
+        scaled_probs = norm_probs #softmax(norm_probs, tau=0.01)
 
         prior_mdp_index = np.random.choice(prior_mdps.index, size=1, p=scaled_probs)[0]
         sampled_transitions = prior_mdps.loc[prior_mdp_index][pair_columns].to_numpy()
 
-        # Compute stats
-        epi_probs[episode] = sum(sampled_transitions)/len(sampled_transitions)
+        # # Compute stats
+        # epi_probs[episode] = sum(sampled_transitions)/len(sampled_transitions)
         recover_rate[episode] = (true_transitions == sampled_transitions).sum() / len(sampled_transitions)
+
+        # Compute expected loss
+        all_transitions = prior_mdps[pair_columns].to_numpy()
+        mdp_probs = np.sum(all_transitions, axis=1) / all_transitions.shape[1]
+        recovery_matches = (all_transitions == true_transitions).sum(axis=1) / all_transitions.shape[1]
+    
+        weights = prior_mdps['count'].to_numpy()
+        weights = weights / weights.sum()
+    
+        expected_prob = np.sum(mdp_probs * weights)
+        expected_recovery_rate = np.sum(recovery_matches * weights)
+
+        epi_probs[episode] = expected_prob
+        recover_rate[episode] = expected_recovery_rate
 
         # Prepare for the episode
         state_objs = norm_objs.copy()
@@ -239,13 +257,14 @@ def run_pcfg_condition(condition, num_episodes=10, num_actions=40):
         max_level = 0
         for t in range(num_actions):
             action = policy(num_actions - t, state_objs, state_levels, sampled_transitions)
+            if t > 0:
+                cum_rewards[episode, t] = cum_rewards[episode, t-1] + get_reward(action)
+            
             if action is None:
-                cum_rewards[episode, t] = cum_rewards[episode, t-1]
-                highst_levels[episode, t] = highst_levels[episode, t-1]    
+                if t > 0:
+                    highst_levels[episode, t] = highst_levels[episode, t-1]
+            
             else:
-                #actions[episode, t] = action
-                reward += get_reward(action)
-                cum_rewards[episode, t] = max(cum_rewards[episode, t-1], reward)
 
                 (_, state_objs, state_levels, regeneratable) = update_states(task, action, num_actions - t, state_objs, state_levels, regeneratable)
 
@@ -264,8 +283,16 @@ def run_pcfg_condition(condition, num_episodes=10, num_actions=40):
                     pair_column = f'pair_{pair_idx}'
 
                     # remove inconsistent entries from prior_mdps
-                    if task_func(task, (norm_m, norm_n)) is False:
+                    if task_func(task, (norm_m, norm_n)) == False:
                         prior_mdps = prior_mdps[prior_mdps[pair_column] == 0]
+                    # else:
+                    #     # with some probability, remove inconsistent entries
+                    #     if np.random.rand() < 0.1:
+                    #         prior_mdps = prior_mdps[prior_mdps[pair_column] == 1]
+                        
+                    if len(prior_mdps) == 0:
+                        print("No valid prior MDPs left.")
+                        break
 
                     # if task_func(task, (norm_m, norm_n)):
                     #     prior_mdps = prior_mdps[prior_mdps[pair_column] == 1]
@@ -380,10 +407,10 @@ plot_results(condition, 'base', cum_rewards, highst_levels, epi_probs, recover_r
 
 
 # %%
-condition, cum_rewards, highst_levels, epi_probs, recover_rate = run_pcfg_condition("simple", num_episodes=10, num_actions=40)
+condition, cum_rewards, highst_levels, epi_probs, recover_rate = run_pcfg_condition("simple", num_episodes=50, num_actions=40)
 plot_results(condition, 'pcfg', cum_rewards, highst_levels, epi_probs, recover_rate)
 
-condition, cum_rewards, highst_levels, epi_probs, recover_rate = run_pcfg_condition("med", num_episodes=10, num_actions=40)
+condition, cum_rewards, highst_levels, epi_probs, recover_rate = run_pcfg_condition("med", num_episodes=50, num_actions=40)
 plot_results(condition, 'pcfg', cum_rewards, highst_levels, epi_probs, recover_rate)
 
 condition, cum_rewards, highst_levels, epi_probs, recover_rate = run_pcfg_condition("hard", num_episodes=10, num_actions=40)
@@ -392,10 +419,16 @@ plot_results(condition, 'pcfg', cum_rewards, highst_levels, epi_probs, recover_r
 
 
 # %%
-episodes = 100
+newrun = False
+episodes = 50
 max_retries = 5
-all_results = {}    
-for agent in ['base', 'pcfg']:
+if newrun:
+    all_results = {}
+    agents_to_run = ['base', 'pcfg']
+else:
+    agents_to_run = ['pcfg']
+
+for agent in agents_to_run: 
     all_results[agent] = {}
     for condition in ["simple", "med", "hard"]:
         for attempt in range(max_retries):
@@ -425,7 +458,7 @@ measures = ['cum_rewards', 'highst_levels', 'epi_probs', 'recover_rate']
 conditions = ['simple', 'med', 'hard']
 agents = ['base', 'pcfg']
 num_actions = 40
-# %%
+
 fig, axes = plt.subplots(nrows=4, ncols=2, figsize=(12, 16), sharex=True)
 for col, agent in enumerate(agents):
     for row, measure in enumerate(measures):
@@ -469,7 +502,11 @@ for col, agent in enumerate(agents):
             ax.legend(title="Condition", loc='upper right')
 
 plt.tight_layout()
-plt.savefig(f"both_combined_results.png")
+# plt.savefig(f"both_combined_results.png")
+
+
+
+
 # %%
 def run_all_conditions_parallel(agent='base'):
     conditions = ["simple", "med", "hard"]

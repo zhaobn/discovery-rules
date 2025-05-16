@@ -184,6 +184,9 @@ new_df.to_csv('tree_mdps.csv', index=False)
 
 # %%
 # out of curiosity, check if the ground truths are covered
+
+new_df = pd.read_csv('tree_mdps.csv')
+
 def simple_task (pair):
     (m, n) = pair
     return m[0] == n[0]
@@ -203,12 +206,13 @@ hard_mdp = [hard_task(pair) for pair in norm_pairs]
 def check_ground_truth(df, ground_truth):
   for _, row in df.iterrows():
     if all(row[f'pair_{j}'] == ground_truth[j] for j in range(len(ground_truth))):
+      print(f"Row {row.index}: {row['string']}, covers the ground truth.")
       return True
   
   return False
 
-simple_covered = check_ground_truth(new_df, simple_mdp)
+# simple_covered = check_ground_truth(new_df, simple_mdp)
 med_covered = check_ground_truth(new_df, med_mdp)
-hard_covered = check_ground_truth(new_df, hard_mdp)
+# hard_covered = check_ground_truth(new_df, hard_mdp)
 
 # %%
