@@ -45,7 +45,7 @@ hard_part = [
     'fand(istexture(obj_1(d),fcheckered()),istexture(obj_2(d),fplain()))',
     'fand(istexture(obj_1(d),fplain()),istexture(obj_2(d),fplain()))',
 ]
-hard_part_rule = reduce(lambda acc,e: f"f_or({e},{acc})", reversed(x[:-1]), x[-1])
+hard_part_rule = reduce(lambda acc,e: f"f_or({e},{acc})", reversed(hard_part[:-1]), hard_part[-1])
 hard_rule = f"fand(f_or(pairshape(d,fcircle(),fsquare()),pairshape(d,ftriangle(),fdiamond())),{hard_part_rule})"
 
 
@@ -53,7 +53,7 @@ hard_rule = f"fand(f_or(pairshape(d,fcircle(),fsquare()),pairshape(d,ftriangle()
 ground_truth = medium_rule
 
 # %% define agent
-def run_agent(memory = 2, depth = 5, tolerance = 0.9, actions = 10, lastword = 1, inheritance = []):
+def run_agent(memory=2, depth=5, tolerance=0.9, actions=10, cap=10, lastword=1, inheritance=[]):
     
     # set up agent 
     if len(inheritance) > memory:
@@ -80,80 +80,122 @@ def run_agent(memory = 2, depth = 5, tolerance = 0.9, actions = 10, lastword = 1
     programs_history.loc[guess_id] = [guess[0], guess[1], 0, 0]
 
     # main stuff
+    n_hit = []
     for i in range(actions):
 
         (program, lp) = guess
         
         # pick a pair that the agent believes will work
         valid_pairs = [ eval(program) == 1 for d in all_pairs ]
-        picked_pair_idx = random.choice([i for i,v in enumerate(valid_pairs) if v])
+        if sum(valid_pairs) > 0:
+            picked_pair_idx = random.choice([i for i,v in enumerate(valid_pairs) if v])
+        else:
+            picked_pair_idx = random.choice(list(range(len(all_pairs))))
         data_history.append(picked_pair_idx)
         
         # check in the environment
         d = all_pairs[picked_pair_idx]
         is_valid = eval(ground_truth)
         
-        if is_valid: # TODO - fix the problem of re-sampling old but good hypothesis
+        if is_valid:
+            n_hit.append(1)
+
             # stick with this guess, update stats
             programs_history.at[guess_id, "n_success"] += 1
             programs_history.at[guess_id, "n_checks"] += 1
 
         else:
-            # record stats
-            programs_history.at[guess_id, "n_checks"] += 1
+            n_hit.append(0)
 
-            # come up with new guess
+            # come up with another guesses
             is_a_good_guess = False
-            while is_a_good_guess is False:
+            n_loop = 0
+            
+            while is_a_good_guess is False or n_loop <= cap:
+
+                n_loop += 1 
+                
                 # sample a new guess
                 new_guess = None
-                while new_guess is None or 'None' in new_guess[0] or new_guess[0] in programs_history["program"].values:
+                while new_guess is None or 'None' in new_guess[0]:
                     new_guess = agent_prior.generate_tree(logging=False)
+
+                new_program = new_guess[0]
+                if new_program in programs_history["program"].values:
+                    guess_id = programs_history.index[programs_history["program"] == new_program].tolist()[0]
+                else:
+                    guess_id = len(programs_history)
                 
                 # check how good it is at explaining past data
-                new_program = new_guess[0]
-                history_data = [all_pairs[i] for i in data_history]
-                goodness = [ eval(new_program) for d in history_data ]
-                
-                # save for faster future
-                guess_id = len(programs_history)
+                data_list = [all_pairs[i] for i in data_history]
+                goodness = [ eval(new_program) == eval(ground_truth) for d in data_list ]
                 programs_history.loc[guess_id] = [new_guess[0], new_guess[1], sum(goodness), len(goodness)]
                 
                 # accept or keep trying
                 if sum(goodness) >= len(goodness) * tolerance:
                     is_a_good_guess = True
+            
+            if is_a_good_guess:
+                guess = new_guess
 
-            guess = new_guess
-
-    # pass on knowledge - TODO: more control over the choice
-    if lastword == 1:
-        pass_on = guess[0]
 
     # performance metrics
-    internal_df_length = len(programs_history)
+    (current_guess, lp) = guess
     gt_coverage = [ eval(ground_truth) for d in all_pairs ]
-    guess_coverage = [ eval(pass_on) for d in all_pairs ]
+    guess_coverage = [ eval(current_guess) for d in all_pairs ]
     overlap_with_gt = sum(a==b for a,b in zip(gt_coverage, guess_coverage)) / len(all_pairs)
 
-    agent_data = [ all_pairs[i] for i in data_history ]
-    guess_itself = [ eval(pass_on) for d in agent_data ]
+    internal_df_length = len(programs_history)
+
+    # pass on knowledge
+    data_list = [ all_pairs[i] for i in data_history ]
+    for i, program in programs_history["program"].items():
+        perf = [ eval(program) == eval(ground_truth) for d in data_list ]
+        programs_history.at[i, "n_success"] = sum(perf)
+        programs_history.at[i, "n_checks"] = len(perf)
+    
+    filtered = programs_history[programs_history["n_success"] / programs_history["n_checks"] >= tolerance ]
+    if len(filtered) >= lastword:
+        log_weights = np.log(filtered["n_success"]) + filtered["prior"]
+        weights = np.exp(log_weights - log_weights.max())  # stabilize
+        sampled = filtered.sample(lastword, weights=weights)
+
+    elif len(programs_history) >= lastword:
+        log_weights = np.log(programs_history["n_success"]) + programs_history["prior"]
+        weights = np.exp(log_weights - log_weights.max())
+        sampled = programs_history.sample(lastword, weights=weights)
+    
+    else:
+        sampled = programs_history
+
+    pass_on = sampled['program'].tolist()
+   
 
     return({
-        'passed_programs': [ pass_on ],
+        'last_guess': current_guess,
+        'passed_programs': pass_on,
         'internal_df_length': internal_df_length,
         'guess_overage': sum(guess_coverage) / len(all_pairs),
         'overlap_with_gt': overlap_with_gt,
-        'guess_itself': sum(guess_itself) / len(guess_itself)
+        #'agent_history': n_hit,
     })
 
 # %% debug agent
-run_agent(actions=40, depth=10, tolerance=0.8)
+ground_truth = easy_rule
+run_agent(actions=10, depth=10, tolerance=0.95, lastword=2)
+
 
 
 # %% agent networks
 N_GEN = 10
+N_CHAIN = 5
 
-agent_knowledge = run_agent(actions=40, depth=10, tolerance=0.8)
+coverage_history = []
+liblen_history = []
+
+
+
+agent_knowledge = run_agent(actions=20, depth=10, tolerance=0.9)
 # TODO: learn from many ancesters?
 for k in range(N_GEN):
     agent_knowledge = run_agent(actions=40, depth=10, tolerance=0.8, inheritance=agent_knowledge['passed_programs'])
@@ -179,3 +221,5 @@ for k in range(N_GEN):
 #         # compute performance metrics
     
 #     messages = gen_messages
+
+# %%
