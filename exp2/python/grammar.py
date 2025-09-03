@@ -9,21 +9,39 @@ class Mental_grammar:
   def __init__(self, p_rules, cap=10):
     self.NON_TERMINALS = [x[0] for x in p_rules]
     self.PRODUCTIONS = {}
+    self.PROBABILITIES = {}
     self.CAP = cap
-    for rule in p_rules:
-      self.PRODUCTIONS[rule[0]] = rule[1]
 
+    for rule in p_rules:
+      nt = rule[0]
+      # Check if rules have probabilities
+      if isinstance(rule[1][0], tuple):
+        # Format: [('rule', prob), ...]
+        self.PRODUCTIONS[nt] = [item[0] for item in rule[1]]
+        self.PROBABILITIES[nt] = [item[1] for item in rule[1]]
+      else:
+        # Old format: ['rule1', 'rule2', ...]
+        self.PRODUCTIONS[nt] = rule[1]
+        self.PROBABILITIES[nt] = [1/len(rule[1])] * len(rule[1])  # uniform
+      
   def generate_tree(self, logging=True, tree_str='S', log_prob=0., depth=0):
     current_nt_indices = [tree_str.find(nt) for nt in self.NON_TERMINALS]
     # Sample a non-terminal for generation
     to_gen_idx = sample([idx for idx, el in enumerate(current_nt_indices) if el > -1], 1)[0]
     to_gen_nt = self.NON_TERMINALS[to_gen_idx]
+    
     # Do generation
-    leaf = sample(self.PRODUCTIONS[to_gen_nt], 1)[0]
+    productions = self.PRODUCTIONS[to_gen_nt]
+    probs = self.PROBABILITIES[to_gen_nt]
+    leaf_idx = np.random.choice(len(productions), p=probs)
+    leaf = productions[leaf_idx]
+
     to_gen_tree_idx = tree_str.find(to_gen_nt)
     tree_str = tree_str[:to_gen_tree_idx] + leaf + tree_str[(to_gen_tree_idx+1):]
+  
     # Update production log prob
-    log_prob += log(1/len(self.PRODUCTIONS[to_gen_nt]))
+    log_prob += np.log(probs[leaf_idx])
+    
     # Increase depth count
     depth += 1
 
@@ -38,21 +56,6 @@ class Mental_grammar:
       if logging:
         print(tree_str, log_prob)
       return tree_str, log_prob
-
-  @staticmethod
-  def evaluate(rule, data):
-    d = data
-    pred = eval(rule[0])
-    likelihood = (int(pred)==int(d[2]))
-    return likelihood, rule[1]
-
-  @staticmethod
-  def predict(rule, data):
-    d = data
-    pred = eval(rule[0])
-    pred = 0 if pred < 0 else pred
-    pred = 16 if pred > 16 else pred
-    return str(pred), rule[1]
 
 
 # %%
