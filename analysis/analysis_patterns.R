@@ -180,10 +180,14 @@ all_first_choice <- all_first_choice %>%
 # distribution of shape combos
 shape_combo_order <- c(
   "circle-circle", "diamond-diamond", "square-square", "triangle-triangle",
-  "circle-diamond", "circle-square", "circle-triangle",
-  "diamond-circle", "diamond-square", "diamond-triangle",
-  "square-circle", "square-diamond", "square-triangle",
-  "triangle-circle", "triangle-diamond", "triangle-square"
+  "circle-diamond",  "circle-triangle",
+  "diamond-circle", "diamond-square", 
+  "square-diamond", "square-triangle",
+  "triangle-circle", "triangle-square",
+  "circle-square",
+  "square-circle", 
+  "diamond-triangle",
+  "triangle-diamond"
 )
 texture_combo_order <- c(
   "checkered-checkered", "dots-dots", "plain-plain", "stripes-stripes",
@@ -213,19 +217,20 @@ all_first_choice_extended %>%
       "square-square" = "#E8B219",
       "triangle-triangle" = "#F28E2D",
       
-      # Grey-ish distinguishable hues for mixed-shape combos
+      # New vivid colors for selected mixed-shape combos
+      "square-circle" = "#1F77B4",      # vivid deep blue
+      "circle-square" = "#17BECF",      # bright teal
+      "diamond-triangle" = "#9467BD",   # vivid purple
+      "triangle-diamond" = "#D62728",   # bold red
+      
+      # Grey-ish distinguishable hues for other mixed-shape combos
       "circle-diamond" = "#b3b3b3",
-      "circle-square" = "#969696",
       "circle-triangle" = "#bdbdbd",
       "diamond-circle" = "#cccccc",
       "diamond-square" = "#a6a6a6",
-      "diamond-triangle" = "#d9d9d9",
-      "square-circle" = "#b0b0b0",
       "square-diamond" = "#8c8c8c",
       "square-triangle" = "#e0e0e0",
-      "triangle-circle" = "#c0c0c0",
-      "triangle-diamond" = "#a8a8a8",
-      "triangle-square" = "#d0d0d0"
+      "triangle-circle" = "#c0c0c0"
     )
   ) +
   labs(y = "Proportion", x = "Condition", fill = "Shape Combo") +
@@ -259,6 +264,98 @@ all_first_choice_extended %>%
     "stripes-plain" = "#d0d0d0"
   )) +
   labs(y = "Proportion", x = "Condition", fill = "Texture Combo") +
+  theme_minimal()
+
+
+
+
+# All choice similarity
+all_combine_choice <- combine_data %>%
+  split_feature_string('held') %>%
+  split_feature_string('target') %>%
+  split_feature_string('yield') %>%
+  mutate(across(everything(), ~ replace_na(.x, ""))) %>%
+  mutate(shape_combo = paste0(held_shape, '-', target_shape),
+         texture_combo = paste0(held_texture, '-', target_texture)) %>%
+  mutate(shape_combo = factor(shape_combo, levels = shape_combo_order),
+         texture_combo = factor(texture_combo, levels = texture_combo_order))
+all_combine_choice %>% 
+  count(condition, shape_combo) %>%
+  group_by(condition) %>%
+  mutate(prop = n / sum(n)) %>%
+  ggplot(aes(x = condition, y = prop, fill = shape_combo)) +
+  geom_bar(stat = "identity") +
+  scale_fill_manual(
+    values = c(
+      # Vivid colors for same-shape combos
+      "circle-circle" = "#2CA02C",
+      "diamond-diamond" = "#8FBD5A",
+      "square-square" = "#E8B219",
+      "triangle-triangle" = "#F28E2D",
+      
+      # New vivid colors for selected mixed-shape combos
+      "square-circle" = "#1F77B4",      # vivid deep blue
+      "circle-square" = "#17BECF",      # bright teal
+      "diamond-triangle" = "#9467BD",   # vivid purple
+      "triangle-diamond" = "#D62728",   # bold red
+      
+      # Grey-ish distinguishable hues for other mixed-shape combos
+      "circle-diamond" = "#b3b3b3",
+      "circle-triangle" = "#bdbdbd",
+      "diamond-circle" = "#cccccc",
+      "diamond-square" = "#a6a6a6",
+      "square-diamond" = "#8c8c8c",
+      "square-triangle" = "#e0e0e0",
+      "triangle-circle" = "#c0c0c0"
+    )
+  ) +
+  labs(y = "Proportion", x = "Condition", fill = "Shape Combo") +
+  theme_minimal()
+
+
+# split by first and second half
+split_data <- all_combine_choice %>%
+  group_by(id) %>%
+  mutate(
+    half = ifelse(
+      row_number() <= floor(n() / 2), 
+      "early_half", 
+      "late_half"
+    )
+  ) %>%
+  ungroup()
+split_data %>% 
+  count(condition, shape_combo, half) %>%
+  group_by(condition, half) %>%
+  mutate(prop = n / sum(n)) %>%
+  ggplot(aes(x = condition, y = prop, fill = shape_combo)) +
+  geom_bar(stat = "identity") +
+  scale_fill_manual(
+    values = c(
+      # Vivid colors for same-shape combos
+      "circle-circle" = "#2CA02C",
+      "diamond-diamond" = "#8FBD5A",
+      "square-square" = "#E8B219",
+      "triangle-triangle" = "#F28E2D",
+      
+      # New vivid colors for selected mixed-shape combos
+      "square-circle" = "#1F77B4",      # vivid deep blue
+      "circle-square" = "#17BECF",      # bright teal
+      "diamond-triangle" = "#9467BD",   # vivid purple
+      "triangle-diamond" = "#D62728",   # bold red
+      
+      # Grey-ish distinguishable hues for other mixed-shape combos
+      "circle-diamond" = "#b3b3b3",
+      "circle-triangle" = "#bdbdbd",
+      "diamond-circle" = "#cccccc",
+      "diamond-square" = "#a6a6a6",
+      "square-diamond" = "#8c8c8c",
+      "square-triangle" = "#e0e0e0",
+      "triangle-circle" = "#c0c0c0"
+    )
+  ) +
+  labs(y = "Proportion", x = "Condition", fill = "Shape Combo") +
+  facet_wrap(~half) +
   theme_minimal()
 
 
