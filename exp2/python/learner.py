@@ -3,9 +3,6 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from multiprocessing import Pool
-import time
-import traceback
 
 # %%
 # Set up task and environment
@@ -35,6 +32,9 @@ def task_func(task, pair):
         return med_task(pair)
     elif task == 'hard':
         return hard_task(pair)
+    else:
+        print('no matching condition!')
+        return False
 
 # %%
 # Base PSRL agent
@@ -191,11 +191,6 @@ def update_states(task, action, action_left, state_objs, state_levels, regenerat
 
 # %%
 # load prior beliefs
-def softmax(x, tau=1.0):
-    x = np.array(x) / tau  # Scale by temperature
-    exp_x = np.exp(x - np.max(x))  # Subtract max for numerical stability
-    return exp_x / exp_x.sum()
-
 def run_pcfg_condition(condition, num_episodes=10, num_actions=40):
     print(f"Running pcfg condition: {condition}")
 
@@ -224,7 +219,7 @@ def run_pcfg_condition(condition, num_episodes=10, num_actions=40):
         # Sample from the prior
         counts = prior_mdps['count']
         norm_probs = counts / counts.sum()
-        scaled_probs = norm_probs #softmax(norm_probs, tau=0.01)
+        scaled_probs = norm_probs
 
         prior_mdp_index = np.random.choice(prior_mdps.index, size=1, p=scaled_probs)[0]
         sampled_transitions = prior_mdps.loc[prior_mdp_index][pair_columns].to_numpy()
@@ -305,14 +300,14 @@ def run_pcfg_condition(condition, num_episodes=10, num_actions=40):
     return condition, cum_rewards, highst_levels, epi_probs, recover_rate
 
 # %%
-def run_condition(condition, num_episodes=100, num_actions=40):
-    print(f"Running base condition: {condition}")
+def run_condition(condition, num_episodes=100, num_actions=40, seed=0):
+    print(f"Running base condition: {condition}, with seed {seed}")
+    np.random.seed(seed)
 
     # Initialize variables
-    task = condition
-    cum_rewards = np.zeros((num_episodes, num_actions))
-    highst_levels = np.zeros((num_episodes, num_actions))
-    # actions = np.full((num_episodes, num_actions), None)
+    cum_rewards = np.zeros(num_episodes * num_actions)
+    highst_levels = np.zeros(num_episodes * num_actions)
+    # actions = np.full(num_episodes * num_actions, None)
     epi_probs = np.zeros(num_episodes)
     recover_rate = np.zeros(num_episodes)
 
@@ -321,7 +316,7 @@ def run_condition(condition, num_episodes=100, num_actions=40):
     prior_betas = np.full(len(norm_pairs), 0.001)
 
     # Prep for ground truth measure
-    true_transitions =  np.array([task_func(task, pair) for pair in norm_pairs]).astype(int)
+    true_transitions = np.array([task_func(condition, pair) for pair in norm_pairs]).astype(int)
 
     # Run base PSRL agent
     for episode in range(num_episodes):
@@ -364,7 +359,7 @@ def run_condition(condition, num_episodes=100, num_actions=40):
                     pair_idx = norm_pairs.index((norm_m, norm_n))
                     
 
-                    if task_func(task, (norm_m, norm_n)):
+                    if task_func(condition, (norm_m, norm_n)):
                         prior_alphas[pair_idx] += 1
                     else:
                         prior_betas[pair_idx] += 1
@@ -417,6 +412,58 @@ condition, cum_rewards, highst_levels, epi_probs, recover_rate = run_pcfg_condit
 plot_results(condition, 'pcfg', cum_rewards, highst_levels, epi_probs, recover_rate)
 
 
+# %%
+conditions = ['easy', 'med', 'hard']
+n_episodes = 10
+n_actions = 3
+
+all_recover_rates = []
+recover_rates_df = pd.DataFrame(columns=['condition', 'agent', 'index', 'mean', 'sd', 'se', 'max', 'min'])
+
+def get_base_recover_rates(cond, num_episodes=n_episodes, num_actions=n_actions):
+    condition, cum_rewards, highst_levels, epi_probs, recover_rate = run_condition(cond, num_episodes, num_actions)
+    return recover_rate
+
+def get_pcfg_recover_rates(cond, um_episodes=n_episodes, num_actions=n_actions):
+    condition, cum_rewards, highst_levels, epi_probs, recover_rate = run_pcfg_condition(cond, num_episodes, num_actions)
+    return recover_rate
+
+
+# %%
+get_base_recover_rates('easy')
+condition, cum_rewards, highst_levels, epi_probs, recover_rate = run_condition('easy', 3, 40)
+
+
+# %%
+
+for agent in ['base', 'pcfg']:
+    for condition in conditions:
+        runs = []
+
+        for i in range(10):
+            np.random.seed(i)
+            if agent == 'base':
+                runs.append(get_base_recover_rates(condition))
+            else:
+                runs.append(get_pcfg_recover_rates(condition))
+    
+        runs = np.array(runs)
+
+    condition_stats = pd.DataFrame({
+        'condition': condition,
+        'agent': agent,
+        'index': range(num_actions),
+        'mean': np.mean(runs, axis=0),
+        'sd': np.std(runs, axis=0, ddof=1),
+        'se': np.std(runs, axis=0, ddof=1) / np.sqrt(10),
+        'max': np.max(runs, axis=0),
+        'min': np.min(runs, axis=0)
+    })
+    
+    all_recover_rates.append(condition_stats)
+
+# Combine all
+recover_rates_df = pd.concat(all_recover_rates, ignore_index=True)
 
 # %%
 newrun = False
@@ -434,9 +481,9 @@ for agent in agents_to_run:
         for attempt in range(max_retries):
             try:
                 if agent == 'base':
-                    results = run_condition(condition, episodes)
+                    results = run_condition(condition)
                 elif agent == 'pcfg':
-                    results = run_pcfg_condition(condition, episodes)
+                    results = run_pcfg_condition(condition)
                 
                 all_results[agent][condition] = {
                     'condition': results[0],
