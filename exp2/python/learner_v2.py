@@ -1,12 +1,16 @@
 # %% 
 # Load packages
 import numpy as np
+import random
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 # %%
 # Set up task and environment
 colors = np.arange(6)
+max_level_cap = max(colors)
+
 shapes = np.arange(4)   # ["triangle", "circle", "square", "diamond"]
 textures = np.arange(4) # ["plain", "checkered", "stripes", "dots"]
 
@@ -15,6 +19,7 @@ state_fmt = np.zeros((len(norm_objs), len(colors)))
 obj_to_idx = {obj: i for i, obj in enumerate(norm_objs)}
 
 norm_pairs = [(m, n) for m in norm_objs for n in norm_objs if m != n]
+pair_to_idx = {pair: i for i, pair in enumerate(norm_pairs)}
 
 def simple_task (pair):
     (m, n) = pair
@@ -23,6 +28,10 @@ def simple_task (pair):
 def med_task (pair):
     (m, n) = pair
     return m[0] + n[0] == 3 and m[1] != n[1]
+
+def hard_task (pair):
+    (m, n) = pair
+    return m[0] + n[0] == 3 and m[1] >= n[1]
 
 def test_rule (pair):
     (m, n) = pair
@@ -34,7 +43,7 @@ def task_func(task, pair):
     elif task == 'med':           
         return med_task(pair)
     elif task == 'hard':
-        return test_rule(pair)
+        return hard_task(pair)
     else:
         print('no matching condition!')
         return None
@@ -55,7 +64,7 @@ def update_state(condition, state, action):
         is_valid = task_func(condition, pair) 
 
         if is_valid:
-            new_level = min(max(colors), max(obj1[2], obj2[2]) + 1)
+            new_level = min(max_level_cap, max(obj1[2], obj2[2]) + 1)
             state[obj_to_idx[(obj1[0], obj2[1])], new_level] += 1
 
             state[obj_to_idx[(obj1[0], obj1[1])], obj1[2]] -= 1
@@ -70,16 +79,54 @@ def update_state(condition, state, action):
     return (state, reward, signal)
 
 # %%
-def policy(step, horizon, current_state, belief):
-    # find the most valuable object
-    cur_max_level = np.max(np.nonzero(current_state)[1])
-    objs_at_max = [norm_objs[i] for i in np.nonzero(current_state[:, cur_max_level])[0]]
+def sample_obj(index_list):
+    obj_idx, level = random.choice(index_list)
+    shape, texture = norm_objs[obj_idx]
+    return (shape, texture, level)
 
-    # if improvable, improve
+def local_greedy_policy(state, sampled_transitions, n_left):
+    
+    # --- find available objects ---
+    available = np.argwhere(state > 0)
+    if len(available) == 0:
+        return None  # no actions possible
+    
+    # --- find current highest level ---
+    highest_level = np.max(available[:, 1])
+    top_objs = available[available[:, 1] == highest_level]
 
+    # --- if one action left or hit the max level, consume ---
+    if n_left == 1 or highest_level >= max_level_cap:
+        chosen_obj = sample_obj(top_objs)
+        return chosen_obj
+    
+    # --- attempt to find a valid combination to improve top-level items ---
+    partners = sorted([tuple(p) for p in np.argwhere(state > 0)], key=lambda x: x[1])  # sort once globally
+    
+    np.random.shuffle(top_objs) # Try each top-level object in random order for exploration
+    for top_idx, level_top in top_objs:
+        obj_top = norm_objs[top_idx]
 
-    # otherwise consume
-
+        # iterate through partners, lowest level first
+        for partner_idx, partner_level in partners:
+            # skip pairs with identical objs
+            if (top_idx == partner_idx) and (level_top == partner_level):
+                continue
+            
+            obj_partner = norm_objs[partner_idx]
+            
+            pair = (obj_top, obj_partner)
+            pair_index = pair_to_idx.get(pair, None)
+            if pair_index is not None and sampled_transitions[pair_index] == 1:
+                # Found valid combination
+                return (
+                    (obj_top[0], obj_top[1], level_top),
+                    (obj_partner[0], obj_partner[1], partner_level)
+                )
+            
+    # no valid combination, harvest highest-level object
+    chosen_obj = sample_obj(top_objs)
+    return chosen_obj
 
 
 # %%
@@ -87,7 +134,7 @@ def run_condition(condition, num_episodes=100, num_actions=40, seed=0):
     print(f"Running base condition: {condition}, with seed {seed}")
     np.random.seed(seed)
 
-    # Initialize stats variables
+    # Initialize stats
     cum_rewards = np.zeros((num_episodes, num_actions))
     highst_levels = np.zeros((num_episodes, num_actions))
     epi_probs = np.zeros(num_episodes)
@@ -102,99 +149,97 @@ def run_condition(condition, num_episodes=100, num_actions=40, seed=0):
 
     for episode in range(num_episodes):
 
-        # Initialize state
+        # Reset environment
         state = state_fmt.copy()
-        state[:, 0] = 1
+        state[:, 0] = 2
         reward = 0
         max_level = 0
 
         # Prep for iteration
         sampled_probs = np.random.beta(prior_alphas, prior_betas)
         sampled_transitions = np.random.binomial(1, sampled_probs)
-        epi_probs[episode] = sum(sampled_transitions)/len(sampled_transitions)
-        recover_rate[episode] = (true_transitions == sampled_transitions).sum() / len(sampled_transitions)
+        epi_probs[episode] = sampled_transitions.mean()
+        recover_rate[episode] = (true_transitions == sampled_transitions).mean()
         
         for t in range(num_actions):
-            action = policy(t, num_actions, state, sampled_transitions)
+            action = local_greedy_policy(state, sampled_transitions, num_actions-t)
 
-            (new_state, immediate_reward, signal) = update_state(condition, state, action)
+            if action is None:
+                cum_rewards[episode, t:] = reward
+                highst_levels[episode, t:] = max_level
+                break
+
+            new_state, immediate_reward, signal = update_state(condition, state, action)
             
             state = new_state
             reward += immediate_reward
-            cum_rewards[episode, t] = max(cum_rewards[episode, t-1], reward)
+            cum_rewards[episode, t] = reward # max(cum_rewards[episode, t-1], reward)
 
-            max_level = np.max(np.where(state > 0)[1])
+            max_level = np.max(np.where(state > 0)[1], initial=max_level)
             highst_levels[episode, t] = max_level
 
-            if len(action) == 2:
+            if len(action) == 2: # combine
                 obj1, obj2 = action
                 pair_idx = norm_pairs.index(((obj1[0], obj1[1]), (obj2[0], obj2[1])))
 
-                if signal == 'F':
+                if signal == 'S':
                     prior_alphas[pair_idx] += 1
                 else:
                     prior_betas[pair_idx] += 1
                     
-    return condition, cum_rewards, highst_levels, epi_probs, recover_rate
+    log_cum_rewards = np.log(cum_rewards + 1e-8)  # add small epsilon to avoid log(0)
+    mean_log_cum_rewards = log_cum_rewards.mean(axis=0) # shape: (num_actions,)
+    mean_highest_levels = highst_levels.mean(axis=0)
+
+    return condition, cum_rewards, highst_levels, mean_log_cum_rewards, mean_highest_levels, epi_probs, recover_rate
 
 
 # %%
-# Claude code to be studied
-def agent_policy(state, belief, norm_objs, norm_pairs, max_level_cap):
-    # Step 1: Find all objects at highest level
-    max_level = np.max(np.nonzero(state)[1])
-    objs_at_max_indices = np.nonzero(state[:, max_level])[0]
+run_condition('simple', 10, 10, 0)
+
+# %%
+episode = 100
+actions = 40
+n_seeds = 10
+save_path = 'simulation_results/base_psrl_sim.pkl'
+
+results = []
+for condition in ['simple', 'med', 'hard']:
+    for seed in range(10):
+        condition_name, cum_rewards, highst_levels, mean_log_cum_rewards, mean_highest_levels, epi_probs, recover_rate = run_condition(condition, episode, actions, seed)            
+        
+        # Create one row per action (step)
+        for action_idx in range(actions):
+            results.append({
+                'condition': condition_name,
+                'seed': seed,
+                'action': action_idx,
+                'mean_log_cum_rewards': mean_log_cum_rewards[action_idx],
+                'mean_highest_levels': mean_highest_levels[action_idx],
+                'epi_probs': epi_probs[action_idx],
+                'recover_rate': recover_rate[action_idx],
+            })
+
+df = pd.DataFrame(results)
+df.to_pickle(save_path)
+
+# %%
+# save_path = 'simulation_results/base_psrl_sim_cogsci.pkl'
+save_path = 'simulation_results/base_psrl_sim_new.pkl'
+
+df = pd.read_pickle(save_path)
+sns.set_style("whitegrid")
+
+fig, axes = plt.subplots(2, 2, figsize=(14, 10))
+metrics = ['mean_log_cum_rewards', 'mean_highest_levels', 'epi_probs', 'recover_rate']
+titles = ['Mean Cumulative Rewards (log)', 'Mean Highest Levels', 'Episode Probabilities', 'Recovery Rate']
+
+for ax, metric, title in zip(axes.flat, metrics, titles):
+    sns.lineplot(data=df, x='action', y=metric, hue='condition', ax=ax, errorbar='sd')
+    ax.set_title(title)
+    ax.set_xlabel('Action Step')
     
-    if len(objs_at_max_indices) == 0:
-        return None  # No objects available
-    
-    # Step 2: If not at cap, find best combinable object
-    if max_level < max_level_cap:
-        # Build lookup for which objects are available at which levels (do once)
-        obj_availability = {}
-        for obj_idx, obj in enumerate(norm_objs):
-            available_levels = np.nonzero(state[obj_idx, :])[0]
-            if len(available_levels) > 0:
-                obj_availability[obj] = available_levels.min()
-        
-        # Build lookup for pairs by first/second object (do once)
-        pairs_by_obj = {}
-        for pair_idx, pair in enumerate(norm_pairs):
-            if belief[pair_idx] > 0:  # Only consider believed transitions
-                if pair[0] not in pairs_by_obj:
-                    pairs_by_obj[pair[0]] = []
-                if pair[1] not in pairs_by_obj:
-                    pairs_by_obj[pair[1]] = []
-                pairs_by_obj[pair[0]].append((pair[1], pair_idx))
-                pairs_by_obj[pair[1]].append((pair[0], pair_idx))
-        
-        # Check each max-level object for best combine
-        best_obj = None
-        best_combine = None
-        lowest_partner_level = float('inf')
-        
-        for obj_idx in objs_at_max_indices:
-            obj = norm_objs[obj_idx]
-            
-            # Skip if this object has no valid pairs
-            if obj not in pairs_by_obj:
-                continue
-            
-            # Check all partners for this object
-            for partner, pair_idx in pairs_by_obj[obj]:
-                if partner in obj_availability:
-                    partner_level = obj_availability[partner]
-                    
-                    if partner_level < lowest_partner_level:
-                        lowest_partner_level = partner_level
-                        best_obj = obj
-                        best_combine = (obj, partner, max_level, partner_level)
-        
-        # If we found a valid combine, return it
-        if best_combine is not None:
-            obj1, obj2, level1, level2 = best_combine
-            return ('combine', (obj1[0], obj1[1], level1), (obj2[0], obj2[1], level2))
-    
-    # Step 3: No valid combines found, consume first max-level object
-    best_obj = norm_objs[objs_at_max_indices[0]]
-    return ('consume', (best_obj[0], best_obj[1], max_level))
+plt.tight_layout()
+plt.show()
+
+# %%
