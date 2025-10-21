@@ -215,4 +215,112 @@ def check_ground_truth(df, ground_truth):
 med_covered = check_ground_truth(new_df, med_mdp)
 # hard_covered = check_ground_truth(new_df, hard_mdp)
 
+# %% code used for model v2
+
+
+
+# %% 
+productions = [
+  ['S', ['A', 'B', 'fand(S,S)', 'fnot(S)']],
+  ['A', ['C', 'sameshape(d)', 'isshape(D,X)']],
+  ['B', ['C', 'sametexture(d)', 'istexture(D,Y)']],
+  ['D', ['obj_1(d)', 'obj_2(d)']],
+  ['X', ["ftriangle()", "fcircle()", "fsquare()", "fdiamond()"]],
+  ['Y', ["fplain()", "fcheckered()", "fstripes()", "fdots()"]],
+  ['C', ['True']]
+]
+
+# # %% debug
+# test = Mental_grammar(productions, cap=10)
+# x = test.generate_tree()
+# x
+# d = ((0, 0), (0, 0))
+# eval(x[0])
+
+# %% 
+# First, generate a lot of trees and save them to a table
+generator = Mental_grammar(productions, cap=1000)
+results = {}
+
+for _ in range(100000):
+  (generated_string, log_prob) = generator.generate_tree(logging=False)
+  
+  if generated_string is not None:
+    
+    if generated_string in results:
+      # String exists, update its values
+      current_avg_prob, current_count = results[generated_string]
+      new_avg_prob = ((current_avg_prob * current_count) + log_prob) / (current_count + 1)
+      results[generated_string] = [
+          new_avg_prob,
+          current_count + 1
+      ]
+    
+    else:
+      # New string, initialize its values
+      results[generated_string] = [log_prob, 1]
+
+# Convert results to pandas DataFrame
+data = [
+    {"string": string, "log_prob": avg_log_prob, "count": count}
+    for string, (avg_log_prob, count) in results.items()
+]
+df = pd.DataFrame(data)
+df = df.sort_values(by=["count", "log_prob"], ascending=[False, False]).reset_index(drop=True)
+
+df.to_csv('tree_prob.csv', index=False)
+
+# %% 
+# Next, get MDPs for each tree
+def functions_to_transitions(test_df, test_pairs):
+  num_pairs = len(test_pairs)
+  num_rows = len(test_df)
+    
+  # Use array to store results
+  result_array = np.zeros((num_rows, num_pairs), dtype=int)
+    
+  for i in range(num_pairs):
+    d = test_pairs[i]
+      
+    # For each row, evaluate the string using each pair
+    for idx, (j, row) in enumerate(test_df.iterrows()):
+      expr = row['string']
+      
+      try:
+        result = eval(expr)
+        result_array[idx, i] = int(bool(result))
+      except Exception as e:
+        print(f"Error evaluating expression: {expr}, Error: {e}")
+        result_array[idx, i] = -1
+  
+    # Create a DataFrame with the results
+    result_df = pd.DataFrame(result_array, columns=[f'pair_{i}' for i in range(num_pairs)])
+    final_df = pd.concat([test_df.reset_index(drop=True), result_df], axis=1)
+  
+  return final_df
+
+# df = pd.read_csv('tree_prob.csv')
+new_df = functions_to_transitions(df, norm_pairs)
+new_df.to_csv('tree_mdps.csv', index=False)
+
+
 # %%
+# out of curiosity, check if the ground truths are covered
+
+new_df_v1 = pd.read_csv('models_v1/tree_mdps.csv')
+
+simple_mdp = [simple_task(pair) for pair in norm_pairs]
+med_mdp = [med_task(pair) for pair in norm_pairs]
+hard_mdp = [test_rule(pair) for pair in norm_pairs]
+
+def check_ground_truth(df, ground_truth):
+  for _, row in df.iterrows():
+    if all(row[f'pair_{j}'] == ground_truth[j] for j in range(len(ground_truth))):
+      print(f"Row {row.index}: {row['string']}, covers the ground truth.")
+      return True
+  
+  return False
+
+# simple_covered = check_ground_truth(new_df, simple_mdp)
+med_covered = check_ground_truth(new_df, med_mdp)
+# hard_covered = check_ground_truth(new_df, hard_mdp)
