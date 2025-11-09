@@ -39,6 +39,11 @@ def test_rule (pair):
     (m, n) = pair
     return m[0] + n[0] == 3 and ( m[1] % 2 == 0 or n[1] % 2 == 0 ) 
 
+def test_rule_2 (pair):
+    (m, n) = pair
+    return m[1] + n[1] == 3 and ( m[0] % 2 == 0 or n[0] % 2 == 0 ) 
+
+
 def task_func(task, pair):
     if task == 'simple':
         return simple_task(pair)
@@ -49,6 +54,15 @@ def task_func(task, pair):
     else:
         print('no matching condition!')
         return None
+# %%
+# check rule coverage
+get_coverage = lambda task: sum([task(pair) for pair in norm_pairs])
+
+get_coverage(simple_task)   #48
+get_coverage(med_task)      #48
+get_coverage(hard_task)     #40
+get_coverage(test_rule)     #48
+get_coverage(test_rule_2)   #48
 
 # %%
 def update_state(condition, state, action):
