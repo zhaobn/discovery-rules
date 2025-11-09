@@ -2,7 +2,7 @@ const isDev = false;
 isDev? console.log(COND): null;
 
 // Data
-let start_task_time = 0;
+let start_task_time = new Date();
 let subjectData = {};
 
 // Collect prolific id
@@ -14,13 +14,7 @@ function handle_prolific() {
 // Instruction
 getEl('instruct-action').innerHTML = MAX_ACTIONS;
 
-// Grid world task
-// function grid_done() {
-//   hide('task-info');
-//   getEl("task-content").style.marginTop = "40px";
-//   hide('task-grid');
-//   showNext('task-composer', 'block');
-// }
+// Main grid task functions see grid.js
 function grid_done() {
   // Add a semi-transparent cover to the grid
   const cover = document.createElement("div");
@@ -113,8 +107,6 @@ function prep_data_for_server(data) {
   retObj = {};
   retObj['worker'] = data.subject.prolific_id;
   retObj['assignment'] = COND;
-  retObj['hit'] = 'rules';
-  retObj['version'] = '0.4';
   retObj['total'] = data.subject.total_points;
   retObj['subject'] = JSON.stringify(data.subject);
   retObj['actions'] = JSON.stringify(data.actions);
@@ -133,5 +125,6 @@ function save_data(data) {
       // console.log(response.success);
     }
   };
-  xhr.send('['+JSON.stringify(data)+']');
+  // xhr.send('['+JSON.stringify(data)+']');
+  xhr.send(JSON.stringify(data));
 }

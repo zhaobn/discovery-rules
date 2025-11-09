@@ -1,8 +1,9 @@
 /** Game configs */
 const MAX_ACTIONS = 40;
 const gridSize = 15;
-const conditions = ['easy', 'medium-1', 'hard'];
-const COND = 'easy'; //conditions[Math.floor(Math.random() * conditions.length)];
+const conditions = ['easy', 'medium', 'hard'];
+const pilot_conditions = ['hard-1', 'hard-2'];
+const COND = pilot_conditions[Math.floor(Math.random() * pilot_conditions.length)];
 
 
 /** Global variables */
@@ -73,28 +74,40 @@ function newObj(item1, item2) {
 function isSameShape(item_list) {
   return getShape(item_list[0]) === getShape(item_list[1]);
 }
-function isDiffShapeAndPlain(item_list) {
-  return getShape(item_list[0]) !== getShape(item_list[1]) && getTexture(item_list[0]) === "plain";
-}
-function complexRule(item_list) {
-  return (
-    (getShape(item_list[0]) === 'circle' || getShape(item_list[0]) === 'square') &&
-    (getTexture(item_list[1]) === 'plain' || getTexture(item_list[1]) === 'dots') &&
-    getShape(item_list[1]) !== 'circle'
-  );
-}
-function capSet(item_list) {
-  const shapeMatch = shapes.indexOf(getShape(item_list[0])) + shapes.indexOf(getShape(item_list[1])) === 3;
-  const textureMatch = textures.indexOf(getTexture(item_list[0])) >= textures.indexOf(getTexture(item_list[1]));
-  return shapeMatch && textureMatch;
-}
 function diffObjs1(item_list) {
   const shapeMatch = shapes.indexOf(getShape(item_list[0])) + shapes.indexOf(getShape(item_list[1])) === 3;
   const textureMatch = getTexture(item_list[0]) != getTexture(item_list[1]);
   return shapeMatch && textureMatch;
 }
-function diffObjs2(item_list) {
+function modRule(item_list) {
   const shapeMatch = shapes.indexOf(getShape(item_list[0])) + shapes.indexOf(getShape(item_list[1])) === 3;
-  const textureMatch = true
+  const textureMatch = (textures.indexOf(getTexture(item_list[0])) % 2 === 0) || (textures.indexOf(getTexture(item_list[1])) % 2 === 0);
   return shapeMatch && textureMatch;
 }
+function modRule2(item_list) {
+  const textureMatch = textures.indexOf(getTexture(item_list[0])) + textures.indexOf(getTexture(item_list[1])) === 3;
+  const shapeMatch = (shapes.indexOf(getShape(item_list[0])) % 2 === 0) || (shapes.indexOf(getShape(item_list[1])) % 2 === 0);
+  return shapeMatch && textureMatch;
+}
+
+/** Transitions functions archive */
+// function isDiffShapeAndPlain(item_list) {
+//   return getShape(item_list[0]) !== getShape(item_list[1]) && getTexture(item_list[0]) === "plain";
+// }
+// function complexRule(item_list) {
+//   return (
+//     (getShape(item_list[0]) === 'circle' || getShape(item_list[0]) === 'square') &&
+//     (getTexture(item_list[1]) === 'plain' || getTexture(item_list[1]) === 'dots') &&
+//     getShape(item_list[1]) !== 'circle'
+//   );
+// }
+// function diffObjs2(item_list) {
+//   const shapeMatch = shapes.indexOf(getShape(item_list[0])) + shapes.indexOf(getShape(item_list[1])) === 3;
+//   const textureMatch = true
+//   return shapeMatch && textureMatch;
+// }
+// function capSet(item_list) {
+//   const shapeMatch = shapes.indexOf(getShape(item_list[0])) + shapes.indexOf(getShape(item_list[1])) === 3;
+//   const textureMatch = textures.indexOf(getTexture(item_list[0])) >= textures.indexOf(getTexture(item_list[1]));
+//   return shapeMatch && textureMatch;
+// }

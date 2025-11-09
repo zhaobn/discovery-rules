@@ -2,15 +2,18 @@
 
 db_config.php
 save_data.php
+*db_config.php
+*save_data.php
+**/db_config.php
+**/save_data.php
 bonus_data.csv
 
 venv/
 .venv/
 __pycache__/
+.env
 
 
 .RData
 .Rhistory
 
-
-experiment/php/save_data.php

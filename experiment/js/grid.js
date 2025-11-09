@@ -395,15 +395,15 @@ function combineItem(heldItem, targetItem) {
       yieldItem = newObj(heldItem, targetItem);
     }
 
-    if (COND == 'medium-1' && diffObjs1([heldItem, targetItem])) {
+    if (COND == 'medium' && diffObjs1([heldItem, targetItem])) {
       yieldItem = newObj(heldItem, targetItem);
     }
 
-    if (COND == 'medium-2' && diffObjs2([heldItem, targetItem])) {
-      yieldItem = newObj(heldItem, targetItem);
+    if (COND == 'hard-1' && modRule([heldItem, targetItem])) {
+      yieldItem = newObj(heldItem, targetItem)
     }
 
-    if (COND == 'hard' && capSet([heldItem, targetItem])) {
+    if (COND == 'hard-2' && modRule2([heldItem, targetItem])) {
       yieldItem = newObj(heldItem, targetItem)
     }
 
