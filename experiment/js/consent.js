@@ -106,11 +106,6 @@ consentDiv.innerHTML = `
           inf-ethics@inf.ed.ac.uk. When you contact us, please provide the study title and detail the nature of your complaint.
         </p>
 
-        <b>Updated information.</b>
-        <p>If the research project changes in any way, an updated Participant Information Sheet 
-          will be made available on http://web.inf.ed.ac.uk/infweb/research/study-updates.
-        </p>
-
         <b>Consent</b>
         <p>By proceeding with the study, I agree to all of the following statements: </p>
         <ul>
