@@ -1,0 +1,10 @@
+<!-- 
+CREATE TABLE grid_pilot_1 (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  worker VARCHAR(32),
+  assignment varchar(32),
+  total bigint(20),
+  subject longtext,
+  events longtext,
+  actions longtext
+); -->
