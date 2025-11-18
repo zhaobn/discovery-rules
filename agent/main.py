@@ -20,11 +20,12 @@ class ComposeEnv:
     SHAPES = ["square", "circle", "triangle", "diamond"]
     TEXTURES = ["plain", "dotted", "striped", "checkered"]
 
-    def __init__(self, max_steps=40, condition='simple', seed=None, history_window=None):
+    def __init__(self, max_steps=40, condition='simple', seed=None, history_window=None, use_full_features=False):
         self.max_steps = max_steps
         self.condition = condition
         self.random = random.Random(seed)
         self.history_window = history_window  # show full or partial history
+        self.use_full_features = use_full_features # use object id for full features
         self.pending_regens = []   # list of tuples: (step_due, shape, texture)
         self.regenerated_ids = set()  # to ensure each base object only regenerates once
         self.reset()
@@ -39,7 +40,7 @@ class ComposeEnv:
         self.history = []
         self._generate_combinable_pairs(self.condition)
         return self._get_state()
-    
+
     def _generate_combinable_pairs(self, condition):
         all_pairs = list(itertools.combinations(self.objects, 2))
 
@@ -98,18 +99,22 @@ class ComposeEnv:
                     self.pending_regens.append((regen_step, obj["shape"], obj["texture"]))
                     self.regenerated_ids.add(obj["id"])
                 # Logging
-                msg = f"Step {self.steps}: Consumed {obj['color']} {obj['shape']} {obj['texture']} (id {obj_id}) for {reward} points."
+                msg = f"Step {self.steps}: Consumed id {obj_id} ({obj['color']} {obj['shape']} {obj['texture']}) for {reward} points."
                 self._log(msg)
+                info["feedback"] = msg
             else:
                 msg = f"Step {self.steps}: Invalid consume attempt on id {obj_id}."
                 self._log(msg)
-                info["feedback"] = "invalid consume"
+                info["error"] = msg
 
         elif action[0] == "combine":
             id1, id2 = action[1], action[2]
             pair = (id1, id2)
             o1 = next((o for o in self.objects if o["id"] == id1), None)
             o2 = next((o for o in self.objects if o["id"] == id2), None)
+
+            o1_desc = f"{o1['color']} {o1['shape']} {o1['texture']}" if o1 else "None"
+            o2_desc = f"{o2['color']} {o2['shape']} {o2['texture']}" if o2 else "None"
 
             if o1 and o2 and pair in self.combinable_pairs:
                 new_color = self._color_up(o1["color"], o2["color"])
@@ -123,28 +128,27 @@ class ComposeEnv:
                 self.objects.remove(o2)
                 self.objects.append(new_obj)
                 msg = (
-                    f"Step {self.steps}: Combined id {id1} ({o1['color']} {o1['shape']} {o1['texture']}) "
-                    f"+ id {id2} ({o2['color']} {o2['shape']} {o2['texture']}) → "
+                    f"Step {self.steps}: Combined id {id1} ({o1_desc}) + id {id2} ({o2_desc}) → "
                     f"new {new_color} {new_obj['shape']} {new_obj['texture']} (id {new_obj['id']})."
                 )
                 self._log(msg)
                 info["new_object"] = new_obj
             else:
-                msg = f"Step {self.steps}: Failed to combine id {id1} and id {id2}."
+                msg = f"Step {self.steps}: Failed to combine id {id1} ({o1_desc}) and id {id2} ({o2_desc})."
                 self._log(msg)
-                info["feedback"] = "invalid combine"
+                info["feedback"] = msg
 
         else:
             msg = f"Step {self.steps}: Unknown action {action}."
             self._log(msg)
-            info["error"] = "unknown action"
+            info["error"] = msg
 
         return self._get_state(), reward, done, info
 
     def _get_state(self):
         """Return both world state and truncated history."""
         desc = ", ".join(
-            [f"{o['id']}:{o['color']} {o['shape']} {o['texture']}" for o in self.objects]
+            [f"id {o['id']} ({o['color']} {o['shape']} {o['texture']})" for o in self.objects]
         )
         hist = self.history[-self.history_window:] if self.history_window else self.history
         history_str = "\n".join(hist) if hist else "No prior actions."
@@ -160,18 +164,18 @@ class ComposeEnv:
 
 # %%
 # Test environment
-# env = ComposeEnv(seed=42, condition='simple')
-# state = env.reset()
-# print(state)
+env = ComposeEnv(seed=42, condition='simple')
+state = env.reset()
+print(state)
 
-# state, reward, done, info = env.step(("consume", 0))
-# print(state)
+state, reward, done, info = env.step(("consume", 0))
+print(state)
 
-# state, reward, done, info = env.step(("combine", 1, 2))
-# print(state)
+state, reward, done, info = env.step(("combine", 1, 2))
+print(state)
 
-# state, reward, done, info = env.step(("combine", 4, 2))
-# print(state)
+state, reward, done, info = env.step(("combine", 4, 2))
+print(state)
 
 # %%
 class LLMAgent:
@@ -336,17 +340,21 @@ class HypothesisAgent:
         self.client = OpenAI()
         self.hypothesis = "No hypothesis yet."
 
-    def update_hypothesis(self, history):
+    def update_hypothesis(self, SHARED_CONTEXT, history):
         """Update hypothesis based on the full history"""
         prompt = (
-            "You are trying to infer the hidden rule for combining objects.\n"
+            f"{SHARED_CONTEXT}\n\n"
             f"History so far:\n{history}\n\n"
-            "Write a brief statement about your current hypothesis for which object pairs can combine."
+            f"State your best guess about the combination rule in one sentence: 'Rule: [rule]'"
         )
         response = self.client.chat.completions.create(
             model=self.model,
-            messages=[{"role": "user", "content": prompt}]
+            messages=[
+                {"role": "system", "content": "Respond only with the requested format."},
+                {"role": "user", "content": prompt}],
+                max_tokens=100
         )
+
         self.hypothesis = response.choices[0].message.content.strip()
         return self.hypothesis
 
@@ -356,20 +364,33 @@ class PlannerAgent:
         self.model = model
         self.client = OpenAI()
 
-    def choose_next_actions(self, env_summary, available_actions, hypothesis, steps_to_plan=1):
+    def choose_next_actions(self, SHARED_CONTEXT, env_summary, available_actions, hypothesis, steps_to_plan=1):
         """
         Decide next steps based on hypothesis.
         Returns a list of actions [(action_type, ...), ...]
         """
         prompt = (
-            f"Current hypothesis: {hypothesis}\n"
-            f"Environment:\n{env_summary}\n"
-            f"Available actions:\n{available_actions}\n"
-            f"Plan the next {steps_to_plan} actions to maximize points."
+            f"{SHARED_CONTEXT}\n\n"
+            f"Current hypothesis: {hypothesis}\n\n"
+            f"Environment state:\n{env_summary}\n\n"
+
+            f"Plan the next actions to maxize points, considering:\n"
+            "- Test the hypothesis if uncertain\n"
+            "- Build higher-value objects through combinations when rules are known\n"
+            "- Consume high-value objects near the action limit\n"
+            "- Balance exploration (testing rules) vs exploitation (maximizing points)\n\n"
+    
+            "You can take ONE action this step.\n"
+            f"Available actions:\n{available_actions}\n\n"
+            "Respond with only one line:\n"
+            "Action: <your choice here>"
         )
+
         response = self.client.chat.completions.create(
             model=self.model,
-            messages=[{"role": "user", "content": prompt}]
+            messages=[
+                {"role": "system", "content": "Respond only with the requested format."},
+                {"role": "user", "content": prompt}]
         )
         # parse into action tuples (assume _parse_actions is implemented)
         return self._parse_actions(response.choices[0].message.content)
@@ -390,10 +411,16 @@ class PlannerAgent:
 
 # %%
 class ExecutorAgent:
-    def __init__(self, env, hypothesis_agent, planner_agent, save_dir="results"):
+    def __init__(self, env, hypothesis_agent, planner_agent, 
+                 condition, run_id, seed, save_dir="results"):
         self.env = env
         self.hypothesis_agent = hypothesis_agent
         self.planner_agent = planner_agent
+
+        self.condition = condition
+        self.run_id = run_id
+        self.seed = seed
+
         self.save_dir = save_dir
         os.makedirs(save_dir, exist_ok=True)
 
@@ -406,6 +433,14 @@ class ExecutorAgent:
         state = self.env.reset()
         done = False
 
+        SHARED_CONTEXT = """World Rules:
+- Object color determines value: red(1), yellow(10), orange(100), green(1K), blue(10K), purple(100K)
+- Object features determine combinability: shape (square, circle, triangle, diamond) interacts with texture (plain, dotted, striped, checkered)
+- Actions: 'consume X' (gain points) or 'combine X Y' (create new, more valuable object if valid)
+- 40 actions total to maximize points
+- Hidden rules determine valid combinations
+"""
+
         while not done:
             step = self.env.steps
             env_summary = self.env._get_state()
@@ -414,24 +449,35 @@ class ExecutorAgent:
             # 1️⃣ Update hypothesis if it's time
             if step == 0 or step % update_hypothesis_every == 0:
                 hypo_prompt = str(self.env.history)
-                hypothesis = self.hypothesis_agent.update_hypothesis(self.env.history)
+                hypothesis = self.hypothesis_agent.update_hypothesis(SHARED_CONTEXT, self.env.history)
                 self.hypothesis_records.append({
+                    "condition": self.condition,
+                    "run": self.run_id,
+                    "seed": self.seed,
                     "step": step,
                     "hypothesis": hypothesis
                 })
                 self.api_logs.append({
+                    "condition": self.condition,
+                    "run": self.run_id,
+                    "seed": self.seed,
                     "step": step,
                     "llm_type": "hypothesis",
-                    "prompt": hypo_prompt,
+                    "prompt": SHARED_CONTEXT + hypo_prompt,
                     "model_output": hypothesis
                 })
 
             # 2️⃣ Plan next actions
             plan_prompt = f"Current hypothesis: {self.hypothesis_agent.hypothesis}\nEnv summary:\n{env_summary}\nActions: {available_actions}"
             actions = self.planner_agent.choose_next_actions(
-                env_summary, available_actions, self.hypothesis_agent.hypothesis, steps_to_plan=plan_ahead
+                SHARED_CONTEXT,
+                env_summary, available_actions, self.hypothesis_agent.hypothesis, 
+                steps_to_plan=plan_ahead
             )
             self.api_logs.append({
+                "condition": self.condition,
+                "run": self.run_id,
+                "seed": self.seed,
                 "step": step,
                 "llm_type": "planner",
                 "prompt": plan_prompt,
@@ -444,36 +490,41 @@ class ExecutorAgent:
 
             # 4️⃣ Record step
             self.history_records.append({
+                "condition": self.condition,
+                "run": self.run_id,
+                "seed": self.seed,
                 "step": step,
                 "action": action,
                 "reward": reward,
                 "score": self.env.score,
                 "info": info,
-                "hypothesis": self.hypothesis_agent.hypothesis
             })
 
         # 5️⃣ Final message to next player
         message_prompt = (
-            "You finished the episode. Based on your final hypothesis and history, "
-            "write a helpful message for the next player."
+            f"History:\n{self.env.history}\n\nState your best guess about the combination rule in one sentence: 'Rule: [rule]'"
         )
+
         message = self.hypothesis_agent.client.chat.completions.create(
             model=self.hypothesis_agent.model,
-            messages=[{"role": "user", "content": message_prompt}],
-        ).choices[0].message.content.strip()
-        self.history_records.append({
-            "step": self.env.steps + 1,
-            "action": "message_to_next_player",
-            "reward": 0,
-            "score": self.env.score,
-            "info": message,
-            "hypothesis": self.hypothesis_agent.hypothesis
-        })
+            messages=[
+                {"role": "system", "content": "Respond only with the requested format."},
+                {"role": "user", "content": message_prompt}
+            ],
+            max_tokens=100 # Limit token count to force brevity
+          ).choices[0].message.content.strip()  
+
         self.hypothesis_records.append({
+            "condition": self.condition,
+            "run": self.run_id,
+            "seed": self.seed,
             "step": self.env.steps + 1,
             "hypothesis": message
         })
         self.api_logs.append({
+            "condition": self.condition,
+            "run": self.run_id,
+            "seed": self.seed,
             "step": self.env.steps + 1,
             "llm_type": "message",
             "prompt": message_prompt,
@@ -495,12 +546,98 @@ class ExecutorAgent:
 
 # %%
 load_dotenv()
-env = ComposeEnv(seed=42, condition="medium", max_steps=2)
+condition = "medium"
+run = 4
+seed = 42
+env = ComposeEnv(seed=42, condition=condition, max_steps=2)
 hypo_agent = HypothesisAgent(model="gpt-4o-mini")
 planner_agent = PlannerAgent(model="gpt-4o-mini")
-executor = ExecutorAgent(env, hypo_agent, planner_agent, save_dir="results")
+executor = ExecutorAgent(
+    env,
+    hypo_agent,
+    planner_agent,
+    condition=condition,
+    run_id=run,
+    seed=seed,
+    save_dir="results"
+)
+# df_hist, df_hypo, df_logs = executor.run_episode(
+#     update_hypothesis_every=1,
+#     plan_ahead=1,
+#     run_name=f"test_{condition}_run{run}"
+# )
+# %%
+def run_experiments(
+    conditions=["simple", "medium", "hard"],
+    seeds=[0, 1, 2],
+    runs_per_seed=1,
+    save_dir="results",
+    update_every=5,
+    plan_ahead=1,
+    file_prefix="t1_"
+):
+    os.makedirs(save_dir, exist_ok=True)
 
-# Run one episode
-df_hist, df_hypo, df_logs = executor.run_episode(update_hypothesis_every=5, plan_ahead=2, run_name="run1_medium")
+    all_history = []
+    all_hypotheses = []
+    all_logs = []
 
+    for condition in conditions:
+        for seed in seeds:
+            for run in range(runs_per_seed):
+
+                print(f"\n=== Running condition={condition}, seed={seed}, run={run} ===")
+
+                env = ComposeEnv(seed=seed, condition=condition)
+                hypo_agent = HypothesisAgent(model="gpt-4o-mini")
+                planner_agent = PlannerAgent(model="gpt-4o-mini")
+
+                executor = ExecutorAgent(
+                    env,
+                    hypo_agent,
+                    planner_agent,
+                    save_dir=save_dir,
+                    condition=condition,
+                    run_id=run,
+                    seed=seed
+                )
+
+                df_hist, df_hypo, df_log = executor.run_episode(
+                    update_hypothesis_every=update_every,
+                    plan_ahead=plan_ahead
+                )
+
+                # Append to global
+                all_history.append(df_hist)
+                all_hypotheses.append(df_hypo)
+                all_logs.append(df_log)
+
+    # Save combined results
+    pd.concat(all_history).to_csv(
+        os.path.join(save_dir, f"{file_prefix}history.csv"), index=False
+    )
+    pd.concat(all_hypotheses).to_csv(
+        os.path.join(save_dir, f"{file_prefix}hypotheses.csv"), index=False
+    )
+    pd.concat(all_logs).to_csv(
+        os.path.join(save_dir, f"{file_prefix}api_logs.csv"), index=False
+    )
+
+    print("\nAll experiments complete! Saved:")
+    print(f"- {save_dir}/{file_prefix}history.csv")
+    print(f"- {save_dir}/{file_prefix}hypotheses.csv")
+    print(f"- {save_dir}/{file_prefix}api_logs.csv")
+
+
+
+# %%
+run_experiments(
+    conditions=["simple", 'medium', 'hard'],
+    seeds=[0, 1, 2, 3, 4],
+    runs_per_seed=2,
+    save_dir="results",
+    update_every=5,
+    plan_ahead=1,
+    file_prefix="full_dumb_"
+)
 # %%

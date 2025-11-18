@@ -1,0 +1,41 @@
+condition,run,seed,step,action,reward,score,info
+hard,1,4,0,"('combine', 6, 13)",0,0,{'feedback': 'Step 1: Failed to combine id 6 (red circle striped) and id 13 (red diamond dotted).'}
+hard,1,4,1,"('combine', 12, 7)",0,0,{'feedback': 'Step 2: Failed to combine id 12 (red diamond plain) and id 7 (red circle checkered).'}
+hard,1,4,2,"('combine', 0, 3)",0,0,{'feedback': 'Step 3: Failed to combine id 0 (red square plain) and id 3 (red square checkered).'}
+hard,1,4,3,"('combine', 5, 14)",0,0,{'feedback': 'Step 4: Failed to combine id 5 (red circle dotted) and id 14 (red diamond striped).'}
+hard,1,4,4,"('combine', 14, 10)",0,0,{'feedback': 'Step 5: Failed to combine id 14 (red diamond striped) and id 10 (red triangle striped).'}
+hard,1,4,5,"('combine', 6, 9)",0,0,"{'new_object': {'id': 16, 'shape': 'circle', 'texture': 'dotted', 'color': 'yellow'}}"
+hard,1,4,6,"('combine', 4, 7)",0,0,{'feedback': 'Step 7: Failed to combine id 4 (red circle plain) and id 7 (red circle checkered).'}
+hard,1,4,7,"('combine', 5, 15)",0,0,{'feedback': 'Step 8: Failed to combine id 5 (red circle dotted) and id 15 (red diamond checkered).'}
+hard,1,4,8,"('combine', 15, 16)",0,0,{'feedback': 'Step 9: Failed to combine id 15 (red diamond checkered) and id 16 (yellow circle dotted).'}
+hard,1,4,9,"('consume', 12)",1,1,{'feedback': 'Step 10: Consumed id 12 (red diamond plain) for 1 points.'}
+hard,1,4,10,"('combine', 0, 10)",0,1,{'feedback': 'Step 11: Failed to combine id 0 (red square plain) and id 10 (red triangle striped).'}
+hard,1,4,11,"('consume', 8)",1,2,{'feedback': 'Step 12: Consumed id 8 (red triangle plain) for 1 points.'}
+hard,1,4,12,"('combine', 3, 11)",0,2,{'feedback': 'Step 13: Failed to combine id 3 (red square checkered) and id 11 (red triangle checkered).'}
+hard,1,4,13,"('combine', 16, 2)",0,2,{'feedback': 'Step 14: Failed to combine id 16 (yellow circle dotted) and id 2 (red square striped).'}
+hard,1,4,14,"('combine', 11, 14)",0,2,{'feedback': 'Step 15: Failed to combine id 11 (red triangle checkered) and id 14 (red diamond striped).'}
+hard,1,4,15,"('combine', 14, 5)",0,2,{'feedback': 'Step 16: Failed to combine id 14 (red diamond striped) and id 5 (red circle dotted).'}
+hard,1,4,16,"('consume', 7)",1,3,{'feedback': 'Step 17: Consumed id 7 (red circle checkered) for 1 points.'}
+hard,1,4,17,"('combine', 4, 5)",0,3,{'feedback': 'Step 18: Failed to combine id 4 (red circle plain) and id 5 (red circle dotted).'}
+hard,1,4,18,"('consume', 10)",1,4,{'feedback': 'Step 19: Consumed id 10 (red triangle striped) for 1 points.'}
+hard,1,4,19,"('combine', 11, 1)",0,4,{'feedback': 'Step 20: Failed to combine id 11 (red triangle checkered) and id 1 (red square dotted).'}
+hard,1,4,20,"('combine', 2, 13)",0,4,"{'new_object': {'id': 21, 'shape': 'square', 'texture': 'dotted', 'color': 'yellow'}}"
+hard,1,4,21,"('combine', 19, 16)",0,4,{'feedback': 'Step 22: Failed to combine id 19 (red circle checkered) and id 16 (yellow circle dotted).'}
+hard,1,4,22,"('combine', 19, 21)",0,4,{'feedback': 'Step 23: Failed to combine id 19 (red circle checkered) and id 21 (yellow square dotted).'}
+hard,1,4,23,"('combine', 16, 1)",0,4,{'feedback': 'Step 24: Failed to combine id 16 (yellow circle dotted) and id 1 (red square dotted).'}
+hard,1,4,24,"('combine', 3, 11)",0,4,{'feedback': 'Step 25: Failed to combine id 3 (red square checkered) and id 11 (red triangle checkered).'}
+hard,1,4,25,"('combine', 18, 4)",0,4,{'feedback': 'Step 26: Failed to combine id 18 (red triangle plain) and id 4 (red circle plain).'}
+hard,1,4,26,"('combine', 16, 0)",0,4,{'feedback': 'Step 27: Failed to combine id 16 (yellow circle dotted) and id 0 (red square plain).'}
+hard,1,4,27,"('combine', 5, 18)",0,4,{'feedback': 'Step 28: Failed to combine id 5 (red circle dotted) and id 18 (red triangle plain).'}
+hard,1,4,28,"('combine', 20, 16)",0,4,{'feedback': 'Step 29: Failed to combine id 20 (red triangle striped) and id 16 (yellow circle dotted).'}
+hard,1,4,29,"('combine', 20, 17)",0,4,{'feedback': 'Step 30: Failed to combine id 20 (red triangle striped) and id 17 (red diamond plain).'}
+hard,1,4,30,"('combine', 0, 1)",0,4,{'feedback': 'Step 31: Failed to combine id 0 (red square plain) and id 1 (red square dotted).'}
+hard,1,4,31,"('combine', 17, 0)",0,4,{'feedback': 'Step 32: Failed to combine id 17 (red diamond plain) and id 0 (red square plain).'}
+hard,1,4,32,"('combine', 15, 18)",0,4,{'feedback': 'Step 33: Failed to combine id 15 (red diamond checkered) and id 18 (red triangle plain).'}
+hard,1,4,33,"('combine', 19, 20)",0,4,{'feedback': 'Step 34: Failed to combine id 19 (red circle checkered) and id 20 (red triangle striped).'}
+hard,1,4,34,"('consume', 4)",1,5,{'feedback': 'Step 35: Consumed id 4 (red circle plain) for 1 points.'}
+hard,1,4,35,"('combine', 0, 1)",0,5,{'feedback': 'Step 36: Failed to combine id 0 (red square plain) and id 1 (red square dotted).'}
+hard,1,4,36,"('combine', 1, 14)",0,5,"{'new_object': {'id': 23, 'shape': 'square', 'texture': 'striped', 'color': 'yellow'}}"
+hard,1,4,37,"('combine', 16, 21)",0,5,{'feedback': 'Step 38: Failed to combine id 16 (yellow circle dotted) and id 21 (yellow square dotted).'}
+hard,1,4,38,"('combine', 17, 15)",0,5,{'feedback': 'Step 39: Failed to combine id 17 (red diamond plain) and id 15 (red diamond checkered).'}
+hard,1,4,39,"('combine', 19, 16)",0,5,{'feedback': 'Step 40: Failed to combine id 19 (red circle checkered) and id 16 (yellow circle dotted).'}

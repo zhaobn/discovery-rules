@@ -1,0 +1,3 @@
+step,hypothesis
+0,Rule: Combining two objects of the same color creates a new object of the next color in the sequence.
+3,Rule: The combination rule likely prohibits combining pairs of IDs that are either incompatible or belong to distinct categories or classifications.

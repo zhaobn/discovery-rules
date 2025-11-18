@@ -1,0 +1,41 @@
+condition,run,seed,step,action,reward,score,info
+simple,0,0,0,"('combine', 0, 6)",0,0,{'feedback': 'invalid combine'}
+simple,0,0,1,"('combine', 11, 1)",0,0,{'feedback': 'invalid combine'}
+simple,0,0,2,"('combine', 10, 11)",0,0,"{'new_object': {'id': 16, 'shape': 'triangle', 'texture': 'checkered', 'color': 'yellow'}}"
+simple,0,0,3,"('combine', 3, 1)",0,0,{'feedback': 'invalid combine'}
+simple,0,0,4,"('consume', 1)",1,1,{}
+simple,0,0,5,"('combine', 6, 2)",0,1,{'feedback': 'invalid combine'}
+simple,0,0,6,"('combine', 12, 6)",0,1,{'feedback': 'invalid combine'}
+simple,0,0,7,"('combine', 3, 12)",0,1,{'feedback': 'invalid combine'}
+simple,0,0,8,"('combine', 5, 6)",0,1,"{'new_object': {'id': 18, 'shape': 'circle', 'texture': 'striped', 'color': 'yellow'}}"
+simple,0,0,9,"('combine', 12, 16)",0,1,{'feedback': 'invalid combine'}
+simple,0,0,10,"('combine', 4, 15)",0,1,{'feedback': 'invalid combine'}
+simple,0,0,11,"('combine', 16, 13)",0,1,{'feedback': 'invalid combine'}
+simple,0,0,12,"('combine', 18, 4)",0,1,{'feedback': 'invalid combine'}
+simple,0,0,13,"('combine', 9, 3)",0,1,{'feedback': 'invalid combine'}
+simple,0,0,14,"('combine', 16, 12)",0,1,{'feedback': 'invalid combine'}
+simple,0,0,15,"('combine', 4, 15)",0,1,{'feedback': 'invalid combine'}
+simple,0,0,16,"('combine', 12, 13)",0,1,"{'new_object': {'id': 19, 'shape': 'diamond', 'texture': 'dotted', 'color': 'yellow'}}"
+simple,0,0,17,"('combine', 18, 3)",0,1,{'feedback': 'invalid combine'}
+simple,0,0,18,"('combine', 3, 7)",0,1,{'feedback': 'invalid combine'}
+simple,0,0,19,"('combine', 2, 9)",0,1,{'feedback': 'invalid combine'}
+simple,0,0,20,"('combine', 7, 8)",0,1,{'feedback': 'invalid combine'}
+simple,0,0,21,"('consume', 0)",1,2,{}
+simple,0,0,22,"('combine', 17, 15)",0,2,{'feedback': 'invalid combine'}
+simple,0,0,23,"('combine', 7, 17)",0,2,{'feedback': 'invalid combine'}
+simple,0,0,24,"('combine', 4, 3)",0,2,{'feedback': 'invalid combine'}
+simple,0,0,25,"('combine', 19, 18)",0,2,{'feedback': 'invalid combine'}
+simple,0,0,26,"('combine', 8, 20)",0,2,{'feedback': 'invalid combine'}
+simple,0,0,27,"('combine', 15, 18)",0,2,{'feedback': 'invalid combine'}
+simple,0,0,28,"('combine', 20, 7)",0,2,{'feedback': 'invalid combine'}
+simple,0,0,29,"('combine', 18, 8)",0,2,{'feedback': 'invalid combine'}
+simple,0,0,30,"('combine', 7, 2)",0,2,{'feedback': 'invalid combine'}
+simple,0,0,31,"('combine', 19, 16)",0,2,{'feedback': 'invalid combine'}
+simple,0,0,32,"('combine', 18, 15)",0,2,{'feedback': 'invalid combine'}
+simple,0,0,33,"('combine', 20, 14)",0,2,{'feedback': 'invalid combine'}
+simple,0,0,34,"('combine', 15, 18)",0,2,{'feedback': 'invalid combine'}
+simple,0,0,35,"('combine', 7, 2)",0,2,{'feedback': 'invalid combine'}
+simple,0,0,36,"('combine', 17, 14)",0,2,{'feedback': 'invalid combine'}
+simple,0,0,37,"('combine', 17, 15)",0,2,{'feedback': 'invalid combine'}
+simple,0,0,38,"('combine', 18, 17)",0,2,{'feedback': 'invalid combine'}
+simple,0,0,39,"('combine', 17, 18)",0,2,{'feedback': 'invalid combine'}

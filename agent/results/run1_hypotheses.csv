@@ -1,0 +1,10 @@
+condition,run,seed,step,hypothesis
+hard,1,4,0,Rule: Combinations are valid when the shapes are the same and the textures are different.
+hard,1,4,5,Rule: Combinations are only valid if both objects share the same color and have a different shape and texture.
+hard,1,4,10,Rule: Objects can be combined if they share the same shape but differ in texture.
+hard,1,4,15,Rule: Combinations are valid when the shapes match and the textures differ.
+hard,1,4,20,Rule: Combinations are valid only when the objects share the same shape but have different textures.
+hard,1,4,25,Rule: Combinations are valid if the shapes are the same and the textures are either different or match one of the specified patterns.
+hard,1,4,30,Rule: Combinations must involve objects of the same shape or texture.
+hard,1,4,35,"Rule: Only certain combinations of the same shape or texture can successfully combine, regardless of color."
+hard,1,4,41,Rule: The combination of two shapes is successful only if they do not share the same base shape or pattern.
