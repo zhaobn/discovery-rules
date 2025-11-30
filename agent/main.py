@@ -188,7 +188,7 @@ class LLMAgent:
     def _format_prompt(self, state):
         """Create a clean text prompt for the model."""
         action_examples = (
-            "Examples of valid actions:\n"
+            "Examples of valid action formats:\n"
             "- consume 3  (to consume object with id 3)\n"
             "- combine 2 5  (to combine object 2 with object 5)\n"
         )
@@ -226,7 +226,7 @@ Action: <your choice here>
 
     def choose_action(self, env_state, available_actions):
         """Query the model to decide on an action."""
-        prompt = self._format_prompt(env_state, available_actions)
+        prompt = self._format_prompt(env_state)
 
         for attempt in range(self.max_retries):
             try:
@@ -271,28 +271,30 @@ Action: <your choice here>
 
 
 # %%
-def run_episode(env, agent):
+def run_episode(env, agent, condition, run, seed):
     state = env.reset()
     done = False
     records = []
-
     while not done:
         actions = env.available_actions()
         action = agent.choose_action(state, actions)
         state, reward, done, info = env.step(action)
-
         records.append({
+            "condition": condition,
+            "run": run,
+            "seed": seed,
             "step": env.steps,
             "action": action,
             "reward": reward,
             "score": env.score,
             "info": info,
         })
-    
     message = agent.review_and_write_message(env.history, env.score)
-
     # Convert message into a final DataFrame row
     final_row = {
+        "condition": condition,
+        "run": run,
+        "seed": seed,
         "step": len(env.history) + 1,
         "action": "message_to_next_player",
         "reward": 0,
@@ -303,33 +305,167 @@ def run_episode(env, agent):
     df = pd.concat([df, pd.DataFrame([final_row])], ignore_index=True)
     return df
 
+# %%
+def main(save_dir="results", base_name="", steps=40, num_seeds=5, num_runs=2):
+    load_dotenv()
+    os.makedirs(save_dir, exist_ok=True)
+    # Format timestamp like 2025-11-12_14-30-59
+    timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    conditions = ["simple", "medium", "hard"]
+    
+    all_results = []
+    
+    for cond in conditions:
+        print(f"\n=== Running condition: {cond} ===")
+        
+        for seed in range(num_seeds):
+            print(f"  Seed {seed}:")
+            
+            for run in range(num_runs):
+                print(f"    Run {run}...", end=" ")
+                
+                # Create agent for this run
+                agent = LLMAgent(model="gpt-4o-mini")
+                
+                # Create environment with specific seed
+                env = ComposeEnv(seed=seed, condition=cond, max_steps=steps)
+                
+                # Run episode and collect results
+                df = run_episode(env, agent, condition=cond, run=run, seed=seed)
+                all_results.append(df)
+                
+                print(f"✅ Score: {env.score}")
+    
+    # Combine all results into a single DataFrame
+    combined_df = pd.concat(all_results, ignore_index=True)
+    
+    # Save to CSV
+    filename = f"{base_name}_{timestamp}.csv"
+    save_path = os.path.join(save_dir, filename)
+    combined_df.to_csv(save_path, index=False)
+    print(f"\n✅ Saved all results to {save_path}")
+    
+    return combined_df
 
-# # %%
-# def main(save_dir="results", base_name="", steps=40):
-#     load_dotenv()
-
-#     os.makedirs(save_dir, exist_ok=True)
-
-#     # Format timestamp like 2025-11-12_14-30-59
-#     timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-
-#     conditions = ["simple", "medium", "hard"]
-#     agent = LLMAgent(model="gpt-4o-mini")
-
-#     for cond in conditions:
-#         print(f"\n=== Running condition: {cond} ===")
-#         env = ComposeEnv(seed=42, condition=cond, max_steps=steps)
-#         df = run_episode(env, agent)
-
-#         filename = f"{base_name}_{cond}_{timestamp}.csv"
-#         save_path = os.path.join(save_dir, filename)
-
-#         df.to_csv(save_path, index=False)
-#         print(f"✅ Saved results to {save_path}")
+if __name__ == "__main__":
+    main(base_name="full_default")
 
 
-# if __name__ == "__main__":
-#    main(base_name="default")
+
+# %%
+df = pd.read_csv('results/full_default_2025-11-30_14-48-07.csv')
+df_message = df[df['action'] == 'message_to_next_player']
+
+# extract message content
+df_message['message'] = df_message['info'].apply(lambda x: eval(x).get('message', ''))
+df_message[['condition', 'run', 'seed', 'score', 'message']].to_csv(
+    'results/full_default_messages_2025-11-30_14-48-07.csv', index=False
+)
+
+# Read your data
+df_message = pd.read_csv('results/full_default_messages_2025-11-30_14-48-07.csv')
+
+# Process each row
+message_parsed = []
+client = OpenAI()
+
+for idx, row in df_message.iterrows():
+    message = row['message']
+    
+    # Call OpenAI API
+    response = client.chat.completions.create(
+        model="gpt-4o",
+        messages=[
+            {"role": "system", "content": "Extract concrete factual rules from text. Respond only with the requested format."},
+            {"role": "user", "content": f"""Extract concrete, factual rules about which objects are likely to combine from the following text. Format the rules as short and clear as possile, such as Combinations are valid if both objects are the same shape.
+
+Format: 'Rule: [rule]'
+If no concrete rules are present, respond with: "No specific rules detected."
+
+Text: {message}
+
+Rule:"""}],
+        max_tokens=250
+    )
+    
+    # Extract the response
+    api_result = response.choices[0].message.content
+    
+    # Store results with original metadata
+    message_parsed.append({
+        'condition': row['condition'],
+        'run': row['run'],
+        'seed': row['seed'],
+        'score': row['score'],
+        'original_message': message,
+        'api_response': api_result
+    })
+
+results_df = pd.DataFrame(message_parsed)
+# remove original_message column for brevity
+results_df = results_df.drop(columns=['original_message'])
+results_df.to_csv('results/full_default_shortened.csv', index=False)
+
+
+
+
+# %%
+# covert human participants rules
+df_ppt = pd.read_csv('../data/subject_data.csv')
+
+# test_row = df_ppt.iloc[30]
+# message_how = str(test_row['messageHow'])
+# message_rules = str(test_row['messageRules'])
+# message = message_how + "\n" + message_rules
+
+
+message_parsed = []
+for idx, row in df_ppt.iterrows():
+    if idx < 31:
+        continue
+
+    # safe convert to string
+    message_how = str(row['messageHow'])
+    message_rules = str(row['messageRules'])
+    message = message_how + "\n" + message_rules
+
+    
+    # Call OpenAI API
+    response = client.chat.completions.create(
+        model="gpt-4o",
+        messages=[
+            {"role": "system", "content": "Extract concrete factual rules from text. Respond only with the requested format."},
+            {"role": "user", "content": f"""Extract concrete, factual rules about which objects are likely to combine from the following text. Format the rules as short and clear as possile, such as Combinations are valid if both objects are the same shape.
+
+Format: 'Rule: [rule]'
+If no concrete rules are present, respond with: "No specific rules detected."
+
+Text: {message}
+
+Rule:"""}],
+        max_tokens=300
+    )
+    
+    # Extract the response
+    api_result = response.choices[0].message.content
+    
+    # Store results with original metadata
+    message_parsed.append({
+        'id': row['id'],
+        'condition': row['condition'],
+        'score': row['total_points'],
+        'original_message': message,
+        'api_response': api_result
+    })
+
+results_df = pd.DataFrame(message_parsed)
+# remove original_message column for brevity
+results_df = results_df.drop(columns=['original_message'])
+results_df.to_csv('results/full_ppts_extracted.csv', index=False)
+
+
+
+
 
 
 # %%
@@ -640,4 +776,6 @@ run_experiments(
     plan_ahead=1,
     file_prefix="full_dumb_"
 )
+
+
 # %%

@@ -1,0 +1,424 @@
+condition,run,seed,score,message
+simple,0,0,69,"To maximize your points in the grid-world game, follow these strategies:
+
+1. **Prioritize Combinations**: Combing objects often yields new items that can be consumed for higher points. Focus on combining pairs that you have identified as successful in previous rounds.
+
+2. **Maintain a Balanced Inventory**: Keep a mix of objects ready for potential combinations. Having both simple shapes (like squares and circles) and their variations increases your chances of successful combinations.
+
+3. **Learn from Failures**: If a combination fails, observe which items were used and avoid combining them in the same way again. Instead, consider alternative combinations.
+
+4. **Consume Wisely**: Before consuming low-point items (1 point), evaluate if keeping them might lead to a better combination later. Aim to consume higher-point items as much as possible.
+
+5. **Explore All Options**: Don't hesitate to try combining lesser-used objects. Some combinations that seem unlikely could yield useful results.
+
+By following these tips, you should be able to improve your score significantly in future rounds! Good luck!"
+simple,1,0,77,"Hey there! Here are some key strategies to maximize your points in the grid-world game:
+
+1. **Combine Wisely:** Focus on combining items of the same type (e.g., all circles together) to create new colored shapes, as they yield significantly higher points when consumed.
+
+2. **Prioritize Combinations:** Always check for combination opportunities before consuming items. Successfully combining objects can lead to high-reward items that are worth 10 points each.
+
+3. **Manage Inventory:** Keep track of similar objects in your inventory for future combinations. Don’t hesitate to consume low-value items to make space for potential combinations.
+
+4. **Experiment:** If a combination fails, or if you run into similar combinations that didn’t work in the past, try using different items together. The game mechanics can sometimes be unpredictable!
+
+5. **Conserve Resources:** After consuming low-value items (1 point), save your space for items that can be combined or have a higher point reward.
+
+By strategically combining items and ensuring to maximize your inventory's value, you can significantly increase your total score. Good luck!"
+simple,0,1,63,"Hello, future player!
+
+Here are some strategies to maximize your points in the grid-world game:
+
+1. **Combining for Higher Values**: Focus on combining objects that yield new types rather than consuming them immediately. The combined items often provide more points when consumed (like the yellow shapes), so look for effective combinations first.
+
+2. **Prioritize Combos with High Point Yields**: Items that resulted in more points when consumed should be prioritized. For example, yellow shapes gave 10 points each, which is significantly better than 1 point from regular items.
+
+3. **Experiment with Combinations**: Even if you fail to combine some items, keep experimenting with different pairs. You might discover new combos that lead to valuable items.
+
+4. **Consume Wisely**: Be strategic about which items to consume. If they only offer 1 point, consider holding onto them in case they can be combined later.
+
+5. **Track Failed Combinations**: If a particular combination fails multiple times, it may not be worth pursuing further. Focus on alternative items.
+
+By following these patterns and strategies, you can optimize your gameplay and maximize your points. Good luck!"
+simple,1,1,69,"**Tips for Success in the Grid-World Game:**
+
+1. **Prioritize Combining:** Focus on combining similar objects when possible. This can lead to high-value items (like the yellow variants) that yield more points when consumed.
+
+2. **Consume Wisely:** If you can't combine two items, consider consuming the lower value items (like the plain or dotted versions) to free up space for more valuable combinations.
+
+3. **Trial and Error:** Don’t hesitate to try different combinations, but be aware that not all combinations will succeed. Keep track of what works and what doesn’t to avoid repeating failures.
+
+4. **Maximize Point Collection:** Aim to consume newly created items quickly as they provide a significantly higher point reward compared to regular items.
+
+5. **Manage Inventory:** Be strategic about keeping your available items. Holding onto items that cannot combine may limit your ability to create higher-value items.
+
+Overall, combining items effectively and consuming the results quickly will help you accumulate points faster. Good luck!"
+simple,0,2,71,"**Tip for Success in the Grid-World Game:**
+
+1. **Combine Wisely**: Focus on combining similar objects (shapes and colors) for higher point-value creations. For instance, the yellow items you created provided 10 points each, significantly boosting your score.
+
+2. **Prioritize Combinations**: Look for opportunities to combine items before consuming them. Consuming can give you limited points (1 point for regular items), while successful combinations can yield greater rewards.
+
+3. **Avoid Over-Combining**: Not every combination will succeed. If you find certain combinations frequently fail, consider consuming those items instead to free up space and focus on more promising combinations.
+
+4. **Track Progress**: Keep a mental note of which combinations have led to successful outcomes in the past to replicate your success.
+
+5. **Consolidate Items**: Don't hesitate to consume lower-point items to prioritize keeping higher-value items or combinations available.
+
+Using these strategies, you'll maximize your points and improve your overall performance in the game! Good luck!"
+simple,1,2,73,"**Tips for Success in the Grid-World Game:**
+
+1. **Prioritize Combinations:** Focus on combining objects to create higher-value items early in the game. The yellow items yield significantly more points (10 points each) compared to consuming the basic colored items (1 point each).
+
+2. **Manage Inventory Wisely:** Keep track of the objects you have and the potential combinations. Sometimes, it may take multiple tries to find successful combinations, so have a strategy in mind for what to combine.
+
+3. **Consume the Easy Points:** If you can't find a valid combination, don't hesitate to consume lower-value items. These can incrementally boost your score while you search for better opportunities.
+
+4. **Avoid Failed Combinations:** If you fail to combine certain items, move on quickly. Retry combinations only when you have a solid plan, as failing can waste turns and resources.
+
+5. **Focus on Specific Shapes:** Some object types seem to yield better combinations. Pay attention to successful patterns, especially those involving yellow shapes since they provide the most points.
+
+6. **Adapt and Strategize:** Evaluate your available objects continuously and adapt your strategy to maximize points consistently.
+
+Good luck, and happy gaming!"
+simple,0,3,71,"**Advice for Success in the Grid-World Game:**
+
+1. **Prioritize Combining Objects:** Focus on combining objects to create high-value items. Combining two objects often yields a new item worth more points when consumed compared to consuming them individually.
+
+2. **Identify Successful Combos:** Keep track of which combinations you've tried and their outcomes. Successful combinations often involve matching shapes or colors, so learn which ones yield high-value results (like the yellow variants).
+
+3. **Consume Remaining Items:** If you find yourself with items that you cannot combine, consume them instead. Every point adds up, and it's crucial to eliminate low-value items when higher-value combinations are not possible.
+
+4. **Utilize Patterns:** Look for patterns in object types and potential combinations. For instance, if you notice that red items can be combined into yellow ones, aim to keep a good stock of red items that have not yet been tried for combinations.
+
+5. **Be Persistent with Combinations:** Don’t hesitate to retry combinations that previously failed, especially if you gain more contextual knowledge about possible successful pairings. 
+
+By following these strategies, you can maximize your point earnings and outshine the competition. Good luck!"
+simple,1,3,59,"To maximize your points in the grid-world game, consider the following strategies:
+
+1. **Prioritize Combining**: Focus on combining objects whenever possible, as the resulting yellow objects yield far higher points (10 points) compared to consuming them (1 point). 
+
+2. **Keep Track of Combinable Pairs**: Pay attention to which objects can combine successfully. If you encounter failed attempts, note the pairs so you don’t waste resources trying to combine them again.
+
+3. **Consume Obsolete or Unusable Items**: When you’ve identified items that have no further combination potential, consume them to maintain inventory space for better items.
+
+4. **Look for Patterns**: Certain shapes and patterns are likely to combine well (e.g., matching shapes with variations in texture). Familiarize yourself with the patterns to optimize combinations.
+
+5. **Use New Items Wisely**: After creating new items, prioritize consuming them early in your turn for quick points, especially when they offer significantly more points than their original components.
+
+By focusing on combinations and being strategic about what to consume, you’ll maximize your scoring potential. Good luck!"
+simple,0,4,70,"Hello Player,
+
+Here are some strategies I found effective during my game:
+
+1. **Combine Wisely**: Although combining objects can sometimes fail, prioritize combinations of similar shapes and colors, as they often yield rewarding new items. Keep track of the IDs of items that successfully combine to exploit this in future moves.
+
+2. **Consume Strategically**: If you have items that aren't useful for combining or have failed combinations, consuming them for points is a good fallback. Focus first on items with the potential for successful combinations.
+
+3. **Inventory Management**: Be aware of the contents you have at all times. Track which items are left to avoid futile combinations. Quickly consume items that don’t contribute to your strategy.
+
+4. **Prioritize Higher-Value Items**: The yellow items (like the yellow squares or triangles) yield significantly more points when consumed, so focus on creating those through combinations. They can quickly boost your points total.
+
+5. **Experiment**: Don’t be afraid to try combining different items, even if they're not similar. Unexpected combinations can lead to new strategies and valuable items.
+
+Good luck, and make the most of your turns!"
+simple,1,4,70,"**Advice for Success in the Grid-World Game:**
+
+1. **Focus on Combinations:** Combining similar objects often yields higher-value items. Prioritize pairs that lead to useful combinations, as they can provide substantial points when consumed.
+
+2. **Consume Lower Value Items Early:** Items that give only 1 point can clutter your inventory. It’s beneficial to consume them early to clear space for more valuable combinations.
+
+3. **Experiment with New Combinations:** Don't be afraid to test various combinations, even if some fail. Continuous experiments can reveal new high-value items.
+
+4. **Prioritize Point Value**: Always consume items that yield higher points first, especially those that emerge from combinations. 
+
+5. **Inventory Management:** Keep an eye on your inventory. If you’re holding too many items that don't combine well, it may hinder your ability to create valuable combinations.
+
+6. **Pay Attention to Failed Combines:** Note the combinations that didn’t work. This can help you avoid wasting resources in the future and focus on more promising pairs.
+
+By focusing on strategic combinations and managing your inventory effectively, you can maximize your point earnings. Good luck!"
+medium,0,0,28,"To maximize your points in the grid-world game, here are some key strategies to follow:
+
+1. **Consumption First**: Prioritize consuming items whenever possible since each consumed item gives you 1 point. This is the most straightforward way to earn points.
+
+2. **Combination Attempts**: Try to combine items when you have pairs. Keep track of any failed combinations, as they may indicate mismatched items. If a specific type of combination fails repeatedly, avoid trying those pairings again.
+
+3. **Diversity of Objects**: Focus on collecting a variety of object types (squares, circles, triangles, diamonds) as they seem to yield points at a similar rate. Consuming a diverse range may also unlock new combinations.
+
+4. **Checkered Patterns**: If you have both dotted and checkered patterns, try to explore their combinations, especially with the same shapes (like squares or circles). They might yield successful combinations.
+
+5. **Experiment and Document**: Keep a mental note or document combinations that worked and failed for future reference. This will help streamline your strategy in repeating the game.
+
+Overall, carefully balancing consumption and experimentation with combinations is crucial for maximizing your score. Good luck!"
+medium,1,0,27,"To excel in the grid-world game and maximize your points, keep the following strategies in mind:
+
+1. **Consume Objects Frequently**: Every object you consume earns you 1 point. Prioritize consuming available objects you encounter before attempting to combine them.
+
+2. **Combine Wisely**: Not all combinations are successful. Test combinations strategically, especially after consuming the relevant objects, but don’t get discouraged by failures. If a combination doesn’t work multiple times, it’s likely not viable.
+
+3. **Diversity in Object Types**: Focus on consuming a variety of shapes (squares, circles, triangles, and diamonds) and patterns (plain, dotted, striped, checkered). This expands your available options for combinations, improving your chances of finding successful ones.
+
+4. **Take Notes**: Keep track of which combinations have failed and which objects are more likely to combine successfully (if any). This can save you time and effort in future attempts.
+
+5. **Be Persistent**: Don’t shy away from retrying combinations if they failed before; new contexts or discoveries might yield better results.
+
+By following these tips, you'll enhance your gameplay experience and scoring potential. Good luck!"
+medium,0,1,28,"Hello next player! Here are some key strategies to maximize your points in the grid-world game:
+
+1. **Focus on Consumption**: Prioritize consuming objects, as each provides a point. Make sure to maximize the variety of objects you consume for higher potential yields. 
+
+2. **Know the Combination Rules**: Pay attention to the type and patterns of objects you can combine. Some combinations may consistently fail, so try to identify the successful pairing patterns early on.
+
+3. **Batch Consumption**: If you're trying to combine objects, it might be helpful to consume duplicates first to free up space and focus on combinations without breaking your momentum.
+
+4. **Adjust Your Strategy**: If you find that several combinations are failing, switch back to consuming more objects to quickly boost your score and reassess which items might work well together.
+
+5. **Stay Organized**: Keep track of what you’ve consumed and what remains. This will help you to remember successful combinations and avoid redundancies.
+
+Good luck, and may your score soar!"
+medium,1,1,25,"### Tips for Success in the Grid-World Game:
+
+1. **Prioritize Consumption Over Combining**: Consuming objects is generally more reliable and straightforward than combining them. Focus on consuming as many individual objects as possible to quickly accumulate points.
+
+2. **Experiment with Combining**: While I encountered many failed attempts at combining objects, don’t hesitate to try different combinations. Keep track of which pairs work and which don’t, as some combinations may yield higher rewards.
+
+3. **Identify Object Types**: Pay attention to the characteristics of objects (e.g., shapes and patterns). Certain shapes or patterns may enhance your chances of successful combinations based on your previous experiences.
+
+4. **Learn from Errors**: Each failed combining attempt provides valuable information. Use that knowledge to adjust your future strategies, optimizing your approach to which objects to combine.
+
+5. **Manage Your Resources**: Be mindful of which objects you have consumed or attempted to combine. Keeping a clear inventory can help prevent wasted moves on combinations that have already failed.
+
+6. **Stay Flexible**: Don’t fixate on any single strategy, as the dynamics of the game can change. Stay adaptable to new object types and opportunities that arise during gameplay.
+
+By following these strategies and being observant, you could improve your performance and maximize your points in the game. Good luck!"
+medium,0,2,24,"Hello Next Player!
+
+Here are some key strategies to maximize your points in the grid-world game:
+
+1. **Prioritize Consuming**: Focus on consuming as many objects as possible, as each one usually gives you 1 point. The more you consume, the higher your score will be.
+
+2. **Try Combining**: While many combinations may fail, attempting to combine objects that you suspect might create a new one can sometimes yield high rewards. Keep an eye on failed attempts to identify patterns.
+
+3. **Save Higher Value Items**: If there are objects that appear intriguing or have potential (like diamonds or unusual shapes), consider saving them for potential combinations, but don't hesitate to consume the simpler items when necessary.
+
+4. **Track Your Attempts**: Pay attention to the outcomes of your combinations. If you notice a set of objects that consistently fail to combine, you may want to avoid trying those again.
+
+5. **Stay Flexible**: Be ready to change your strategy based on the objects available. If you're getting more of one type, look for opportunities to maximize those through consumption or trying combinations.
+
+Good luck, and may your next round be even more rewarding!"
+medium,1,2,30,"Hello, next player! Here are some strategies to help you succeed in the grid-world game:
+
+1. **Prioritize Consumption:** Focus on consuming objects first before attempting to combine them. Each consumption gives you 1 point, which adds up quickly.
+
+2. **Combine Strategically:** After consuming objects, attempt to combine them to increase your point gain. Keep a note of which combinations have failed so you don't waste attempts.
+
+3. **Diversity of Objects:** Try to consume different types and patterns of shapes (squares, circles, triangles, diamonds) for a balanced score across the categories, as this may unlock more combinations.
+
+4. **Test Combinations Carefully:** You may not need to combine every set of objects. Learn from failed combinations to refine your strategy.
+
+5. **Keep Track of Points:** Constantly check your points and adjust your approach if you notice that certain styles (patters or shapes) are yielding more points than others.
+
+Enjoy your game, and good luck accumulating points!"
+medium,0,3,26,"Here's some advice for your next game:
+
+1. **Prioritize Consumption**: Always aim to consume items first. Each item you consume earns you 1 point, which adds up quickly.
+
+2. **Experiment with Combinations**: While not all combinations will succeed, it's crucial to attempt combining items. You may discover valuable combinations that yield more points. Note which items have failed to combine in the past.
+
+3. **Keep Track of Item Types**: Different shapes (squares, circles, triangles, diamonds) seem to pair with each other. Pay attention to which items might work together based on their shapes and patterns.
+
+4. **Be Strategic with Failure**: Use the failures as learning experiences. Note patterns in the failures and avoid attempting those combinations in the future.
+
+5. **Balance Your Actions**: If you're left with a lot of items, focus on consuming the ones that aren't compatible for combining to free up space and evaluate new opportunities.
+
+By following these strategies, you should be able to maximize your points effectively. Good luck!"
+medium,1,3,30,"**Tips for Success in Grid-World Game:**
+
+1. **Prioritize Consumption:** Consuming objects yields immediate points. Focus on consuming any available objects before attempting combinations.
+
+2. **Attempt Combinations Wisely:** Note which combinations failed, as this can help you avoid wasting turns. It seems that certain shapes and patterns are more prone to successful combinations. 
+
+3. **Know Your Objects:** Familiarize yourself with the objects' types and patterns (squares, circles, triangles, diamonds) and how they might combine. Try to group similar objects for potential combinations.
+
+4. **Keep Track of Resources:** Efficiently manage your inventory. If you have objects that have failed to combine, consider consuming them to free up space for more valuable items.
+
+5. **Experiment with Combinations:** While some combinations fail, keep experimenting, especially with different patterns together, as you may discover unexpected successes.
+
+6. **Focus on Variety:** The more diverse your consumed objects, the more strategies you can employ, especially with combinations. 
+
+7. **Stay Persistent:** Not every combination will work. Don't get discouraged by failures; every point adds up!
+
+Good luck, and enjoy exploring the grid-world!"
+medium,0,4,30,"Here are some key strategies to maximize your points in the grid-world game:
+
+1. **Prioritize Consumption**: Focus on consuming the available objects as each one grants you 1 point. Consume everything before attempting combinations.
+
+2. **Learn from Failures**: If a combination fails, take note of which items were used. Certain combinations may not work, so avoid attempting them again.
+
+3. **Combine Strategically**: After consuming, try to combine items only if you have no other options. This helps to gather more items for consumption.
+
+4. **Explore Different Object Types**: Different shapes (squares, circles, triangles, diamonds) seem to yield more points overall. Make sure to consume a balanced variety to maximize your score.
+
+5. **Avoid Redundancy**: If an item has been consumed or failed in combinations, eliminate them from your attempts to save time and effort.
+
+6. **Stay Persistent**: Even if a particular combination fails multiple times, keep trying with new combinations. New items may lead to successful combinations.
+
+By following these strategies, you'll be better prepared to score points effectively. Good luck!"
+medium,1,4,31,"Hello Player,
+
+Here are some key strategies I found helpful during my time in the grid-world game that may assist you:
+
+1. **Consume First:** Focus on consuming objects as soon as you can. Each item gives you 1 point, which adds up quickly.
+
+2. **Know Your Combinations:** Be aware of the items that have failed to combine in your experience. This helps in avoiding wasted attempts with combinations that don't yield results.
+
+3. **Prioritize Variety:** Consuming a diverse set of objects (squares, circles, triangles, diamonds) may provide more combinations down the line. It’s beneficial to try to collect at least one of each type.
+
+4. **Keep Track of IDs:** Take note of the IDs that have been consumed and those that have been tried unsuccessfully. This can save time as you progress.
+
+5. **Don’t Rush Combinations:** Only attempt to combine objects if you have some prior good combinations that worked. If something fails to combine, shift back to consuming.
+
+With these strategies in mind, you should be able to maximize your points effectively. Good luck, and have fun!
+
+Best,
+Your Assistant"
+hard,0,0,24,"Here are some strategies to maximize your points in the grid-world game:
+
+1. **Prioritize Consumption**: Focus on consuming available objects as quickly as possible for consistent point gains. Each object consumed earns you 1 point.
+
+2. **Combination Attempts**: Be strategic when trying to combine objects. Track which combinations have failed in your previous attempts to avoid wasting actions on them again.
+
+3. **Variation in Objects**: Different types of objects (shapes: squares, circles, triangles, diamonds) may have varied combination rules. Experiment with different combinations but remember which ones yielded success.
+
+4. **Inventory Management**: Keep track of your inventory—know which objects to prioritize for consumption or combination based on their types and potential for point accumulation.
+
+5. **Invest in Sparing Attempts**: It can be more beneficial to consume objects you know will work rather than repeatedly trying combinations without success.
+
+By following these strategies, you'll be able to maximize your point total more efficiently! Good luck!"
+hard,1,0,28,"Hey there!
+
+To excel in this grid-world game, here are some key strategies and patterns to keep in mind:
+
+1. **Focus on Consumption First**: Prioritize consuming basic objects (like the red squares, circles, triangles, and diamonds). Each provides 1 point and helps build your score quickly.
+
+2. **Experiment with Combinations**: Don’t hesitate to experiment with combining different shapes. However, note that not every combination will succeed, so apply combinations selectively. If they fail repeatedly, consider switching focus to other objects.
+
+3. **Track Object Types**: Pay attention to the types of objects you have. Objects can often be combined only if they are the same type or meet specific conditions. Keep a mental or written note of which objects pair well based on your experience.
+
+4. **Use Patterns from Previous Attempts**: Review past successful consumptions and combinations to identify potential synergies or promising combinations that worked. Some patterns may emerge, helping you predict successful outcomes.
+
+5. **Maximize Recovery from Failures**: After a failed combination, quickly move on to consuming more items rather than dwelling on the failure. You can recover points faster by adding to your score with successful consumptions.
+
+6. **Maintain Variety**: Collect a diverse range of items to have more options for potential combinations. This flexibility can be crucial when aiming to maximize your points.
+
+With these strategies in mind, you can enhance your gameplay and boost your score. Good luck and have fun!"
+hard,0,1,36,"Congratulations on your journey through the grid-world! Here are some key strategies that may help you maximize your points in future games:
+
+1. **Focus on Consumption**: Consuming objects appears to be a reliable way to earn points. While combining can sometimes yield better results, it often fails—so prioritize consuming items when unsure.
+
+2. **Understand Object Combinations**: Keep track of which objects failed to combine. There may be specific pairs that consistently work or don’t work. Observing patterns can save you attempts.
+
+3. **Prioritize Unique Shapes**: Ensure you cover all unique objects (e.g., squares, circles, triangles, diamonds) before attempting combinations. Consuming a variety of shapes increases your score significantly, as you can earn a point per item.
+
+4. **Diversity of Patterns**: Pay attention to the patterns (plain, dotted, striped, checkered). Mixing different patterns across the same shape may allow successful combinations and higher points.
+
+5. **Plan Efficient Moves**: Each step counts; try to maximize your actions by first checking which objects you need to consume or combine that have a higher success rate.
+
+By focusing on these strategies, you should be able to gain more points and progress further in your next game. Good luck!"
+hard,1,1,31,"**Advice for Succeeding in the Grid-World Game**
+
+1. **Prioritize Consumption**: Focus on consuming objects immediately when possible. This provides a consistent way to earn points.
+
+2. **Test Combinations Cautiously**: Combining objects can be hit-or-miss. Keep track of which combinations fail and prioritize consuming the objects that have proven successful for points.
+
+3. **Diversity of Shapes**: Ensure you consume a variety of shapes (squares, circles, triangles, diamonds) to maximize opportunities as some may not combine well with others.
+
+4. **Pattern Recognition**: Pay attention to which objects cluster together without successful combinations. Avoid those combinations in future attempts.
+
+5. **Point Accumulation**: Remember that each object you consume grants 1 point. Focus on those that you've had success with rather than taking too many risks with combinations.
+
+6. **Resource Management**: Be strategic about when to attempt combination moves as failing a combine takes time and may prevent you from consuming more objects for points.
+
+By following these strategies, you'll optimize your performance and maximize your points in the game. Good luck!"
+hard,0,2,31,"Hello, future player! Here are some strategies I found helpful during my game:
+
+1. **Prioritize Consumption**: Consuming objects earns you points quickly. Focus on consuming items that you can readily access and that don't require combinations.
+
+2. **Experiment with Combinations**: While some combinations may fail, don't be discouraged. Keep trying different pairs to see if you can discover successful combinations, especially between shapes and patterns.
+
+3. **Track Object Types**: Pay attention to the different types of objects (squares, circles, triangles, diamonds) and their patterns (plain, dotted, striped, checkered). Some combinations may depend on these characteristics.
+
+4. **Avoid Redundant Steps**: If a combination fails multiple times, it might not be worth further attempts. Move on to consuming or exploring other objects instead.
+
+5. **Balance Your Strategy**: Shift between consuming and combining objects. If you find yourself in a rut with combinations, focus on consuming available items to boost your points while you think of new combination strategies.
+
+Good luck, and may you rack up even more points!"
+hard,1,2,34,"**Advice for Success in the Grid-World Game:**
+
+1. **Prioritize Consumption**: Focus on consuming as many objects as possible, as each provides 1 point. Don't hesitate to consume objects that are easier to combine.
+
+2. **Experiment with Combinations**: While some combinations fail, keep trying different pairs. Pay attention to which combinations repeatedly fail and avoid pairing those together again.
+
+3. **Diversity is Key**: Consume different types (shapes and patterns) to maximize your points. The game rewards breadth—try to consume each type at least once.
+
+4. **Track Your Efforts**: Keep a mental note of which items you have successfully combined or failed to combine to improve your strategy moving forward.
+
+5. **Be Efficient**: Upon encountering a failure, don't dwell on it; move on and focus on consuming available items to keep your scoring momentum.
+
+By following these strategies, you can maximize your points and make the most of your time in the game! Good luck!"
+hard,0,3,37,"Hi there! As you navigate through this grid-world game, here are some key strategies to maximize your points:
+
+1. **Consume Early and Often**: Focus on consuming objects as soon as you can. Each object gives 1 point, and they add up quickly.
+
+2. **Understand Combinations**: While some combinations may fail, you should experiment. If you notice that certain shapes or patterns (like red squares or circles) tend to combine more successfully than others, prioritize trying those.
+
+3. **Be Mindful of Object Types**: Different shapes (squares, circles, triangles, diamonds) seem to behave differently. Keep track of which combinations failed versus which were consumed successfully so you can refine your strategy.
+
+4. **Diversify Consumption**: Don’t get stuck on one type of object. Try to consume various types to keep your options open for potential combinations later.
+
+5. **Keep Track of Your Points**: Monitor your points closely and identify when you can reach the next milestone or make strategic shifts in focus.
+
+Following these strategies will help you gather points efficiently and enjoy the game more! Good luck!"
+hard,1,3,27,"**Strategies for Success in the Grid-World Game:**
+
+1. **Prioritize Consumption:** Focus on consuming as many objects as possible, as each one provides a guaranteed 1 point. Don't hesitate to consume items that haven't been successfully combined.
+
+2. **Combination Attempts:** Remember that not all combinations are successful. Prioritize trying combinations with items that are of different types or appearances, as they may yield better results.
+
+3. **Track Your Attempts:** Keep a record of which combinations failed. This will help you avoid repeating unsuccessful combinations and save your resources for more promising pairings.
+
+4. **Diversify Your Objects:** Work on gathering a variety of objects before attempting combinations. Having a range of items increases the chances of finding successful pairs.
+
+5. **Immediate Consumption:** If you identify an object that is unlikely to improve your point total (like duplicates), consuming it immediately can be a wise choice.
+
+Following these strategies can enhance your gameplay and maximize your scoring potential. Good luck!"
+hard,0,4,29,"Here are some key strategies to maximize your points in the grid-world game:
+
+1. **Prioritize Consumption**: Focus on consuming objects as they guarantee points. I earned points by consuming 29 objects throughout the game.
+
+2. **Combine Wisely**: Before attempting a combination, ensure you understand the patterns that yield successful combinations. Failing to combine can waste actions and time.
+
+3. **Explore Variety**: Try to consume a diverse range of objects (shapes and patterns) to keep your options open for potential combinations later.
+
+4. **Track Your Objects**: Keep notes on which combinations have failed and which patterns are available to avoid repeating mistakes.
+
+5. **Act on New Discoveries**: As you consume and gather new objects, stay flexible and adapt your strategy based on the new shapes and patterns you acquire.
+
+By following these strategies, you can optimize your game play and boost your scoring potential significantly. Good luck!"
+hard,1,4,27,"Hello future player!
+
+Here are some strategies to maximize your points in the grid-world game:
+
+1. **Prioritize Consumption**: Always consume available objects first, especially when you’re unsure about their combinability. Each consumed item earns you 1 point.
+
+2. **Learn Combinations**: Pay attention to which combinations fail. Understanding which items can't be combined will save you time and resources. Note patterns in the types and attributes of objects that successfully combine.
+
+3. **Use Variety**: Make sure to collect a diverse range of items. The game often rewards combinations of differing shapes and patterns, so try to gather various types before attempting to combine.
+
+4. **Track Your Progress**: Keep an eye on what you’ve consumed. This will help prevent further failed attempts with items you've already used or failed to combine previously.
+
+5. **Stay Flexible**: If you find that some combinations are consistently failing, shift your strategy to focus on other items or combinations that might yield points more efficiently.
+
+6. **Bonus Points for Combinations**: While consuming is key, don’t ignore the potential of combinations. Aim to test new pairings regularly, especially after you’ve consumed a set number of items.
+
+Good luck, and may you achieve even higher scores!"

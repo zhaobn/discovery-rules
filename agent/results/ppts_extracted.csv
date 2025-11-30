@@ -1,0 +1,184 @@
+condition,run,seed,score,api_response,id
+simple,0.0,0.0,69,No specific rules detected.,
+simple,1.0,0.0,77,"Rule: Combinations are valid if both objects are of the same type, such as all circles.",
+simple,0.0,1.0,63,No specific rules detected.,
+simple,1.0,1.0,69,No specific rules detected.,
+simple,0.0,2.0,71,Rule: Combinations are valid if objects are similar in both shape and color.,
+simple,1.0,2.0,73,No specific rules detected.,
+simple,0.0,3.0,71,Rule: Combinations are more likely to be successful if objects share the same shape or color.,
+simple,1.0,3.0,59,No specific rules detected.,
+simple,0.0,4.0,70,Rule: Combinations are valid if both objects are of similar shapes and colors.,
+simple,1.0,4.0,70,No specific rules detected.,
+medium,0.0,0.0,28,Rule: Combinations are valid if both objects are the same shape and have checkered patterns.,
+medium,1.0,0.0,27,No specific rules detected.,
+medium,0.0,1.0,28,No specific rules detected.,
+medium,1.0,1.0,25,No specific rules detected.,
+medium,0.0,2.0,24,No specific rules detected.,
+medium,1.0,2.0,30,No specific rules detected.,
+medium,0.0,3.0,26,"Rule: Combinations are valid if different shaped items (squares, circles, triangles, diamonds) are paired with each other.",
+medium,1.0,3.0,30,No specific rules detected.,
+medium,0.0,4.0,30,No specific rules detected.,
+medium,1.0,4.0,31,No specific rules detected.,
+hard,0.0,0.0,24,No specific rules detected.,
+hard,1.0,0.0,28,No specific rules detected.,
+hard,0.0,1.0,36,No specific rules detected.,
+hard,1.0,1.0,31,No specific rules detected.,
+hard,0.0,2.0,31,No specific rules detected.,
+hard,1.0,2.0,34,No specific rules detected.,
+hard,0.0,3.0,37,No specific rules detected.,
+hard,1.0,3.0,27,No specific rules detected.,
+hard,0.0,4.0,29,No specific rules detected.,
+hard,1.0,4.0,27,No specific rules detected.,
+low,,,132,No specific rules detected.,2.0
+high,,,100110,Rule: Combinations are valid if both objects are the same shape.,3.0
+low,,,31,No specific rules detected.,4.0
+high,,,400013,Rule: Combinations are valid if both objects are the same shape.,5.0
+medium,,,0,No specific rules detected.,6.0
+low,,,0,Rule: Combinations are likely if the objects are Circles and Squares with solid patterns.,7.0
+high,,,302002,Rule: Combinations are valid if both objects are the same shape.,8.0
+low,,,65,Rule: Combinations of a solid square and solid circle or a solid triangle and solid diamond are valid.,9.0
+low,,,30,No specific rules detected.,10.0
+medium,,,0,No specific rules detected.,11.0
+medium,,,124,No specific rules detected.,12.0
+low,,,0,Rule: Combinations are valid if both objects are different shapes.,13.0
+low,,,101,No specific rules detected.,14.0
+low,,,29,"Rule: Combinations are valid if objects have the same pattern, regardless of shape.",15.0
+high,,,1,Rule: Combinations are valid if both crystals have similar shapes or geometric patterns.,16.0
+medium,,,341,Rule: Combinations are valid if objects are not the same shape.,17.0
+high,,,108,No specific rules detected.,18.0
+high,,,112,No specific rules detected.,19.0
+low,,,220,No specific rules detected.,20.0
+medium,,,200021,"Rule: Combinations are valid if two shapes are mixed, and the new crystal is combined with the same shape to create new colors.",21.0
+medium,,,100000,No specific rules detected.,22.0
+low,,,130,No specific rules detected.,23.0
+medium,,,101015,No specific rules detected.,24.0
+low,,,0,No specific rules detected.,25.0
+low,,,31,No specific rules detected.,26.0
+low,,,1013,No specific rules detected.,27.0
+low,,,5,No specific rules detected.,28.0
+medium,,,1,No specific rules detected.,29.0
+high,,,1,Rule: Combinations are valid if both objects are the same shape.,30.0
+medium,,,100042,No specific rules detected.,31.0
+high,,,1133,No specific rules detected.,32.0
+low,,,121,No specific rules detected.,33.0
+low,,,111,"Rule: Combinations always take on the shape of the first crystal.
+Rule: Combinations always take on the texture of the second crystal.",34.0
+medium,,,0,Rule: Fusions are likely to occur when a circle is combined with a square.,35.0
+low,,,26,No specific rules detected.,36.0
+medium,,,140,No specific rules detected.,37.0
+high,,,300000,Rule: Combinations are valid if both objects are the same shape.,38.0
+high,,,110000,No specific rules detected.,39.0
+high,,,100000,Rule: Blue circle plus red equals purple circle.,40.0
+low,,,0,No specific rules detected.,41.0
+medium,,,111,No specific rules detected.,42.0
+high,,,382,"Rule: Combining a pattern with a non-pattern leads to an orange symbol.  
+Rule: Combining an orange symbol with a squared-pattern leads to a yellow symbol.",43.0
+high,,,300031,Rule: Combinations are valid if both objects are the same shape.,44.0
+low,,,1018,"Rule: Combinations are valid if objects have matching patterns.  
+Rule: Combinations are valid if objects look alike.",45.0
+low,,,175,No specific rules detected.,46.0
+high,,,400031,Rule: Combinations are valid if both objects are the same shape.,47.0
+low,,,1105,No specific rules detected.,48.0
+low,,,0,"Rule: Rectangles fuse with circles.  
+Rule: Triangles fuse with rhombus.",49.0
+low,,,27,No specific rules detected.,50.0
+high,,,0,Rule: Combinations are valid if one crystal has lower energy and the other has higher energy.,51.0
+medium,,,112,"Rule: A Square and a Circle of different patterns can fuse.  
+Rule: A Triangle and a Diamond of different patterns can fuse.",52.0
+low,,,100,No specific rules detected.,53.0
+high,,,11000,Rule: Combinations are valid if both objects are the same shape.,54.0
+medium,,,7,Rule: Combinations are valid if items have the same pattern.,55.0
+low,,,0,Rule: None of the shapes shown combine with a green crystal to make another colour.,56.0
+medium,,,301101,No specific rules detected.,57.0
+low,,,100,Rule: Combinations are likely if objects are triangles or diamonds.,58.0
+high,,,119,Rule: Combinations are valid if both objects are the same shape.,59.0
+low,,,350,"Rule: Combinations are valid when circles and squares have the same pattern.
+Rule: Rhombus and triangles can be combined if they do not have the same pattern or do not have a dotted pattern with lines.
+Rule: Fusing a square with a circle results in a square.
+Rule: Fusing a circle with a square results in a circle.",60.0
+high,,,11,Rule: Combinations are valid if both objects have the same pattern.,61.0
+high,,,213,Rule: Combinations are valid if both objects are the same shape.,62.0
+medium,,,1006,No specific rules detected.,63.0
+medium,,,200002,Rule: Combinations are valid if the new object is fused with a same-shaped object with a different pattern.,64.0
+low,,,76,No specific rules detected.,65.0
+medium,,,1011,Rule: Combinations are valid if solid colored objects are mixed with striped ones.,66.0
+high,,,210040,"Rule: 2 of lesser color = 1 of higher  
+Rule: red + orange = light green  
+Rule: red + light green = dark green  
+Rule: orange + green = blue  
+Rule: red + blue = purple  ",67.0
+medium,,,24,No specific rules detected.,68.0
+low,,,0,Rule: Combinations are valid if both objects are the same color.,69.0
+low,,,130,No specific rules detected.,70.0
+medium,,,144,No specific rules detected.,71.0
+high,,,24,No specific rules detected.,72.0
+low,,,157,"Rule: Combinations are valid if one object is a square and the other is a circle.  
+Rule: Combinations are valid if one object is a triangle and the other is a diagonal shape.",73.0
+medium,,,218,No specific rules detected.,74.0
+medium,,,111,No specific rules detected.,75.0
+high,,,10,"Rule: Combinations are valid if both objects are the same shape, even if they are different colors.",76.0
+low,,,10020,Rule: Combine diamond with triangle.,77.0
+high,,,0,Rule: Combinations are valid if both objects are the same color (red).,78.0
+high,,,21015,No specific rules detected.,79.0
+medium,,,58,Rule: Combinations are valid if the objects have different shapes but similar patterns.,80.0
+medium,,,23,No specific rules detected.,81.0
+low,,,112,"Rule: Combinations are valid if the objects are circles and squares.  
+Rule: Combinations are valid if the objects are diamond and triangles.  
+Rule: Patterns sometimes hint at valid combinations.",82.0
+medium,,,1001,Rule: Combinations are valid if one object is a circle and the other is a square. Shape is determined by the object you hold; inner pattern is determined by the object you do not hold.,83.0
+high,,,111,Rule: You can only combine similarly shaped crystals.,84.0
+high,,,111143,Rule: Combinations are valid if both objects are the same shape.,85.0
+high,,,100012,Rule: Combinations are valid if both objects are the same shape.,86.0
+medium,,,11001,No specific rules detected.,87.0
+low,,,1,No specific rules detected.,88.0
+low,,,0,No specific rules detected.,89.0
+medium,,,362,"Rule: Same shapes cannot be combined.  
+Rule: Shapes with the same pattern cannot be combined.  
+Rule: Blank square can be combined with checkered circle and vice versa.  
+Rule: Blank rhombus can be combined with checkered triangle and vice versa.  
+Rule: Blank triangle can be combined with dotted rhombus and vice versa.  
+Rule: Dotted triangle can be combined with diagonal rhombus and vice versa.  
+Rule: Diagonal triangle can be combined with checkered rhombus and vice versa.  
+Rule: Resulting fusions can be further combined according to the recipes to make more valuable minerals.",90.0
+medium,,,1,"Rule: A square and circle make a recipe.  
+Rule: A kite and triangle make a recipe.",91.0
+high,,,201,Rule: Combinations are valid if both objects are the same shape.,92.0
+medium,,,212,No specific rules detected.,93.0
+low,,,62,No specific rules detected.,94.0
+medium,,,27,No specific rules detected.,95.0
+low,,,20,Rule: Shapes that are the same are not to be combined.,96.0
+medium,,,110120,"Rule: Triangles combine only with diamonds and vice versa.  
+Rule: Squares combine only with circles and vice versa.  
+Rule: Combinations occur with geometric partners that have a different color or pattern.",97.0
+low,,,16,No specific rules detected.,98.0
+high,,,100026,No specific rules detected.,99.0
+medium,,,10102,No specific rules detected.,100.0
+high,,,310100,Rule: Combinations are valid if shapes are alike but have different shades.,101.0
+high,,,301020,Rule: Combinations are valid if both objects are the same shape.,102.0
+high,,,126,No specific rules detected.,103.0
+high,,,100000,Rule: Combinations are valid if both objects are the same shape.,104.0
+medium,,,30,No specific rules detected.,105.0
+high,,,1006,Rule: Combinations are valid if objects are identical in shape.,106.0
+medium,,,0,No specific rules detected.,107.0
+high,,,400023,Rule: Combinations are valid if both objects have the same form.,108.0
+medium,,,1000,No specific rules detected.,109.0
+high,,,100000,Rule: Combinations are valid if both objects are the same shape.,110.0
+high,,,124,No specific rules detected.,111.0
+medium,,,431,"Rule: Diamond matches with triangle.  
+Rule: Circle matches with square.  
+Rule: Blank plus lines makes lines.  
+Rule: Blank plus crosshatch makes crosshatch.  ",112.0
+medium,,,1210,Rule: Combinations are valid if one object has a pattern and the other does not.,113.0
+high,,,211140,Rule: Combinations are valid if objects are the same shape but not if they have the same pattern.,114.0
+medium,,,202,No specific rules detected.,115.0
+medium,,,48,Rule: Combinations are valid if objects are of different shapes.,116.0
+medium,,,301000,Rule: Combinations are valid if one of the objects is a circle and the other is a square.,117.0
+medium,,,221,"Rule: Combinations are valid if one object is a checkered shape and the other is a near full (checkered) shape.  
+Rule: Colors do not have to be the same to be combined.  
+Rule: Combined shapes will take the shape of the first item and the pattern of the second item.",118.0
+high,,,100,"Rule: Combinations are valid if objects are the same shape and color, starting with a solid color and then a striped pattern.
+Rule: Combinations are valid if the objects are the same shape with different patterns.",119.0
+medium,,,200213,"Rule: Combinations are valid if both objects are the same shape.  
+Rule: Triangle + multiple Diamonds are a valid combination.  
+Rule: Square + multiple Circles are a valid combination.  
+Rule: Objects must be picked up in a specific order to be valid.",120.0
