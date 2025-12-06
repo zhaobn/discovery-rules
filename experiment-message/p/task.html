@@ -42,7 +42,7 @@
     <div id="instruction" class="long-base" style="display:none;">
       <h1>Instructions</h1>
 
-      <div id="instruction-1">
+      <div id="instruction-1" >
         <div id="instruction-1-content" style="padding-left:5px">
 
           <p>Welcome, space explorer! You just landed on a faraway planet.</p>
@@ -157,6 +157,26 @@
         </div>
       
       </div>
+
+      <div id="instruction-history" style="display: none;">
+        <div id="instruction-history-content" style="padding-left:5px">
+
+          <p>Although a fusion gives you a new crystal that worths more points, <b>only certain crystals can be fused together!</b></p>
+
+          <p>Below is a few snapshots of another player's experience in an early run of this game:</p>
+
+          <p>What can you get from these observations?</p>
+
+          <textarea id="instruction-history-text" style="width: 90%; height: 150px;" placeholder="Write your observations here..."></textarea>
+
+          <p>When you are ready, click Begin to start the game!</p>
+
+        <div class='button-group-vc'>
+          <button class='big-button' id='instruction-btn-hist' onclick="hideAndShowNext('instruction', 'quiz', 'block')">Begin</button>
+        </div>
+      
+      </div>
+    </div>
     
     </div>
 
