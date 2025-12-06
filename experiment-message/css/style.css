@@ -1,0 +1,180 @@
+body {
+  /* font-family: Arial, Helvetica, sans-serif; */
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+    /* background-color: #e0e0e0; */
+}
+
+h1 {
+  font-size: 32px;
+}
+p {
+  line-height: 1.2;
+}
+ul li, ol li {
+  margin-bottom: 10px; /* Space between list items */
+}
+
+.long-base {
+  width: 800px;
+  height: auto;
+  margin: auto;
+}
+.base{
+  width: 800px;
+  height: 600px;
+  margin: auto;
+  /* border: solid 1px goldenrod; */
+}
+.button-group-vc {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 12px;
+}
+.big-button {
+  border: #e0e0e0 1px solid;
+  text-align: center;
+  border-radius: 10%;
+  margin: 2px;
+  font-size: 18px;
+  padding: 10px 30px;
+}
+.big-button:hover:enabled {
+  background-color: #116466;
+  color: #e0e0e0;
+}
+.big-button:disabled,
+.big-button:disabled:hover {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.instruct-heading {
+  font-size: 1.2em; /* Slightly larger than main text */
+  font-weight: 600; /* Slightly bolded */
+  border-bottom: 2px solid #ccc; /* Underline spanning the page */
+  padding-bottom: 5px; /* Space between text and underline */
+  margin-bottom: 15px; /* Space between heading and next content */
+}
+#task-info p {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+#task-grid {
+  margin-top: 5px;
+  display: grid;
+  grid-template-columns: repeat(15, 30px);
+  grid-template-rows: repeat(15, 30px);
+  gap: 2px;
+  position: relative;
+  /* border: 2px solid #ccc; */
+}
+.grid-cell {
+  width: 30px;
+  height: 30px;
+  background-color: #5A5A5A;
+  border: 1px solid #4A4A4A;
+  position: relative;
+}
+
+.player {
+  background-color: green;
+  width: 100%;
+  height: 100%;
+}
+
+table.scrolldown {
+  width: 100%;
+  /* border-collapse: collapse; */
+  border-spacing: 0;
+}
+
+/* To display the block as level element */
+table.scrolldown tbody,
+table.scrolldown thead {
+  display: block;
+}
+thead tr th {
+  height: 20px;
+  line-height: 10px;
+}
+
+table.scrolldown tbody {
+
+  /* Set the height of table body */
+  height: 32vh;
+
+  /* Set vertical scroll */
+  overflow-y: scroll;
+
+  /* Hide the horizontal scroll */
+  overflow-x: hidden;
+}
+
+/* tbody td,
+thead th {
+  width: 100px;
+  background-color: #116466;
+} */
+
+#task-reward-table th:first-child,
+#task-reward-table td:first-child {
+  width: 60px;
+  text-align: left; /* Optional: Align the content */
+  white-space: nowrap; /* Optional: Prevent wrapping */
+}
+
+.recipes {
+  width: 25vw;
+  float:right;
+}
+.item-image {
+  position: absolute;
+  z-index: 1;
+}
+.player {
+  position: absolute;
+  z-index: 2;
+}
+#task-info-points,
+#task-info-actions {
+  font-size: 30px;
+  font-weight: bold;
+  color: red;
+}
+#task-info-points {
+  color: green;
+}
+
+#grid-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(128, 128, 128, 0.7); /* Semi-transparent grey */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it is on top of other elements */
+}
+
+#grid-cover h1 {
+  color: white;
+  font-size: 48px;
+  font-weight: bold;
+}
+@keyframes flash {
+  0% {
+    color: transparent;
+    /* background-color: yellow; */
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+.flash {
+  animation: flash 0.5s ease-out;
+}
