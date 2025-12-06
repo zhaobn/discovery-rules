@@ -12,7 +12,7 @@
 
   <body>
 
-    <div id="welcome" class="base" style="display: none;">
+    <div id="welcome" class="base">
         
 <div style="text-align: right; padding: 0.5em 1em; font-size: 1em;">
     <a href="accessibility.html">Accessibility</a>
@@ -39,7 +39,7 @@
 
 
 
-    <div id="instruction" class="long-base">
+    <div id="instruction" class="long-base" style="display:none;">
       <h1>Instructions</h1>
 
       <div id="instruction-1">
@@ -135,31 +135,95 @@
       <div id="instruction-3" style="display:none;">
         <div id="instruction-3-content" style="padding-left:5px">
 
-          <p>Although a fusion gives you a new crystal that worths more points, <b>not all crytals can be fused together!</b></p>
+          <p>Although a fusion gives you a new crystal that worths more points, <b>only certain crystals can be fused together!</b></p>
           
-          <p>Scientists still do not understand why some pairs of crystals on this planet can fuse, while others do not.</p>
-
-          <p>All they know is that shape and texture seem to be important indicators of which crystals can be fused together.</p>
-
-          <p>At the end of the game, you'll have the chance to leave a <b>message for a future participant who will also harvest crystals on this faraway planet</b>.</p>
+          <p>Here is a message from a previous player (who will earn a bonus based on how well YOU perform):</p>
+          
+          <div class="message-box">
+            Choose a starting shape like circle. Try matching with another circle first, and if it fuses, keep choosing circle. If not, then choose another shape until you find the fusing match. When you get to purple, drop it and find another match. Make sure to cash in the purple when you only have a few moves left.
+          </div>
           
           <p>
-            Share any knowledge or tips you think will help them harvest more energy points.
-            <b>You will receive a bonus based on the energy points that you and this future participant harvest</b>,
-            so try to give them good advice!
+            At the end of the game, you will also have the chance to leave a <b>message for a future player</b>,
+            and receive a bonus based on how well they perform using your advice.
           </p>
-
+        
           <p>Ready to Begin? Good luck and have fun!</p>
 
         </div>
 
         <div class='button-group-vc'>
-          <button class='big-button' id='instruction-btn-3' onclick="beginTask()">Begin</button>
+          <button class='big-button' id='instruction-btn-3' onclick="hideAndShowNext('instruction', 'quiz', 'block')">Begin</button>
         </div>
       
       </div>
     
     </div>
+
+
+    <div id="quiz" class="base" style="display:none;">
+
+      <h1>Comprehension check</h1>
+        <p>Please answer the following questions to ensure you understand the game:</p>
+        
+        <form id="comprehension-form">
+
+          <p>1. When two crystals fuse successfully, the new crystal is worth ten times the points of the higher-value crystal you used.</p>
+          <label>
+            <input type="radio" name="q1" value="true"> True
+          </label>
+          <label>
+            <input type="radio" name="q1" value="false"> False
+          </label>
+
+          <p>2. Any two crystals can be fused together.</p>
+          <label>
+            <input type="radio" name="q2" value="true"> True
+          </label>
+          <label>
+            <input type="radio" name="q2" value="false"> False
+          </label>
+    
+          <p>3. You earn energy points directly from successful fusions.</p>
+          <label>
+            <input type="radio" name="q3" value="true"> True
+          </label>
+          <label>
+            <input type="radio" name="q3" value="false"> False
+          </label>
+
+    
+          <p>4. Moving around the planet uses up your available actions.</p>
+          <label>
+            <input type="radio" name="q4" value="true"> True
+          </label>
+          <label>
+            <input type="radio" name="q4" value="false"> False
+          </label>
+
+
+          <p>5. In your own words, briefly recap the message from the previous player:</p>
+          <textarea id="recap" name="recap" rows="5" cols="90"
+            placeholder="Write a short summary of the message from the previous player:"></textarea>
+        
+        </form>
+        
+        <div class='button-group-vc' id="quiz-btn-div">
+          <button class='big-button' id='quiz-btn' onclick="checkQuiz()">Check</button>
+        </div>
+
+        <div id="quiz-feedback"></div>
+
+        <div class='button-group-vc' id="begin-btn-div" style="display:none;">
+          <button class='big-button' id='begin-btn' onclick="beginTask()">Begin</button>
+        </div>
+
+        <div class='button-group-vc' id="redo-btn-div" style="display:none;">
+          <button class='big-button' id='redo-btn' onclick="redoQuiz()"></button>
+        </div>
+
+    </div>
+
 
     <div id="task" class="base" style="display:none;">
 
@@ -176,17 +240,17 @@
 
         <div id="task-grid-wrapper" style="width:500px;">
 
-          <div id="task-grid" style="height: 500px;"></div>
+          <div id="task-grid" style="height: 500px;" ></div>
 
           <div id="task-composer" style="display: none;">
 
-            <p style="padding: 0; margin: 0;">You can now leave some <b>messages for a future player</b>. This message will be passed on to someone who will play the <b>same game</b> you just played, starting with the <b>same initial settings</b>.</p>
-            <!-- <p>Think about what you've learned—strategies, combinations, or tips that could help the next player score more points.</p>-->
-            <p>Share tips or strategies that could help the next player score more points:</p>
-            <textarea id="composer-text-how" style="height: 100px; width: 92%;" placeholder="Type your message here..."></textarea>
+            <p style="padding: 0; margin: 0;">You can now leave a <b>message for a future player</b>. This message will be passed on to someone who will play the <b>same game</b> you just played, starting with the <b>same initial settings</b>.</p>
+            <p>Think about what you've discovered&mdash;valuable recipes, rules or patterns you noticed&mdash;that could help the next player score more points.</p>
+            <!-- <p>Share tips or strategies that could help the next player score more points:</p> -->
+            <textarea id="composer-text-how" style="height: 200px; width: 92%;" placeholder="Type your message here..."></textarea>
 
-            <p>Explain any rules or patterns you noticed when combining items:</p>
-            <textarea id="composer-text-rules" style="height: 100px; width: 92%;" placeholder="Type your message here..."></textarea>
+            <!-- <p>Explain any rules or patterns you noticed when combining items:</p>
+            <textarea id="composer-text-rules" style="height: 100px; width: 92%;" placeholder="Type your message here..."></textarea> -->
 
             <p>You will earn a bonus based on how well the future player who reads your message performs in their game. The more points they earn, the bigger your reward!</p>
 

@@ -23,6 +23,58 @@ function beginTask() {
   subjectData['instruction_duration'] = start_task_time - start_time;
 }
 
+// Comprehension check
+let form = document.getElementById("comprehension-form");
+let quizAnswers = [true, true, false, false]; 
+
+function checkQuiz() {
+  const userAnswers = quizAnswers.map((_, i) => {
+    const name = "q" + (i + 1);
+    const selected = form.querySelector(`input[name="${name}"]:checked`);
+    if (!selected) return null; // unanswered
+    return selected.value === "true"; // convert "true"/"false" → boolean
+  });
+
+  // check for missing answers
+  if (userAnswers.includes(null)) {
+    alert("Please answer all the true/false questions.");
+    return;
+  }
+
+  // compare with ground truth
+  const allCorrect = userAnswers.every((ans, i) => ans === quizAnswers[i]);
+
+  // (optional) check recap is non-empty
+  const recap = form.recap.value.trim();
+  if (!recap) {
+    alert("Please write a short summary in the recap box.");
+    return;
+  }
+
+  if (allCorrect) {
+    getEl('quiz-feedback').innerHTML = "🎉 All answers correct, let's Begin!";
+    getEl('quiz-feedback').style.color = "green";
+    hide('quiz-btn-div');
+    setTimeout(() => {
+      hideAndShowNext('quiz', 'task', 'block');
+      getEl('quiz-feedback').innerHTML = "";
+      showNext('quiz-btn-div');
+    }, 2000);
+
+  } else {
+    getEl('quiz-feedback').innerHTML = "❌ Some answers are incorrect. Please review the instructions.";
+    getEl('quiz-feedback').style.color = "red";
+    hide('quiz-btn-div');
+    setTimeout(() => {
+      hideAndShowNext('quiz', 'instruction', 'block');
+      hideAndShowNext('instruction-3', 'instruction-1', 'block');
+      getEl('quiz-feedback').innerHTML = "";
+      showNext('quiz-btn-div');
+    }, 2500);
+  }
+}
+
+
 // Main grid task functions see grid.js
 function grid_done() {
   // Add a semi-transparent cover to the grid
@@ -46,15 +98,20 @@ function grid_done() {
 // Message composer
 function handle_submit() {
   const composerTextHow = document.getElementById('composer-text-how').value;
-  const composerTextRules = document.getElementById('composer-text-rules').value;
+  // const composerTextRules = document.getElementById('composer-text-rules').value;
 
-  if (composerTextHow === "" || composerTextRules === "") {
-    alert("Please type your message in both text areas. You will be bonused for the quality of your message.");
+  // if (composerTextHow === "" || composerTextRules === "") {
+  //   alert("Please type your message in both text areas. You will be bonused for the quality of your message.");
+  //   return;
+  // }
+
+  if (composerTextHow === "") {
+    alert("Please type your message in the text area. You will be bonused for the quality of your message.");
     return;
   }
 
   subjectData['messageHow'] = composerTextHow;
-  subjectData['messageRules'] = composerTextRules;
+  // subjectData['messageRules'] = composerTextRules;
 
   let message_done_time = new Date();
   subjectData['message_duration'] = message_done_time - task_end_time;
