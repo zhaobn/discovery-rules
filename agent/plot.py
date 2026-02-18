@@ -8,7 +8,7 @@ import seaborn as sns
 # %%
 # Read the CSV file
 df = pd.read_csv('results/full_dumb_history.csv')
-df = pd.read_csv('results/full_default_2025-11-30_14-48-07.csv')
+#df = pd.read_csv('results/full_default_2025-11-30_14-48-07.csv')
 
 # Group by condition and step, then calculate mean and std across runs and seeds
 grouped = df.groupby(['condition', 'step'])['score'].agg(['mean', 'std', 'sum', 'count']).reset_index()
@@ -63,3 +63,4 @@ plt.savefig('performance_over_time.png', dpi=300, bbox_inches='tight')
 plt.show()
 
 print("Plot saved as 'performance_over_time.png'")
+# %%

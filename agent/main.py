@@ -42,7 +42,7 @@ class ComposeEnv:
         return self._get_state()
 
     def _generate_combinable_pairs(self, condition):
-        all_pairs = list(itertools.combinations(self.objects, 2))
+        all_pairs = list(itertools.permutations(self.objects, 2))
 
         def shape_idx(o): return self.SHAPES.index(o["shape"])
         def texture_idx(o): return self.TEXTURES.index(o["texture"])
@@ -193,10 +193,10 @@ class LLMAgent:
             "- combine 2 5  (to combine object 2 with object 5)\n"
         )
         return f"""
-You are an agent exploring a world of colored objects. 
+You are an intelligent agent exploring a world of objects. 
 You can either consume an object to gain points based on its color - red (1 point), yellow (10), orange (100), green (1,000), blue (10,000), purple (100,000) - 
 or combine two objects to create a new object of a higher color level.
-Some hidden rules determine which objects can be combined.
+Some hidden rules determine which objects can be successfully combined.
 Try to discover these rules by experimenting with combinations,
 that way, you can create higher-level colored objects that yield more points when consumed.
 Your goal is to maximize total points within 40 actions.
@@ -477,7 +477,7 @@ class HypothesisAgent:
         self.hypothesis = "No hypothesis yet."
 
     def update_hypothesis(self, SHARED_CONTEXT, history):
-        """Update hypothesis based on the full history"""
+        """Update hypothesis based on history"""
         prompt = (
             f"{SHARED_CONTEXT}\n\n"
             f"History so far:\n{history}\n\n"
@@ -518,8 +518,10 @@ class PlannerAgent:
     
             "You can take ONE action this step.\n"
             f"Available actions:\n{available_actions}\n\n"
-            "Respond with only one line:\n"
-            "Action: <your choice here>"
+            "Respond with exactly:\n"
+            "consume <id>\n"
+            "or\n"
+            "combine <id1> <id2>"
         )
 
         response = self.client.chat.completions.create(
@@ -536,11 +538,11 @@ class PlannerAgent:
         actions = []
         import re
         for line in text.splitlines():
-            m = re.match(r"consume\s+(\d+)", line, re.IGNORECASE)
+            m = re.search(r"consume\s+(\d+)", line, re.IGNORECASE)
             if m:
                 actions.append(("consume", int(m.group(1))))
                 continue
-            m = re.match(r"combine\s+(\d+)\s+(\d+)", line, re.IGNORECASE)
+            m = re.search(r"combine\s+(\d+)\s+(\d+)", line, re.IGNORECASE)
             if m:
                 actions.append(("combine", int(m.group(1)), int(m.group(2))))
         return actions
@@ -584,7 +586,6 @@ class ExecutorAgent:
 
             # 1️⃣ Update hypothesis if it's time
             if step == 0 or step % update_hypothesis_every == 0:
-                hypo_prompt = str(self.env.history)
                 hypothesis = self.hypothesis_agent.update_hypothesis(SHARED_CONTEXT, self.env.history)
                 self.hypothesis_records.append({
                     "condition": self.condition,
@@ -599,7 +600,7 @@ class ExecutorAgent:
                     "seed": self.seed,
                     "step": step,
                     "llm_type": "hypothesis",
-                    "prompt": SHARED_CONTEXT + hypo_prompt,
+                    "prompt": str(self.env.history),
                     "model_output": hypothesis
                 })
 
