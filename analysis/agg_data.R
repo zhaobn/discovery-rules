@@ -104,8 +104,7 @@ plt_ind_pairs_box <- ggplot(combine_individual_coverage, aes(x = condition, y = 
 
 plt_uniq_pairs_box + plt_ind_pairs_box +
   plot_layout(guides = "collect") & 
-  theme(legend.position = "bottom") &
-  ylim(c(0,40))
+  theme(legend.position = "bottom") 
 
 
 fit <- aov(n ~ condition, data = combine_unique_pairs)
