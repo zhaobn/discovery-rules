@@ -1,0 +1,271 @@
+condition,run,seed,step,hypothesis
+simple,0,0,0,Rule: Combinations are valid when objects share the same shape or the same texture.
+simple,0,0,5,Rule: Objects of the same color and shape can be combined if their textures are different.
+simple,0,0,10,Rule: Objects of the same color and shape can combine if they have different textures.
+simple,0,0,15,Rule: Objects of the same color and shape can be combined if they have different textures.
+simple,0,0,20,Rule: Combinations require either the same shape and a different texture or the same texture with a different shape.
+simple,0,0,25,Rule: Combinations are valid if the shapes are the same and the textures differ.
+simple,0,0,30,Rule: Combinations are only valid between objects of the same shape and must have different textures.
+simple,0,0,35,Rule: Only objects with the same shape can be combined.
+simple,0,0,41,Rule: Two shapes can only be combined if they are of different types and share the same colors.
+simple,1,0,0,Rule: Combinations are valid if shapes match and textures differ.
+simple,1,0,5,Rule: Objects of the same color and shape can be combined if their textures are different.
+simple,1,0,10,Rule: Shapes of the same type can be combined with different textures to create a higher value object.
+simple,1,0,15,Rule: Combinations are valid if the shapes are the same and the textures are different.
+simple,1,0,20,Rule: Objects of different shapes but the same texture cannot be combined.
+simple,1,0,25,"Rule: Combinations are valid if the objects have the same color and shape, but the texture must differ (plain, dotted, striped, checkered)."
+simple,1,0,30,Rule: Combinations of objects are valid only if they share the same shape and texture type.
+simple,1,0,35,Rule: Only objects of the same shape can be combined.
+simple,1,0,41,"Rule: The combination rule appears to involve two shapes of the same color, with different patterns leading to a new shape of the same basic type (e.g., square, circle, triangle, diamond) in yellow, and subsequent combinations of those yellow shapes result in orange shapes of the same type but different patterns."
+simple,0,1,0,Rule: Combinations are valid if the shapes are the same and the textures are different.
+simple,0,1,5,Rule: Objects with the same color and shape can be combined if they have different textures to create a new object of the next higher color value.
+simple,0,1,10,'Rule: Combinations are valid when both objects share the same shape and one has a plain or dotted texture while the other has a striped or checkered texture.'
+simple,0,1,15,Rule: Objects can only be combined if they share the same color and shape.
+simple,0,1,20,Rule: Combinations are only valid when objects share the same shape and have different textures.
+simple,0,1,25,Rule: Shapes must match and textures must be the same or complementary to combine successfully.
+simple,0,1,30,"Rule: Combinations are valid if the shapes are the same and the textures are either the same or of differing types (e.g., plain with dotted, striped with checkered)."
+simple,0,1,35,Rule: Objects of the same color and shape but with different textures can be combined to create a new object of a higher value.
+simple,0,1,41,"Rule: Combinations of shapes are successful only if they follow a specific sequence of color and pattern, but further combinations may fail if certain conditions are not met, possibly due to color or type restrictions."
+simple,1,1,0,Rule: Objects of the same shape can combine with any texture to create a new object of the same color with increased value.
+simple,1,1,5,Rule: Objects can only be combined if they share the same shape and have different textures.
+simple,1,1,10,"Rule: Combinations of objects with the same shape and different textures (plain, dotted, striped, checkered) create a new object of a higher value with a combined texture type."
+simple,1,1,15,Rule: Combinations are valid if the objects share the same shape and have different textures.
+simple,1,1,20,"Rule: Combinations are valid if the shapes are the same and the textures are either the same or different, but certain restrictions apply when combining higher value objects."
+simple,1,1,25,Rule: Objects of the same color and shape but different textures can combine into a more valuable object.
+simple,1,1,30,Rule: The combination validity may depend on both color hierarchy (orange and below) and matching shapes or textures.
+simple,1,1,35,Rule: Combination requires objects to have the same shape and texture to be valid.
+simple,1,1,41,"Rule: Combinations of shapes must have different patterns (plain, dotted, striped, checkered) to succeed."
+simple,0,2,0,Rule: Combinations are valid if the object's shapes are the same and their textures are different.
+simple,0,2,5,Rule: Red objects of the same shape can be combined if they have different textures to create yellow objects.
+simple,0,2,10,Rule: Combinations are valid if the objects share the same shape and their textures are different.
+simple,0,2,15,Rule: Combinations are valid between objects of the same color and shape but require different textures.
+simple,0,2,20,Rule: Combinations are only valid if the shapes are the same but the textures are different.
+simple,0,2,25,Rule: Objects of different shapes cannot combine when they share the same texture.
+simple,0,2,30,Rule: Objects can only be combined if they are of the same color and have different shapes or textures.
+simple,0,2,35,Rule: Objects with the same color and shape but different textures can successfully combine.
+simple,0,2,41,"Rule: Shapes with differing colors and the same pattern type can be combined into a new shape of a different color and pattern type, but combinations of the same color and checker pattern failed."
+simple,1,2,0,Rule: Combinations are valid if the shapes are the same and the textures are different.
+simple,1,2,5,Rule: Objects of the same color and shape can be combined if their textures are different.
+simple,1,2,10,Rule: Combining objects of the same shape and different textures of the same color creates a new object of the next higher color value.
+simple,1,2,15,Rule: Objects with the same color and shape but different textures can be combined to form a higher-valued object.
+simple,1,2,20,Rule: Objects of different shapes cannot be combined unless they share the same texture.
+simple,1,2,25,"Rule: Combinations of the same shape and texture must use the same feature type (square with square, circle with circle, etc.), but cannot combine different shapes even if they share the same texture."
+simple,1,2,30,Rule: Objects of different shapes cannot be combined into a higher value object.
+simple,1,2,35,Rule: Combinations are valid only between objects of different shapes or textures within the same color category.
+simple,1,2,41,"Rule: Two shapes can only be combined if they are of the same type (square, circle, triangle, or diamond) and must also have compatible patterns (e.g., plain with dotted, or striped with checkered)."
+simple,0,3,0,Rule: Shapes of the same type can combine with textures of the same type to create a new object of the next color value.
+simple,0,3,5,Rule: Objects of the same color and shape can be combined if they have different textures.
+simple,0,3,10,"'Rule: Combinations of objects with the same shape and different textures (plain, dotted, striped, checkered) produce a new object of the next color in the value hierarchy.'"
+simple,0,3,15,Rule: Objects with the same color and shape but different textures can be combined to form a new object of the next higher color value.
+simple,0,3,20,Rule: Only objects of the same color and shape can be validly combined for higher value.
+simple,0,3,25,Rule: Objects can only be combined if they share the same shape and texture.
+simple,0,3,30,Rule: Combinations require different shapes or textures to create a new object.
+simple,0,3,35,Rule: Combinations of objects must have the same shape but different textures to be valid.
+simple,0,3,41,Rule: Combinations of shapes are successful only when they are of the same color and pattern type.
+simple,1,3,0,Rule: Combinations are valid if the shape and texture of the two objects are the same or if they form a geometric progression in value.
+simple,1,3,5,Rule: Combinations are valid if the objects share the same color and shape.
+simple,1,3,10,Rule: Objects with the same color and shape but different textures can be combined into a higher value object.
+simple,1,3,15,Rule: Objects of the same color and shape can be combined if their textures are either identical or complementary.
+simple,1,3,20,Rule: Valid combinations require identical shapes and textures to create higher value objects.
+simple,1,3,25,Rule: Combinations are valid if the objects share the same shape and texture type.
+simple,1,3,30,Rule: Objects with the same color and shape can only combine if at least one of them has a different texture.
+simple,1,3,35,Rule: Combinations are valid when objects share the same shape and texture type.
+simple,1,3,41,"Rule: A shape can only be successfully combined with another shape if they share the same type (e.g., squares with squares, circles with circles) and the resulting combination is of a different color."
+simple,0,4,0,"Rule: Combinations are likely valid if the shapes are the same and the textures are complementary (e.g., plain with striped, dotted with checkered)."
+simple,0,4,5,"Rule: Combinations of the same shape and color but different textures (plain, dotted, striped, checkered) create new objects of higher value."
+simple,0,4,10,Rule: Shapes of the same type can be combined if their textures are different.
+simple,0,4,15,Rule: Combinations of objects are valid if they share the same color and shape.
+simple,0,4,20,Rule: Combinations are valid only when the objects share the same color and shape but differ in texture.
+simple,0,4,25,"Rule: Combinations are only valid between objects of different shapes, regardless of texture."
+simple,0,4,30,Rule: Combinations must involve different shapes or textures to succeed.
+simple,0,4,35,"Rule: Only objects of the same shape can be combined, regardless of color or texture."
+simple,0,4,41,"Rule: The combination rule seems to allow combining identical shapes with different textures to create a new shape, while combining different shapes with the same texture leads to failure."
+simple,1,4,0,Rule: Objects of the same shape and texture can be combined to create a new object with the value of the sum of their individual values.
+simple,1,4,5,Rule: Combine objects of the same color and shape but with different textures to create a new object of the next higher value color.
+simple,1,4,10,Rule: Objects can be combined if they share the same shape.
+simple,1,4,15,Rule: Objects can only be combined if they have the same shape.
+simple,1,4,20,Rule: Only shapes of the same type can be combined if their textures are different.
+simple,1,4,25,Rule: Combinations are valid only when the shapes differ while textures remain the same.
+simple,1,4,30,Rule: Combinations are valid only when the shapes are the same and the textures are different.
+simple,1,4,35,Rule: Combinations can only be made with objects of the same shape and texture.
+simple,1,4,41,"Rule: The combination rule appears to require specific shapes or patterns that cannot be combined with one another after initial combinations are made, as the orange square checkered and orange circle checkered repeatedly fail to combine."
+medium,0,0,0,Rule: Combinations are valid if the shapes are the same and the textures are different.
+medium,0,0,5,Rule: Objects cannot be combined if they share both the same color and shape.
+medium,0,0,10,Rule: Objects with the same shape cannot be combined regardless of their textures.
+medium,0,0,15,'Rule: Only objects with different shapes and textures can be combined.'
+medium,0,0,20,Rule: Red objects can only combine with different shapes and textures.
+medium,0,0,25,Rule: Combinations require differing shapes or textures to be valid.
+medium,0,0,30,Rule: A valid combination requires at least one differing shape or texture between the objects.
+medium,0,0,35,Rule: Red objects cannot combine with the same shape regardless of texture.
+medium,0,0,41,"Rule: Combinations are unsuccessful if the shapes are of different types or have conflicting attributes (e.g., color patterns like plain vs. dotted)."
+medium,1,0,0,Rule: Combinations are only valid if shapes are the same and textures are different.
+medium,1,0,5,"Rule: Objects with the same color and shape cannot be combined, regardless of their texture."
+medium,1,0,10,"Rule: Objects with the same color and shape cannot be combined, regardless of texture."
+medium,1,0,15,Rule: Objects with the same shape and color cannot be combined regardless of their texture.
+medium,1,0,20,"Rule: Red objects cannot be combined with other red objects of the same shape, regardless of texture."
+medium,1,0,25,Rule: Objects with the same shape but different textures cannot be combined.
+medium,1,0,30,"Rule: Objects of the same color and shape cannot be combined, regardless of texture."
+medium,1,0,35,Rule: Combinations are only valid if the shapes are the same and the textures differ.
+medium,1,0,41,"Rule: The combination of certain items, specifically different styles of red squares, fails consistently, suggesting a specific incompatibility based on their attributes."
+medium,0,1,0,"Rule: Combinations are valid if the shapes are the same and the textures are complementary (e.g., plain with dotted, striped with checkered)."
+medium,0,1,5,"Rule: Objects with the same color and shape cannot be combined, regardless of their texture."
+medium,0,1,10,Rule: The combination of objects requires different shapes or textures to be valid.
+medium,0,1,15,Rule: Combinations are only valid between objects of different shapes or textures.
+medium,0,1,20,"Rule: Combinations are only valid if the shapes are different, regardless of the color and texture."
+medium,0,1,25,Rule: Combinations are valid only if shapes are different while textures are the same.
+medium,0,1,30,Rule: Combinations are only valid between different shapes or textures but not between the same shapes or textures.
+medium,0,1,35,Rule: Objects must have different shapes or textures to combine successfully.
+medium,0,1,41,"Rule: The combination fails for objects of the same color but different patterns, and the consumption of an object does not affect the outcome of combining the red square plain with other objects."
+medium,1,1,0,Rule: Combinations are valid only if the shapes are the same and the textures are different.
+medium,1,1,5,Rule: Objects with the same color and shape cannot be combined regardless of their texture.
+medium,1,1,10,Rule: Combinations of objects with the same color and shape but different texture fail to combine.
+medium,1,1,15,"Rule: Objects of the same color and shape cannot be combined, regardless of texture."
+medium,1,1,20,Rule: Only objects of different shapes with the same color and texture can be combined successfully.
+medium,1,1,25,"Rule: Only objects with different shapes can be combined, but they must also have different textures."
+medium,1,1,30,Rule: Only objects with different shapes can be combined if they share the same color and their textures allow for interaction.
+medium,1,1,35,"Rule: Combinations of the same shape with different textures (plain, dotted) are invalid."
+medium,1,1,41,Rule: Combinations only succeed if the shapes are of different types or patterns.
+medium,0,2,0,Rule: Combinations are valid when the shape and texture are different from each other and the resulting object inherits the higher value of the two objects combined.
+medium,0,2,5,Rule: Combinations of the same color and shape with different textures do not yield valid results.
+medium,0,2,10,"Rule: Objects with the same color and shape cannot be combined, regardless of their texture."
+medium,0,2,15,Rule: Objects of the same color and shape cannot combine regardless of texture.
+medium,0,2,20,"Rule: Combinations are not valid between objects of the same shape, regardless of texture."
+medium,0,2,25,"Rule: Combinations may require different shapes or textures to be valid, as attempts to combine identical shapes and textures have consistently failed."
+medium,0,2,30,Rule: Objects of the same color and shape must have different textures to be combinable.
+medium,0,2,35,Rule: Combinations are only valid if the shapes are different or the textures are different.
+medium,0,2,41,"Rule: Red shapes with the same type (square, circle, diamond, triangle) but different patterns (plain, dotted, striped, checkered) cannot be combined."
+medium,1,2,0,"Rule: Combinations are valid when shapes and textures match in a certain way, possibly involving specific pairs of shapes and textures to create higher value objects."
+medium,1,2,5,Rule: Combinations of objects with the same color and shape but different textures do not result in a valid combination.
+medium,1,2,10,Rule: Objects of the same color and shape cannot be combined regardless of texture.
+medium,1,2,15,Rule: Combinations of objects with the same color and shape but different textures are invalid.
+medium,1,2,20,Rule: Shapes with the same color must have different textures to combine successfully.
+medium,1,2,25,Rule: Objects of the same color cannot be combined unless they differ in both shape and texture.
+medium,1,2,30,Rule: Combinations are only valid between different shapes or different textures of the same shape.
+medium,1,2,35,Rule: Combinations are valid only if the objects share the same shape but have different textures.
+medium,1,2,41,"Rule: The combination of different shapes and patterns (e.g., plain, dotted, striped, checkered) repeatedly fails, suggesting a restriction against combining similar shape types or incompatible patterns."
+medium,0,3,0,Rule: Combinations are valid if the shapes are the same and the textures are different.
+medium,0,3,5,Rule: Only objects with different shapes or different textures can be combined.
+medium,0,3,10,Rule: Objects of the same color and shape cannot be combined regardless of their texture.
+medium,0,3,15,Rule: Combinations of identical shapes and textures do not yield valid results.
+medium,0,3,20,Rule: Red square objects with different textures cannot be combined.
+medium,0,3,25,Rule: Combinations of the same shape and color with different textures are invalid.
+medium,0,3,30,"Rule: Combinations are invalid if both objects have the same shape and color, regardless of texture."
+medium,0,3,35,Rule: Objects cannot be combined if they share the same shape and color but have different textures.
+medium,0,3,41,"Rule: The combination attempts fail because the red square plain and red square dotted cannot be combined, regardless of their order or frequency of attempts."
+medium,1,3,0,Rule: Combinations are valid when the shapes are the same and the textures are different.
+medium,1,3,5,"Rule: Objects with the same color and shape cannot be combined, regardless of their texture."
+medium,1,3,10,Rule: Objects of the same color and shape cannot be combined regardless of texture.
+medium,1,3,15,"Rule: Only objects of the same shape can be combined, regardless of texture."
+medium,1,3,20,Rule: Combinations of the same shape and color but different textures do not yield valid results.
+medium,1,3,25,"Rule: Objects cannot be combined if they share the same shape and color, regardless of their textures."
+medium,1,3,30,Rule: Combination is not possible between objects of the same color and shape regardless of texture.
+medium,1,3,35,Rule: Combinations are only valid if shapes are the same and textures are different.
+medium,1,3,41,"Rule: The combination fails when attempting to merge the red square plain with the red square dotted, and possibly with the red circle plain as well."
+medium,0,4,0,Rule: Combinations of objects are valid if their shapes are the same and their textures are different.
+medium,0,4,5,Rule: Objects of the same color but with the same shape cannot be combined regardless of their texture.
+medium,0,4,10,Rule: Objects of the same color and shape cannot combine if they have different textures.
+medium,0,4,15,Rule: Combinations must involve different shapes or textures to be valid.
+medium,0,4,20,Rule: Objects of the same color must have different shapes or textures to combine successfully.
+medium,0,4,25,Rule: Red objects can only be combined with objects of a different shape or texture.
+medium,0,4,30,Rule: Combinations require different shapes or textures for successful pairing.
+medium,0,4,35,Rule: Objects must have different shapes or textures to combine successfully.
+medium,0,4,41,"Rule: Shapes with the same color but different patterns (like plain and dotted) cannot combine, while consuming a shape allows points to be earned."
+medium,1,4,0,Rule: Combinations must involve objects of the same color but differing shapes and textures.
+medium,1,4,5,Rule: Objects must have different shapes or textures to combine successfully.
+medium,1,4,10,Rule: Only objects of different shapes or non-identical textures are combinable.
+medium,1,4,15,Rule: Red objects can only combine if they share the same shape and texture.
+medium,1,4,20,Rule: Combinations of objects are unsuccessful when they share the same shape and color but have different textures.
+medium,1,4,25,Rule: Only objects of different shapes can be combined if they have the same color and texture.
+medium,1,4,30,Rule: Combinations are valid when the objects share the same shape but have different textures.
+medium,1,4,35,Rule: Only objects of the same color can be combined if they share either the same shape with different textures or the same texture with different shapes.
+medium,1,4,41,Rule: A combination fails when attempting to merge the red square plain with any other item or when combining identical shapes with different patterns.
+hard,0,0,0,Rule: Combinations are valid when two objects of the same shape can be combined with two different textures.
+hard,0,0,5,"Rule: Objects with the same color and shape cannot be combined, even if their textures differ."
+hard,0,0,10,"Rule: Objects with the same color and shape cannot be combined, regardless of texture."
+hard,0,0,15,Rule: Objects with the same color and shape cannot be combined regardless of their texture.
+hard,0,0,20,Rule: Objects with the same shape but different textures cannot be combined.
+hard,0,0,25,Rule: Red square objects with the same shape but different textures cannot be combined.
+hard,0,0,30,Rule: Objects must have different shapes in order to combine successfully.
+hard,0,0,35,Rule: Combinations of the same shape and color are invalid if they do not share the same texture.
+hard,0,0,41,"Rule: The combination of items fails when attempting to combine different patterns or styles of the same shape (e.g., plain vs. dotted) and specific shape types (e.g., square vs. circle)."
+hard,1,0,0,Rule: Shapes with the same texture can be combined to create a more valuable object.
+hard,1,0,5,Rule: Combinations of objects with the same shape but different textures do not result in a valid combination.
+hard,1,0,10,Rule: Objects with the same shape cannot be combined regardless of their textures.
+hard,1,0,15,Rule: Red objects cannot combine if they share the same shape and their textures do not differ.
+hard,1,0,20,Rule: Objects must have different shapes or textures to combine successfully.
+hard,1,0,25,Rule: Combinations of the same color and shape but different textures do not work.
+hard,1,0,30,"Rule: Combinations of the same shape and color with different textures may be invalid, suggesting that texture must differ for a valid combination."
+hard,1,0,35,Rule: Combinations of the same shape and color with different textures do not succeed.
+hard,1,0,41,"'Rule: The combination of shapes is unsuccessful when they share similar attributes, such as color and shape type, specifically failing to combine red square plain with any other variations of red squares or circles.'"
+hard,0,1,0,"Rule: Combinations of shapes and textures must match (e.g., square with plain, circle with dotted) to create a new object."
+hard,0,1,5,Rule: Objects can only be combined if they share the same color and one of the two features (either shape or texture).
+hard,0,1,10,Rule: Objects of the same color and shape but different textures can be combined.
+hard,0,1,15,Rule: Red shapes with the same texture cannot be combined successfully.
+hard,0,1,20,"Rule: Combinations of the same shape and different textures are valid, while combinations of the same color and shape with the same texture are invalid."
+hard,0,1,25,Rule: Combinations between the same shape and different textures may not be valid.
+hard,0,1,30,Rule: Combinations are valid only if the shapes are the same and the textures are different.
+hard,0,1,35,"Rule: Combinations require the same shape with compatible textures (e.g., plain and dotted or dotted and striped)."
+hard,0,1,41,Rule: The combination fails if either of the shapes involved is a red square (plain or dotted).
+hard,1,1,0,Rule: Combinations are valid when objects share the same shape or texture.
+hard,1,1,5,Rule: Plain and dotted textures cannot combine with the same shape.
+hard,1,1,10,Rule: Objects with the same shape but different textures cannot be combined.
+hard,1,1,15,"Rule: The combination rule may require differing colors or shapes to successfully combine objects, as repeated attempts with the same color and shape have failed."
+hard,1,1,20,Rule: Combinations are only valid when the shapes are the same and the textures are different.
+hard,1,1,25,Rule: Only objects with different shapes or textures can be combined.
+hard,1,1,30,Rule: Objects with the same color and shape but different textures cannot be combined.
+hard,1,1,35,Rule: Red objects of the same shape cannot be combined regardless of their texture.
+hard,1,1,41,"Rule: The combination of id 0 (red square plain) with id 1 (red square dotted) fails consistently, indicating they are incompatible, possibly due to conflicting properties."
+hard,0,2,0,Rule: Combinations are valid when the shapes are the same and the textures are complementary (plain/dotted or striped/checkered).
+hard,0,2,5,Rule: Objects with the same color and shape cannot be combined regardless of texture.
+hard,0,2,10,Rule: Objects with the same color and shape cannot be combined.
+hard,0,2,15,Rule: Objects must have different shapes or textures to be combined successfully.
+hard,0,2,20,Rule: Combinations of the same shape and color but different textures cannot create new objects.
+hard,0,2,25,Rule: Objects with the same color and shape cannot be combined if they share the same texture.
+hard,0,2,30,Rule: Red objects of the same shape cannot combine regardless of texture.
+hard,0,2,35,Rule: Combinations are invalid if both objects share the same color and shape.
+hard,0,2,41,"Rule: The combination of items is unsuccessful if both items are not compatible in their attributes, such as type and pattern."
+hard,1,2,0,Rule: Combinations are valid if both the shape and texture are different.
+hard,1,2,5,"Rule: Objects with the same color and shape cannot be combined, regardless of texture."
+hard,1,2,10,Rule: Only objects of different shapes can be combined if they share the same color and texture pattern.
+hard,1,2,15,"Rule: Only objects of different shapes can be combined, regardless of texture."
+hard,1,2,20,Rule: Objects can be combined if they share the same color and have different shapes or textures.
+hard,1,2,25,Rule: Combinations are only valid if both objects share the same color and shape but differ in texture.
+hard,1,2,30,Rule: Combinations are valid when both objects share the same color and shape but have different textures.
+hard,1,2,35,Rule: Combinations of the same shape with different textures may not be valid unless they involve paired colors or shapes that have previously proven valid in combination.
+hard,1,2,41,"Rule: It seems that combining shapes of the same color but different types (e.g., square with another square, circle with another circle) is often unsuccessful, while combining shapes of different types and colors may occasionally succeed."
+hard,0,3,0,Rule: Shapes of the same type can combine with textures of the same type to create a new object of higher value.
+hard,0,3,5,"Rule: Shapes of the same type cannot be combined, regardless of texture."
+hard,0,3,10,Rule: Objects of the same color and shape cannot be combined if they have different textures.
+hard,0,3,15,Rule: Combinations are not valid between objects that share the same color and shape but have different textures.
+hard,0,3,20,Rule: Only objects of different textures can be combined.
+hard,0,3,25,"Rule: Objects cannot be combined if they share the same shape and color, regardless of their texture."
+hard,0,3,30,Rule: The combination is only valid when both objects share the same shape and the textures differ.
+hard,0,3,35,Rule: Combinations are only valid between objects of different shapes or identical shapes with different textures.
+hard,0,3,41,Rule: The combination of shapes fails if one of the shapes is a plain shape and the other shape has a pattern or is a different shape type.
+hard,1,3,0,Rule: Objects of the same shape can be combined if they share at least one texture.
+hard,1,3,5,Rule: Objects with the same shape cannot be combined regardless of their texture.
+hard,1,3,10,Rule: Combinations require different shapes or textures to be valid.
+hard,1,3,15,"Rule: Only objects of different shapes can be combined, regardless of their textures."
+hard,1,3,20,Rule: Combinations are valid when both objects share the same color and are different shapes or textures.
+hard,1,3,25,Rule: Red objects can only combine successfully if they have different shapes or textures.
+hard,1,3,30,Rule: Objects with the same shape but different textures can combine if they are of different colors.
+hard,1,3,35,Rule: Combinations are valid between different shapes of the same color with differing textures.
+hard,1,3,41,"Rule: Combinations are likely constrained by specific shapes, patterns, and possibly colors, resulting in frequent failures when attempting to combine the same items or incompatible types."
+hard,0,4,0,Rule: Combinations are valid when two objects share the same shape or texture.
+hard,0,4,5,Rule: Only objects of different colors can be combined.
+hard,0,4,10,"Rule: Combinations of the same color and shape are not valid; different textures might allow for combinations, but the specific texture combination rules are yet unclear."
+hard,0,4,15,Rule: Only objects of different shapes can be combined if they have different textures.
+hard,0,4,20,Rule: Combinations are valid only when both objects have different shapes or different textures.
+hard,0,4,25,Rule: Combinations of the same shape with different textures are invalid.
+hard,0,4,30,Rule: Combinations of objects must have different shapes or textures to be valid.
+hard,0,4,35,Rule: Only objects with the same shape and different textures can combine.
+hard,0,4,41,"Rule: The combination fails when attempting to merge items of incompatible patterns or shapes, specifically when combining squares with circles or different square patterns, while consumption occurs when a single item is used individually."
+hard,1,4,0,Rule: Combinations can only be made between objects of the same shape or texture.
+hard,1,4,5,Rule: Objects with the same color and shape cannot be combined regardless of their texture.
+hard,1,4,10,Rule: Objects of the same color and shape cannot be combined regardless of their texture.
+hard,1,4,15,Rule: Red objects cannot be combined if they have the same shape.
+hard,1,4,20,"Rule: The combination of objects requires either different shapes or different textures, as repeated attempts with the same combination have consistently failed."
+hard,1,4,25,"Rule: Combinations are invalid if both objects share the same shape and color, regardless of their textures."
+hard,1,4,30,Rule: Red objects cannot combine with other red objects of the same shape but may combine with those of different shapes or textures.
+hard,1,4,35,Rule: Combinations are only valid between objects of the same shape and different textures.
+hard,1,4,41,"Rule: The combination of shapes cannot be successful if they share the same base shape and pattern (e.g., red square or red circle)."

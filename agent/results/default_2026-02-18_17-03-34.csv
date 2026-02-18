@@ -1,0 +1,1231 @@
+condition,run,seed,step,action,reward,score,info
+simple,0,0,1,"('consume', 0)",1,1,{'feedback': 'Step 1: Consumed id 0 (red square plain) for 1 points.'}
+simple,0,0,2,"('combine', 1, 2)",0,1,"{'new_object': {'id': 16, 'shape': 'square', 'texture': 'striped', 'color': 'yellow'}}"
+simple,0,0,3,"('consume', 16)",10,11,{'feedback': 'Step 3: Consumed id 16 (yellow square striped) for 10 points.'}
+simple,0,0,4,"('consume', 3)",1,12,{'feedback': 'Step 4: Consumed id 3 (red square checkered) for 1 points.'}
+simple,0,0,5,"('combine', 4, 5)",0,12,"{'new_object': {'id': 18, 'shape': 'circle', 'texture': 'dotted', 'color': 'yellow'}}"
+simple,0,0,6,"('consume', 18)",10,22,{'feedback': 'Step 6: Consumed id 18 (yellow circle dotted) for 10 points.'}
+simple,0,0,7,"('consume', 6)",1,23,{'feedback': 'Step 7: Consumed id 6 (red circle striped) for 1 points.'}
+simple,0,0,8,"('combine', 7, 8)",0,23,{'feedback': 'Step 8: Failed to combine id 7 (red circle checkered) and id 8 (red triangle plain).'}
+simple,0,0,9,"('consume', 7)",1,24,{'feedback': 'Step 9: Consumed id 7 (red circle checkered) for 1 points.'}
+simple,0,0,10,"('combine', 8, 9)",0,24,"{'new_object': {'id': 21, 'shape': 'triangle', 'texture': 'dotted', 'color': 'yellow'}}"
+simple,0,0,11,"('consume', 21)",10,34,{'feedback': 'Step 11: Consumed id 21 (yellow triangle dotted) for 10 points.'}
+simple,0,0,12,"('consume', 10)",1,35,{'feedback': 'Step 12: Consumed id 10 (red triangle striped) for 1 points.'}
+simple,0,0,13,"('combine', 11, 12)",0,35,{'feedback': 'Step 13: Failed to combine id 11 (red triangle checkered) and id 12 (red diamond plain).'}
+simple,0,0,14,"('combine', 11, 12)",0,35,{'feedback': 'Step 14: Failed to combine id 11 (red triangle checkered) and id 12 (red diamond plain).'}
+simple,0,0,15,"('combine', 11, 12)",0,35,{'feedback': 'Step 15: Failed to combine id 11 (red triangle checkered) and id 12 (red diamond plain).'}
+simple,0,0,16,"('combine', 11, 12)",0,35,{'feedback': 'Step 16: Failed to combine id 11 (red triangle checkered) and id 12 (red diamond plain).'}
+simple,0,0,17,"('consume', 11)",1,36,{'feedback': 'Step 17: Consumed id 11 (red triangle checkered) for 1 points.'}
+simple,0,0,18,"('combine', 12, 13)",0,36,"{'new_object': {'id': 24, 'shape': 'diamond', 'texture': 'dotted', 'color': 'yellow'}}"
+simple,0,0,19,"('consume', 24)",10,46,{'feedback': 'Step 19: Consumed id 24 (yellow diamond dotted) for 10 points.'}
+simple,0,0,20,"('combine', 14, 15)",0,46,"{'new_object': {'id': 26, 'shape': 'diamond', 'texture': 'checkered', 'color': 'yellow'}}"
+simple,0,0,21,"('consume', 26)",10,56,{'feedback': 'Step 21: Consumed id 26 (yellow diamond checkered) for 10 points.'}
+simple,0,0,22,"('consume', 17)",1,57,{'feedback': 'Step 22: Consumed id 17 (red square plain) for 1 points.'}
+simple,0,0,23,"('combine', 19, 20)",0,57,{'feedback': 'Step 23: Failed to combine id 19 (red square checkered) and id 20 (red circle striped).'}
+simple,0,0,24,"('consume', 19)",1,58,{'feedback': 'Step 24: Consumed id 19 (red square checkered) for 1 points.'}
+simple,0,0,25,"('combine', 20, 22)",0,58,"{'new_object': {'id': 27, 'shape': 'circle', 'texture': 'checkered', 'color': 'yellow'}}"
+simple,0,0,26,"('consume', 27)",10,68,{'feedback': 'Step 26: Consumed id 27 (yellow circle checkered) for 10 points.'}
+simple,0,0,27,"('combine', 23, 25)",0,68,"{'new_object': {'id': 29, 'shape': 'triangle', 'texture': 'checkered', 'color': 'yellow'}}"
+simple,0,0,28,"('consume', 29)",10,78,{'feedback': 'Step 28: Consumed id 29 (yellow triangle checkered) for 10 points.'}
+simple,0,0,29,"('consume', 26)",1,79,{'feedback': 'Step 29: Consumed id 26 (red square plain) for 1 points.'}
+simple,0,0,30,"('consume', 28)",1,80,{'feedback': 'Step 30: Consumed id 28 (red square checkered) for 1 points.'}
+simple,0,0,31,"('combine', 11, 12)",0,80,{'feedback': 'Step 31: Failed to combine id 11 (None) and id 12 (None).'}
+simple,0,0,32,"('consume', 0)",1,81,{'feedback': 'Step 32: Consumed id 0 (red square plain) for 1 points.'}
+simple,0,0,33,"('combine', 11, 12)",0,81,{'feedback': 'Step 33: Failed to combine id 11 (None) and id 12 (None).'}
+simple,0,0,34,"('consume', 1)",1,82,{'feedback': 'Step 34: Consumed id 1 (red square checkered) for 1 points.'}
+simple,0,0,35,"('consume', 2)",0,82,{'error': 'Step 35: Invalid consume attempt on id 2.'}
+simple,0,0,36,"('consume', 2)",0,82,{'error': 'Step 36: Invalid consume attempt on id 2.'}
+simple,0,0,37,"('consume', 2)",0,82,{'error': 'Step 37: Invalid consume attempt on id 2.'}
+simple,0,0,38,"('consume', 2)",0,82,{'error': 'Step 38: Invalid consume attempt on id 2.'}
+simple,0,0,39,"('consume', 2)",0,82,{'error': 'Step 39: Invalid consume attempt on id 2.'}
+simple,0,0,40,"('consume', 2)",0,82,{'error': 'Step 40: Invalid consume attempt on id 2.'}
+simple,0,0,41,message_to_next_player,0,82,"{'message': ""To excel in the grid-world game, focus on the following strategies:\n\n1. **Prioritize Combining**: Combining two objects of similar types often creates a valuable new object. Aim to find pairs that successfully combine to maximize your points.\n\n2. **Maximize Consumption**: Consuming objects grants immediate points. Make sure to consume items that cannot be combined or are low-value, as they help clear your inventory.\n\n3. **Identify and Work with IDs**: Keep track of the IDs of objects in your inventory. Know which items have been successfully combined and which haven't, as this will help you avoid wasting attempts.\n\n4. **Avoid Redundant Attempts**: If a combination has failed multiple times, don't retry it. Shift your focus to other objects that can be combined or consumed.\n\n5. **Aim for High-Value Combos**: When you identify potential combinations, prioritize those that yield the highest point gains, especially when it results in new colored objects.\n\n6. **Plan Your Moves**: Try to pre-plan your steps based on your current inventory to maximize efficient usage of your moves.\n\nBy following these strategies, you can optimize your gameplay and increase your total points. Good luck!""}"
+simple,1,0,1,"('consume', 0)",1,1,{'feedback': 'Step 1: Consumed id 0 (red square plain) for 1 points.'}
+simple,1,0,2,"('consume', 1)",1,2,{'feedback': 'Step 2: Consumed id 1 (red square dotted) for 1 points.'}
+simple,1,0,3,"('consume', 4)",1,3,{'feedback': 'Step 3: Consumed id 4 (red circle plain) for 1 points.'}
+simple,1,0,4,"('combine', 2, 3)",0,3,"{'new_object': {'id': 18, 'shape': 'square', 'texture': 'checkered', 'color': 'yellow'}}"
+simple,1,0,5,"('consume', 18)",10,13,{'feedback': 'Step 5: Consumed id 18 (yellow square checkered) for 10 points.'}
+simple,1,0,6,"('consume', 5)",1,14,{'feedback': 'Step 6: Consumed id 5 (red circle dotted) for 1 points.'}
+simple,1,0,7,"('combine', 6, 7)",0,14,"{'new_object': {'id': 20, 'shape': 'circle', 'texture': 'checkered', 'color': 'yellow'}}"
+simple,1,0,8,"('consume', 20)",10,24,{'feedback': 'Step 8: Consumed id 20 (yellow circle checkered) for 10 points.'}
+simple,1,0,9,"('combine', 8, 9)",0,24,"{'new_object': {'id': 22, 'shape': 'triangle', 'texture': 'dotted', 'color': 'yellow'}}"
+simple,1,0,10,"('consume', 10)",1,25,{'feedback': 'Step 10: Consumed id 10 (red triangle striped) for 1 points.'}
+simple,1,0,11,"('consume', 11)",1,26,{'feedback': 'Step 11: Consumed id 11 (red triangle checkered) for 1 points.'}
+simple,1,0,12,"('consume', 12)",1,27,{'feedback': 'Step 12: Consumed id 12 (red diamond plain) for 1 points.'}
+simple,1,0,13,"('combine', 13, 14)",0,27,"{'new_object': {'id': 25, 'shape': 'diamond', 'texture': 'striped', 'color': 'yellow'}}"
+simple,1,0,14,"('consume', 15)",1,28,{'feedback': 'Step 14: Consumed id 15 (red diamond checkered) for 1 points.'}
+simple,1,0,15,"('combine', 22, 25)",0,28,{'feedback': 'Step 15: Failed to combine id 22 (yellow triangle dotted) and id 25 (yellow diamond striped).'}
+simple,1,0,16,"('consume', 22)",10,38,{'feedback': 'Step 16: Consumed id 22 (yellow triangle dotted) for 10 points.'}
+simple,1,0,17,"('consume', 25)",10,48,{'feedback': 'Step 17: Consumed id 25 (yellow diamond striped) for 10 points.'}
+simple,1,0,18,"('combine', 16, 17)",0,48,"{'new_object': {'id': 28, 'shape': 'square', 'texture': 'dotted', 'color': 'yellow'}}"
+simple,1,0,19,"('consume', 19)",1,49,{'feedback': 'Step 19: Consumed id 19 (red circle plain) for 1 points.'}
+simple,1,0,20,"('combine', 21, 23)",0,49,{'feedback': 'Step 20: Failed to combine id 21 (red circle dotted) and id 23 (red triangle striped).'}
+simple,1,0,21,"('combine', 21, 24)",0,49,{'feedback': 'Step 21: Failed to combine id 21 (red circle dotted) and id 24 (red triangle checkered).'}
+simple,1,0,22,"('combine', 21, 26)",0,49,{'feedback': 'Step 22: Failed to combine id 21 (red circle dotted) and id 26 (red diamond plain).'}
+simple,1,0,23,"('consume', 21)",1,50,{'feedback': 'Step 23: Consumed id 21 (red circle dotted) for 1 points.'}
+simple,1,0,24,"('combine', 23, 24)",0,50,"{'new_object': {'id': 30, 'shape': 'triangle', 'texture': 'checkered', 'color': 'yellow'}}"
+simple,1,0,25,"('consume', 28)",10,60,{'feedback': 'Step 25: Consumed id 28 (yellow square dotted) for 10 points.'}
+simple,1,0,26,"('combine', 26, 27)",0,60,"{'new_object': {'id': 32, 'shape': 'diamond', 'texture': 'checkered', 'color': 'yellow'}}"
+simple,1,0,27,"('consume', 30)",10,70,{'feedback': 'Step 27: Consumed id 30 (yellow triangle checkered) for 10 points.'}
+simple,1,0,28,"('consume', 32)",10,80,{'feedback': 'Step 28: Consumed id 32 (yellow diamond checkered) for 10 points.'}
+simple,1,0,29,"('combine', 29, 31)",0,80,"{'new_object': {'id': 32, 'shape': 'circle', 'texture': 'dotted', 'color': 'yellow'}}"
+simple,1,0,30,"('consume', 32)",10,90,{'feedback': 'Step 30: Consumed id 32 (yellow circle dotted) for 10 points.'}
+simple,1,0,31,"('combine', 6, 7)",0,90,{'feedback': 'Step 31: Failed to combine id 6 (None) and id 7 (None).'}
+simple,1,0,32,"('consume', 29)",0,90,{'error': 'Step 32: Invalid consume attempt on id 29.'}
+simple,1,0,33,"('consume', 29)",0,90,{'error': 'Step 33: Invalid consume attempt on id 29.'}
+simple,1,0,34,"('consume', 29)",0,90,{'error': 'Step 34: Invalid consume attempt on id 29.'}
+simple,1,0,35,"('consume', 29)",0,90,{'error': 'Step 35: Invalid consume attempt on id 29.'}
+simple,1,0,36,"('consume', 29)",0,90,{'error': 'Step 36: Invalid consume attempt on id 29.'}
+simple,1,0,37,"('consume', 29)",0,90,{'error': 'Step 37: Invalid consume attempt on id 29.'}
+simple,1,0,38,"('consume', 29)",0,90,{'error': 'Step 38: Invalid consume attempt on id 29.'}
+simple,1,0,39,"('consume', 29)",0,90,{'error': 'Step 39: Invalid consume attempt on id 29.'}
+simple,1,0,40,"('consume', 29)",0,90,{'error': 'Step 40: Invalid consume attempt on id 29.'}
+simple,1,0,41,message_to_next_player,0,90,"{'message': '**Tips for Success in the Grid-World Game:**\n\n1. **Prioritize Combinations:** Combine objects whenever possible, as it often yields new items that can be worth substantially more points when consumed. Look for pairs that successfully combine, as they create new valuable items.\n\n2. **Focus on High-Value Items:** After successfully combining, consume the new, high-value items right away. Items that yield more points (like the yellow variants) should be prioritized over lower-value ones.\n\n3. **Monitor Potential Combinations:** Keep a list of items that have failed to combine and try different combinations based on what you have. Certain combinations might work better than others.\n\n4. **Track your Inventory:** Be mindful of what items you have left and plan your steps to maximize points. Knowing the current and potential combinations could save you time and lead to higher scores.\n\n5. **Avoid Invalid Actions:** If an item repeatedly fails to combine or consumes incorrectly, consider moving on rather than wasting turns on it. \n\n6. **Maximize Each Turn:** Always try to either consume an item for points or combine items to create new ones on every turn.\n\nBy focusing on these strategies, you can improve your score and efficiency in the game. Good luck!'}"
+simple,0,1,1,"('consume', 0)",1,1,{'feedback': 'Step 1: Consumed id 0 (red square plain) for 1 points.'}
+simple,0,1,2,"('combine', 1, 2)",0,1,"{'new_object': {'id': 16, 'shape': 'square', 'texture': 'striped', 'color': 'yellow'}}"
+simple,0,1,3,"('consume', 16)",10,11,{'feedback': 'Step 3: Consumed id 16 (yellow square striped) for 10 points.'}
+simple,0,1,4,"('combine', 3, 4)",0,11,{'feedback': 'Step 4: Failed to combine id 3 (red square checkered) and id 4 (red circle plain).'}
+simple,0,1,5,"('consume', 3)",1,12,{'feedback': 'Step 5: Consumed id 3 (red square checkered) for 1 points.'}
+simple,0,1,6,"('combine', 4, 5)",0,12,"{'new_object': {'id': 18, 'shape': 'circle', 'texture': 'dotted', 'color': 'yellow'}}"
+simple,0,1,7,"('consume', 18)",10,22,{'feedback': 'Step 7: Consumed id 18 (yellow circle dotted) for 10 points.'}
+simple,0,1,8,"('combine', 6, 7)",0,22,"{'new_object': {'id': 20, 'shape': 'circle', 'texture': 'checkered', 'color': 'yellow'}}"
+simple,0,1,9,"('consume', 20)",10,32,{'feedback': 'Step 9: Consumed id 20 (yellow circle checkered) for 10 points.'}
+simple,0,1,10,"('consume', 8)",1,33,{'feedback': 'Step 10: Consumed id 8 (red triangle plain) for 1 points.'}
+simple,0,1,11,"('combine', 9, 10)",0,33,"{'new_object': {'id': 20, 'shape': 'triangle', 'texture': 'striped', 'color': 'yellow'}}"
+simple,0,1,12,"('consume', 11)",1,34,{'feedback': 'Step 12: Consumed id 11 (red triangle checkered) for 1 points.'}
+simple,0,1,13,"('combine', 12, 13)",0,34,"{'new_object': {'id': 22, 'shape': 'diamond', 'texture': 'dotted', 'color': 'yellow'}}"
+simple,0,1,14,"('consume', 14)",1,35,{'feedback': 'Step 14: Consumed id 14 (red diamond striped) for 1 points.'}
+simple,0,1,15,"('combine', 15, 19)",0,35,{'feedback': 'Step 15: Failed to combine id 15 (red diamond checkered) and id 19 (red square checkered).'}
+simple,0,1,16,"('combine', 15, 19)",0,35,{'feedback': 'Step 16: Failed to combine id 15 (red diamond checkered) and id 19 (red square checkered).'}
+simple,0,1,17,"('consume', 15)",1,36,{'feedback': 'Step 17: Consumed id 15 (red diamond checkered) for 1 points.'}
+simple,0,1,18,"('combine', 19, 21)",0,36,{'feedback': 'Step 18: Failed to combine id 19 (red square checkered) and id 21 (red triangle plain).'}
+simple,0,1,19,"('combine', 19, 21)",0,36,{'feedback': 'Step 19: Failed to combine id 19 (red square checkered) and id 21 (red triangle plain).'}
+simple,0,1,20,"('combine', 19, 21)",0,36,{'feedback': 'Step 20: Failed to combine id 19 (red square checkered) and id 21 (red triangle plain).'}
+simple,0,1,21,"('consume', 22)",10,46,{'feedback': 'Step 21: Consumed id 22 (yellow diamond dotted) for 10 points.'}
+simple,0,1,22,"('combine', 19, 21)",0,46,{'feedback': 'Step 22: Failed to combine id 19 (red square checkered) and id 21 (red triangle plain).'}
+simple,0,1,23,"('consume', 19)",1,47,{'feedback': 'Step 23: Consumed id 19 (red square checkered) for 1 points.'}
+simple,0,1,24,"('combine', 21, 23)",0,47,"{'new_object': {'id': 26, 'shape': 'triangle', 'texture': 'checkered', 'color': 'yellow'}}"
+simple,0,1,25,"('consume', 24)",1,48,{'feedback': 'Step 25: Consumed id 24 (red diamond striped) for 1 points.'}
+simple,0,1,26,"('consume', 20)",10,58,{'feedback': 'Step 26: Consumed id 20 (yellow triangle striped) for 10 points.'}
+simple,0,1,27,"('combine', 25, 27)",0,58,{'feedback': 'Step 27: Failed to combine id 25 (red diamond checkered) and id 27 (red square checkered).'}
+simple,0,1,28,"('consume', 25)",1,59,{'feedback': 'Step 28: Consumed id 25 (red diamond checkered) for 1 points.'}
+simple,0,1,29,"('combine', 26, 27)",0,59,{'feedback': 'Step 29: Failed to combine id 26 (yellow triangle checkered) and id 27 (red square checkered).'}
+simple,0,1,30,"('consume', 26)",10,69,{'feedback': 'Step 30: Consumed id 26 (yellow triangle checkered) for 10 points.'}
+simple,0,1,31,"('consume', 17)",1,70,{'feedback': 'Step 31: Consumed id 17 (red square plain) for 1 points.'}
+simple,0,1,32,"('combine', 27, 28)",0,70,{'feedback': 'Step 32: Failed to combine id 27 (red square checkered) and id 28 (red diamond striped).'}
+simple,0,1,33,"('consume', 27)",1,71,{'feedback': 'Step 33: Consumed id 27 (red square checkered) for 1 points.'}
+simple,0,1,34,"('combine', 28, 29)",0,71,"{'new_object': {'id': 31, 'shape': 'diamond', 'texture': 'checkered', 'color': 'yellow'}}"
+simple,0,1,35,"('consume', 31)",10,81,{'feedback': 'Step 35: Consumed id 31 (yellow diamond checkered) for 10 points.'}
+simple,0,1,36,"('consume', 30)",1,82,{'feedback': 'Step 36: Consumed id 30 (red square plain) for 1 points.'}
+simple,0,1,37,"('consume', 32)",1,83,{'feedback': 'Step 37: Consumed id 32 (red square checkered) for 1 points.'}
+simple,0,1,38,"('consume', 33)",0,83,{'error': 'Step 38: Invalid consume attempt on id 33.'}
+simple,0,1,39,"('consume', 0)",1,84,{'feedback': 'Step 39: Consumed id 0 (red square plain) for 1 points.'}
+simple,0,1,40,"('consume', 1)",1,85,{'feedback': 'Step 40: Consumed id 1 (red square checkered) for 1 points.'}
+simple,0,1,41,message_to_next_player,0,85,"{'message': ""Here are some key strategies to help you maximize your points in the grid-world game:\n\n1. **Combining Objects**: Focus on combining similar objects to create higher-value items. Look out for combinations that consistently yield new types (e.g., squares with squares, circles with circles). The resulting items tend to grant more points when consumed.\n\n2. **Prioritize High-Point Items**: Identify and prioritize consuming the newly created high-point items (like yellow variants). They provide significantly higher points compared to consuming regular items.\n\n3. **Consume Regular Items**: If a combination attempt fails, don’t hesitate to consume the regular items to maintain a steady point increase. This can prevent you from stalling if combinations aren't working out.\n\n4. **Be Mindful of Failed Combinations**: Track which combinations fail. This can inform your future choices and help you avoid unnecessary attempts that won't yield results.\n\n5. **Recycle Lower-Value Items**: Regular items that yield low points (like 1 point) can be consumed to clear your inventory and free up space for more valuable items.\n\n6. **Experiment with Different Combinations**: While some combinations are more fruitful than others, don’t be afraid to try combining various items; you may discover unexpected pairings that create new high-value items.\n\nBy following these strategies, you’ll optimize your gameplay and increase your points more effectively. Good luck!""}"
+simple,1,1,1,"('consume', 0)",1,1,{'feedback': 'Step 1: Consumed id 0 (red square plain) for 1 points.'}
+simple,1,1,2,"('consume', 1)",1,2,{'feedback': 'Step 2: Consumed id 1 (red square dotted) for 1 points.'}
+simple,1,1,3,"('consume', 4)",1,3,{'feedback': 'Step 3: Consumed id 4 (red circle plain) for 1 points.'}
+simple,1,1,4,"('combine', 2, 3)",0,3,"{'new_object': {'id': 18, 'shape': 'square', 'texture': 'checkered', 'color': 'yellow'}}"
+simple,1,1,5,"('consume', 18)",10,13,{'feedback': 'Step 5: Consumed id 18 (yellow square checkered) for 10 points.'}
+simple,1,1,6,"('consume', 5)",1,14,{'feedback': 'Step 6: Consumed id 5 (red circle dotted) for 1 points.'}
+simple,1,1,7,"('consume', 6)",1,15,{'feedback': 'Step 7: Consumed id 6 (red circle striped) for 1 points.'}
+simple,1,1,8,"('combine', 7, 8)",0,15,{'feedback': 'Step 8: Failed to combine id 7 (red circle checkered) and id 8 (red triangle plain).'}
+simple,1,1,9,"('consume', 7)",1,16,{'feedback': 'Step 9: Consumed id 7 (red circle checkered) for 1 points.'}
+simple,1,1,10,"('combine', 10, 11)",0,16,"{'new_object': {'id': 22, 'shape': 'triangle', 'texture': 'checkered', 'color': 'yellow'}}"
+simple,1,1,11,"('consume', 12)",1,17,{'feedback': 'Step 11: Consumed id 12 (red diamond plain) for 1 points.'}
+simple,1,1,12,"('combine', 8, 9)",0,17,"{'new_object': {'id': 24, 'shape': 'triangle', 'texture': 'dotted', 'color': 'yellow'}}"
+simple,1,1,13,"('consume', 19)",1,18,{'feedback': 'Step 13: Consumed id 19 (red circle plain) for 1 points.'}
+simple,1,1,14,"('combine', 13, 14)",0,18,"{'new_object': {'id': 26, 'shape': 'diamond', 'texture': 'striped', 'color': 'yellow'}}"
+simple,1,1,15,"('consume', 15)",1,19,{'feedback': 'Step 15: Consumed id 15 (red diamond checkered) for 1 points.'}
+simple,1,1,16,"('combine', 22, 24)",0,19,"{'new_object': {'id': 28, 'shape': 'triangle', 'texture': 'dotted', 'color': 'orange'}}"
+simple,1,1,17,"('consume', 26)",10,29,{'feedback': 'Step 17: Consumed id 26 (yellow diamond striped) for 10 points.'}
+simple,1,1,18,"('consume', 28)",100,129,{'feedback': 'Step 18: Consumed id 28 (orange triangle dotted) for 100 points.'}
+simple,1,1,19,"('combine', 16, 17)",0,129,"{'new_object': {'id': 30, 'shape': 'square', 'texture': 'dotted', 'color': 'yellow'}}"
+simple,1,1,20,"('consume', 30)",10,139,{'feedback': 'Step 20: Consumed id 30 (yellow square dotted) for 10 points.'}
+simple,1,1,21,"('combine', 20, 21)",0,139,"{'new_object': {'id': 30, 'shape': 'circle', 'texture': 'striped', 'color': 'yellow'}}"
+simple,1,1,22,"('consume', 30)",10,149,{'feedback': 'Step 22: Consumed id 30 (yellow circle striped) for 10 points.'}
+simple,1,1,23,"('consume', 25)",1,150,{'feedback': 'Step 23: Consumed id 25 (red diamond plain) for 1 points.'}
+simple,1,1,24,"('combine', 23, 27)",0,150,"{'new_object': {'id': 30, 'shape': 'circle', 'texture': 'plain', 'color': 'yellow'}}"
+simple,1,1,25,"('consume', 30)",10,160,{'feedback': 'Step 25: Consumed id 30 (yellow circle plain) for 10 points.'}
+simple,1,1,26,"('combine', 29, 31)",0,160,"{'new_object': {'id': 32, 'shape': 'diamond', 'texture': 'plain', 'color': 'yellow'}}"
+simple,1,1,27,"('consume', 32)",10,170,{'feedback': 'Step 27: Consumed id 32 (yellow diamond plain) for 10 points.'}
+simple,1,1,28,"('combine', 7, 8)",0,170,{'feedback': 'Step 28: Failed to combine id 7 (None) and id 8 (None).'}
+simple,1,1,29,"('combine', 7, 8)",0,170,{'feedback': 'Step 29: Failed to combine id 7 (None) and id 8 (None).'}
+simple,1,1,30,"('combine', 7, 8)",0,170,{'feedback': 'Step 30: Failed to combine id 7 (None) and id 8 (None).'}
+simple,1,1,31,"('combine', 7, 8)",0,170,{'feedback': 'Step 31: Failed to combine id 7 (None) and id 8 (None).'}
+simple,1,1,32,"('combine', 7, 8)",0,170,{'feedback': 'Step 32: Failed to combine id 7 (None) and id 8 (None).'}
+simple,1,1,33,"('combine', 7, 8)",0,170,{'feedback': 'Step 33: Failed to combine id 7 (None) and id 8 (None).'}
+simple,1,1,34,"('consume', 7)",0,170,{'error': 'Step 34: Invalid consume attempt on id 7.'}
+simple,1,1,35,"('consume', 7)",0,170,{'error': 'Step 35: Invalid consume attempt on id 7.'}
+simple,1,1,36,"('combine', 7, 8)",0,170,{'feedback': 'Step 36: Failed to combine id 7 (None) and id 8 (None).'}
+simple,1,1,37,"('consume', 7)",0,170,{'error': 'Step 37: Invalid consume attempt on id 7.'}
+simple,1,1,38,"('consume', 7)",0,170,{'error': 'Step 38: Invalid consume attempt on id 7.'}
+simple,1,1,39,"('consume', 7)",0,170,{'error': 'Step 39: Invalid consume attempt on id 7.'}
+simple,1,1,40,"('consume', 7)",0,170,{'error': 'Step 40: Invalid consume attempt on id 7.'}
+simple,1,1,41,message_to_next_player,0,170,"{'message': ""**Strategies for Success in the Grid-World Game:**\n\n1. **Prioritize Combinations:** Always look for opportunities to combine items, especially when you have identified objects that can yield higher point rewards. Combining two items can result in a new object that may provide significantly more points than consuming the individual items.\n\n2. **Track Consumption:** Make sure to consume items that are not useful for combinations first. This helps to keep your inventory manageable and clears out low-value items.\n\n3. **Focus on Higher Scoring Items:** After successfully creating a new item, consume it quickly, especially if it has a high point value, as seen with the orange triangle dotted for 100 points. \n\n4. **Avoid Unsuccessful Combines:** If a combination fails, remember the identifiers of the items that did not work to avoid repeating the same attempts later.\n\n5. **Manage Inventory Effectively:** Keep track of the IDs of items you've combined and consumed to avoid repeating actions on already consumed or invalid items.\n\nBy following these strategies, you can maximize your score and improve your performance in the game. Good luck!""}"
+simple,0,2,1,"('consume', 0)",1,1,{'feedback': 'Step 1: Consumed id 0 (red square plain) for 1 points.'}
+simple,0,2,2,"('consume', 1)",1,2,{'feedback': 'Step 2: Consumed id 1 (red square dotted) for 1 points.'}
+simple,0,2,3,"('consume', 4)",1,3,{'feedback': 'Step 3: Consumed id 4 (red circle plain) for 1 points.'}
+simple,0,2,4,"('combine', 2, 3)",0,3,"{'new_object': {'id': 18, 'shape': 'square', 'texture': 'checkered', 'color': 'yellow'}}"
+simple,0,2,5,"('consume', 18)",10,13,{'feedback': 'Step 5: Consumed id 18 (yellow square checkered) for 10 points.'}
+simple,0,2,6,"('consume', 5)",1,14,{'feedback': 'Step 6: Consumed id 5 (red circle dotted) for 1 points.'}
+simple,0,2,7,"('combine', 6, 7)",0,14,"{'new_object': {'id': 20, 'shape': 'circle', 'texture': 'checkered', 'color': 'yellow'}}"
+simple,0,2,8,"('consume', 20)",10,24,{'feedback': 'Step 8: Consumed id 20 (yellow circle checkered) for 10 points.'}
+simple,0,2,9,"('combine', 8, 9)",0,24,"{'new_object': {'id': 22, 'shape': 'triangle', 'texture': 'dotted', 'color': 'yellow'}}"
+simple,0,2,10,"('consume', 10)",1,25,{'feedback': 'Step 10: Consumed id 10 (red triangle striped) for 1 points.'}
+simple,0,2,11,"('consume', 11)",1,26,{'feedback': 'Step 11: Consumed id 11 (red triangle checkered) for 1 points.'}
+simple,0,2,12,"('consume', 12)",1,27,{'feedback': 'Step 12: Consumed id 12 (red diamond plain) for 1 points.'}
+simple,0,2,13,"('combine', 13, 14)",0,27,"{'new_object': {'id': 25, 'shape': 'diamond', 'texture': 'striped', 'color': 'yellow'}}"
+simple,0,2,14,"('consume', 15)",1,28,{'feedback': 'Step 14: Consumed id 15 (red diamond checkered) for 1 points.'}
+simple,0,2,15,"('combine', 22, 25)",0,28,{'feedback': 'Step 15: Failed to combine id 22 (yellow triangle dotted) and id 25 (yellow diamond striped).'}
+simple,0,2,16,"('consume', 22)",10,38,{'feedback': 'Step 16: Consumed id 22 (yellow triangle dotted) for 10 points.'}
+simple,0,2,17,"('consume', 26)",1,39,{'feedback': 'Step 17: Consumed id 26 (red diamond plain) for 1 points.'}
+simple,0,2,18,"('combine', 16, 17)",0,39,"{'new_object': {'id': 28, 'shape': 'square', 'texture': 'dotted', 'color': 'yellow'}}"
+simple,0,2,19,"('consume', 25)",10,49,{'feedback': 'Step 19: Consumed id 25 (yellow diamond striped) for 10 points.'}
+simple,0,2,20,"('consume', 29)",1,50,{'feedback': 'Step 20: Consumed id 29 (red diamond plain) for 1 points.'}
+simple,0,2,21,"('combine', 19, 21)",0,50,"{'new_object': {'id': 29, 'shape': 'circle', 'texture': 'dotted', 'color': 'yellow'}}"
+simple,0,2,22,"('consume', 28)",10,60,{'feedback': 'Step 22: Consumed id 28 (yellow square dotted) for 10 points.'}
+simple,0,2,23,"('combine', 23, 24)",0,60,"{'new_object': {'id': 31, 'shape': 'triangle', 'texture': 'checkered', 'color': 'yellow'}}"
+simple,0,2,24,"('consume', 31)",10,70,{'feedback': 'Step 24: Consumed id 31 (yellow triangle checkered) for 10 points.'}
+simple,0,2,25,"('consume', 27)",1,71,{'feedback': 'Step 25: Consumed id 27 (red diamond checkered) for 1 points.'}
+simple,0,2,26,"('combine', 29, 30)",0,71,{'feedback': 'Step 26: Failed to combine id 29 (yellow circle dotted) and id 30 (red diamond plain).'}
+simple,0,2,27,"('consume', 30)",1,72,{'feedback': 'Step 27: Consumed id 30 (red diamond plain) for 1 points.'}
+simple,0,2,28,"('combine', 29, 31)",0,72,{'feedback': 'Step 28: Failed to combine id 29 (yellow circle dotted) and id 31 (red diamond checkered).'}
+simple,0,2,29,"('consume', 29)",10,82,{'feedback': 'Step 29: Consumed id 29 (yellow circle dotted) for 10 points.'}
+simple,0,2,30,"('combine', 31, 32)",0,82,"{'new_object': {'id': 33, 'shape': 'diamond', 'texture': 'plain', 'color': 'yellow'}}"
+simple,0,2,31,"('consume', 33)",10,92,{'feedback': 'Step 31: Consumed id 33 (yellow diamond plain) for 10 points.'}
+simple,0,2,32,"('consume', 12)",0,92,{'error': 'Step 32: Invalid consume attempt on id 12.'}
+simple,0,2,33,"('combine', 29, 31)",0,92,{'feedback': 'Step 33: Failed to combine id 29 (None) and id 31 (None).'}
+simple,0,2,34,"('consume', 12)",0,92,{'error': 'Step 34: Invalid consume attempt on id 12.'}
+simple,0,2,35,"('consume', 12)",0,92,{'error': 'Step 35: Invalid consume attempt on id 12.'}
+simple,0,2,36,"('consume', 12)",0,92,{'error': 'Step 36: Invalid consume attempt on id 12.'}
+simple,0,2,37,"('consume', 12)",0,92,{'error': 'Step 37: Invalid consume attempt on id 12.'}
+simple,0,2,38,"('consume', 12)",0,92,{'error': 'Step 38: Invalid consume attempt on id 12.'}
+simple,0,2,39,"('consume', 12)",0,92,{'error': 'Step 39: Invalid consume attempt on id 12.'}
+simple,0,2,40,"('consume', 12)",0,92,{'error': 'Step 40: Invalid consume attempt on id 12.'}
+simple,0,2,41,message_to_next_player,0,92,"{'message': ""Congratulations on stepping into the grid-world game! Here are some strategies and patterns to help you maximize your points:\n\n1. **Prioritize Combining:** Focus on combining objects to create new ones with higher point values. The yellow variants are typically worth more (10 points) than their red counterparts (1 point).\n\n2. **Know Failures in Combinations:** Keep track of which combinations failed, as they likely won't work in future attempts either. This will save you time and resources.\n\n3. **Consuming Objects:** Always consume your low-value items (those that give 1 point) once you have enough high-value objects combined. Don't let them clutter your inventory.\n\n4. **Keep a Balanced Inventory:** Maintain a balance between different shapes (squares, circles, triangles, diamonds) and colors. This variety increases your chances of successful combinations.\n\n5. **Focus on Color Patterns:** Combining similar shapes of different colors often yields a new item. Look for opportunities where you can convert two red items into yellow.\n\n6. **Avoid Redundant Combines:** If you’re stuck at combining items without gaining points, consider consuming or avoiding those objects to make space for better items.\n\nBy applying these strategies, you'll improve your game efficiency and boost your points even higher. Good luck!""}"
+simple,1,2,1,"('consume', 0)",1,1,{'feedback': 'Step 1: Consumed id 0 (red square plain) for 1 points.'}
+simple,1,2,2,"('combine', 1, 2)",0,1,"{'new_object': {'id': 16, 'shape': 'square', 'texture': 'striped', 'color': 'yellow'}}"
+simple,1,2,3,"('consume', 16)",10,11,{'feedback': 'Step 3: Consumed id 16 (yellow square striped) for 10 points.'}
+simple,1,2,4,"('consume', 3)",1,12,{'feedback': 'Step 4: Consumed id 3 (red square checkered) for 1 points.'}
+simple,1,2,5,"('combine', 4, 5)",0,12,"{'new_object': {'id': 18, 'shape': 'circle', 'texture': 'dotted', 'color': 'yellow'}}"
+simple,1,2,6,"('consume', 18)",10,22,{'feedback': 'Step 6: Consumed id 18 (yellow circle dotted) for 10 points.'}
+simple,1,2,7,"('consume', 6)",1,23,{'feedback': 'Step 7: Consumed id 6 (red circle striped) for 1 points.'}
+simple,1,2,8,"('combine', 7, 8)",0,23,{'feedback': 'Step 8: Failed to combine id 7 (red circle checkered) and id 8 (red triangle plain).'}
+simple,1,2,9,"('consume', 7)",1,24,{'feedback': 'Step 9: Consumed id 7 (red circle checkered) for 1 points.'}
+simple,1,2,10,"('combine', 8, 9)",0,24,"{'new_object': {'id': 21, 'shape': 'triangle', 'texture': 'dotted', 'color': 'yellow'}}"
+simple,1,2,11,"('consume', 21)",10,34,{'feedback': 'Step 11: Consumed id 21 (yellow triangle dotted) for 10 points.'}
+simple,1,2,12,"('consume', 10)",1,35,{'feedback': 'Step 12: Consumed id 10 (red triangle striped) for 1 points.'}
+simple,1,2,13,"('combine', 11, 12)",0,35,{'feedback': 'Step 13: Failed to combine id 11 (red triangle checkered) and id 12 (red diamond plain).'}
+simple,1,2,14,"('combine', 11, 12)",0,35,{'feedback': 'Step 14: Failed to combine id 11 (red triangle checkered) and id 12 (red diamond plain).'}
+simple,1,2,15,"('combine', 11, 12)",0,35,{'feedback': 'Step 15: Failed to combine id 11 (red triangle checkered) and id 12 (red diamond plain).'}
+simple,1,2,16,"('combine', 11, 12)",0,35,{'feedback': 'Step 16: Failed to combine id 11 (red triangle checkered) and id 12 (red diamond plain).'}
+simple,1,2,17,"('consume', 11)",1,36,{'feedback': 'Step 17: Consumed id 11 (red triangle checkered) for 1 points.'}
+simple,1,2,18,"('combine', 12, 13)",0,36,"{'new_object': {'id': 24, 'shape': 'diamond', 'texture': 'dotted', 'color': 'yellow'}}"
+simple,1,2,19,"('consume', 24)",10,46,{'feedback': 'Step 19: Consumed id 24 (yellow diamond dotted) for 10 points.'}
+simple,1,2,20,"('combine', 14, 15)",0,46,"{'new_object': {'id': 26, 'shape': 'diamond', 'texture': 'checkered', 'color': 'yellow'}}"
+simple,1,2,21,"('consume', 26)",10,56,{'feedback': 'Step 21: Consumed id 26 (yellow diamond checkered) for 10 points.'}
+simple,1,2,22,"('consume', 19)",1,57,{'feedback': 'Step 22: Consumed id 19 (red square checkered) for 1 points.'}
+simple,1,2,23,"('combine', 20, 22)",0,57,"{'new_object': {'id': 26, 'shape': 'circle', 'texture': 'checkered', 'color': 'yellow'}}"
+simple,1,2,24,"('consume', 25)",1,58,{'feedback': 'Step 24: Consumed id 25 (red triangle checkered) for 1 points.'}
+simple,1,2,25,"('combine', 23, 27)",0,58,{'feedback': 'Step 25: Failed to combine id 23 (red triangle striped) and id 27 (red square checkered).'}
+simple,1,2,26,"('consume', 26)",10,68,{'feedback': 'Step 26: Consumed id 26 (yellow circle checkered) for 10 points.'}
+simple,1,2,27,"('consume', 17)",1,69,{'feedback': 'Step 27: Consumed id 17 (red square plain) for 1 points.'}
+simple,1,2,28,"('consume', 23)",1,70,{'feedback': 'Step 28: Consumed id 23 (red triangle striped) for 1 points.'}
+simple,1,2,29,"('consume', 27)",1,71,{'feedback': 'Step 29: Consumed id 27 (red square checkered) for 1 points.'}
+simple,1,2,30,"('consume', 28)",1,72,{'feedback': 'Step 30: Consumed id 28 (red triangle checkered) for 1 points.'}
+simple,1,2,31,"('consume', 29)",1,73,{'feedback': 'Step 31: Consumed id 29 (red square plain) for 1 points.'}
+simple,1,2,32,"('combine', 30, 31)",0,73,{'feedback': 'Step 32: Failed to combine id 30 (red triangle striped) and id 31 (red square checkered).'}
+simple,1,2,33,"('consume', 30)",1,74,{'feedback': 'Step 33: Consumed id 30 (red triangle striped) for 1 points.'}
+simple,1,2,34,"('combine', 31, 32)",0,74,{'feedback': 'Step 34: Failed to combine id 31 (red square checkered) and id 32 (red triangle checkered).'}
+simple,1,2,35,"('combine', 31, 32)",0,74,{'feedback': 'Step 35: Failed to combine id 31 (red square checkered) and id 32 (red triangle checkered).'}
+simple,1,2,36,"('consume', 31)",1,75,{'feedback': 'Step 36: Consumed id 31 (red square checkered) for 1 points.'}
+simple,1,2,37,"('combine', 32, 33)",0,75,{'feedback': 'Step 37: Failed to combine id 32 (red triangle checkered) and id 33 (red square plain).'}
+simple,1,2,38,"('consume', 32)",1,76,{'feedback': 'Step 38: Consumed id 32 (red triangle checkered) for 1 points.'}
+simple,1,2,39,"('consume', 33)",1,77,{'feedback': 'Step 39: Consumed id 33 (red square plain) for 1 points.'}
+simple,1,2,40,"('consume', 34)",1,78,{'feedback': 'Step 40: Consumed id 34 (red triangle striped) for 1 points.'}
+simple,1,2,41,message_to_next_player,0,78,"{'message': ""Hello Future Player!\n\nHere are some key strategies to maximize your points in the grid-world game:\n\n1. **Prioritize Combinations**: Combining two objects often yields a higher point value than consuming them individually. Focus on combining items of the same color or shape to create more valuable new objects.\n\n2. **Consume Wisely**: While consuming items gives you points, aim to consume less valuable objects (like the plain squares and circles) first to make space for more potential combinations.\n\n3. **Identify Patterns**: Keep track of successful combinations you encounter, as well as the combinations that fail. This knowledge will help you avoid wasted moves and focus on promising pairs.\n\n4. **Balance Between Consuming and Combining**: Don’t just rush to consume everything. Sometimes it's better to hold onto items that can be combined for more valuable results.\n\n5. **Experiment with Different Pairs**: If a combination fails, don’t be deterred. Try different pairings of nearby objects, as creativity can lead to unexpected successes.\n\nBest of luck, and may you score even higher than I did!""}"
+simple,0,3,1,"('consume', 0)",1,1,{'feedback': 'Step 1: Consumed id 0 (red square plain) for 1 points.'}
+simple,0,3,2,"('combine', 1, 2)",0,1,"{'new_object': {'id': 16, 'shape': 'square', 'texture': 'striped', 'color': 'yellow'}}"
+simple,0,3,3,"('consume', 16)",10,11,{'feedback': 'Step 3: Consumed id 16 (yellow square striped) for 10 points.'}
+simple,0,3,4,"('consume', 3)",1,12,{'feedback': 'Step 4: Consumed id 3 (red square checkered) for 1 points.'}
+simple,0,3,5,"('combine', 4, 5)",0,12,"{'new_object': {'id': 18, 'shape': 'circle', 'texture': 'dotted', 'color': 'yellow'}}"
+simple,0,3,6,"('consume', 18)",10,22,{'feedback': 'Step 6: Consumed id 18 (yellow circle dotted) for 10 points.'}
+simple,0,3,7,"('consume', 6)",1,23,{'feedback': 'Step 7: Consumed id 6 (red circle striped) for 1 points.'}
+simple,0,3,8,"('combine', 7, 8)",0,23,{'feedback': 'Step 8: Failed to combine id 7 (red circle checkered) and id 8 (red triangle plain).'}
+simple,0,3,9,"('consume', 7)",1,24,{'feedback': 'Step 9: Consumed id 7 (red circle checkered) for 1 points.'}
+simple,0,3,10,"('combine', 8, 9)",0,24,"{'new_object': {'id': 21, 'shape': 'triangle', 'texture': 'dotted', 'color': 'yellow'}}"
+simple,0,3,11,"('consume', 21)",10,34,{'feedback': 'Step 11: Consumed id 21 (yellow triangle dotted) for 10 points.'}
+simple,0,3,12,"('consume', 10)",1,35,{'feedback': 'Step 12: Consumed id 10 (red triangle striped) for 1 points.'}
+simple,0,3,13,"('combine', 11, 12)",0,35,{'feedback': 'Step 13: Failed to combine id 11 (red triangle checkered) and id 12 (red diamond plain).'}
+simple,0,3,14,"('combine', 11, 12)",0,35,{'feedback': 'Step 14: Failed to combine id 11 (red triangle checkered) and id 12 (red diamond plain).'}
+simple,0,3,15,"('combine', 11, 12)",0,35,{'feedback': 'Step 15: Failed to combine id 11 (red triangle checkered) and id 12 (red diamond plain).'}
+simple,0,3,16,"('combine', 11, 12)",0,35,{'feedback': 'Step 16: Failed to combine id 11 (red triangle checkered) and id 12 (red diamond plain).'}
+simple,0,3,17,"('consume', 11)",1,36,{'feedback': 'Step 17: Consumed id 11 (red triangle checkered) for 1 points.'}
+simple,0,3,18,"('combine', 12, 13)",0,36,"{'new_object': {'id': 24, 'shape': 'diamond', 'texture': 'dotted', 'color': 'yellow'}}"
+simple,0,3,19,"('consume', 24)",10,46,{'feedback': 'Step 19: Consumed id 24 (yellow diamond dotted) for 10 points.'}
+simple,0,3,20,"('combine', 14, 15)",0,46,"{'new_object': {'id': 26, 'shape': 'diamond', 'texture': 'checkered', 'color': 'yellow'}}"
+simple,0,3,21,"('consume', 26)",10,56,{'feedback': 'Step 21: Consumed id 26 (yellow diamond checkered) for 10 points.'}
+simple,0,3,22,"('consume', 17)",1,57,{'feedback': 'Step 22: Consumed id 17 (red square plain) for 1 points.'}
+simple,0,3,23,"('combine', 19, 20)",0,57,{'feedback': 'Step 23: Failed to combine id 19 (red square checkered) and id 20 (red circle striped).'}
+simple,0,3,24,"('consume', 19)",1,58,{'feedback': 'Step 24: Consumed id 19 (red square checkered) for 1 points.'}
+simple,0,3,25,"('consume', 20)",1,59,{'feedback': 'Step 25: Consumed id 20 (red circle striped) for 1 points.'}
+simple,0,3,26,"('combine', 22, 23)",0,59,{'feedback': 'Step 26: Failed to combine id 22 (red circle checkered) and id 23 (red triangle striped).'}
+simple,0,3,27,"('consume', 22)",1,60,{'feedback': 'Step 27: Consumed id 22 (red circle checkered) for 1 points.'}
+simple,0,3,28,"('combine', 23, 25)",0,60,"{'new_object': {'id': 29, 'shape': 'triangle', 'texture': 'checkered', 'color': 'yellow'}}"
+simple,0,3,29,"('consume', 29)",10,70,{'feedback': 'Step 29: Consumed id 29 (yellow triangle checkered) for 10 points.'}
+simple,0,3,30,"('consume', 26)",1,71,{'feedback': 'Step 30: Consumed id 26 (red square plain) for 1 points.'}
+simple,0,3,31,"('combine', 27, 28)",0,71,{'feedback': 'Step 31: Failed to combine id 27 (red square checkered) and id 28 (red circle striped).'}
+simple,0,3,32,"('consume', 27)",1,72,{'feedback': 'Step 32: Consumed id 27 (red square checkered) for 1 points.'}
+simple,0,3,33,"('consume', 30)",1,73,{'feedback': 'Step 33: Consumed id 30 (red circle checkered) for 1 points.'}
+simple,0,3,34,"('combine', 28, 31)",0,73,{'feedback': 'Step 34: Failed to combine id 28 (red circle striped) and id 31 (red square plain).'}
+simple,0,3,35,"('consume', 28)",1,74,{'feedback': 'Step 35: Consumed id 28 (red circle striped) for 1 points.'}
+simple,0,3,36,"('consume', 31)",1,75,{'feedback': 'Step 36: Consumed id 31 (red square plain) for 1 points.'}
+simple,0,3,37,"('consume', 32)",1,76,{'feedback': 'Step 37: Consumed id 32 (red square checkered) for 1 points.'}
+simple,0,3,38,"('consume', 33)",1,77,{'feedback': 'Step 38: Consumed id 33 (red circle checkered) for 1 points.'}
+simple,0,3,39,"('combine', 34, 35)",0,77,{'feedback': 'Step 39: Failed to combine id 34 (red circle striped) and id 35 (red square plain).'}
+simple,0,3,40,"('consume', 34)",1,78,{'feedback': 'Step 40: Consumed id 34 (red circle striped) for 1 points.'}
+simple,0,3,41,message_to_next_player,0,78,"{'message': 'Hello, future player! Here are some strategies that helped me maximize points in the grid-world game:\n\n1. **Combine Wisely:** Always look for opportunities to combine objects early in the game. Combinations yield items that score higher points when consumed, significantly boosting your total.\n\n2. **Focus on Color and Shape:** Items of the same category (like circles or triangles) can often be combined with other variations (plain, dotted, striped, checkered). Keep track of the combinations you successively fail at and try different pairings.\n\n3. **Consumption Counts:** Don’t overlook consuming lower-point items (1 point each) if you’re stuck combining. They can help you earn quick points and clear inventory space.\n\n4. **Experiment with New Combinations:** When in doubt, try combining different items rather than sticking to failed pairs. You might discover new combinations that lead to higher-value items.\n\n5. **Plan Ahead:** Save some items for potential combinations based on what you know already works. Keeping track of your inventory will help you avoid unnecessary consumption or failure.\n\nPlay strategically, and good luck!'}"
+simple,1,3,1,"('consume', 0)",1,1,{'feedback': 'Step 1: Consumed id 0 (red square plain) for 1 points.'}
+simple,1,3,2,"('consume', 1)",1,2,{'feedback': 'Step 2: Consumed id 1 (red square dotted) for 1 points.'}
+simple,1,3,3,"('consume', 4)",1,3,{'feedback': 'Step 3: Consumed id 4 (red circle plain) for 1 points.'}
+simple,1,3,4,"('combine', 2, 3)",0,3,"{'new_object': {'id': 18, 'shape': 'square', 'texture': 'checkered', 'color': 'yellow'}}"
+simple,1,3,5,"('consume', 18)",10,13,{'feedback': 'Step 5: Consumed id 18 (yellow square checkered) for 10 points.'}
+simple,1,3,6,"('consume', 5)",1,14,{'feedback': 'Step 6: Consumed id 5 (red circle dotted) for 1 points.'}
+simple,1,3,7,"('combine', 6, 7)",0,14,"{'new_object': {'id': 20, 'shape': 'circle', 'texture': 'checkered', 'color': 'yellow'}}"
+simple,1,3,8,"('consume', 20)",10,24,{'feedback': 'Step 8: Consumed id 20 (yellow circle checkered) for 10 points.'}
+simple,1,3,9,"('combine', 8, 9)",0,24,"{'new_object': {'id': 22, 'shape': 'triangle', 'texture': 'dotted', 'color': 'yellow'}}"
+simple,1,3,10,"('consume', 10)",1,25,{'feedback': 'Step 10: Consumed id 10 (red triangle striped) for 1 points.'}
+simple,1,3,11,"('consume', 11)",1,26,{'feedback': 'Step 11: Consumed id 11 (red triangle checkered) for 1 points.'}
+simple,1,3,12,"('consume', 12)",1,27,{'feedback': 'Step 12: Consumed id 12 (red diamond plain) for 1 points.'}
+simple,1,3,13,"('combine', 13, 14)",0,27,"{'new_object': {'id': 25, 'shape': 'diamond', 'texture': 'striped', 'color': 'yellow'}}"
+simple,1,3,14,"('consume', 15)",1,28,{'feedback': 'Step 14: Consumed id 15 (red diamond checkered) for 1 points.'}
+simple,1,3,15,"('combine', 22, 25)",0,28,{'feedback': 'Step 15: Failed to combine id 22 (yellow triangle dotted) and id 25 (yellow diamond striped).'}
+simple,1,3,16,"('consume', 22)",10,38,{'feedback': 'Step 16: Consumed id 22 (yellow triangle dotted) for 10 points.'}
+simple,1,3,17,"('consume', 26)",1,39,{'feedback': 'Step 17: Consumed id 26 (red diamond plain) for 1 points.'}
+simple,1,3,18,"('combine', 16, 17)",0,39,"{'new_object': {'id': 28, 'shape': 'square', 'texture': 'dotted', 'color': 'yellow'}}"
+simple,1,3,19,"('consume', 25)",10,49,{'feedback': 'Step 19: Consumed id 25 (yellow diamond striped) for 10 points.'}
+simple,1,3,20,"('consume', 29)",1,50,{'feedback': 'Step 20: Consumed id 29 (red diamond plain) for 1 points.'}
+simple,1,3,21,"('combine', 19, 21)",0,50,"{'new_object': {'id': 29, 'shape': 'circle', 'texture': 'dotted', 'color': 'yellow'}}"
+simple,1,3,22,"('consume', 28)",10,60,{'feedback': 'Step 22: Consumed id 28 (yellow square dotted) for 10 points.'}
+simple,1,3,23,"('combine', 23, 24)",0,60,"{'new_object': {'id': 31, 'shape': 'triangle', 'texture': 'checkered', 'color': 'yellow'}}"
+simple,1,3,24,"('consume', 31)",10,70,{'feedback': 'Step 24: Consumed id 31 (yellow triangle checkered) for 10 points.'}
+simple,1,3,25,"('consume', 27)",1,71,{'feedback': 'Step 25: Consumed id 27 (red diamond checkered) for 1 points.'}
+simple,1,3,26,"('consume', 30)",1,72,{'feedback': 'Step 26: Consumed id 30 (red diamond plain) for 1 points.'}
+simple,1,3,27,"('consume', 29)",10,82,{'feedback': 'Step 27: Consumed id 29 (yellow circle dotted) for 10 points.'}
+simple,1,3,28,"('consume', 30)",1,83,{'feedback': 'Step 28: Consumed id 30 (red diamond checkered) for 1 points.'}
+simple,1,3,29,"('consume', 31)",1,84,{'feedback': 'Step 29: Consumed id 31 (red diamond plain) for 1 points.'}
+simple,1,3,30,"('combine', 18, 20)",0,84,{'feedback': 'Step 30: Failed to combine id 18 (None) and id 20 (None).'}
+simple,1,3,31,"('consume', 12)",0,84,{'error': 'Step 31: Invalid consume attempt on id 12.'}
+simple,1,3,32,"('combine', 18, 20)",0,84,{'feedback': 'Step 32: Failed to combine id 18 (None) and id 20 (None).'}
+simple,1,3,33,"('consume', 0)",1,85,{'feedback': 'Step 33: Consumed id 0 (red diamond plain) for 1 points.'}
+simple,1,3,34,"('combine', 18, 20)",0,85,{'feedback': 'Step 34: Failed to combine id 18 (None) and id 20 (None).'}
+simple,1,3,35,"('consume', 12)",0,85,{'error': 'Step 35: Invalid consume attempt on id 12.'}
+simple,1,3,36,"('consume', 12)",0,85,{'error': 'Step 36: Invalid consume attempt on id 12.'}
+simple,1,3,37,"('consume', 12)",0,85,{'error': 'Step 37: Invalid consume attempt on id 12.'}
+simple,1,3,38,"('consume', 12)",0,85,{'error': 'Step 38: Invalid consume attempt on id 12.'}
+simple,1,3,39,"('consume', 12)",0,85,{'error': 'Step 39: Invalid consume attempt on id 12.'}
+simple,1,3,40,"('consume', 12)",0,85,{'error': 'Step 40: Invalid consume attempt on id 12.'}
+simple,1,3,41,message_to_next_player,0,85,"{'message': ""**Player Tips for Maximizing Points in Grid-World:**\n\n1. **Focus on Combinations:** Combining two objects often yields higher points than consuming them separately. Prioritize finding pairs that combine well.\n\n2. **Consume Lower-Point Items Early:** Consider consuming single-point objects quickly to clear inventory space for items that can be combined or yield higher points.\n\n3. **Keep Track of Combos:** Some combinations may fail—don't waste time trying again with items that didn't work previously. Note successful combinations and pursue those.\n\n4. **Prioritize High-Point Items:** Focus on combining items that, when consumed, give significantly more points (like the yellow objects you’ve created).\n\n5. **Inventory Management:** Ensure you're always making space in your inventory by consuming less valuable items. This allows for more strategic combinations.\n\n6. **Observe Patterns:** Some objects may always result in the same combinations. Learn these interactions to improve efficiency.\n\n7. **Avoid Invalid Attempts:** Be mindful of items that result in invalid actions, as these can waste valuable moves.\n\nBy integrating these strategies into your gameplay, you can enhance your scoring potential and success in the game. Good luck!""}"
+simple,0,4,1,"('consume', 0)",1,1,{'feedback': 'Step 1: Consumed id 0 (red square plain) for 1 points.'}
+simple,0,4,2,"('combine', 1, 2)",0,1,"{'new_object': {'id': 16, 'shape': 'square', 'texture': 'striped', 'color': 'yellow'}}"
+simple,0,4,3,"('consume', 16)",10,11,{'feedback': 'Step 3: Consumed id 16 (yellow square striped) for 10 points.'}
+simple,0,4,4,"('combine', 3, 4)",0,11,{'feedback': 'Step 4: Failed to combine id 3 (red square checkered) and id 4 (red circle plain).'}
+simple,0,4,5,"('consume', 3)",1,12,{'feedback': 'Step 5: Consumed id 3 (red square checkered) for 1 points.'}
+simple,0,4,6,"('combine', 4, 5)",0,12,"{'new_object': {'id': 18, 'shape': 'circle', 'texture': 'dotted', 'color': 'yellow'}}"
+simple,0,4,7,"('consume', 18)",10,22,{'feedback': 'Step 7: Consumed id 18 (yellow circle dotted) for 10 points.'}
+simple,0,4,8,"('consume', 6)",1,23,{'feedback': 'Step 8: Consumed id 6 (red circle striped) for 1 points.'}
+simple,0,4,9,"('consume', 7)",1,24,{'feedback': 'Step 9: Consumed id 7 (red circle checkered) for 1 points.'}
+simple,0,4,10,"('combine', 8, 9)",0,24,"{'new_object': {'id': 21, 'shape': 'triangle', 'texture': 'dotted', 'color': 'yellow'}}"
+simple,0,4,11,"('consume', 21)",10,34,{'feedback': 'Step 11: Consumed id 21 (yellow triangle dotted) for 10 points.'}
+simple,0,4,12,"('combine', 10, 11)",0,34,"{'new_object': {'id': 23, 'shape': 'triangle', 'texture': 'checkered', 'color': 'yellow'}}"
+simple,0,4,13,"('consume', 23)",10,44,{'feedback': 'Step 13: Consumed id 23 (yellow triangle checkered) for 10 points.'}
+simple,0,4,14,"('consume', 12)",1,45,{'feedback': 'Step 14: Consumed id 12 (red diamond plain) for 1 points.'}
+simple,0,4,15,"('combine', 13, 14)",0,45,"{'new_object': {'id': 23, 'shape': 'diamond', 'texture': 'striped', 'color': 'yellow'}}"
+simple,0,4,16,"('combine', 15, 17)",0,45,{'feedback': 'Step 16: Failed to combine id 15 (red diamond checkered) and id 17 (red square plain).'}
+simple,0,4,17,"('consume', 15)",1,46,{'feedback': 'Step 17: Consumed id 15 (red diamond checkered) for 1 points.'}
+simple,0,4,18,"('combine', 19, 20)",0,46,{'feedback': 'Step 18: Failed to combine id 19 (red square checkered) and id 20 (red circle striped).'}
+simple,0,4,19,"('combine', 19, 20)",0,46,{'feedback': 'Step 19: Failed to combine id 19 (red square checkered) and id 20 (red circle striped).'}
+simple,0,4,20,"('consume', 19)",1,47,{'feedback': 'Step 20: Consumed id 19 (red square checkered) for 1 points.'}
+simple,0,4,21,"('combine', 20, 22)",0,47,"{'new_object': {'id': 26, 'shape': 'circle', 'texture': 'checkered', 'color': 'yellow'}}"
+simple,0,4,22,"('consume', 26)",10,57,{'feedback': 'Step 22: Consumed id 26 (yellow circle checkered) for 10 points.'}
+simple,0,4,23,"('combine', 24, 25)",0,57,"{'new_object': {'id': 28, 'shape': 'diamond', 'texture': 'checkered', 'color': 'yellow'}}"
+simple,0,4,24,"('consume', 28)",10,67,{'feedback': 'Step 24: Consumed id 28 (yellow diamond checkered) for 10 points.'}
+simple,0,4,25,"('combine', 17, 27)",0,67,"{'new_object': {'id': 28, 'shape': 'square', 'texture': 'checkered', 'color': 'yellow'}}"
+simple,0,4,26,"('consume', 28)",10,77,{'feedback': 'Step 26: Consumed id 28 (yellow square checkered) for 10 points.'}
+simple,0,4,27,"('consume', 23)",10,87,{'feedback': 'Step 27: Consumed id 23 (yellow diamond striped) for 10 points.'}
+simple,0,4,28,"('combine', 4, 5)",0,87,{'feedback': 'Step 28: Failed to combine id 4 (None) and id 5 (None).'}
+simple,0,4,29,"('consume', 4)",0,87,{'error': 'Step 29: Invalid consume attempt on id 4.'}
+simple,0,4,30,"('combine', 4, 5)",0,87,{'feedback': 'Step 30: Failed to combine id 4 (None) and id 5 (None).'}
+simple,0,4,31,"('consume', 4)",0,87,{'error': 'Step 31: Invalid consume attempt on id 4.'}
+simple,0,4,32,"('combine', 4, 5)",0,87,{'feedback': 'Step 32: Failed to combine id 4 (None) and id 5 (None).'}
+simple,0,4,33,"('consume', 4)",0,87,{'error': 'Step 33: Invalid consume attempt on id 4.'}
+simple,0,4,34,"('consume', 4)",0,87,{'error': 'Step 34: Invalid consume attempt on id 4.'}
+simple,0,4,35,"('consume', 4)",0,87,{'error': 'Step 35: Invalid consume attempt on id 4.'}
+simple,0,4,36,"('consume', 4)",0,87,{'error': 'Step 36: Invalid consume attempt on id 4.'}
+simple,0,4,37,"('consume', 4)",0,87,{'error': 'Step 37: Invalid consume attempt on id 4.'}
+simple,0,4,38,"('consume', 4)",0,87,{'error': 'Step 38: Invalid consume attempt on id 4.'}
+simple,0,4,39,"('consume', 4)",0,87,{'error': 'Step 39: Invalid consume attempt on id 4.'}
+simple,0,4,40,"('consume', 4)",0,87,{'error': 'Step 40: Invalid consume attempt on id 4.'}
+simple,0,4,41,message_to_next_player,0,87,"{'message': 'To maximize your points in the grid-world game, focus on the following strategies:\n\n1. **Combining Objects**: Prioritize combining similar objects to create higher-point items. Every successful combination can yield a substantial score if you turn them into valuable new items (e.g., yellow variants).\n\n2. **Consume Wisely**: Always consume lower-value objects (like plain versions of shapes) to clear space and avoid clutter. Aim to accumulate high-value items that you can consume for a better score.\n\n3. **Experiment with Combinations**: If you fail to combine two objects, don’t be discouraged! Use that information to learn which combinations work, as different combinations will yield different results.\n\n4. **Track Successful Combinations**: Keep a mental note of combinations that lead to high-value items — such as yellow shapes — to replicate them in future turns.\n\n5. **Avoid Invalid Actions**: Be cautious about attempting combinations with objects that are not valid or are already consumed. It’s more efficient to quickly assess before attempting to combine.\n\nBy following these strategic approaches, you can enhance your gameplay efficiency and score significantly. Good luck!'}"
+simple,1,4,1,"('consume', 0)",1,1,{'feedback': 'Step 1: Consumed id 0 (red square plain) for 1 points.'}
+simple,1,4,2,"('combine', 1, 2)",0,1,"{'new_object': {'id': 16, 'shape': 'square', 'texture': 'striped', 'color': 'yellow'}}"
+simple,1,4,3,"('consume', 16)",10,11,{'feedback': 'Step 3: Consumed id 16 (yellow square striped) for 10 points.'}
+simple,1,4,4,"('consume', 3)",1,12,{'feedback': 'Step 4: Consumed id 3 (red square checkered) for 1 points.'}
+simple,1,4,5,"('combine', 4, 5)",0,12,"{'new_object': {'id': 18, 'shape': 'circle', 'texture': 'dotted', 'color': 'yellow'}}"
+simple,1,4,6,"('consume', 18)",10,22,{'feedback': 'Step 6: Consumed id 18 (yellow circle dotted) for 10 points.'}
+simple,1,4,7,"('consume', 6)",1,23,{'feedback': 'Step 7: Consumed id 6 (red circle striped) for 1 points.'}
+simple,1,4,8,"('combine', 7, 8)",0,23,{'feedback': 'Step 8: Failed to combine id 7 (red circle checkered) and id 8 (red triangle plain).'}
+simple,1,4,9,"('consume', 7)",1,24,{'feedback': 'Step 9: Consumed id 7 (red circle checkered) for 1 points.'}
+simple,1,4,10,"('combine', 8, 9)",0,24,"{'new_object': {'id': 21, 'shape': 'triangle', 'texture': 'dotted', 'color': 'yellow'}}"
+simple,1,4,11,"('consume', 21)",10,34,{'feedback': 'Step 11: Consumed id 21 (yellow triangle dotted) for 10 points.'}
+simple,1,4,12,"('consume', 10)",1,35,{'feedback': 'Step 12: Consumed id 10 (red triangle striped) for 1 points.'}
+simple,1,4,13,"('combine', 11, 12)",0,35,{'feedback': 'Step 13: Failed to combine id 11 (red triangle checkered) and id 12 (red diamond plain).'}
+simple,1,4,14,"('combine', 11, 12)",0,35,{'feedback': 'Step 14: Failed to combine id 11 (red triangle checkered) and id 12 (red diamond plain).'}
+simple,1,4,15,"('combine', 11, 12)",0,35,{'feedback': 'Step 15: Failed to combine id 11 (red triangle checkered) and id 12 (red diamond plain).'}
+simple,1,4,16,"('combine', 11, 12)",0,35,{'feedback': 'Step 16: Failed to combine id 11 (red triangle checkered) and id 12 (red diamond plain).'}
+simple,1,4,17,"('consume', 11)",1,36,{'feedback': 'Step 17: Consumed id 11 (red triangle checkered) for 1 points.'}
+simple,1,4,18,"('combine', 12, 13)",0,36,"{'new_object': {'id': 24, 'shape': 'diamond', 'texture': 'dotted', 'color': 'yellow'}}"
+simple,1,4,19,"('consume', 14)",1,37,{'feedback': 'Step 19: Consumed id 14 (red diamond striped) for 1 points.'}
+simple,1,4,20,"('consume', 15)",1,38,{'feedback': 'Step 20: Consumed id 15 (red diamond checkered) for 1 points.'}
+simple,1,4,21,"('combine', 17, 19)",0,38,"{'new_object': {'id': 27, 'shape': 'square', 'texture': 'checkered', 'color': 'yellow'}}"
+simple,1,4,22,"('consume', 24)",10,48,{'feedback': 'Step 22: Consumed id 24 (yellow diamond dotted) for 10 points.'}
+simple,1,4,23,"('combine', 20, 22)",0,48,"{'new_object': {'id': 29, 'shape': 'circle', 'texture': 'checkered', 'color': 'yellow'}}"
+simple,1,4,24,"('consume', 27)",10,58,{'feedback': 'Step 24: Consumed id 27 (yellow square checkered) for 10 points.'}
+simple,1,4,25,"('combine', 25, 28)",0,58,{'feedback': 'Step 25: Failed to combine id 25 (red triangle checkered) and id 28 (red diamond checkered).'}
+simple,1,4,26,"('consume', 29)",10,68,{'feedback': 'Step 26: Consumed id 29 (yellow circle checkered) for 10 points.'}
+simple,1,4,27,"('combine', 25, 28)",0,68,{'feedback': 'Step 27: Failed to combine id 25 (red triangle checkered) and id 28 (red diamond checkered).'}
+simple,1,4,28,"('consume', 23)",1,69,{'feedback': 'Step 28: Consumed id 23 (red triangle striped) for 1 points.'}
+simple,1,4,29,"('combine', 25, 26)",0,69,{'feedback': 'Step 29: Failed to combine id 25 (red triangle checkered) and id 26 (red diamond striped).'}
+simple,1,4,30,"('consume', 25)",1,70,{'feedback': 'Step 30: Consumed id 25 (red triangle checkered) for 1 points.'}
+simple,1,4,31,"('consume', 26)",1,71,{'feedback': 'Step 31: Consumed id 26 (red diamond striped) for 1 points.'}
+simple,1,4,32,"('consume', 28)",1,72,{'feedback': 'Step 32: Consumed id 28 (red diamond checkered) for 1 points.'}
+simple,1,4,33,"('consume', 30)",1,73,{'feedback': 'Step 33: Consumed id 30 (red triangle checkered) for 1 points.'}
+simple,1,4,34,"('consume', 31)",1,74,{'feedback': 'Step 34: Consumed id 31 (red diamond striped) for 1 points.'}
+simple,1,4,35,"('combine', 29, 32)",0,74,{'feedback': 'Step 35: Failed to combine id 29 (red triangle striped) and id 32 (red diamond checkered).'}
+simple,1,4,36,"('consume', 32)",1,75,{'feedback': 'Step 36: Consumed id 32 (red diamond checkered) for 1 points.'}
+simple,1,4,37,"('consume', 29)",1,76,{'feedback': 'Step 37: Consumed id 29 (red triangle striped) for 1 points.'}
+simple,1,4,38,"('consume', 34)",1,77,{'feedback': 'Step 38: Consumed id 34 (red diamond striped) for 1 points.'}
+simple,1,4,39,"('consume', 33)",1,78,{'feedback': 'Step 39: Consumed id 33 (red triangle checkered) for 1 points.'}
+simple,1,4,40,"('consume', 35)",1,79,{'feedback': 'Step 40: Consumed id 35 (red diamond checkered) for 1 points.'}
+simple,1,4,41,message_to_next_player,0,79,"{'message': ""Hello, future player! Here are some strategies to help you achieve high scores in the grid-world game:\n\n1. **Focus on Combinations**: Combining objects often yields higher-point items, so prioritize finding pairs that can merge. Look for patterns that have successfully combined in the past, especially those leading to yellow objects.\n\n2. **Consume Wisely**: While it's tempting to consume everything, be strategic. Always evaluate if the object can be combined first for potentially greater rewards. \n\n3. **Experiment**: Don't hesitate to test combinations, even if they sometimes fail. Understanding which items can't merge is just as important as knowing successful ones.\n\n4. **Track Your Points**: Keep an eye on which types of items are giving you the most points. Consuming yellow items significantly increases your score, so aim to create and consume them as much as possible.\n\n5. **Prioritize Unique Combinations**: Sometimes common objects lead to lesser outcomes. Look for rarer combinations or those that haven’t been tried yet.\n\nBy leveraging these strategies, you’ll maximize your scoring potential and enjoy the game more! Good luck!""}"
+medium,0,0,1,"('consume', 0)",1,1,{'feedback': 'Step 1: Consumed id 0 (red square plain) for 1 points.'}
+medium,0,0,2,"('consume', 1)",1,2,{'feedback': 'Step 2: Consumed id 1 (red square dotted) for 1 points.'}
+medium,0,0,3,"('consume', 2)",1,3,{'feedback': 'Step 3: Consumed id 2 (red square striped) for 1 points.'}
+medium,0,0,4,"('consume', 4)",1,4,{'feedback': 'Step 4: Consumed id 4 (red circle plain) for 1 points.'}
+medium,0,0,5,"('consume', 6)",1,5,{'feedback': 'Step 5: Consumed id 6 (red circle striped) for 1 points.'}
+medium,0,0,6,"('consume', 3)",1,6,{'feedback': 'Step 6: Consumed id 3 (red square checkered) for 1 points.'}
+medium,0,0,7,"('consume', 19)",1,7,{'feedback': 'Step 7: Consumed id 19 (red circle plain) for 1 points.'}
+medium,0,0,8,"('consume', 5)",1,8,{'feedback': 'Step 8: Consumed id 5 (red circle dotted) for 1 points.'}
+medium,0,0,9,"('consume', 7)",1,9,{'feedback': 'Step 9: Consumed id 7 (red circle checkered) for 1 points.'}
+medium,0,0,10,"('combine', 8, 9)",0,9,{'feedback': 'Step 10: Failed to combine id 8 (red triangle plain) and id 9 (red triangle dotted).'}
+medium,0,0,11,"('consume', 10)",1,10,{'feedback': 'Step 11: Consumed id 10 (red triangle striped) for 1 points.'}
+medium,0,0,12,"('consume', 8)",1,11,{'feedback': 'Step 12: Consumed id 8 (red triangle plain) for 1 points.'}
+medium,0,0,13,"('combine', 9, 11)",0,11,{'feedback': 'Step 13: Failed to combine id 9 (red triangle dotted) and id 11 (red triangle checkered).'}
+medium,0,0,14,"('combine', 9, 11)",0,11,{'feedback': 'Step 14: Failed to combine id 9 (red triangle dotted) and id 11 (red triangle checkered).'}
+medium,0,0,15,"('consume', 12)",1,12,{'feedback': 'Step 15: Consumed id 12 (red diamond plain) for 1 points.'}
+medium,0,0,16,"('consume', 9)",1,13,{'feedback': 'Step 16: Consumed id 9 (red triangle dotted) for 1 points.'}
+medium,0,0,17,"('combine', 11, 13)",0,13,{'feedback': 'Step 17: Failed to combine id 11 (red triangle checkered) and id 13 (red diamond dotted).'}
+medium,0,0,18,"('consume', 11)",1,14,{'feedback': 'Step 18: Consumed id 11 (red triangle checkered) for 1 points.'}
+medium,0,0,19,"('combine', 13, 14)",0,14,{'feedback': 'Step 19: Failed to combine id 13 (red diamond dotted) and id 14 (red diamond striped).'}
+medium,0,0,20,"('consume', 13)",1,15,{'feedback': 'Step 20: Consumed id 13 (red diamond dotted) for 1 points.'}
+medium,0,0,21,"('consume', 14)",1,16,{'feedback': 'Step 21: Consumed id 14 (red diamond striped) for 1 points.'}
+medium,0,0,22,"('combine', 15, 16)",0,16,"{'new_object': {'id': 31, 'shape': 'diamond', 'texture': 'plain', 'color': 'yellow'}}"
+medium,0,0,23,"('consume', 31)",10,26,{'feedback': 'Step 23: Consumed id 31 (yellow diamond plain) for 10 points.'}
+medium,0,0,24,"('combine', 17, 18)",0,26,{'feedback': 'Step 24: Failed to combine id 17 (red square dotted) and id 18 (red square striped).'}
+medium,0,0,25,"('combine', 17, 18)",0,26,{'feedback': 'Step 25: Failed to combine id 17 (red square dotted) and id 18 (red square striped).'}
+medium,0,0,26,"('consume', 17)",1,27,{'feedback': 'Step 26: Consumed id 17 (red square dotted) for 1 points.'}
+medium,0,0,27,"('combine', 18, 20)",0,27,{'feedback': 'Step 27: Failed to combine id 18 (red square striped) and id 20 (red circle striped).'}
+medium,0,0,28,"('combine', 18, 20)",0,27,{'feedback': 'Step 28: Failed to combine id 18 (red square striped) and id 20 (red circle striped).'}
+medium,0,0,29,"('combine', 18, 20)",0,27,{'feedback': 'Step 29: Failed to combine id 18 (red square striped) and id 20 (red circle striped).'}
+medium,0,0,30,"('consume', 18)",1,28,{'feedback': 'Step 30: Consumed id 18 (red square striped) for 1 points.'}
+medium,0,0,31,"('combine', 20, 21)",0,28,{'feedback': 'Step 31: Failed to combine id 20 (red circle striped) and id 21 (red square checkered).'}
+medium,0,0,32,"('consume', 20)",1,29,{'feedback': 'Step 32: Consumed id 20 (red circle striped) for 1 points.'}
+medium,0,0,33,"('combine', 21, 22)",0,29,{'feedback': 'Step 33: Failed to combine id 21 (red square checkered) and id 22 (red circle plain).'}
+medium,0,0,34,"('consume', 21)",1,30,{'feedback': 'Step 34: Consumed id 21 (red square checkered) for 1 points.'}
+medium,0,0,35,"('combine', 22, 23)",0,30,{'feedback': 'Step 35: Failed to combine id 22 (red circle plain) and id 23 (red circle dotted).'}
+medium,0,0,36,"('consume', 22)",1,31,{'feedback': 'Step 36: Consumed id 22 (red circle plain) for 1 points.'}
+medium,0,0,37,"('combine', 23, 24)",0,31,{'feedback': 'Step 37: Failed to combine id 23 (red circle dotted) and id 24 (red circle checkered).'}
+medium,0,0,38,"('consume', 23)",1,32,{'feedback': 'Step 38: Consumed id 23 (red circle dotted) for 1 points.'}
+medium,0,0,39,"('consume', 24)",1,33,{'feedback': 'Step 39: Consumed id 24 (red circle checkered) for 1 points.'}
+medium,0,0,40,"('consume', 25)",1,34,{'feedback': 'Step 40: Consumed id 25 (red triangle striped) for 1 points.'}
+medium,0,0,41,message_to_next_player,0,34,"{'message': ""To maximize your score in the grid-world game, focus on the following strategies:\n\n1. **Consume Objects Early**: Prioritize consuming items that yield 1 point each to build a solid score base. Every point counts in the early stages.\n\n2. **Experiment with Combinations**: Combining objects can yield higher-point items. Look for opportunities to combine objects you've consumed, especially if they are of similar types (like shapes or patterns).\n\n3. **Keep Track of Failures**: Be aware of which combinations have failed. Certain shapes or patterns may have restrictions on how they combine.\n\n4. **Use Color and Shape Patterns**: Notice how certain color and shape pairings yield successful combinations. For example, combining a plain item with a checkered item can lead to valuable new objects.\n\n5. **Make Use of Points from Combined Items**: Successfully creating and consuming a new object can give you a substantial point increase. Prioritize completing these combinations if you have the right items available.\n\n6. **Balance Consumption and Combining**: While it's tempting to consume everything, keep some items for potential combinations. Managing this balance is key to maximizing points.\n\nFollowing these strategies should help you enhance your scoring potential and navigate the grid-world more effectively. Good luck!""}"
+medium,1,0,1,"('consume', 0)",1,1,{'feedback': 'Step 1: Consumed id 0 (red square plain) for 1 points.'}
+medium,1,0,2,"('consume', 1)",1,2,{'feedback': 'Step 2: Consumed id 1 (red square dotted) for 1 points.'}
+medium,1,0,3,"('consume', 4)",1,3,{'feedback': 'Step 3: Consumed id 4 (red circle plain) for 1 points.'}
+medium,1,0,4,"('combine', 2, 3)",0,3,{'feedback': 'Step 4: Failed to combine id 2 (red square striped) and id 3 (red square checkered).'}
+medium,1,0,5,"('consume', 2)",1,4,{'feedback': 'Step 5: Consumed id 2 (red square striped) for 1 points.'}
+medium,1,0,6,"('combine', 6, 7)",0,4,{'feedback': 'Step 6: Failed to combine id 6 (red circle striped) and id 7 (red circle checkered).'}
+medium,1,0,7,"('consume', 3)",1,5,{'feedback': 'Step 7: Consumed id 3 (red square checkered) for 1 points.'}
+medium,1,0,8,"('consume', 5)",1,6,{'feedback': 'Step 8: Consumed id 5 (red circle dotted) for 1 points.'}
+medium,1,0,9,"('consume', 6)",1,7,{'feedback': 'Step 9: Consumed id 6 (red circle striped) for 1 points.'}
+medium,1,0,10,"('consume', 7)",1,8,{'feedback': 'Step 10: Consumed id 7 (red circle checkered) for 1 points.'}
+medium,1,0,11,"('consume', 8)",1,9,{'feedback': 'Step 11: Consumed id 8 (red triangle plain) for 1 points.'}
+medium,1,0,12,"('consume', 9)",1,10,{'feedback': 'Step 12: Consumed id 9 (red triangle dotted) for 1 points.'}
+medium,1,0,13,"('combine', 10, 11)",0,10,{'feedback': 'Step 13: Failed to combine id 10 (red triangle striped) and id 11 (red triangle checkered).'}
+medium,1,0,14,"('consume', 10)",1,11,{'feedback': 'Step 14: Consumed id 10 (red triangle striped) for 1 points.'}
+medium,1,0,15,"('consume', 11)",1,12,{'feedback': 'Step 15: Consumed id 11 (red triangle checkered) for 1 points.'}
+medium,1,0,16,"('combine', 12, 13)",0,12,{'feedback': 'Step 16: Failed to combine id 12 (red diamond plain) and id 13 (red diamond dotted).'}
+medium,1,0,17,"('consume', 12)",1,13,{'feedback': 'Step 17: Consumed id 12 (red diamond plain) for 1 points.'}
+medium,1,0,18,"('combine', 13, 14)",0,13,{'feedback': 'Step 18: Failed to combine id 13 (red diamond dotted) and id 14 (red diamond striped).'}
+medium,1,0,19,"('consume', 13)",1,14,{'feedback': 'Step 19: Consumed id 13 (red diamond dotted) for 1 points.'}
+medium,1,0,20,"('consume', 14)",1,15,{'feedback': 'Step 20: Consumed id 14 (red diamond striped) for 1 points.'}
+medium,1,0,21,"('combine', 15, 16)",0,15,"{'new_object': {'id': 30, 'shape': 'diamond', 'texture': 'plain', 'color': 'yellow'}}"
+medium,1,0,22,"('consume', 30)",10,25,{'feedback': 'Step 22: Consumed id 30 (yellow diamond plain) for 10 points.'}
+medium,1,0,23,"('combine', 17, 18)",0,25,{'feedback': 'Step 23: Failed to combine id 17 (red square dotted) and id 18 (red circle plain).'}
+medium,1,0,24,"('combine', 17, 18)",0,25,{'feedback': 'Step 24: Failed to combine id 17 (red square dotted) and id 18 (red circle plain).'}
+medium,1,0,25,"('combine', 17, 18)",0,25,{'feedback': 'Step 25: Failed to combine id 17 (red square dotted) and id 18 (red circle plain).'}
+medium,1,0,26,"('combine', 17, 18)",0,25,{'feedback': 'Step 26: Failed to combine id 17 (red square dotted) and id 18 (red circle plain).'}
+medium,1,0,27,"('combine', 17, 18)",0,25,{'feedback': 'Step 27: Failed to combine id 17 (red square dotted) and id 18 (red circle plain).'}
+medium,1,0,28,"('consume', 17)",1,26,{'feedback': 'Step 28: Consumed id 17 (red square dotted) for 1 points.'}
+medium,1,0,29,"('combine', 18, 19)",0,26,{'feedback': 'Step 29: Failed to combine id 18 (red circle plain) and id 19 (red square striped).'}
+medium,1,0,30,"('combine', 20, 21)",0,26,{'feedback': 'Step 30: Failed to combine id 20 (red square checkered) and id 21 (red circle dotted).'}
+medium,1,0,31,"('consume', 18)",1,27,{'feedback': 'Step 31: Consumed id 18 (red circle plain) for 1 points.'}
+medium,1,0,32,"('combine', 19, 20)",0,27,{'feedback': 'Step 32: Failed to combine id 19 (red square striped) and id 20 (red square checkered).'}
+medium,1,0,33,"('consume', 19)",1,28,{'feedback': 'Step 33: Consumed id 19 (red square striped) for 1 points.'}
+medium,1,0,34,"('combine', 20, 21)",0,28,{'feedback': 'Step 34: Failed to combine id 20 (red square checkered) and id 21 (red circle dotted).'}
+medium,1,0,35,"('combine', 20, 21)",0,28,{'feedback': 'Step 35: Failed to combine id 20 (red square checkered) and id 21 (red circle dotted).'}
+medium,1,0,36,"('consume', 20)",1,29,{'feedback': 'Step 36: Consumed id 20 (red square checkered) for 1 points.'}
+medium,1,0,37,"('combine', 21, 22)",0,29,{'feedback': 'Step 37: Failed to combine id 21 (red circle dotted) and id 22 (red circle striped).'}
+medium,1,0,38,"('consume', 21)",1,30,{'feedback': 'Step 38: Consumed id 21 (red circle dotted) for 1 points.'}
+medium,1,0,39,"('combine', 22, 23)",0,30,{'feedback': 'Step 39: Failed to combine id 22 (red circle striped) and id 23 (red circle checkered).'}
+medium,1,0,40,"('consume', 22)",1,31,{'feedback': 'Step 40: Consumed id 22 (red circle striped) for 1 points.'}
+medium,1,0,41,message_to_next_player,0,31,"{'message': ""Hello Player!\n\nHere are some key strategies to maximize your points in the grid-world game:\n\n1. **Focus on Consuming Objects:** Each object consumed gives you 1 point, so prioritize gathering the easy-to-consume objects early on.\n\n2. **Experiment with Combinations:** While some combinations may fail, they can yield significant rewards. Keep track of failed combinations to avoid redundancy.\n\n3. **Prioritize High-Value Combines:** Once you've identified a combination that yields a valuable reward, aim to execute it. For example, combining a red diamond with another object led to a yellow diamond that gave 10 points!\n\n4. **Keep an Eye on Repeated Objects:** If you encounter multiple instances of the same object, strategize whether to consume them or hold out for a potential combination if you have the right pairs.\n\n5. **Assess Combinations Before Consuming:** If you suspect that two objects might combine well (like matching shapes or colors), try those combinations before consuming them outright.\n\nBy focusing on these strategies, you can boost your score and enjoy the game even more! Good luck!""}"
+medium,0,1,1,"('consume', 0)",1,1,{'feedback': 'Step 1: Consumed id 0 (red square plain) for 1 points.'}
+medium,0,1,2,"('consume', 1)",1,2,{'feedback': 'Step 2: Consumed id 1 (red square dotted) for 1 points.'}
+medium,0,1,3,"('consume', 4)",1,3,{'feedback': 'Step 3: Consumed id 4 (red circle plain) for 1 points.'}
+medium,0,1,4,"('combine', 2, 3)",0,3,{'feedback': 'Step 4: Failed to combine id 2 (red square striped) and id 3 (red square checkered).'}
+medium,0,1,5,"('consume', 2)",1,4,{'feedback': 'Step 5: Consumed id 2 (red square striped) for 1 points.'}
+medium,0,1,6,"('combine', 3, 5)",0,4,{'feedback': 'Step 6: Failed to combine id 3 (red square checkered) and id 5 (red circle dotted).'}
+medium,0,1,7,"('consume', 6)",1,5,{'feedback': 'Step 7: Consumed id 6 (red circle striped) for 1 points.'}
+medium,0,1,8,"('consume', 7)",1,6,{'feedback': 'Step 8: Consumed id 7 (red circle checkered) for 1 points.'}
+medium,0,1,9,"('consume', 8)",1,7,{'feedback': 'Step 9: Consumed id 8 (red triangle plain) for 1 points.'}
+medium,0,1,10,"('consume', 9)",1,8,{'feedback': 'Step 10: Consumed id 9 (red triangle dotted) for 1 points.'}
+medium,0,1,11,"('combine', 10, 11)",0,8,{'feedback': 'Step 11: Failed to combine id 10 (red triangle striped) and id 11 (red triangle checkered).'}
+medium,0,1,12,"('consume', 10)",1,9,{'feedback': 'Step 12: Consumed id 10 (red triangle striped) for 1 points.'}
+medium,0,1,13,"('consume', 11)",1,10,{'feedback': 'Step 13: Consumed id 11 (red triangle checkered) for 1 points.'}
+medium,0,1,14,"('consume', 12)",1,11,{'feedback': 'Step 14: Consumed id 12 (red diamond plain) for 1 points.'}
+medium,0,1,15,"('combine', 13, 14)",0,11,{'feedback': 'Step 15: Failed to combine id 13 (red diamond dotted) and id 14 (red diamond striped).'}
+medium,0,1,16,"('consume', 13)",1,12,{'feedback': 'Step 16: Consumed id 13 (red diamond dotted) for 1 points.'}
+medium,0,1,17,"('consume', 14)",1,13,{'feedback': 'Step 17: Consumed id 14 (red diamond striped) for 1 points.'}
+medium,0,1,18,"('combine', 16, 18)",0,13,{'feedback': 'Step 18: Failed to combine id 16 (red square plain) and id 18 (red circle plain).'}
+medium,0,1,19,"('consume', 3)",1,14,{'feedback': 'Step 19: Consumed id 3 (red square checkered) for 1 points.'}
+medium,0,1,20,"('combine', 15, 16)",0,14,"{'new_object': {'id': 29, 'shape': 'diamond', 'texture': 'plain', 'color': 'yellow'}}"
+medium,0,1,21,"('consume', 29)",10,24,{'feedback': 'Step 21: Consumed id 29 (yellow diamond plain) for 10 points.'}
+medium,0,1,22,"('combine', 18, 19)",0,24,{'feedback': 'Step 22: Failed to combine id 18 (red circle plain) and id 19 (red square striped).'}
+medium,0,1,23,"('consume', 18)",1,25,{'feedback': 'Step 23: Consumed id 18 (red circle plain) for 1 points.'}
+medium,0,1,24,"('combine', 19, 20)",0,25,{'feedback': 'Step 24: Failed to combine id 19 (red square striped) and id 20 (red circle striped).'}
+medium,0,1,25,"('combine', 19, 20)",0,25,{'feedback': 'Step 25: Failed to combine id 19 (red square striped) and id 20 (red circle striped).'}
+medium,0,1,26,"('consume', 19)",1,26,{'feedback': 'Step 26: Consumed id 19 (red square striped) for 1 points.'}
+medium,0,1,27,"('combine', 20, 21)",0,26,{'feedback': 'Step 27: Failed to combine id 20 (red circle striped) and id 21 (red circle checkered).'}
+medium,0,1,28,"('combine', 20, 21)",0,26,{'feedback': 'Step 28: Failed to combine id 20 (red circle striped) and id 21 (red circle checkered).'}
+medium,0,1,29,"('consume', 20)",1,27,{'feedback': 'Step 29: Consumed id 20 (red circle striped) for 1 points.'}
+medium,0,1,30,"('combine', 21, 22)",0,27,"{'new_object': {'id': 33, 'shape': 'circle', 'texture': 'plain', 'color': 'yellow'}}"
+medium,0,1,31,"('consume', 33)",10,37,{'feedback': 'Step 31: Consumed id 33 (yellow circle plain) for 10 points.'}
+medium,0,1,32,"('combine', 24, 25)",0,37,{'feedback': 'Step 32: Failed to combine id 24 (red triangle striped) and id 25 (red triangle checkered).'}
+medium,0,1,33,"('combine', 24, 25)",0,37,{'feedback': 'Step 33: Failed to combine id 24 (red triangle striped) and id 25 (red triangle checkered).'}
+medium,0,1,34,"('combine', 24, 25)",0,37,{'feedback': 'Step 34: Failed to combine id 24 (red triangle striped) and id 25 (red triangle checkered).'}
+medium,0,1,35,"('combine', 24, 25)",0,37,{'feedback': 'Step 35: Failed to combine id 24 (red triangle striped) and id 25 (red triangle checkered).'}
+medium,0,1,36,"('combine', 24, 25)",0,37,{'feedback': 'Step 36: Failed to combine id 24 (red triangle striped) and id 25 (red triangle checkered).'}
+medium,0,1,37,"('consume', 24)",1,38,{'feedback': 'Step 37: Consumed id 24 (red triangle striped) for 1 points.'}
+medium,0,1,38,"('combine', 25, 26)",0,38,{'feedback': 'Step 38: Failed to combine id 25 (red triangle checkered) and id 26 (red diamond plain).'}
+medium,0,1,39,"('consume', 25)",1,39,{'feedback': 'Step 39: Consumed id 25 (red triangle checkered) for 1 points.'}
+medium,0,1,40,"('consume', 26)",1,40,{'feedback': 'Step 40: Consumed id 26 (red diamond plain) for 1 points.'}
+medium,0,1,41,message_to_next_player,0,40,"{'message': ""Hello, future player!\n\nHere are some key strategies to maximize your points in the grid-world game:\n\n1. **Consumption First**: Always prioritize consuming items to gain immediate points. This can help build a solid point base to work from.\n\n2. **Experiment with Combinations**: Don't hesitate to try combining objects, but keep track of which combinations fail. Successful combinations can yield high-point items, especially those that are a different color or shape (ex: yellow items).\n\n3. **Focus on Success Rate**: If you find a combination that works well, repeat it as often as possible. For instance, I found that combining a “red circle checkered” with a “red triangle plain” led to a valuable item.\n\n4. **Be Strategic with Consumption**: If you have items that consistently fail to combine, consider consuming them to clear inventory and make room for items that might yield better combinations.\n\n5. **Prioritize Items with Higher Points**: Aim for the high-point items (like yellow items), as they can significantly boost your score in fewer steps.\n\nGood luck, and may your strategy yield you a high score!""}"
+medium,1,1,1,"('consume', 0)",1,1,{'feedback': 'Step 1: Consumed id 0 (red square plain) for 1 points.'}
+medium,1,1,2,"('consume', 1)",1,2,{'feedback': 'Step 2: Consumed id 1 (red square dotted) for 1 points.'}
+medium,1,1,3,"('consume', 4)",1,3,{'feedback': 'Step 3: Consumed id 4 (red circle plain) for 1 points.'}
+medium,1,1,4,"('combine', 2, 3)",0,3,{'feedback': 'Step 4: Failed to combine id 2 (red square striped) and id 3 (red square checkered).'}
+medium,1,1,5,"('consume', 2)",1,4,{'feedback': 'Step 5: Consumed id 2 (red square striped) for 1 points.'}
+medium,1,1,6,"('combine', 6, 7)",0,4,{'feedback': 'Step 6: Failed to combine id 6 (red circle striped) and id 7 (red circle checkered).'}
+medium,1,1,7,"('consume', 8)",1,5,{'feedback': 'Step 7: Consumed id 8 (red triangle plain) for 1 points.'}
+medium,1,1,8,"('consume', 3)",1,6,{'feedback': 'Step 8: Consumed id 3 (red square checkered) for 1 points.'}
+medium,1,1,9,"('consume', 5)",1,7,{'feedback': 'Step 9: Consumed id 5 (red circle dotted) for 1 points.'}
+medium,1,1,10,"('consume', 6)",1,8,{'feedback': 'Step 10: Consumed id 6 (red circle striped) for 1 points.'}
+medium,1,1,11,"('combine', 12, 13)",0,8,{'feedback': 'Step 11: Failed to combine id 12 (red diamond plain) and id 13 (red diamond dotted).'}
+medium,1,1,12,"('combine', 12, 13)",0,8,{'feedback': 'Step 12: Failed to combine id 12 (red diamond plain) and id 13 (red diamond dotted).'}
+medium,1,1,13,"('combine', 12, 13)",0,8,{'feedback': 'Step 13: Failed to combine id 12 (red diamond plain) and id 13 (red diamond dotted).'}
+medium,1,1,14,"('consume', 12)",1,9,{'feedback': 'Step 14: Consumed id 12 (red diamond plain) for 1 points.'}
+medium,1,1,15,"('consume', 7)",1,10,{'feedback': 'Step 15: Consumed id 7 (red circle checkered) for 1 points.'}
+medium,1,1,16,"('combine', 9, 10)",0,10,{'feedback': 'Step 16: Failed to combine id 9 (red triangle dotted) and id 10 (red triangle striped).'}
+medium,1,1,17,"('consume', 11)",1,11,{'feedback': 'Step 17: Consumed id 11 (red triangle checkered) for 1 points.'}
+medium,1,1,18,"('combine', 9, 10)",0,11,{'feedback': 'Step 18: Failed to combine id 9 (red triangle dotted) and id 10 (red triangle striped).'}
+medium,1,1,19,"('consume', 9)",1,12,{'feedback': 'Step 19: Consumed id 9 (red triangle dotted) for 1 points.'}
+medium,1,1,20,"('combine', 13, 14)",0,12,{'feedback': 'Step 20: Failed to combine id 13 (red diamond dotted) and id 14 (red diamond striped).'}
+medium,1,1,21,"('combine', 13, 14)",0,12,{'feedback': 'Step 21: Failed to combine id 13 (red diamond dotted) and id 14 (red diamond striped).'}
+medium,1,1,22,"('consume', 10)",1,13,{'feedback': 'Step 22: Consumed id 10 (red triangle striped) for 1 points.'}
+medium,1,1,23,"('combine', 13, 14)",0,13,{'feedback': 'Step 23: Failed to combine id 13 (red diamond dotted) and id 14 (red diamond striped).'}
+medium,1,1,24,"('consume', 13)",1,14,{'feedback': 'Step 24: Consumed id 13 (red diamond dotted) for 1 points.'}
+medium,1,1,25,"('combine', 14, 15)",0,14,{'feedback': 'Step 25: Failed to combine id 14 (red diamond striped) and id 15 (red diamond checkered).'}
+medium,1,1,26,"('consume', 14)",1,15,{'feedback': 'Step 26: Consumed id 14 (red diamond striped) for 1 points.'}
+medium,1,1,27,"('combine', 15, 16)",0,15,"{'new_object': {'id': 30, 'shape': 'diamond', 'texture': 'plain', 'color': 'yellow'}}"
+medium,1,1,28,"('consume', 30)",10,25,{'feedback': 'Step 28: Consumed id 30 (yellow diamond plain) for 10 points.'}
+medium,1,1,29,"('consume', 17)",1,26,{'feedback': 'Step 29: Consumed id 17 (red square dotted) for 1 points.'}
+medium,1,1,30,"('combine', 18, 19)",0,26,{'feedback': 'Step 30: Failed to combine id 18 (red circle plain) and id 19 (red square striped).'}
+medium,1,1,31,"('consume', 18)",1,27,{'feedback': 'Step 31: Consumed id 18 (red circle plain) for 1 points.'}
+medium,1,1,32,"('combine', 19, 20)",0,27,{'feedback': 'Step 32: Failed to combine id 19 (red square striped) and id 20 (red triangle plain).'}
+medium,1,1,33,"('consume', 19)",1,28,{'feedback': 'Step 33: Consumed id 19 (red square striped) for 1 points.'}
+medium,1,1,34,"('combine', 20, 21)",0,28,{'feedback': 'Step 34: Failed to combine id 20 (red triangle plain) and id 21 (red square checkered).'}
+medium,1,1,35,"('combine', 20, 21)",0,28,{'feedback': 'Step 35: Failed to combine id 20 (red triangle plain) and id 21 (red square checkered).'}
+medium,1,1,36,"('consume', 20)",1,29,{'feedback': 'Step 36: Consumed id 20 (red triangle plain) for 1 points.'}
+medium,1,1,37,"('combine', 21, 22)",0,29,{'feedback': 'Step 37: Failed to combine id 21 (red square checkered) and id 22 (red circle dotted).'}
+medium,1,1,38,"('combine', 21, 22)",0,29,{'feedback': 'Step 38: Failed to combine id 21 (red square checkered) and id 22 (red circle dotted).'}
+medium,1,1,39,"('consume', 21)",1,30,{'feedback': 'Step 39: Consumed id 21 (red square checkered) for 1 points.'}
+medium,1,1,40,"('consume', 22)",1,31,{'feedback': 'Step 40: Consumed id 22 (red circle dotted) for 1 points.'}
+medium,1,1,41,message_to_next_player,0,31,"{'message': 'Hello Player!\n\nHere are some key strategies I discovered that can help you excel in the grid-world game:\n\n1. **Consume Early and Often**: Focus on consuming as many objects as possible initially, as each one awards 1 point. This will quickly build your score.\n\n2. **Combining Objects**: Pay attention to combinations. Some pairs yield valuable new items. For instance, I successfully combined objects to create a yellow diamond that earned me 10 points. Keep track of failed combinations to refine your attempts.\n\n3. **Prioritize Dotted and Striped Objects**: In my experience, objects with dotted and striped patterns (like red circle dotted, striped triangles, etc.) frequently appear and could have greater potential when combined, so prioritize them.\n\n4. **Persistence on Combinations**: If a combination fails multiple times, consider consuming the objects instead. I encountered several failed combinations that proved unfruitful after repeated attempts.\n\n5. **Explore Different Types**: Don’t hesitate to consume a variety of shapes (squares, circles, triangles, or diamonds), as each has the potential to combine into something more valuable.\n\nRemember, adapting your strategy based on your inventory and the opportunities that arise is essential. Good luck, and may your score soar!'}"
+medium,0,2,1,"('consume', 0)",1,1,{'feedback': 'Step 1: Consumed id 0 (red square plain) for 1 points.'}
+medium,0,2,2,"('consume', 1)",1,2,{'feedback': 'Step 2: Consumed id 1 (red square dotted) for 1 points.'}
+medium,0,2,3,"('consume', 4)",1,3,{'feedback': 'Step 3: Consumed id 4 (red circle plain) for 1 points.'}
+medium,0,2,4,"('combine', 2, 3)",0,3,{'feedback': 'Step 4: Failed to combine id 2 (red square striped) and id 3 (red square checkered).'}
+medium,0,2,5,"('consume', 2)",1,4,{'feedback': 'Step 5: Consumed id 2 (red square striped) for 1 points.'}
+medium,0,2,6,"('combine', 6, 7)",0,4,{'feedback': 'Step 6: Failed to combine id 6 (red circle striped) and id 7 (red circle checkered).'}
+medium,0,2,7,"('consume', 8)",1,5,{'feedback': 'Step 7: Consumed id 8 (red triangle plain) for 1 points.'}
+medium,0,2,8,"('consume', 3)",1,6,{'feedback': 'Step 8: Consumed id 3 (red square checkered) for 1 points.'}
+medium,0,2,9,"('consume', 5)",1,7,{'feedback': 'Step 9: Consumed id 5 (red circle dotted) for 1 points.'}
+medium,0,2,10,"('combine', 6, 7)",0,7,{'feedback': 'Step 10: Failed to combine id 6 (red circle striped) and id 7 (red circle checkered).'}
+medium,0,2,11,"('consume', 6)",1,8,{'feedback': 'Step 11: Consumed id 6 (red circle striped) for 1 points.'}
+medium,0,2,12,"('consume', 7)",1,9,{'feedback': 'Step 12: Consumed id 7 (red circle checkered) for 1 points.'}
+medium,0,2,13,"('combine', 10, 11)",0,9,{'feedback': 'Step 13: Failed to combine id 10 (red triangle striped) and id 11 (red triangle checkered).'}
+medium,0,2,14,"('consume', 9)",1,10,{'feedback': 'Step 14: Consumed id 9 (red triangle dotted) for 1 points.'}
+medium,0,2,15,"('consume', 10)",1,11,{'feedback': 'Step 15: Consumed id 10 (red triangle striped) for 1 points.'}
+medium,0,2,16,"('consume', 11)",1,12,{'feedback': 'Step 16: Consumed id 11 (red triangle checkered) for 1 points.'}
+medium,0,2,17,"('consume', 12)",1,13,{'feedback': 'Step 17: Consumed id 12 (red diamond plain) for 1 points.'}
+medium,0,2,18,"('combine', 13, 14)",0,13,{'feedback': 'Step 18: Failed to combine id 13 (red diamond dotted) and id 14 (red diamond striped).'}
+medium,0,2,19,"('consume', 13)",1,14,{'feedback': 'Step 19: Consumed id 13 (red diamond dotted) for 1 points.'}
+medium,0,2,20,"('combine', 14, 15)",0,14,{'feedback': 'Step 20: Failed to combine id 14 (red diamond striped) and id 15 (red diamond checkered).'}
+medium,0,2,21,"('combine', 14, 15)",0,14,{'feedback': 'Step 21: Failed to combine id 14 (red diamond striped) and id 15 (red diamond checkered).'}
+medium,0,2,22,"('consume', 14)",1,15,{'feedback': 'Step 22: Consumed id 14 (red diamond striped) for 1 points.'}
+medium,0,2,23,"('combine', 15, 16)",0,15,"{'new_object': {'id': 30, 'shape': 'diamond', 'texture': 'plain', 'color': 'yellow'}}"
+medium,0,2,24,"('consume', 30)",10,25,{'feedback': 'Step 24: Consumed id 30 (yellow diamond plain) for 10 points.'}
+medium,0,2,25,"('combine', 18, 19)",0,25,{'feedback': 'Step 25: Failed to combine id 18 (red circle plain) and id 19 (red square striped).'}
+medium,0,2,26,"('consume', 18)",1,26,{'feedback': 'Step 26: Consumed id 18 (red circle plain) for 1 points.'}
+medium,0,2,27,"('combine', 19, 21)",0,26,{'feedback': 'Step 27: Failed to combine id 19 (red square striped) and id 21 (red square checkered).'}
+medium,0,2,28,"('combine', 19, 21)",0,26,{'feedback': 'Step 28: Failed to combine id 19 (red square striped) and id 21 (red square checkered).'}
+medium,0,2,29,"('combine', 19, 21)",0,26,{'feedback': 'Step 29: Failed to combine id 19 (red square striped) and id 21 (red square checkered).'}
+medium,0,2,30,"('consume', 19)",1,27,{'feedback': 'Step 30: Consumed id 19 (red square striped) for 1 points.'}
+medium,0,2,31,"('combine', 20, 21)",0,27,{'feedback': 'Step 31: Failed to combine id 20 (red triangle plain) and id 21 (red square checkered).'}
+medium,0,2,32,"('combine', 20, 21)",0,27,{'feedback': 'Step 32: Failed to combine id 20 (red triangle plain) and id 21 (red square checkered).'}
+medium,0,2,33,"('consume', 20)",1,28,{'feedback': 'Step 33: Consumed id 20 (red triangle plain) for 1 points.'}
+medium,0,2,34,"('combine', 21, 22)",0,28,{'feedback': 'Step 34: Failed to combine id 21 (red square checkered) and id 22 (red circle dotted).'}
+medium,0,2,35,"('combine', 21, 22)",0,28,{'feedback': 'Step 35: Failed to combine id 21 (red square checkered) and id 22 (red circle dotted).'}
+medium,0,2,36,"('consume', 21)",1,29,{'feedback': 'Step 36: Consumed id 21 (red square checkered) for 1 points.'}
+medium,0,2,37,"('combine', 22, 23)",0,29,{'feedback': 'Step 37: Failed to combine id 22 (red circle dotted) and id 23 (red circle striped).'}
+medium,0,2,38,"('consume', 22)",1,30,{'feedback': 'Step 38: Consumed id 22 (red circle dotted) for 1 points.'}
+medium,0,2,39,"('combine', 23, 24)",0,30,{'feedback': 'Step 39: Failed to combine id 23 (red circle striped) and id 24 (red circle checkered).'}
+medium,0,2,40,"('consume', 23)",1,31,{'feedback': 'Step 40: Consumed id 23 (red circle striped) for 1 points.'}
+medium,0,2,41,message_to_next_player,0,31,"{'message': ""**Advice for Future Players:**\n\n1. **Prioritize Consumption:** Each object you consume grants 1 point, so make consumption your primary strategy. Ensure you're consuming every available item to maximize your points.\n\n2. **Learn Combination Patterns:** Pay attention to which combinations fail repeatedly. Some objects may not combine well together, so avoid wasting attempts on them. Track successful combinations for potential high-point items.\n\n3. **Track Unique Color and Shape Types:** Focus on collecting and combining objects based on their types (e.g., shapes and colors). Some combinations might yield bonuses or unique items, so keep experimenting, but learn from failures.\n\n4. **Handle Diamonds with Care:** Successful combinations with diamonds can yield significant points, as seen with the yellow diamond (10 points). Prioritize combinations involving differently patterned diamonds. \n\n5. **Experiment but Be Strategic:** While exploration is vital, maintain a strategic approach with combinations. If you notice a pattern of failure, shift back to consuming items instead.\n\n6. **Point Maximization with Rare Combos:** Aim for combos that yield rare items, which can offer a substantial point boost compared to individual items.\n\nGood luck, and may your score exceed 31!""}"
+medium,1,2,1,"('consume', 0)",1,1,{'feedback': 'Step 1: Consumed id 0 (red square plain) for 1 points.'}
+medium,1,2,2,"('consume', 1)",1,2,{'feedback': 'Step 2: Consumed id 1 (red square dotted) for 1 points.'}
+medium,1,2,3,"('consume', 4)",1,3,{'feedback': 'Step 3: Consumed id 4 (red circle plain) for 1 points.'}
+medium,1,2,4,"('combine', 2, 3)",0,3,{'feedback': 'Step 4: Failed to combine id 2 (red square striped) and id 3 (red square checkered).'}
+medium,1,2,5,"('consume', 2)",1,4,{'feedback': 'Step 5: Consumed id 2 (red square striped) for 1 points.'}
+medium,1,2,6,"('combine', 6, 7)",0,4,{'feedback': 'Step 6: Failed to combine id 6 (red circle striped) and id 7 (red circle checkered).'}
+medium,1,2,7,"('consume', 8)",1,5,{'feedback': 'Step 7: Consumed id 8 (red triangle plain) for 1 points.'}
+medium,1,2,8,"('consume', 3)",1,6,{'feedback': 'Step 8: Consumed id 3 (red square checkered) for 1 points.'}
+medium,1,2,9,"('consume', 5)",1,7,{'feedback': 'Step 9: Consumed id 5 (red circle dotted) for 1 points.'}
+medium,1,2,10,"('combine', 6, 7)",0,7,{'feedback': 'Step 10: Failed to combine id 6 (red circle striped) and id 7 (red circle checkered).'}
+medium,1,2,11,"('consume', 6)",1,8,{'feedback': 'Step 11: Consumed id 6 (red circle striped) for 1 points.'}
+medium,1,2,12,"('combine', 10, 11)",0,8,{'feedback': 'Step 12: Failed to combine id 10 (red triangle striped) and id 11 (red triangle checkered).'}
+medium,1,2,13,"('combine', 10, 11)",0,8,{'feedback': 'Step 13: Failed to combine id 10 (red triangle striped) and id 11 (red triangle checkered).'}
+medium,1,2,14,"('consume', 12)",1,9,{'feedback': 'Step 14: Consumed id 12 (red diamond plain) for 1 points.'}
+medium,1,2,15,"('combine', 10, 11)",0,9,{'feedback': 'Step 15: Failed to combine id 10 (red triangle striped) and id 11 (red triangle checkered).'}
+medium,1,2,16,"('consume', 7)",1,10,{'feedback': 'Step 16: Consumed id 7 (red circle checkered) for 1 points.'}
+medium,1,2,17,"('combine', 10, 11)",0,10,{'feedback': 'Step 17: Failed to combine id 10 (red triangle striped) and id 11 (red triangle checkered).'}
+medium,1,2,18,"('combine', 10, 11)",0,10,{'feedback': 'Step 18: Failed to combine id 10 (red triangle striped) and id 11 (red triangle checkered).'}
+medium,1,2,19,"('consume', 10)",1,11,{'feedback': 'Step 19: Consumed id 10 (red triangle striped) for 1 points.'}
+medium,1,2,20,"('combine', 11, 12)",0,11,{'feedback': 'Step 20: Failed to combine id 11 (red triangle checkered) and id 12 (None).'}
+medium,1,2,21,"('consume', 11)",1,12,{'feedback': 'Step 21: Consumed id 11 (red triangle checkered) for 1 points.'}
+medium,1,2,22,"('combine', 14, 15)",0,12,{'feedback': 'Step 22: Failed to combine id 14 (red diamond striped) and id 15 (red diamond checkered).'}
+medium,1,2,23,"('consume', 14)",1,13,{'feedback': 'Step 23: Consumed id 14 (red diamond striped) for 1 points.'}
+medium,1,2,24,"('combine', 15, 24)",0,13,{'feedback': 'Step 24: Failed to combine id 15 (red diamond checkered) and id 24 (red diamond plain).'}
+medium,1,2,25,"('combine', 15, 24)",0,13,{'feedback': 'Step 25: Failed to combine id 15 (red diamond checkered) and id 24 (red diamond plain).'}
+medium,1,2,26,"('consume', 15)",1,14,{'feedback': 'Step 26: Consumed id 15 (red diamond checkered) for 1 points.'}
+medium,1,2,27,"('combine', 9, 13)",0,14,{'feedback': 'Step 27: Failed to combine id 9 (red triangle dotted) and id 13 (red diamond dotted).'}
+medium,1,2,28,"('consume', 9)",1,15,{'feedback': 'Step 28: Consumed id 9 (red triangle dotted) for 1 points.'}
+medium,1,2,29,"('combine', 16, 17)",0,15,{'feedback': 'Step 29: Failed to combine id 16 (red square plain) and id 17 (red square dotted).'}
+medium,1,2,30,"('combine', 16, 17)",0,15,{'feedback': 'Step 30: Failed to combine id 16 (red square plain) and id 17 (red square dotted).'}
+medium,1,2,31,"('consume', 16)",1,16,{'feedback': 'Step 31: Consumed id 16 (red square plain) for 1 points.'}
+medium,1,2,32,"('consume', 18)",1,17,{'feedback': 'Step 32: Consumed id 18 (red circle plain) for 1 points.'}
+medium,1,2,33,"('combine', 20, 21)",0,17,{'feedback': 'Step 33: Failed to combine id 20 (red triangle plain) and id 21 (red square checkered).'}
+medium,1,2,34,"('combine', 20, 21)",0,17,{'feedback': 'Step 34: Failed to combine id 20 (red triangle plain) and id 21 (red square checkered).'}
+medium,1,2,35,"('consume', 13)",1,18,{'feedback': 'Step 35: Consumed id 13 (red diamond dotted) for 1 points.'}
+medium,1,2,36,"('combine', 19, 21)",0,18,{'feedback': 'Step 36: Failed to combine id 19 (red square striped) and id 21 (red square checkered).'}
+medium,1,2,37,"('combine', 19, 21)",0,18,{'feedback': 'Step 37: Failed to combine id 19 (red square striped) and id 21 (red square checkered).'}
+medium,1,2,38,"('consume', 17)",1,19,{'feedback': 'Step 38: Consumed id 17 (red square dotted) for 1 points.'}
+medium,1,2,39,"('consume', 19)",1,20,{'feedback': 'Step 39: Consumed id 19 (red square striped) for 1 points.'}
+medium,1,2,40,"('consume', 20)",1,21,{'feedback': 'Step 40: Consumed id 20 (red triangle plain) for 1 points.'}
+medium,1,2,41,message_to_next_player,0,21,"{'message': ""**Advice for Success in the Grid-World Game:**\n\n1. **Prioritize Consumption:** Focus on consuming objects that yield consistent points rather than trying to combine them. Each object consumed grants you 1 point, and consuming can quickly add up.\n\n2. **Know Your Combinations:** Keep track of which combinations fail. If you consistently see that certain objects (like the red triangles) cannot be combined, save your attempts and focus on consuming instead.\n\n3. **Explore Different Shapes:** Different types of objects (squares, circles, triangles, diamonds) may offer unique benefits or combine better. Make sure to explore and consume a variety of shapes early on.\n\n4. **Avoid Redundant Combines:** If a combination fails multiple times, it's likely not worth pursuing. Shift your strategy to consuming or seeking new objects.\n\n5. **Keep an Eye on Progress:** Track your score and aim for variety in your consumption to maximize points without falling into a repetitive cycle.\n\nBy following these strategies, you can maximize your points and navigate the grid-world more effectively. Happy gaming!""}"
+medium,0,3,1,"('consume', 0)",1,1,{'feedback': 'Step 1: Consumed id 0 (red square plain) for 1 points.'}
+medium,0,3,2,"('combine', 1, 2)",0,1,{'feedback': 'Step 2: Failed to combine id 1 (red square dotted) and id 2 (red square striped).'}
+medium,0,3,3,"('consume', 1)",1,2,{'feedback': 'Step 3: Consumed id 1 (red square dotted) for 1 points.'}
+medium,0,3,4,"('combine', 2, 3)",0,2,{'feedback': 'Step 4: Failed to combine id 2 (red square striped) and id 3 (red square checkered).'}
+medium,0,3,5,"('consume', 2)",1,3,{'feedback': 'Step 5: Consumed id 2 (red square striped) for 1 points.'}
+medium,0,3,6,"('consume', 3)",1,4,{'feedback': 'Step 6: Consumed id 3 (red square checkered) for 1 points.'}
+medium,0,3,7,"('consume', 4)",1,5,{'feedback': 'Step 7: Consumed id 4 (red circle plain) for 1 points.'}
+medium,0,3,8,"('consume', 5)",1,6,{'feedback': 'Step 8: Consumed id 5 (red circle dotted) for 1 points.'}
+medium,0,3,9,"('consume', 6)",1,7,{'feedback': 'Step 9: Consumed id 6 (red circle striped) for 1 points.'}
+medium,0,3,10,"('consume', 7)",1,8,{'feedback': 'Step 10: Consumed id 7 (red circle checkered) for 1 points.'}
+medium,0,3,11,"('consume', 8)",1,9,{'feedback': 'Step 11: Consumed id 8 (red triangle plain) for 1 points.'}
+medium,0,3,12,"('consume', 9)",1,10,{'feedback': 'Step 12: Consumed id 9 (red triangle dotted) for 1 points.'}
+medium,0,3,13,"('consume', 10)",1,11,{'feedback': 'Step 13: Consumed id 10 (red triangle striped) for 1 points.'}
+medium,0,3,14,"('combine', 12, 13)",0,11,{'feedback': 'Step 14: Failed to combine id 12 (red diamond plain) and id 13 (red diamond dotted).'}
+medium,0,3,15,"('consume', 12)",1,12,{'feedback': 'Step 15: Consumed id 12 (red diamond plain) for 1 points.'}
+medium,0,3,16,"('combine', 13, 14)",0,12,{'feedback': 'Step 16: Failed to combine id 13 (red diamond dotted) and id 14 (red diamond striped).'}
+medium,0,3,17,"('consume', 13)",1,13,{'feedback': 'Step 17: Consumed id 13 (red diamond dotted) for 1 points.'}
+medium,0,3,18,"('consume', 14)",1,14,{'feedback': 'Step 18: Consumed id 14 (red diamond striped) for 1 points.'}
+medium,0,3,19,"('combine', 15, 16)",0,14,"{'new_object': {'id': 29, 'shape': 'diamond', 'texture': 'plain', 'color': 'yellow'}}"
+medium,0,3,20,"('consume', 29)",10,24,{'feedback': 'Step 20: Consumed id 29 (yellow diamond plain) for 10 points.'}
+medium,0,3,21,"('consume', 11)",1,25,{'feedback': 'Step 21: Consumed id 11 (red triangle checkered) for 1 points.'}
+medium,0,3,22,"('combine', 17, 18)",0,25,{'feedback': 'Step 22: Failed to combine id 17 (red square dotted) and id 18 (red square striped).'}
+medium,0,3,23,"('combine', 17, 18)",0,25,{'feedback': 'Step 23: Failed to combine id 17 (red square dotted) and id 18 (red square striped).'}
+medium,0,3,24,"('consume', 17)",1,26,{'feedback': 'Step 24: Consumed id 17 (red square dotted) for 1 points.'}
+medium,0,3,25,"('consume', 18)",1,27,{'feedback': 'Step 25: Consumed id 18 (red square striped) for 1 points.'}
+medium,0,3,26,"('combine', 19, 20)",0,27,{'feedback': 'Step 26: Failed to combine id 19 (red square checkered) and id 20 (red circle plain).'}
+medium,0,3,27,"('consume', 19)",1,28,{'feedback': 'Step 27: Consumed id 19 (red square checkered) for 1 points.'}
+medium,0,3,28,"('combine', 24, 25)",0,28,{'feedback': 'Step 28: Failed to combine id 24 (red triangle plain) and id 25 (red triangle dotted).'}
+medium,0,3,29,"('combine', 24, 25)",0,28,{'feedback': 'Step 29: Failed to combine id 24 (red triangle plain) and id 25 (red triangle dotted).'}
+medium,0,3,30,"('combine', 24, 25)",0,28,{'feedback': 'Step 30: Failed to combine id 24 (red triangle plain) and id 25 (red triangle dotted).'}
+medium,0,3,31,"('consume', 20)",1,29,{'feedback': 'Step 31: Consumed id 20 (red circle plain) for 1 points.'}
+medium,0,3,32,"('combine', 21, 22)",0,29,{'feedback': 'Step 32: Failed to combine id 21 (red circle dotted) and id 22 (red circle striped).'}
+medium,0,3,33,"('consume', 21)",1,30,{'feedback': 'Step 33: Consumed id 21 (red circle dotted) for 1 points.'}
+medium,0,3,34,"('combine', 24, 25)",0,30,{'feedback': 'Step 34: Failed to combine id 24 (red triangle plain) and id 25 (red triangle dotted).'}
+medium,0,3,35,"('consume', 22)",1,31,{'feedback': 'Step 35: Consumed id 22 (red circle striped) for 1 points.'}
+medium,0,3,36,"('combine', 24, 25)",0,31,{'feedback': 'Step 36: Failed to combine id 24 (red triangle plain) and id 25 (red triangle dotted).'}
+medium,0,3,37,"('consume', 24)",1,32,{'feedback': 'Step 37: Consumed id 24 (red triangle plain) for 1 points.'}
+medium,0,3,38,"('combine', 26, 27)",0,32,{'feedback': 'Step 38: Failed to combine id 26 (red triangle striped) and id 27 (red diamond plain).'}
+medium,0,3,39,"('consume', 26)",1,33,{'feedback': 'Step 39: Consumed id 26 (red triangle striped) for 1 points.'}
+medium,0,3,40,"('combine', 30, 31)",0,33,{'feedback': 'Step 40: Failed to combine id 30 (red diamond striped) and id 31 (red triangle checkered).'}
+medium,0,3,41,message_to_next_player,0,33,"{'message': '**Important Strategies for Success in the Grid-World Game:**\n\n1. **Consume Over Combine:** Focus on consuming as many objects as possible, especially if combinations often fail. Each consumed object earns you points, while failed combinations yield nothing.\n\n2. **Know Your Objects:** Different types (squares, circles, triangles, diamonds) may have specific combination rules. Keep track of combinations you’ve tried and adjust your strategy accordingly.\n\n3. **High-Value Combos:** If you identify successful combinations (like in Step 19, where a checkered diamond and a plain square yielded a high-value diamond), prioritize those above simple consumptions when available.\n\n4. **Avoid Redundant Attempts:** Don’t repeatedly attempt failed combinations, as seen in Steps 22 and 28. Instead, move on to other objects to maximize point gains.\n\n5. **Track Successes and Failures:** Keep a log of which combinations worked and which didn’t to optimize future attempts. Memory of successful pairs can lead to significant point increases.\n\nBy following these strategies, you’ll improve your efficiency in earning points and maximizing your gameplay experience. Good luck!'}"
+medium,1,3,1,"('consume', 0)",1,1,{'feedback': 'Step 1: Consumed id 0 (red square plain) for 1 points.'}
+medium,1,3,2,"('combine', 1, 2)",0,1,{'feedback': 'Step 2: Failed to combine id 1 (red square dotted) and id 2 (red square striped).'}
+medium,1,3,3,"('consume', 1)",1,2,{'feedback': 'Step 3: Consumed id 1 (red square dotted) for 1 points.'}
+medium,1,3,4,"('combine', 2, 3)",0,2,{'feedback': 'Step 4: Failed to combine id 2 (red square striped) and id 3 (red square checkered).'}
+medium,1,3,5,"('consume', 2)",1,3,{'feedback': 'Step 5: Consumed id 2 (red square striped) for 1 points.'}
+medium,1,3,6,"('consume', 3)",1,4,{'feedback': 'Step 6: Consumed id 3 (red square checkered) for 1 points.'}
+medium,1,3,7,"('consume', 4)",1,5,{'feedback': 'Step 7: Consumed id 4 (red circle plain) for 1 points.'}
+medium,1,3,8,"('consume', 5)",1,6,{'feedback': 'Step 8: Consumed id 5 (red circle dotted) for 1 points.'}
+medium,1,3,9,"('consume', 6)",1,7,{'feedback': 'Step 9: Consumed id 6 (red circle striped) for 1 points.'}
+medium,1,3,10,"('consume', 7)",1,8,{'feedback': 'Step 10: Consumed id 7 (red circle checkered) for 1 points.'}
+medium,1,3,11,"('consume', 8)",1,9,{'feedback': 'Step 11: Consumed id 8 (red triangle plain) for 1 points.'}
+medium,1,3,12,"('consume', 9)",1,10,{'feedback': 'Step 12: Consumed id 9 (red triangle dotted) for 1 points.'}
+medium,1,3,13,"('consume', 10)",1,11,{'feedback': 'Step 13: Consumed id 10 (red triangle striped) for 1 points.'}
+medium,1,3,14,"('combine', 12, 13)",0,11,{'feedback': 'Step 14: Failed to combine id 12 (red diamond plain) and id 13 (red diamond dotted).'}
+medium,1,3,15,"('consume', 12)",1,12,{'feedback': 'Step 15: Consumed id 12 (red diamond plain) for 1 points.'}
+medium,1,3,16,"('combine', 13, 14)",0,12,{'feedback': 'Step 16: Failed to combine id 13 (red diamond dotted) and id 14 (red diamond striped).'}
+medium,1,3,17,"('consume', 13)",1,13,{'feedback': 'Step 17: Consumed id 13 (red diamond dotted) for 1 points.'}
+medium,1,3,18,"('consume', 14)",1,14,{'feedback': 'Step 18: Consumed id 14 (red diamond striped) for 1 points.'}
+medium,1,3,19,"('combine', 15, 16)",0,14,"{'new_object': {'id': 29, 'shape': 'diamond', 'texture': 'plain', 'color': 'yellow'}}"
+medium,1,3,20,"('consume', 29)",10,24,{'feedback': 'Step 20: Consumed id 29 (yellow diamond plain) for 10 points.'}
+medium,1,3,21,"('combine', 11, 17)",0,24,{'feedback': 'Step 21: Failed to combine id 11 (red triangle checkered) and id 17 (red square dotted).'}
+medium,1,3,22,"('consume', 11)",1,25,{'feedback': 'Step 22: Consumed id 11 (red triangle checkered) for 1 points.'}
+medium,1,3,23,"('combine', 17, 18)",0,25,{'feedback': 'Step 23: Failed to combine id 17 (red square dotted) and id 18 (red square striped).'}
+medium,1,3,24,"('combine', 17, 18)",0,25,{'feedback': 'Step 24: Failed to combine id 17 (red square dotted) and id 18 (red square striped).'}
+medium,1,3,25,"('consume', 19)",1,26,{'feedback': 'Step 25: Consumed id 19 (red square checkered) for 1 points.'}
+medium,1,3,26,"('combine', 17, 18)",0,26,{'feedback': 'Step 26: Failed to combine id 17 (red square dotted) and id 18 (red square striped).'}
+medium,1,3,27,"('consume', 17)",1,27,{'feedback': 'Step 27: Consumed id 17 (red square dotted) for 1 points.'}
+medium,1,3,28,"('combine', 20, 21)",0,27,{'feedback': 'Step 28: Failed to combine id 20 (red circle plain) and id 21 (red circle dotted).'}
+medium,1,3,29,"('consume', 20)",1,28,{'feedback': 'Step 29: Consumed id 20 (red circle plain) for 1 points.'}
+medium,1,3,30,"('consume', 21)",1,29,{'feedback': 'Step 30: Consumed id 21 (red circle dotted) for 1 points.'}
+medium,1,3,31,"('combine', 24, 25)",0,29,{'feedback': 'Step 31: Failed to combine id 24 (red triangle plain) and id 25 (red triangle dotted).'}
+medium,1,3,32,"('consume', 24)",1,30,{'feedback': 'Step 32: Consumed id 24 (red triangle plain) for 1 points.'}
+medium,1,3,33,"('combine', 27, 28)",0,30,{'feedback': 'Step 33: Failed to combine id 27 (red diamond plain) and id 28 (red diamond dotted).'}
+medium,1,3,34,"('combine', 27, 28)",0,30,{'feedback': 'Step 34: Failed to combine id 27 (red diamond plain) and id 28 (red diamond dotted).'}
+medium,1,3,35,"('consume', 18)",1,31,{'feedback': 'Step 35: Consumed id 18 (red square striped) for 1 points.'}
+medium,1,3,36,"('combine', 27, 28)",0,31,{'feedback': 'Step 36: Failed to combine id 27 (red diamond plain) and id 28 (red diamond dotted).'}
+medium,1,3,37,"('consume', 22)",1,32,{'feedback': 'Step 37: Consumed id 22 (red circle striped) for 1 points.'}
+medium,1,3,38,"('combine', 27, 28)",0,32,{'feedback': 'Step 38: Failed to combine id 27 (red diamond plain) and id 28 (red diamond dotted).'}
+medium,1,3,39,"('consume', 23)",1,33,{'feedback': 'Step 39: Consumed id 23 (red circle checkered) for 1 points.'}
+medium,1,3,40,"('consume', 25)",1,34,{'feedback': 'Step 40: Consumed id 25 (red triangle dotted) for 1 points.'}
+medium,1,3,41,message_to_next_player,0,34,"{'message': ""Hello next player!\n\nHere are some key strategies to keep in mind for maximizing your points in the grid-world game:\n\n1. **Consume Early**: Prioritize consuming plain objects (like the red squares, circles, and triangles) first, as they provide a steady 1 point each. This builds your score quickly.\n\n2. **Combine Strategically**: Combining objects can yield new items with higher point values. Focus on combining two objects of the same type and color whenever possible, as this tends to be more successful.\n\n3. **Cataloging Failures**: Take note of combinations that failed in previous attempts. They can provide insight into ineffective pairs, helping you avoid wasted turns.\n\n4. **Diversify Your Collection**: Try to consume at least one of each type (square, circle, triangle, diamond) to create more opportunities for combining and finding higher-value items.\n\n5. **Watch for Special Combinations**: Look out for specific combinations that might yield new, unique items, especially those that can lead to higher point rewards.\n\n6. **Be Persistent with Combinations**: If you fail combining certain items, don't give up immediately. Sometimes trying different pairs can lead to success.\n\nBy incorporating these strategies, you’ll be well on your way to earning more points. Good luck, and enjoy the game!""}"
+medium,0,4,1,"('consume', 0)",1,1,{'feedback': 'Step 1: Consumed id 0 (red square plain) for 1 points.'}
+medium,0,4,2,"('consume', 1)",1,2,{'feedback': 'Step 2: Consumed id 1 (red square dotted) for 1 points.'}
+medium,0,4,3,"('consume', 2)",1,3,{'feedback': 'Step 3: Consumed id 2 (red square striped) for 1 points.'}
+medium,0,4,4,"('consume', 4)",1,4,{'feedback': 'Step 4: Consumed id 4 (red circle plain) for 1 points.'}
+medium,0,4,5,"('consume', 6)",1,5,{'feedback': 'Step 5: Consumed id 6 (red circle striped) for 1 points.'}
+medium,0,4,6,"('consume', 3)",1,6,{'feedback': 'Step 6: Consumed id 3 (red square checkered) for 1 points.'}
+medium,0,4,7,"('consume', 19)",1,7,{'feedback': 'Step 7: Consumed id 19 (red circle plain) for 1 points.'}
+medium,0,4,8,"('consume', 5)",1,8,{'feedback': 'Step 8: Consumed id 5 (red circle dotted) for 1 points.'}
+medium,0,4,9,"('consume', 7)",1,9,{'feedback': 'Step 9: Consumed id 7 (red circle checkered) for 1 points.'}
+medium,0,4,10,"('combine', 8, 9)",0,9,{'feedback': 'Step 10: Failed to combine id 8 (red triangle plain) and id 9 (red triangle dotted).'}
+medium,0,4,11,"('consume', 10)",1,10,{'feedback': 'Step 11: Consumed id 10 (red triangle striped) for 1 points.'}
+medium,0,4,12,"('combine', 8, 11)",0,10,{'feedback': 'Step 12: Failed to combine id 8 (red triangle plain) and id 11 (red triangle checkered).'}
+medium,0,4,13,"('combine', 8, 11)",0,10,{'feedback': 'Step 13: Failed to combine id 8 (red triangle plain) and id 11 (red triangle checkered).'}
+medium,0,4,14,"('combine', 12, 13)",0,10,{'feedback': 'Step 14: Failed to combine id 12 (red diamond plain) and id 13 (red diamond dotted).'}
+medium,0,4,15,"('consume', 12)",1,11,{'feedback': 'Step 15: Consumed id 12 (red diamond plain) for 1 points.'}
+medium,0,4,16,"('consume', 8)",1,12,{'feedback': 'Step 16: Consumed id 8 (red triangle plain) for 1 points.'}
+medium,0,4,17,"('combine', 9, 11)",0,12,{'feedback': 'Step 17: Failed to combine id 9 (red triangle dotted) and id 11 (red triangle checkered).'}
+medium,0,4,18,"('consume', 9)",1,13,{'feedback': 'Step 18: Consumed id 9 (red triangle dotted) for 1 points.'}
+medium,0,4,19,"('combine', 11, 13)",0,13,{'feedback': 'Step 19: Failed to combine id 11 (red triangle checkered) and id 13 (red diamond dotted).'}
+medium,0,4,20,"('combine', 11, 13)",0,13,{'feedback': 'Step 20: Failed to combine id 11 (red triangle checkered) and id 13 (red diamond dotted).'}
+medium,0,4,21,"('consume', 11)",1,14,{'feedback': 'Step 21: Consumed id 11 (red triangle checkered) for 1 points.'}
+medium,0,4,22,"('combine', 13, 14)",0,14,{'feedback': 'Step 22: Failed to combine id 13 (red diamond dotted) and id 14 (red diamond striped).'}
+medium,0,4,23,"('consume', 13)",1,15,{'feedback': 'Step 23: Consumed id 13 (red diamond dotted) for 1 points.'}
+medium,0,4,24,"('combine', 14, 15)",0,15,{'feedback': 'Step 24: Failed to combine id 14 (red diamond striped) and id 15 (red diamond checkered).'}
+medium,0,4,25,"('combine', 14, 15)",0,15,{'feedback': 'Step 25: Failed to combine id 14 (red diamond striped) and id 15 (red diamond checkered).'}
+medium,0,4,26,"('consume', 14)",1,16,{'feedback': 'Step 26: Consumed id 14 (red diamond striped) for 1 points.'}
+medium,0,4,27,"('consume', 15)",1,17,{'feedback': 'Step 27: Consumed id 15 (red diamond checkered) for 1 points.'}
+medium,0,4,28,"('combine', 8, 9)",0,17,{'feedback': 'Step 28: Failed to combine id 8 (None) and id 9 (None).'}
+medium,0,4,29,"('combine', 16, 17)",0,17,{'feedback': 'Step 29: Failed to combine id 16 (red square plain) and id 17 (red square dotted).'}
+medium,0,4,30,"('consume', 16)",1,18,{'feedback': 'Step 30: Consumed id 16 (red square plain) for 1 points.'}
+medium,0,4,31,"('combine', 17, 18)",0,18,{'feedback': 'Step 31: Failed to combine id 17 (red square dotted) and id 18 (red square striped).'}
+medium,0,4,32,"('consume', 17)",1,19,{'feedback': 'Step 32: Consumed id 17 (red square dotted) for 1 points.'}
+medium,0,4,33,"('consume', 18)",1,20,{'feedback': 'Step 33: Consumed id 18 (red square striped) for 1 points.'}
+medium,0,4,34,"('consume', 20)",1,21,{'feedback': 'Step 34: Consumed id 20 (red circle striped) for 1 points.'}
+medium,0,4,35,"('consume', 21)",1,22,{'feedback': 'Step 35: Consumed id 21 (red square checkered) for 1 points.'}
+medium,0,4,36,"('consume', 22)",1,23,{'feedback': 'Step 36: Consumed id 22 (red circle plain) for 1 points.'}
+medium,0,4,37,"('consume', 23)",1,24,{'feedback': 'Step 37: Consumed id 23 (red circle dotted) for 1 points.'}
+medium,0,4,38,"('consume', 24)",1,25,{'feedback': 'Step 38: Consumed id 24 (red circle checkered) for 1 points.'}
+medium,0,4,39,"('consume', 25)",1,26,{'feedback': 'Step 39: Consumed id 25 (red triangle striped) for 1 points.'}
+medium,0,4,40,"('consume', 26)",1,27,{'feedback': 'Step 40: Consumed id 26 (red diamond plain) for 1 points.'}
+medium,0,4,41,message_to_next_player,0,27,"{'message': ""**Tips for Success in the Grid-World Game:**\n\n1. **Focus on Collection:** Prioritize consuming objects consistently where possible. Each consumed item typically grants 1 point. \n\n2. **Experiment with Combinations:** While some combinations will fail, don't hesitate to try mixing different objects, especially those of the same type (e.g., triangles, diamonds) to discover potential points from successful merges.\n\n3. **Learn the Patterns:** Pay attention to the types of objects you've combined successfully. This can inform future attempts and help you avoid repeated failures with combinations that don't work.\n\n4. **Prioritize Varied S Shapes:** Try to consume a diverse set of shapes (squares, circles, triangles, diamonds) to maximize your collection and available combination options.\n\n5. **Manage Inventory:** Keep track of what you have consumed and combinations attempted. Let go of items that seem ineffective to make room for potentially useful ones.\n\n6. **Stay Persistent:** Even if combinations fail, keep trying. Some items will yield better results when combined with others down the road.\n\nUse these strategies to boost your score efficiently and enjoy the game! Good luck!""}"
+medium,1,4,1,"('consume', 0)",1,1,{'feedback': 'Step 1: Consumed id 0 (red square plain) for 1 points.'}
+medium,1,4,2,"('consume', 1)",1,2,{'feedback': 'Step 2: Consumed id 1 (red square dotted) for 1 points.'}
+medium,1,4,3,"('consume', 4)",1,3,{'feedback': 'Step 3: Consumed id 4 (red circle plain) for 1 points.'}
+medium,1,4,4,"('combine', 2, 3)",0,3,{'feedback': 'Step 4: Failed to combine id 2 (red square striped) and id 3 (red square checkered).'}
+medium,1,4,5,"('consume', 2)",1,4,{'feedback': 'Step 5: Consumed id 2 (red square striped) for 1 points.'}
+medium,1,4,6,"('combine', 6, 7)",0,4,{'feedback': 'Step 6: Failed to combine id 6 (red circle striped) and id 7 (red circle checkered).'}
+medium,1,4,7,"('consume', 3)",1,5,{'feedback': 'Step 7: Consumed id 3 (red square checkered) for 1 points.'}
+medium,1,4,8,"('consume', 5)",1,6,{'feedback': 'Step 8: Consumed id 5 (red circle dotted) for 1 points.'}
+medium,1,4,9,"('consume', 6)",1,7,{'feedback': 'Step 9: Consumed id 6 (red circle striped) for 1 points.'}
+medium,1,4,10,"('consume', 7)",1,8,{'feedback': 'Step 10: Consumed id 7 (red circle checkered) for 1 points.'}
+medium,1,4,11,"('consume', 8)",1,9,{'feedback': 'Step 11: Consumed id 8 (red triangle plain) for 1 points.'}
+medium,1,4,12,"('combine', 10, 11)",0,9,{'feedback': 'Step 12: Failed to combine id 10 (red triangle striped) and id 11 (red triangle checkered).'}
+medium,1,4,13,"('consume', 9)",1,10,{'feedback': 'Step 13: Consumed id 9 (red triangle dotted) for 1 points.'}
+medium,1,4,14,"('consume', 10)",1,11,{'feedback': 'Step 14: Consumed id 10 (red triangle striped) for 1 points.'}
+medium,1,4,15,"('combine', 12, 13)",0,11,{'feedback': 'Step 15: Failed to combine id 12 (red diamond plain) and id 13 (red diamond dotted).'}
+medium,1,4,16,"('consume', 12)",1,12,{'feedback': 'Step 16: Consumed id 12 (red diamond plain) for 1 points.'}
+medium,1,4,17,"('consume', 11)",1,13,{'feedback': 'Step 17: Consumed id 11 (red triangle checkered) for 1 points.'}
+medium,1,4,18,"('combine', 13, 14)",0,13,{'feedback': 'Step 18: Failed to combine id 13 (red diamond dotted) and id 14 (red diamond striped).'}
+medium,1,4,19,"('combine', 13, 14)",0,13,{'feedback': 'Step 19: Failed to combine id 13 (red diamond dotted) and id 14 (red diamond striped).'}
+medium,1,4,20,"('consume', 13)",1,14,{'feedback': 'Step 20: Consumed id 13 (red diamond dotted) for 1 points.'}
+medium,1,4,21,"('consume', 14)",1,15,{'feedback': 'Step 21: Consumed id 14 (red diamond striped) for 1 points.'}
+medium,1,4,22,"('combine', 15, 16)",0,15,"{'new_object': {'id': 30, 'shape': 'diamond', 'texture': 'plain', 'color': 'yellow'}}"
+medium,1,4,23,"('consume', 30)",10,25,{'feedback': 'Step 23: Consumed id 30 (yellow diamond plain) for 10 points.'}
+medium,1,4,24,"('combine', 17, 18)",0,25,{'feedback': 'Step 24: Failed to combine id 17 (red square dotted) and id 18 (red circle plain).'}
+medium,1,4,25,"('combine', 17, 18)",0,25,{'feedback': 'Step 25: Failed to combine id 17 (red square dotted) and id 18 (red circle plain).'}
+medium,1,4,26,"('combine', 17, 18)",0,25,{'feedback': 'Step 26: Failed to combine id 17 (red square dotted) and id 18 (red circle plain).'}
+medium,1,4,27,"('combine', 17, 18)",0,25,{'feedback': 'Step 27: Failed to combine id 17 (red square dotted) and id 18 (red circle plain).'}
+medium,1,4,28,"('combine', 17, 18)",0,25,{'feedback': 'Step 28: Failed to combine id 17 (red square dotted) and id 18 (red circle plain).'}
+medium,1,4,29,"('consume', 17)",1,26,{'feedback': 'Step 29: Consumed id 17 (red square dotted) for 1 points.'}
+medium,1,4,30,"('combine', 18, 19)",0,26,{'feedback': 'Step 30: Failed to combine id 18 (red circle plain) and id 19 (red square striped).'}
+medium,1,4,31,"('consume', 18)",1,27,{'feedback': 'Step 31: Consumed id 18 (red circle plain) for 1 points.'}
+medium,1,4,32,"('combine', 19, 20)",0,27,{'feedback': 'Step 32: Failed to combine id 19 (red square striped) and id 20 (red square checkered).'}
+medium,1,4,33,"('combine', 19, 20)",0,27,{'feedback': 'Step 33: Failed to combine id 19 (red square striped) and id 20 (red square checkered).'}
+medium,1,4,34,"('consume', 19)",1,28,{'feedback': 'Step 34: Consumed id 19 (red square striped) for 1 points.'}
+medium,1,4,35,"('combine', 21, 22)",0,28,{'feedback': 'Step 35: Failed to combine id 21 (red circle dotted) and id 22 (red circle striped).'}
+medium,1,4,36,"('combine', 21, 22)",0,28,{'feedback': 'Step 36: Failed to combine id 21 (red circle dotted) and id 22 (red circle striped).'}
+medium,1,4,37,"('consume', 21)",1,29,{'feedback': 'Step 37: Consumed id 21 (red circle dotted) for 1 points.'}
+medium,1,4,38,"('combine', 22, 23)",0,29,{'feedback': 'Step 38: Failed to combine id 22 (red circle striped) and id 23 (red circle checkered).'}
+medium,1,4,39,"('consume', 22)",1,30,{'feedback': 'Step 39: Consumed id 22 (red circle striped) for 1 points.'}
+medium,1,4,40,"('consume', 23)",1,31,{'feedback': 'Step 40: Consumed id 23 (red circle checkered) for 1 points.'}
+medium,1,4,41,message_to_next_player,0,31,"{'message': ""Here are some strategies that can help you excel in the grid-world game:\n\n1. **Prioritize Consumption**: Consume objects as you find them, especially those that give you points. Every consumed object is a step toward increasing your score, so don't hesitate.\n\n2. **Experiment with Combinations**: While many combinations can fail, keep testing different items together. Some combinations lead to high-point rewards, like my successful combination at Step 22.\n\n3. **Focus on High-Value Combos**: When you find a way to combine items, check how much they’re worth. Combining items like diamonds and squares can be more valuable than consuming them individually.\n\n4. **Track Failed Combos**: Note which combinations have failed, as this information may save time later. This allows you to pivot and focus on consuming instead.\n\n5. **Maximize the Use of Unique Items**: Certain items can yield better results when combined with specific counterparts. Pay attention to item types and their characteristics while combining.\n\n6. **Stay Flexible**: Sometimes the game won't go as planned. If you're stuck, switch strategies between consuming and trying different combinations.\n\nBy following these strategies, you can optimize your gameplay and increase your score efficiently. Good luck!""}"
+hard,0,0,1,"('consume', 0)",1,1,{'feedback': 'Step 1: Consumed id 0 (red square plain) for 1 points.'}
+hard,0,0,2,"('consume', 1)",1,2,{'feedback': 'Step 2: Consumed id 1 (red square dotted) for 1 points.'}
+hard,0,0,3,"('consume', 4)",1,3,{'feedback': 'Step 3: Consumed id 4 (red circle plain) for 1 points.'}
+hard,0,0,4,"('combine', 2, 3)",0,3,{'feedback': 'Step 4: Failed to combine id 2 (red square striped) and id 3 (red square checkered).'}
+hard,0,0,5,"('consume', 2)",1,4,{'feedback': 'Step 5: Consumed id 2 (red square striped) for 1 points.'}
+hard,0,0,6,"('consume', 6)",1,5,{'feedback': 'Step 6: Consumed id 6 (red circle striped) for 1 points.'}
+hard,0,0,7,"('consume', 8)",1,6,{'feedback': 'Step 7: Consumed id 8 (red triangle plain) for 1 points.'}
+hard,0,0,8,"('combine', 12, 13)",0,6,{'feedback': 'Step 8: Failed to combine id 12 (red diamond plain) and id 13 (red diamond dotted).'}
+hard,0,0,9,"('consume', 10)",1,7,{'feedback': 'Step 9: Consumed id 10 (red triangle striped) for 1 points.'}
+hard,0,0,10,"('consume', 11)",1,8,{'feedback': 'Step 10: Consumed id 11 (red triangle checkered) for 1 points.'}
+hard,0,0,11,"('combine', 12, 13)",0,8,{'feedback': 'Step 11: Failed to combine id 12 (red diamond plain) and id 13 (red diamond dotted).'}
+hard,0,0,12,"('consume', 12)",1,9,{'feedback': 'Step 12: Consumed id 12 (red diamond plain) for 1 points.'}
+hard,0,0,13,"('combine', 13, 14)",0,9,{'feedback': 'Step 13: Failed to combine id 13 (red diamond dotted) and id 14 (red diamond striped).'}
+hard,0,0,14,"('combine', 13, 14)",0,9,{'feedback': 'Step 14: Failed to combine id 13 (red diamond dotted) and id 14 (red diamond striped).'}
+hard,0,0,15,"('consume', 13)",1,10,{'feedback': 'Step 15: Consumed id 13 (red diamond dotted) for 1 points.'}
+hard,0,0,16,"('combine', 14, 15)",0,10,{'feedback': 'Step 16: Failed to combine id 14 (red diamond striped) and id 15 (red diamond checkered).'}
+hard,0,0,17,"('consume', 14)",1,11,{'feedback': 'Step 17: Consumed id 14 (red diamond striped) for 1 points.'}
+hard,0,0,18,"('consume', 15)",1,12,{'feedback': 'Step 18: Consumed id 15 (red diamond checkered) for 1 points.'}
+hard,0,0,19,"('combine', 16, 17)",0,12,{'feedback': 'Step 19: Failed to combine id 16 (red square plain) and id 17 (red square dotted).'}
+hard,0,0,20,"('consume', 16)",1,13,{'feedback': 'Step 20: Consumed id 16 (red square plain) for 1 points.'}
+hard,0,0,21,"('combine', 17, 18)",0,13,{'feedback': 'Step 21: Failed to combine id 17 (red square dotted) and id 18 (red circle plain).'}
+hard,0,0,22,"('combine', 17, 18)",0,13,{'feedback': 'Step 22: Failed to combine id 17 (red square dotted) and id 18 (red circle plain).'}
+hard,0,0,23,"('combine', 17, 18)",0,13,{'feedback': 'Step 23: Failed to combine id 17 (red square dotted) and id 18 (red circle plain).'}
+hard,0,0,24,"('consume', 3)",1,14,{'feedback': 'Step 24: Consumed id 3 (red square checkered) for 1 points.'}
+hard,0,0,25,"('combine', 17, 18)",0,14,{'feedback': 'Step 25: Failed to combine id 17 (red square dotted) and id 18 (red circle plain).'}
+hard,0,0,26,"('consume', 5)",1,15,{'feedback': 'Step 26: Consumed id 5 (red circle dotted) for 1 points.'}
+hard,0,0,27,"('combine', 17, 18)",0,15,{'feedback': 'Step 27: Failed to combine id 17 (red square dotted) and id 18 (red circle plain).'}
+hard,0,0,28,"('combine', 17, 18)",0,15,{'feedback': 'Step 28: Failed to combine id 17 (red square dotted) and id 18 (red circle plain).'}
+hard,0,0,29,"('consume', 7)",1,16,{'feedback': 'Step 29: Consumed id 7 (red circle checkered) for 1 points.'}
+hard,0,0,30,"('consume', 9)",1,17,{'feedback': 'Step 30: Consumed id 9 (red triangle dotted) for 1 points.'}
+hard,0,0,31,"('consume', 18)",1,18,{'feedback': 'Step 31: Consumed id 18 (red circle plain) for 1 points.'}
+hard,0,0,32,"('combine', 19, 20)",0,18,{'feedback': 'Step 32: Failed to combine id 19 (red square striped) and id 20 (red circle striped).'}
+hard,0,0,33,"('consume', 19)",1,19,{'feedback': 'Step 33: Consumed id 19 (red square striped) for 1 points.'}
+hard,0,0,34,"('consume', 20)",1,20,{'feedback': 'Step 34: Consumed id 20 (red circle striped) for 1 points.'}
+hard,0,0,35,"('consume', 21)",1,21,{'feedback': 'Step 35: Consumed id 21 (red triangle plain) for 1 points.'}
+hard,0,0,36,"('consume', 24)",1,22,{'feedback': 'Step 36: Consumed id 24 (red diamond plain) for 1 points.'}
+hard,0,0,37,"('consume', 17)",1,23,{'feedback': 'Step 37: Consumed id 17 (red square dotted) for 1 points.'}
+hard,0,0,38,"('consume', 22)",1,24,{'feedback': 'Step 38: Consumed id 22 (red triangle striped) for 1 points.'}
+hard,0,0,39,"('combine', 25, 26)",0,24,{'feedback': 'Step 39: Failed to combine id 25 (red diamond dotted) and id 26 (red diamond striped).'}
+hard,0,0,40,"('consume', 25)",1,25,{'feedback': 'Step 40: Consumed id 25 (red diamond dotted) for 1 points.'}
+hard,0,0,41,message_to_next_player,0,25,"{'message': ""Hello future player!\n\nBased on my experience in the grid-world game, here are some strategies to maximize your success:\n\n1. **Focus on Consumption First**: Prioritize consuming items that offer 1 point each. Accumulating points quickly can help you decide on later strategies.\n\n2. **Attempt Combinations Wisely**: Pay attention to object types and patterns. If combinations fail repeatedly, consider that the items may not work well together. It’s better to focus on known successful pairs instead.\n\n3. **Keep Track of Consumable Items**: Note which items you've already consumed, as this can help you identify new opportunities for combination and ensure you're not wasting attempts on already used items.\n\n4. **Experiment with Different Combinations**: As you accumulate items, try various combinations. Some combinations that fail early may succeed later with different items. Be adaptive.\n\n5. **Strategic Failure Management**: Don’t get discouraged by failed combinations. Use each failure as a learning opportunity to refine your approach on which item pairs to explore.\n\n6. **Stay Flexible**: The game is dynamic; adapt your strategy as new items appear. Be willing to shift from one approach to another based on what you observe.\n\nGood luck, and may you score even higher!""}"
+hard,1,0,1,"('consume', 0)",1,1,{'feedback': 'Step 1: Consumed id 0 (red square plain) for 1 points.'}
+hard,1,0,2,"('combine', 1, 2)",0,1,{'feedback': 'Step 2: Failed to combine id 1 (red square dotted) and id 2 (red square striped).'}
+hard,1,0,3,"('consume', 1)",1,2,{'feedback': 'Step 3: Consumed id 1 (red square dotted) for 1 points.'}
+hard,1,0,4,"('combine', 2, 3)",0,2,{'feedback': 'Step 4: Failed to combine id 2 (red square striped) and id 3 (red square checkered).'}
+hard,1,0,5,"('consume', 2)",1,3,{'feedback': 'Step 5: Consumed id 2 (red square striped) for 1 points.'}
+hard,1,0,6,"('consume', 3)",1,4,{'feedback': 'Step 6: Consumed id 3 (red square checkered) for 1 points.'}
+hard,1,0,7,"('consume', 4)",1,5,{'feedback': 'Step 7: Consumed id 4 (red circle plain) for 1 points.'}
+hard,1,0,8,"('consume', 6)",1,6,{'feedback': 'Step 8: Consumed id 6 (red circle striped) for 1 points.'}
+hard,1,0,9,"('consume', 5)",1,7,{'feedback': 'Step 9: Consumed id 5 (red circle dotted) for 1 points.'}
+hard,1,0,10,"('consume', 7)",1,8,{'feedback': 'Step 10: Consumed id 7 (red circle checkered) for 1 points.'}
+hard,1,0,11,"('combine', 8, 9)",0,8,{'feedback': 'Step 11: Failed to combine id 8 (red triangle plain) and id 9 (red triangle dotted).'}
+hard,1,0,12,"('consume', 8)",1,9,{'feedback': 'Step 12: Consumed id 8 (red triangle plain) for 1 points.'}
+hard,1,0,13,"('consume', 9)",1,10,{'feedback': 'Step 13: Consumed id 9 (red triangle dotted) for 1 points.'}
+hard,1,0,14,"('consume', 10)",1,11,{'feedback': 'Step 14: Consumed id 10 (red triangle striped) for 1 points.'}
+hard,1,0,15,"('combine', 12, 13)",0,11,{'feedback': 'Step 15: Failed to combine id 12 (red diamond plain) and id 13 (red diamond dotted).'}
+hard,1,0,16,"('consume', 12)",1,12,{'feedback': 'Step 16: Consumed id 12 (red diamond plain) for 1 points.'}
+hard,1,0,17,"('combine', 13, 14)",0,12,{'feedback': 'Step 17: Failed to combine id 13 (red diamond dotted) and id 14 (red diamond striped).'}
+hard,1,0,18,"('consume', 13)",1,13,{'feedback': 'Step 18: Consumed id 13 (red diamond dotted) for 1 points.'}
+hard,1,0,19,"('combine', 14, 15)",0,13,{'feedback': 'Step 19: Failed to combine id 14 (red diamond striped) and id 15 (red diamond checkered).'}
+hard,1,0,20,"('consume', 14)",1,14,{'feedback': 'Step 20: Consumed id 14 (red diamond striped) for 1 points.'}
+hard,1,0,21,"('consume', 15)",1,15,{'feedback': 'Step 21: Consumed id 15 (red diamond checkered) for 1 points.'}
+hard,1,0,22,"('consume', 11)",1,16,{'feedback': 'Step 22: Consumed id 11 (red triangle checkered) for 1 points.'}
+hard,1,0,23,"('consume', 16)",1,17,{'feedback': 'Step 23: Consumed id 16 (red square plain) for 1 points.'}
+hard,1,0,24,"('consume', 17)",1,18,{'feedback': 'Step 24: Consumed id 17 (red square dotted) for 1 points.'}
+hard,1,0,25,"('combine', 20, 21)",0,18,{'feedback': 'Step 25: Failed to combine id 20 (red circle plain) and id 21 (red circle striped).'}
+hard,1,0,26,"('consume', 20)",1,19,{'feedback': 'Step 26: Consumed id 20 (red circle plain) for 1 points.'}
+hard,1,0,27,"('combine', 18, 19)",0,19,{'feedback': 'Step 27: Failed to combine id 18 (red square striped) and id 19 (red square checkered).'}
+hard,1,0,28,"('consume', 18)",1,20,{'feedback': 'Step 28: Consumed id 18 (red square striped) for 1 points.'}
+hard,1,0,29,"('combine', 21, 22)",0,20,{'feedback': 'Step 29: Failed to combine id 21 (red circle striped) and id 22 (red circle dotted).'}
+hard,1,0,30,"('consume', 19)",1,21,{'feedback': 'Step 30: Consumed id 19 (red square checkered) for 1 points.'}
+hard,1,0,31,"('consume', 21)",1,22,{'feedback': 'Step 31: Consumed id 21 (red circle striped) for 1 points.'}
+hard,1,0,32,"('combine', 22, 23)",0,22,{'feedback': 'Step 32: Failed to combine id 22 (red circle dotted) and id 23 (red circle checkered).'}
+hard,1,0,33,"('consume', 22)",1,23,{'feedback': 'Step 33: Consumed id 22 (red circle dotted) for 1 points.'}
+hard,1,0,34,"('consume', 23)",1,24,{'feedback': 'Step 34: Consumed id 23 (red circle checkered) for 1 points.'}
+hard,1,0,35,"('combine', 24, 25)",0,24,{'feedback': 'Step 35: Failed to combine id 24 (red triangle plain) and id 25 (red triangle dotted).'}
+hard,1,0,36,"('consume', 24)",1,25,{'feedback': 'Step 36: Consumed id 24 (red triangle plain) for 1 points.'}
+hard,1,0,37,"('consume', 25)",1,26,{'feedback': 'Step 37: Consumed id 25 (red triangle dotted) for 1 points.'}
+hard,1,0,38,"('consume', 26)",1,27,{'feedback': 'Step 38: Consumed id 26 (red triangle striped) for 1 points.'}
+hard,1,0,39,"('combine', 27, 28)",0,27,{'feedback': 'Step 39: Failed to combine id 27 (red diamond plain) and id 28 (red diamond dotted).'}
+hard,1,0,40,"('consume', 27)",1,28,{'feedback': 'Step 40: Consumed id 27 (red diamond plain) for 1 points.'}
+hard,1,0,41,message_to_next_player,0,28,"{'message': 'To excel in the grid-world game, consider these key strategies:\n\n1. **Prioritize Consumption**: Focus on consuming objects as each yields 1 point. It’s often more beneficial to gain points quickly rather than attempting combinations that may fail.\n\n2. **Combination Trials**: Keep an eye on which combinations have failed but don’t hesitate to try related items to find successful pairs. Document the outcomes, as patterns may emerge over time.\n\n3. **Diverse Object Types**: Aim to consume a variety of shapes (squares, circles, triangles, diamonds) and styles (plain, dotted, striped, checkered) as you can earn points from each.\n\n4. **Avoid Overconcentration**: Don’t get stuck trying to combine objects repeatedly. If combinations fail, move on to consume available items instead.\n\n5. **Track IDs and Outcomes**: Keeping track of the IDs of consumed and failed combinations will help you identify which items are worth pursuing further.\n\nBy following these strategies, you’ll maximize your points and navigate the game more effectively. Good luck!'}"
+hard,0,1,1,"('consume', 0)",1,1,{'feedback': 'Step 1: Consumed id 0 (red square plain) for 1 points.'}
+hard,0,1,2,"('consume', 1)",1,2,{'feedback': 'Step 2: Consumed id 1 (red square dotted) for 1 points.'}
+hard,0,1,3,"('consume', 4)",1,3,{'feedback': 'Step 3: Consumed id 4 (red circle plain) for 1 points.'}
+hard,0,1,4,"('combine', 2, 3)",0,3,{'feedback': 'Step 4: Failed to combine id 2 (red square striped) and id 3 (red square checkered).'}
+hard,0,1,5,"('consume', 2)",1,4,{'feedback': 'Step 5: Consumed id 2 (red square striped) for 1 points.'}
+hard,0,1,6,"('combine', 6, 7)",0,4,{'feedback': 'Step 6: Failed to combine id 6 (red circle striped) and id 7 (red circle checkered).'}
+hard,0,1,7,"('consume', 3)",1,5,{'feedback': 'Step 7: Consumed id 3 (red square checkered) for 1 points.'}
+hard,0,1,8,"('consume', 5)",1,6,{'feedback': 'Step 8: Consumed id 5 (red circle dotted) for 1 points.'}
+hard,0,1,9,"('consume', 6)",1,7,{'feedback': 'Step 9: Consumed id 6 (red circle striped) for 1 points.'}
+hard,0,1,10,"('consume', 7)",1,8,{'feedback': 'Step 10: Consumed id 7 (red circle checkered) for 1 points.'}
+hard,0,1,11,"('combine', 12, 13)",0,8,{'feedback': 'Step 11: Failed to combine id 12 (red diamond plain) and id 13 (red diamond dotted).'}
+hard,0,1,12,"('consume', 8)",1,9,{'feedback': 'Step 12: Consumed id 8 (red triangle plain) for 1 points.'}
+hard,0,1,13,"('combine', 12, 13)",0,9,{'feedback': 'Step 13: Failed to combine id 12 (red diamond plain) and id 13 (red diamond dotted).'}
+hard,0,1,14,"('combine', 12, 13)",0,9,{'feedback': 'Step 14: Failed to combine id 12 (red diamond plain) and id 13 (red diamond dotted).'}
+hard,0,1,15,"('consume', 9)",1,10,{'feedback': 'Step 15: Consumed id 9 (red triangle dotted) for 1 points.'}
+hard,0,1,16,"('combine', 12, 13)",0,10,{'feedback': 'Step 16: Failed to combine id 12 (red diamond plain) and id 13 (red diamond dotted).'}
+hard,0,1,17,"('consume', 10)",1,11,{'feedback': 'Step 17: Consumed id 10 (red triangle striped) for 1 points.'}
+hard,0,1,18,"('combine', 12, 13)",0,11,{'feedback': 'Step 18: Failed to combine id 12 (red diamond plain) and id 13 (red diamond dotted).'}
+hard,0,1,19,"('consume', 12)",1,12,{'feedback': 'Step 19: Consumed id 12 (red diamond plain) for 1 points.'}
+hard,0,1,20,"('consume', 11)",1,13,{'feedback': 'Step 20: Consumed id 11 (red triangle checkered) for 1 points.'}
+hard,0,1,21,"('combine', 13, 14)",0,13,{'feedback': 'Step 21: Failed to combine id 13 (red diamond dotted) and id 14 (red diamond striped).'}
+hard,0,1,22,"('combine', 13, 14)",0,13,{'feedback': 'Step 22: Failed to combine id 13 (red diamond dotted) and id 14 (red diamond striped).'}
+hard,0,1,23,"('combine', 13, 14)",0,13,{'feedback': 'Step 23: Failed to combine id 13 (red diamond dotted) and id 14 (red diamond striped).'}
+hard,0,1,24,"('consume', 13)",1,14,{'feedback': 'Step 24: Consumed id 13 (red diamond dotted) for 1 points.'}
+hard,0,1,25,"('combine', 14, 15)",0,14,{'feedback': 'Step 25: Failed to combine id 14 (red diamond striped) and id 15 (red diamond checkered).'}
+hard,0,1,26,"('consume', 14)",1,15,{'feedback': 'Step 26: Consumed id 14 (red diamond striped) for 1 points.'}
+hard,0,1,27,"('consume', 15)",1,16,{'feedback': 'Step 27: Consumed id 15 (red diamond checkered) for 1 points.'}
+hard,0,1,28,"('combine', 16, 17)",0,16,{'feedback': 'Step 28: Failed to combine id 16 (red square plain) and id 17 (red square dotted).'}
+hard,0,1,29,"('consume', 18)",1,17,{'feedback': 'Step 29: Consumed id 18 (red circle plain) for 1 points.'}
+hard,0,1,30,"('combine', 21, 22)",0,17,{'feedback': 'Step 30: Failed to combine id 21 (red circle dotted) and id 22 (red circle striped).'}
+hard,0,1,31,"('consume', 16)",1,18,{'feedback': 'Step 31: Consumed id 16 (red square plain) for 1 points.'}
+hard,0,1,32,"('combine', 19, 20)",0,18,{'feedback': 'Step 32: Failed to combine id 19 (red square striped) and id 20 (red square checkered).'}
+hard,0,1,33,"('consume', 21)",1,19,{'feedback': 'Step 33: Consumed id 21 (red circle dotted) for 1 points.'}
+hard,0,1,34,"('combine', 19, 20)",0,19,{'feedback': 'Step 34: Failed to combine id 19 (red square striped) and id 20 (red square checkered).'}
+hard,0,1,35,"('consume', 19)",1,20,{'feedback': 'Step 35: Consumed id 19 (red square striped) for 1 points.'}
+hard,0,1,36,"('consume', 20)",1,21,{'feedback': 'Step 36: Consumed id 20 (red square checkered) for 1 points.'}
+hard,0,1,37,"('consume', 22)",1,22,{'feedback': 'Step 37: Consumed id 22 (red circle striped) for 1 points.'}
+hard,0,1,38,"('combine', 24, 25)",0,22,{'feedback': 'Step 38: Failed to combine id 24 (red triangle plain) and id 25 (red triangle dotted).'}
+hard,0,1,39,"('consume', 24)",1,23,{'feedback': 'Step 39: Consumed id 24 (red triangle plain) for 1 points.'}
+hard,0,1,40,"('consume', 25)",1,24,{'feedback': 'Step 40: Consumed id 25 (red triangle dotted) for 1 points.'}
+hard,0,1,41,message_to_next_player,0,24,"{'message': 'Hey future player! Here are some key strategies I discovered during my gameplay that may help you maximize your points:\n\n1. **Prioritize Consumption**: Consuming objects consistently gives you points, so focus on consuming any object available whenever possible.\n\n2. **Combining Attempts**: Be aware that not all combinations succeed. If you repeatedly fail to combine certain items, it might be worth it to consume instead to avoid wasting actions.\n\n3. **Diversity of Objects**: Try to collect a variety of shapes and styles (squares, circles, triangles, diamonds) before attempting to combine. Some combinations may require specific attributes.\n\n4. **Pattern Recognition**: Notice the patterns in successful combinations. Once you know which items can combine successfully, prioritize those over others.\n\n5. **Persistence with Diamonds**: It took me many failures with the diamond objects before I could consume them profitably. Be prepared for some trial and error.\n\n6. **Utilize all Available Steps**: Make sure to take advantage of every step available for consuming objects, especially if you have a surplus of items.\n\nWith these strategies, you should be able to improve your score. Good luck, and have fun!'}"
+hard,1,1,1,"('consume', 0)",1,1,{'feedback': 'Step 1: Consumed id 0 (red square plain) for 1 points.'}
+hard,1,1,2,"('combine', 1, 2)",0,1,{'feedback': 'Step 2: Failed to combine id 1 (red square dotted) and id 2 (red square striped).'}
+hard,1,1,3,"('consume', 1)",1,2,{'feedback': 'Step 3: Consumed id 1 (red square dotted) for 1 points.'}
+hard,1,1,4,"('combine', 2, 3)",0,2,{'feedback': 'Step 4: Failed to combine id 2 (red square striped) and id 3 (red square checkered).'}
+hard,1,1,5,"('consume', 2)",1,3,{'feedback': 'Step 5: Consumed id 2 (red square striped) for 1 points.'}
+hard,1,1,6,"('consume', 3)",1,4,{'feedback': 'Step 6: Consumed id 3 (red square checkered) for 1 points.'}
+hard,1,1,7,"('consume', 4)",1,5,{'feedback': 'Step 7: Consumed id 4 (red circle plain) for 1 points.'}
+hard,1,1,8,"('consume', 5)",1,6,{'feedback': 'Step 8: Consumed id 5 (red circle dotted) for 1 points.'}
+hard,1,1,9,"('consume', 6)",1,7,{'feedback': 'Step 9: Consumed id 6 (red circle striped) for 1 points.'}
+hard,1,1,10,"('consume', 7)",1,8,{'feedback': 'Step 10: Consumed id 7 (red circle checkered) for 1 points.'}
+hard,1,1,11,"('consume', 8)",1,9,{'feedback': 'Step 11: Consumed id 8 (red triangle plain) for 1 points.'}
+hard,1,1,12,"('consume', 9)",1,10,{'feedback': 'Step 12: Consumed id 9 (red triangle dotted) for 1 points.'}
+hard,1,1,13,"('consume', 10)",1,11,{'feedback': 'Step 13: Consumed id 10 (red triangle striped) for 1 points.'}
+hard,1,1,14,"('combine', 12, 13)",0,11,{'feedback': 'Step 14: Failed to combine id 12 (red diamond plain) and id 13 (red diamond dotted).'}
+hard,1,1,15,"('consume', 12)",1,12,{'feedback': 'Step 15: Consumed id 12 (red diamond plain) for 1 points.'}
+hard,1,1,16,"('combine', 13, 14)",0,12,{'feedback': 'Step 16: Failed to combine id 13 (red diamond dotted) and id 14 (red diamond striped).'}
+hard,1,1,17,"('consume', 13)",1,13,{'feedback': 'Step 17: Consumed id 13 (red diamond dotted) for 1 points.'}
+hard,1,1,18,"('consume', 14)",1,14,{'feedback': 'Step 18: Consumed id 14 (red diamond striped) for 1 points.'}
+hard,1,1,19,"('combine', 15, 16)",0,14,"{'new_object': {'id': 29, 'shape': 'diamond', 'texture': 'plain', 'color': 'yellow'}}"
+hard,1,1,20,"('consume', 29)",10,24,{'feedback': 'Step 20: Consumed id 29 (yellow diamond plain) for 10 points.'}
+hard,1,1,21,"('combine', 11, 17)",0,24,{'feedback': 'Step 21: Failed to combine id 11 (red triangle checkered) and id 17 (red square dotted).'}
+hard,1,1,22,"('consume', 11)",1,25,{'feedback': 'Step 22: Consumed id 11 (red triangle checkered) for 1 points.'}
+hard,1,1,23,"('combine', 17, 18)",0,25,{'feedback': 'Step 23: Failed to combine id 17 (red square dotted) and id 18 (red square striped).'}
+hard,1,1,24,"('consume', 17)",1,26,{'feedback': 'Step 24: Consumed id 17 (red square dotted) for 1 points.'}
+hard,1,1,25,"('combine', 20, 21)",0,26,{'feedback': 'Step 25: Failed to combine id 20 (red circle plain) and id 21 (red circle dotted).'}
+hard,1,1,26,"('combine', 20, 21)",0,26,{'feedback': 'Step 26: Failed to combine id 20 (red circle plain) and id 21 (red circle dotted).'}
+hard,1,1,27,"('consume', 18)",1,27,{'feedback': 'Step 27: Consumed id 18 (red square striped) for 1 points.'}
+hard,1,1,28,"('combine', 19, 20)",0,27,{'feedback': 'Step 28: Failed to combine id 19 (red square checkered) and id 20 (red circle plain).'}
+hard,1,1,29,"('consume', 19)",1,28,{'feedback': 'Step 29: Consumed id 19 (red square checkered) for 1 points.'}
+hard,1,1,30,"('combine', 20, 21)",0,28,{'feedback': 'Step 30: Failed to combine id 20 (red circle plain) and id 21 (red circle dotted).'}
+hard,1,1,31,"('consume', 20)",1,29,{'feedback': 'Step 31: Consumed id 20 (red circle plain) for 1 points.'}
+hard,1,1,32,"('combine', 21, 22)",0,29,{'feedback': 'Step 32: Failed to combine id 21 (red circle dotted) and id 22 (red circle striped).'}
+hard,1,1,33,"('consume', 21)",1,30,{'feedback': 'Step 33: Consumed id 21 (red circle dotted) for 1 points.'}
+hard,1,1,34,"('combine', 22, 23)",0,30,{'feedback': 'Step 34: Failed to combine id 22 (red circle striped) and id 23 (red circle checkered).'}
+hard,1,1,35,"('combine', 22, 23)",0,30,{'feedback': 'Step 35: Failed to combine id 22 (red circle striped) and id 23 (red circle checkered).'}
+hard,1,1,36,"('consume', 22)",1,31,{'feedback': 'Step 36: Consumed id 22 (red circle striped) for 1 points.'}
+hard,1,1,37,"('combine', 23, 24)",0,31,"{'new_object': {'id': 37, 'shape': 'circle', 'texture': 'plain', 'color': 'yellow'}}"
+hard,1,1,38,"('consume', 37)",10,41,{'feedback': 'Step 38: Consumed id 37 (yellow circle plain) for 10 points.'}
+hard,1,1,39,"('combine', 25, 26)",0,41,{'feedback': 'Step 39: Failed to combine id 25 (red triangle dotted) and id 26 (red triangle striped).'}
+hard,1,1,40,"('consume', 25)",1,42,{'feedback': 'Step 40: Consumed id 25 (red triangle dotted) for 1 points.'}
+hard,1,1,41,message_to_next_player,0,42,"{'message': 'To excel in the grid-world game, here are some key strategies to keep in mind:\n\n1. **Prioritize Consumption**: Focus on consuming the available objects first, as each consumes yields 1 point. Do this to build a solid point foundation.\n\n2. **Experiment with Combinations**: Although many combinations may fail, keep trying. Successful combinations can yield new objects with higher point values (like the yellow diamond and yellow circle), which are crucial for maximizing points.\n\n3. **Observe Patterns**: Some objects may have combination potential. For example, combining similar shapes often leads to more success. Keep track of which object types failed to combine previously to avoid wasting moves.\n\n4. **Utilize Higher Value Items**: Once you create a high-value object (like the yellow diamond worth 10 points), make sure to consume it quickly to boost your score.\n\n5. **Don’t Rush Combinations**: If you fail to combine objects a few times, consider switching strategies. Focus on consuming instead to explore more objects.\n\nBy applying these strategies, you will increase your chances of a higher score. Good luck!'}"
+hard,0,2,1,"('consume', 0)",1,1,{'feedback': 'Step 1: Consumed id 0 (red square plain) for 1 points.'}
+hard,0,2,2,"('combine', 1, 2)",0,1,{'feedback': 'Step 2: Failed to combine id 1 (red square dotted) and id 2 (red square striped).'}
+hard,0,2,3,"('consume', 1)",1,2,{'feedback': 'Step 3: Consumed id 1 (red square dotted) for 1 points.'}
+hard,0,2,4,"('combine', 2, 3)",0,2,{'feedback': 'Step 4: Failed to combine id 2 (red square striped) and id 3 (red square checkered).'}
+hard,0,2,5,"('consume', 2)",1,3,{'feedback': 'Step 5: Consumed id 2 (red square striped) for 1 points.'}
+hard,0,2,6,"('consume', 3)",1,4,{'feedback': 'Step 6: Consumed id 3 (red square checkered) for 1 points.'}
+hard,0,2,7,"('consume', 4)",1,5,{'feedback': 'Step 7: Consumed id 4 (red circle plain) for 1 points.'}
+hard,0,2,8,"('consume', 6)",1,6,{'feedback': 'Step 8: Consumed id 6 (red circle striped) for 1 points.'}
+hard,0,2,9,"('consume', 5)",1,7,{'feedback': 'Step 9: Consumed id 5 (red circle dotted) for 1 points.'}
+hard,0,2,10,"('consume', 7)",1,8,{'feedback': 'Step 10: Consumed id 7 (red circle checkered) for 1 points.'}
+hard,0,2,11,"('combine', 8, 9)",0,8,{'feedback': 'Step 11: Failed to combine id 8 (red triangle plain) and id 9 (red triangle dotted).'}
+hard,0,2,12,"('consume', 8)",1,9,{'feedback': 'Step 12: Consumed id 8 (red triangle plain) for 1 points.'}
+hard,0,2,13,"('consume', 9)",1,10,{'feedback': 'Step 13: Consumed id 9 (red triangle dotted) for 1 points.'}
+hard,0,2,14,"('combine', 10, 11)",0,10,{'feedback': 'Step 14: Failed to combine id 10 (red triangle striped) and id 11 (red triangle checkered).'}
+hard,0,2,15,"('consume', 10)",1,11,{'feedback': 'Step 15: Consumed id 10 (red triangle striped) for 1 points.'}
+hard,0,2,16,"('consume', 11)",1,12,{'feedback': 'Step 16: Consumed id 11 (red triangle checkered) for 1 points.'}
+hard,0,2,17,"('combine', 12, 13)",0,12,{'feedback': 'Step 17: Failed to combine id 12 (red diamond plain) and id 13 (red diamond dotted).'}
+hard,0,2,18,"('consume', 12)",1,13,{'feedback': 'Step 18: Consumed id 12 (red diamond plain) for 1 points.'}
+hard,0,2,19,"('combine', 13, 14)",0,13,{'feedback': 'Step 19: Failed to combine id 13 (red diamond dotted) and id 14 (red diamond striped).'}
+hard,0,2,20,"('consume', 13)",1,14,{'feedback': 'Step 20: Consumed id 13 (red diamond dotted) for 1 points.'}
+hard,0,2,21,"('consume', 14)",1,15,{'feedback': 'Step 21: Consumed id 14 (red diamond striped) for 1 points.'}
+hard,0,2,22,"('combine', 15, 16)",0,15,"{'new_object': {'id': 30, 'shape': 'diamond', 'texture': 'plain', 'color': 'yellow'}}"
+hard,0,2,23,"('consume', 30)",10,25,{'feedback': 'Step 23: Consumed id 30 (yellow diamond plain) for 10 points.'}
+hard,0,2,24,"('combine', 17, 18)",0,25,{'feedback': 'Step 24: Failed to combine id 17 (red square dotted) and id 18 (red square striped).'}
+hard,0,2,25,"('combine', 17, 18)",0,25,{'feedback': 'Step 25: Failed to combine id 17 (red square dotted) and id 18 (red square striped).'}
+hard,0,2,26,"('consume', 17)",1,26,{'feedback': 'Step 26: Consumed id 17 (red square dotted) for 1 points.'}
+hard,0,2,27,"('combine', 18, 19)",0,26,{'feedback': 'Step 27: Failed to combine id 18 (red square striped) and id 19 (red square checkered).'}
+hard,0,2,28,"('combine', 18, 19)",0,26,{'feedback': 'Step 28: Failed to combine id 18 (red square striped) and id 19 (red square checkered).'}
+hard,0,2,29,"('combine', 18, 19)",0,26,{'feedback': 'Step 29: Failed to combine id 18 (red square striped) and id 19 (red square checkered).'}
+hard,0,2,30,"('consume', 18)",1,27,{'feedback': 'Step 30: Consumed id 18 (red square striped) for 1 points.'}
+hard,0,2,31,"('combine', 19, 20)",0,27,{'feedback': 'Step 31: Failed to combine id 19 (red square checkered) and id 20 (red circle plain).'}
+hard,0,2,32,"('consume', 19)",1,28,{'feedback': 'Step 32: Consumed id 19 (red square checkered) for 1 points.'}
+hard,0,2,33,"('combine', 20, 21)",0,28,{'feedback': 'Step 33: Failed to combine id 20 (red circle plain) and id 21 (red circle striped).'}
+hard,0,2,34,"('combine', 20, 21)",0,28,{'feedback': 'Step 34: Failed to combine id 20 (red circle plain) and id 21 (red circle striped).'}
+hard,0,2,35,"('consume', 20)",1,29,{'feedback': 'Step 35: Consumed id 20 (red circle plain) for 1 points.'}
+hard,0,2,36,"('combine', 21, 22)",0,29,{'feedback': 'Step 36: Failed to combine id 21 (red circle striped) and id 22 (red circle dotted).'}
+hard,0,2,37,"('consume', 21)",1,30,{'feedback': 'Step 37: Consumed id 21 (red circle striped) for 1 points.'}
+hard,0,2,38,"('consume', 22)",1,31,{'feedback': 'Step 38: Consumed id 22 (red circle dotted) for 1 points.'}
+hard,0,2,39,"('consume', 23)",1,32,{'feedback': 'Step 39: Consumed id 23 (red circle checkered) for 1 points.'}
+hard,0,2,40,"('combine', 28, 29)",0,32,{'feedback': 'Step 40: Failed to combine id 28 (red diamond plain) and id 29 (red diamond dotted).'}
+hard,0,2,41,message_to_next_player,0,32,"{'message': ""**Strategy Tips for Success in the Grid-World Game:**\n\n1. **Prioritize Consumption:** Always consume available objects first, as they guarantee you points. Focus on consuming objects that haven't failed in combinations yet.\n\n2. **Experiment with Combinations:** Some combinations may fail, but trying different pairs can lead to valuable new objects. Keep track of which combinations have failed, as this can save time.\n\n3. **Recognize Effective Combinations:** Once you successfully create a new object, like the yellow diamond plain, consume it immediately for a significant point boost.\n\n4. **Focus on Object Type Diversity:** Try to consume a wide range of object types (squares, circles, diamonds, triangles) to maximize your options for combinations.\n\n5. **Stay Patient with Failures:** Failed combinations are common. Don't get discouraged; keep trying different objects and combinations, as persistence is key.\n\n6. **Use Previous Knowledge:** Learn from past steps. If a previous pairing failed, avoid attempting it again unless you have new, different objects on hand.\n\nKeep these strategies in mind to maximize your points and succeed in future games! Good luck!""}"
+hard,1,2,1,"('consume', 0)",1,1,{'feedback': 'Step 1: Consumed id 0 (red square plain) for 1 points.'}
+hard,1,2,2,"('consume', 1)",1,2,{'feedback': 'Step 2: Consumed id 1 (red square dotted) for 1 points.'}
+hard,1,2,3,"('consume', 4)",1,3,{'feedback': 'Step 3: Consumed id 4 (red circle plain) for 1 points.'}
+hard,1,2,4,"('combine', 2, 3)",0,3,{'feedback': 'Step 4: Failed to combine id 2 (red square striped) and id 3 (red square checkered).'}
+hard,1,2,5,"('consume', 2)",1,4,{'feedback': 'Step 5: Consumed id 2 (red square striped) for 1 points.'}
+hard,1,2,6,"('combine', 6, 7)",0,4,{'feedback': 'Step 6: Failed to combine id 6 (red circle striped) and id 7 (red circle checkered).'}
+hard,1,2,7,"('consume', 3)",1,5,{'feedback': 'Step 7: Consumed id 3 (red square checkered) for 1 points.'}
+hard,1,2,8,"('consume', 5)",1,6,{'feedback': 'Step 8: Consumed id 5 (red circle dotted) for 1 points.'}
+hard,1,2,9,"('consume', 6)",1,7,{'feedback': 'Step 9: Consumed id 6 (red circle striped) for 1 points.'}
+hard,1,2,10,"('consume', 7)",1,8,{'feedback': 'Step 10: Consumed id 7 (red circle checkered) for 1 points.'}
+hard,1,2,11,"('combine', 12, 13)",0,8,{'feedback': 'Step 11: Failed to combine id 12 (red diamond plain) and id 13 (red diamond dotted).'}
+hard,1,2,12,"('consume', 12)",1,9,{'feedback': 'Step 12: Consumed id 12 (red diamond plain) for 1 points.'}
+hard,1,2,13,"('combine', 13, 14)",0,9,{'feedback': 'Step 13: Failed to combine id 13 (red diamond dotted) and id 14 (red diamond striped).'}
+hard,1,2,14,"('combine', 13, 14)",0,9,{'feedback': 'Step 14: Failed to combine id 13 (red diamond dotted) and id 14 (red diamond striped).'}
+hard,1,2,15,"('combine', 13, 14)",0,9,{'feedback': 'Step 15: Failed to combine id 13 (red diamond dotted) and id 14 (red diamond striped).'}
+hard,1,2,16,"('combine', 13, 14)",0,9,{'feedback': 'Step 16: Failed to combine id 13 (red diamond dotted) and id 14 (red diamond striped).'}
+hard,1,2,17,"('consume', 8)",1,10,{'feedback': 'Step 17: Consumed id 8 (red triangle plain) for 1 points.'}
+hard,1,2,18,"('combine', 10, 11)",0,10,{'feedback': 'Step 18: Failed to combine id 10 (red triangle striped) and id 11 (red triangle checkered).'}
+hard,1,2,19,"('consume', 9)",1,11,{'feedback': 'Step 19: Consumed id 9 (red triangle dotted) for 1 points.'}
+hard,1,2,20,"('consume', 10)",1,12,{'feedback': 'Step 20: Consumed id 10 (red triangle striped) for 1 points.'}
+hard,1,2,21,"('combine', 13, 14)",0,12,{'feedback': 'Step 21: Failed to combine id 13 (red diamond dotted) and id 14 (red diamond striped).'}
+hard,1,2,22,"('consume', 11)",1,13,{'feedback': 'Step 22: Consumed id 11 (red triangle checkered) for 1 points.'}
+hard,1,2,23,"('combine', 13, 14)",0,13,{'feedback': 'Step 23: Failed to combine id 13 (red diamond dotted) and id 14 (red diamond striped).'}
+hard,1,2,24,"('consume', 13)",1,14,{'feedback': 'Step 24: Consumed id 13 (red diamond dotted) for 1 points.'}
+hard,1,2,25,"('consume', 14)",1,15,{'feedback': 'Step 25: Consumed id 14 (red diamond striped) for 1 points.'}
+hard,1,2,26,"('combine', 15, 16)",0,15,"{'new_object': {'id': 30, 'shape': 'diamond', 'texture': 'plain', 'color': 'yellow'}}"
+hard,1,2,27,"('consume', 30)",10,25,{'feedback': 'Step 27: Consumed id 30 (yellow diamond plain) for 10 points.'}
+hard,1,2,28,"('combine', 17, 18)",0,25,{'feedback': 'Step 28: Failed to combine id 17 (red square dotted) and id 18 (red circle plain).'}
+hard,1,2,29,"('consume', 17)",1,26,{'feedback': 'Step 29: Consumed id 17 (red square dotted) for 1 points.'}
+hard,1,2,30,"('combine', 18, 19)",0,26,{'feedback': 'Step 30: Failed to combine id 18 (red circle plain) and id 19 (red square striped).'}
+hard,1,2,31,"('consume', 18)",1,27,{'feedback': 'Step 31: Consumed id 18 (red circle plain) for 1 points.'}
+hard,1,2,32,"('combine', 19, 20)",0,27,{'feedback': 'Step 32: Failed to combine id 19 (red square striped) and id 20 (red square checkered).'}
+hard,1,2,33,"('combine', 19, 20)",0,27,{'feedback': 'Step 33: Failed to combine id 19 (red square striped) and id 20 (red square checkered).'}
+hard,1,2,34,"('consume', 19)",1,28,{'feedback': 'Step 34: Consumed id 19 (red square striped) for 1 points.'}
+hard,1,2,35,"('combine', 20, 21)",0,28,{'feedback': 'Step 35: Failed to combine id 20 (red square checkered) and id 21 (red circle dotted).'}
+hard,1,2,36,"('combine', 20, 21)",0,28,{'feedback': 'Step 36: Failed to combine id 20 (red square checkered) and id 21 (red circle dotted).'}
+hard,1,2,37,"('combine', 20, 21)",0,28,{'feedback': 'Step 37: Failed to combine id 20 (red square checkered) and id 21 (red circle dotted).'}
+hard,1,2,38,"('consume', 21)",1,29,{'feedback': 'Step 38: Consumed id 21 (red circle dotted) for 1 points.'}
+hard,1,2,39,"('combine', 20, 21)",0,29,{'feedback': 'Step 39: Failed to combine id 20 (red square checkered) and id 21 (None).'}
+hard,1,2,40,"('consume', 20)",1,30,{'feedback': 'Step 40: Consumed id 20 (red square checkered) for 1 points.'}
+hard,1,2,41,message_to_next_player,0,30,"{'message': '**Advice for Success in the Grid-World Game:**\n\n1. **Prioritize Consumption:** Focus on consuming objects first to build up your points. Each consumed item generally gives you 1 point, which helps you accumulate points quickly.\n\n2. **Experiment with Combinations:** Keep trying to combine items, but focus on combinations that have not failed before. Some combinations may yield new items that give higher points—like the yellow diamond that earned 10 points!\n\n3. **Keep Track of Failures:** Note which combinations resulted in failure. Avoid repeating these, as it can waste moves. Instead, look for new pairs to combine.\n\n4. **Diverse Objects:** Aim to collect various object types (squares, circles, diamonds, triangles) to increase your chances of successful combinations.\n\n5. **Sequence Matters:** Sometimes the order in which you consume or combine items can affect future combinations, so think ahead!\n\nUse these strategies wisely and good luck!'}"
+hard,0,3,1,"('consume', 0)",1,1,{'feedback': 'Step 1: Consumed id 0 (red square plain) for 1 points.'}
+hard,0,3,2,"('combine', 1, 2)",0,1,{'feedback': 'Step 2: Failed to combine id 1 (red square dotted) and id 2 (red square striped).'}
+hard,0,3,3,"('consume', 1)",1,2,{'feedback': 'Step 3: Consumed id 1 (red square dotted) for 1 points.'}
+hard,0,3,4,"('combine', 2, 3)",0,2,{'feedback': 'Step 4: Failed to combine id 2 (red square striped) and id 3 (red square checkered).'}
+hard,0,3,5,"('consume', 2)",1,3,{'feedback': 'Step 5: Consumed id 2 (red square striped) for 1 points.'}
+hard,0,3,6,"('consume', 3)",1,4,{'feedback': 'Step 6: Consumed id 3 (red square checkered) for 1 points.'}
+hard,0,3,7,"('consume', 4)",1,5,{'feedback': 'Step 7: Consumed id 4 (red circle plain) for 1 points.'}
+hard,0,3,8,"('consume', 5)",1,6,{'feedback': 'Step 8: Consumed id 5 (red circle dotted) for 1 points.'}
+hard,0,3,9,"('consume', 6)",1,7,{'feedback': 'Step 9: Consumed id 6 (red circle striped) for 1 points.'}
+hard,0,3,10,"('consume', 7)",1,8,{'feedback': 'Step 10: Consumed id 7 (red circle checkered) for 1 points.'}
+hard,0,3,11,"('consume', 8)",1,9,{'feedback': 'Step 11: Consumed id 8 (red triangle plain) for 1 points.'}
+hard,0,3,12,"('consume', 9)",1,10,{'feedback': 'Step 12: Consumed id 9 (red triangle dotted) for 1 points.'}
+hard,0,3,13,"('consume', 10)",1,11,{'feedback': 'Step 13: Consumed id 10 (red triangle striped) for 1 points.'}
+hard,0,3,14,"('consume', 11)",1,12,{'feedback': 'Step 14: Consumed id 11 (red triangle checkered) for 1 points.'}
+hard,0,3,15,"('combine', 12, 13)",0,12,{'feedback': 'Step 15: Failed to combine id 12 (red diamond plain) and id 13 (red diamond dotted).'}
+hard,0,3,16,"('consume', 12)",1,13,{'feedback': 'Step 16: Consumed id 12 (red diamond plain) for 1 points.'}
+hard,0,3,17,"('combine', 13, 14)",0,13,{'feedback': 'Step 17: Failed to combine id 13 (red diamond dotted) and id 14 (red diamond striped).'}
+hard,0,3,18,"('combine', 13, 14)",0,13,{'feedback': 'Step 18: Failed to combine id 13 (red diamond dotted) and id 14 (red diamond striped).'}
+hard,0,3,19,"('consume', 13)",1,14,{'feedback': 'Step 19: Consumed id 13 (red diamond dotted) for 1 points.'}
+hard,0,3,20,"('consume', 14)",1,15,{'feedback': 'Step 20: Consumed id 14 (red diamond striped) for 1 points.'}
+hard,0,3,21,"('combine', 15, 28)",0,15,{'feedback': 'Step 21: Failed to combine id 15 (red diamond checkered) and id 28 (red diamond plain).'}
+hard,0,3,22,"('consume', 15)",1,16,{'feedback': 'Step 22: Consumed id 15 (red diamond checkered) for 1 points.'}
+hard,0,3,23,"('combine', 16, 17)",0,16,{'feedback': 'Step 23: Failed to combine id 16 (red square plain) and id 17 (red square dotted).'}
+hard,0,3,24,"('combine', 16, 17)",0,16,{'feedback': 'Step 24: Failed to combine id 16 (red square plain) and id 17 (red square dotted).'}
+hard,0,3,25,"('consume', 16)",1,17,{'feedback': 'Step 25: Consumed id 16 (red square plain) for 1 points.'}
+hard,0,3,26,"('consume', 17)",1,18,{'feedback': 'Step 26: Consumed id 17 (red square dotted) for 1 points.'}
+hard,0,3,27,"('combine', 18, 19)",0,18,{'feedback': 'Step 27: Failed to combine id 18 (red square striped) and id 19 (red square checkered).'}
+hard,0,3,28,"('consume', 18)",1,19,{'feedback': 'Step 28: Consumed id 18 (red square striped) for 1 points.'}
+hard,0,3,29,"('consume', 19)",1,20,{'feedback': 'Step 29: Consumed id 19 (red square checkered) for 1 points.'}
+hard,0,3,30,"('combine', 20, 21)",0,20,{'feedback': 'Step 30: Failed to combine id 20 (red circle plain) and id 21 (red circle dotted).'}
+hard,0,3,31,"('combine', 20, 21)",0,20,{'feedback': 'Step 31: Failed to combine id 20 (red circle plain) and id 21 (red circle dotted).'}
+hard,0,3,32,"('consume', 20)",1,21,{'feedback': 'Step 32: Consumed id 20 (red circle plain) for 1 points.'}
+hard,0,3,33,"('consume', 21)",1,22,{'feedback': 'Step 33: Consumed id 21 (red circle dotted) for 1 points.'}
+hard,0,3,34,"('consume', 22)",1,23,{'feedback': 'Step 34: Consumed id 22 (red circle striped) for 1 points.'}
+hard,0,3,35,"('combine', 24, 25)",0,23,{'feedback': 'Step 35: Failed to combine id 24 (red triangle plain) and id 25 (red triangle dotted).'}
+hard,0,3,36,"('consume', 24)",1,24,{'feedback': 'Step 36: Consumed id 24 (red triangle plain) for 1 points.'}
+hard,0,3,37,"('combine', 28, 29)",0,24,{'feedback': 'Step 37: Failed to combine id 28 (red diamond plain) and id 29 (red diamond dotted).'}
+hard,0,3,38,"('consume', 26)",1,25,{'feedback': 'Step 38: Consumed id 26 (red triangle striped) for 1 points.'}
+hard,0,3,39,"('consume', 23)",1,26,{'feedback': 'Step 39: Consumed id 23 (red circle checkered) for 1 points.'}
+hard,0,3,40,"('consume', 25)",1,27,{'feedback': 'Step 40: Consumed id 25 (red triangle dotted) for 1 points.'}
+hard,0,3,41,message_to_next_player,0,27,"{'message': ""Hello, future player! Here are some key strategies to help you maximize your points in the grid-world game:\n\n1. **Prioritize Consumption**: Focus on consuming objects that you find first. Each consumed item gives you 1 point and will help in reducing the clutter in your inventory.\n\n2. **Experiment with Combinations**: While combining items can be tempting, sometimes you’ll experience failures. Be strategic about which items you attempt to combine based on the feedback you get from previous attempts. Keep track of what combinations work to avoid unnecessary waste.\n\n3. **Track Item Types**: Remember that certain colors and shapes (like red squares, circles, triangles, and diamonds) seem to have patterns of combination failure. Focus on consuming these until you're sure of their combining potential.\n\n4. **Avoid Redundant Combos**: If an item has failed to combine in the past, consider consuming it instead of trying to pair it again. This can free up space and increase your point total.\n\n5. **Stay Organized**: Keep a mental note of what you've consumed and which combinations have failed. This knowledge can help you streamline your decisions.\n\n6. **Patience with Diamonds**: The diamond items seem to have more combination failures, so be cautious when dealing with them. Consume them early if you're having trouble combining.\n\nBy using these strategies, you can enhance your gameplay experience and score higher points. Good luck and have fun!""}"
+hard,1,3,1,"('consume', 0)",1,1,{'feedback': 'Step 1: Consumed id 0 (red square plain) for 1 points.'}
+hard,1,3,2,"('combine', 1, 2)",0,1,{'feedback': 'Step 2: Failed to combine id 1 (red square dotted) and id 2 (red square striped).'}
+hard,1,3,3,"('consume', 1)",1,2,{'feedback': 'Step 3: Consumed id 1 (red square dotted) for 1 points.'}
+hard,1,3,4,"('combine', 2, 3)",0,2,{'feedback': 'Step 4: Failed to combine id 2 (red square striped) and id 3 (red square checkered).'}
+hard,1,3,5,"('consume', 2)",1,3,{'feedback': 'Step 5: Consumed id 2 (red square striped) for 1 points.'}
+hard,1,3,6,"('consume', 3)",1,4,{'feedback': 'Step 6: Consumed id 3 (red square checkered) for 1 points.'}
+hard,1,3,7,"('consume', 4)",1,5,{'feedback': 'Step 7: Consumed id 4 (red circle plain) for 1 points.'}
+hard,1,3,8,"('consume', 5)",1,6,{'feedback': 'Step 8: Consumed id 5 (red circle dotted) for 1 points.'}
+hard,1,3,9,"('consume', 6)",1,7,{'feedback': 'Step 9: Consumed id 6 (red circle striped) for 1 points.'}
+hard,1,3,10,"('consume', 7)",1,8,{'feedback': 'Step 10: Consumed id 7 (red circle checkered) for 1 points.'}
+hard,1,3,11,"('consume', 8)",1,9,{'feedback': 'Step 11: Consumed id 8 (red triangle plain) for 1 points.'}
+hard,1,3,12,"('consume', 9)",1,10,{'feedback': 'Step 12: Consumed id 9 (red triangle dotted) for 1 points.'}
+hard,1,3,13,"('consume', 10)",1,11,{'feedback': 'Step 13: Consumed id 10 (red triangle striped) for 1 points.'}
+hard,1,3,14,"('consume', 11)",1,12,{'feedback': 'Step 14: Consumed id 11 (red triangle checkered) for 1 points.'}
+hard,1,3,15,"('combine', 12, 13)",0,12,{'feedback': 'Step 15: Failed to combine id 12 (red diamond plain) and id 13 (red diamond dotted).'}
+hard,1,3,16,"('consume', 12)",1,13,{'feedback': 'Step 16: Consumed id 12 (red diamond plain) for 1 points.'}
+hard,1,3,17,"('combine', 13, 14)",0,13,{'feedback': 'Step 17: Failed to combine id 13 (red diamond dotted) and id 14 (red diamond striped).'}
+hard,1,3,18,"('combine', 13, 14)",0,13,{'feedback': 'Step 18: Failed to combine id 13 (red diamond dotted) and id 14 (red diamond striped).'}
+hard,1,3,19,"('consume', 13)",1,14,{'feedback': 'Step 19: Consumed id 13 (red diamond dotted) for 1 points.'}
+hard,1,3,20,"('combine', 14, 15)",0,14,{'feedback': 'Step 20: Failed to combine id 14 (red diamond striped) and id 15 (red diamond checkered).'}
+hard,1,3,21,"('consume', 14)",1,15,{'feedback': 'Step 21: Consumed id 14 (red diamond striped) for 1 points.'}
+hard,1,3,22,"('combine', 15, 16)",0,15,"{'new_object': {'id': 30, 'shape': 'diamond', 'texture': 'plain', 'color': 'yellow'}}"
+hard,1,3,23,"('consume', 30)",10,25,{'feedback': 'Step 23: Consumed id 30 (yellow diamond plain) for 10 points.'}
+hard,1,3,24,"('combine', 15, 16)",0,25,{'feedback': 'Step 24: Failed to combine id 15 (None) and id 16 (None).'}
+hard,1,3,25,"('consume', 17)",1,26,{'feedback': 'Step 25: Consumed id 17 (red square dotted) for 1 points.'}
+hard,1,3,26,"('combine', 18, 19)",0,26,{'feedback': 'Step 26: Failed to combine id 18 (red square striped) and id 19 (red square checkered).'}
+hard,1,3,27,"('consume', 18)",1,27,{'feedback': 'Step 27: Consumed id 18 (red square striped) for 1 points.'}
+hard,1,3,28,"('combine', 19, 20)",0,27,{'feedback': 'Step 28: Failed to combine id 19 (red square checkered) and id 20 (red circle plain).'}
+hard,1,3,29,"('combine', 19, 20)",0,27,{'feedback': 'Step 29: Failed to combine id 19 (red square checkered) and id 20 (red circle plain).'}
+hard,1,3,30,"('consume', 19)",1,28,{'feedback': 'Step 30: Consumed id 19 (red square checkered) for 1 points.'}
+hard,1,3,31,"('combine', 21, 22)",0,28,{'feedback': 'Step 31: Failed to combine id 21 (red circle dotted) and id 22 (red circle striped).'}
+hard,1,3,32,"('combine', 21, 22)",0,28,{'feedback': 'Step 32: Failed to combine id 21 (red circle dotted) and id 22 (red circle striped).'}
+hard,1,3,33,"('consume', 21)",1,29,{'feedback': 'Step 33: Consumed id 21 (red circle dotted) for 1 points.'}
+hard,1,3,34,"('combine', 22, 23)",0,29,{'feedback': 'Step 34: Failed to combine id 22 (red circle striped) and id 23 (red circle checkered).'}
+hard,1,3,35,"('consume', 22)",1,30,{'feedback': 'Step 35: Consumed id 22 (red circle striped) for 1 points.'}
+hard,1,3,36,"('combine', 24, 25)",0,30,{'feedback': 'Step 36: Failed to combine id 24 (red triangle plain) and id 25 (red triangle dotted).'}
+hard,1,3,37,"('combine', 24, 25)",0,30,{'feedback': 'Step 37: Failed to combine id 24 (red triangle plain) and id 25 (red triangle dotted).'}
+hard,1,3,38,"('consume', 24)",1,31,{'feedback': 'Step 38: Consumed id 24 (red triangle plain) for 1 points.'}
+hard,1,3,39,"('combine', 26, 27)",0,31,{'feedback': 'Step 39: Failed to combine id 26 (red triangle striped) and id 27 (red triangle checkered).'}
+hard,1,3,40,"('consume', 26)",1,32,{'feedback': 'Step 40: Consumed id 26 (red triangle striped) for 1 points.'}
+hard,1,3,41,message_to_next_player,0,32,"{'message': ""Hello, future player!\n\nHere are some key strategies to help you score well in the grid-world game:\n\n1. **Consume Early**: Don't hesitate to consume items if combinations fail. Each item consumed gives you 1 point, and accumulating points early can boost your score.\n\n2. **Prioritize Combinations**: Focus on combining items that have previously failed if you have enough different items available. However, be aware that some items may not combine successfully and might waste turns.\n\n3. **Explore Variety**: Try to collect a variety of shapes (squares, circles, triangles, diamonds) and patterns (plain, dotted, striped, checkered). Some combinations yield stronger items, like the yellow diamond which earned you 10 points.\n\n4. **Assess Success Rates**: Take note of which combinations have failed in the past. If certain pairs never work, consider moving on to other items instead.\n\n5. **Balance Consumption and Combining**: Sometimes, it's better to consume certain items rather than trying to combine them, especially if they are redundant or you have enough variety.\n\nBy following these strategies, you can maximize your points and have a better chance at success. Good luck!""}"
+hard,0,4,1,"('consume', 0)",1,1,{'feedback': 'Step 1: Consumed id 0 (red square plain) for 1 points.'}
+hard,0,4,2,"('combine', 1, 2)",0,1,{'feedback': 'Step 2: Failed to combine id 1 (red square dotted) and id 2 (red square striped).'}
+hard,0,4,3,"('consume', 1)",1,2,{'feedback': 'Step 3: Consumed id 1 (red square dotted) for 1 points.'}
+hard,0,4,4,"('combine', 2, 3)",0,2,{'feedback': 'Step 4: Failed to combine id 2 (red square striped) and id 3 (red square checkered).'}
+hard,0,4,5,"('consume', 2)",1,3,{'feedback': 'Step 5: Consumed id 2 (red square striped) for 1 points.'}
+hard,0,4,6,"('consume', 3)",1,4,{'feedback': 'Step 6: Consumed id 3 (red square checkered) for 1 points.'}
+hard,0,4,7,"('consume', 4)",1,5,{'feedback': 'Step 7: Consumed id 4 (red circle plain) for 1 points.'}
+hard,0,4,8,"('consume', 5)",1,6,{'feedback': 'Step 8: Consumed id 5 (red circle dotted) for 1 points.'}
+hard,0,4,9,"('consume', 6)",1,7,{'feedback': 'Step 9: Consumed id 6 (red circle striped) for 1 points.'}
+hard,0,4,10,"('consume', 7)",1,8,{'feedback': 'Step 10: Consumed id 7 (red circle checkered) for 1 points.'}
+hard,0,4,11,"('consume', 8)",1,9,{'feedback': 'Step 11: Consumed id 8 (red triangle plain) for 1 points.'}
+hard,0,4,12,"('consume', 9)",1,10,{'feedback': 'Step 12: Consumed id 9 (red triangle dotted) for 1 points.'}
+hard,0,4,13,"('consume', 10)",1,11,{'feedback': 'Step 13: Consumed id 10 (red triangle striped) for 1 points.'}
+hard,0,4,14,"('consume', 11)",1,12,{'feedback': 'Step 14: Consumed id 11 (red triangle checkered) for 1 points.'}
+hard,0,4,15,"('combine', 12, 13)",0,12,{'feedback': 'Step 15: Failed to combine id 12 (red diamond plain) and id 13 (red diamond dotted).'}
+hard,0,4,16,"('consume', 12)",1,13,{'feedback': 'Step 16: Consumed id 12 (red diamond plain) for 1 points.'}
+hard,0,4,17,"('combine', 13, 14)",0,13,{'feedback': 'Step 17: Failed to combine id 13 (red diamond dotted) and id 14 (red diamond striped).'}
+hard,0,4,18,"('combine', 13, 14)",0,13,{'feedback': 'Step 18: Failed to combine id 13 (red diamond dotted) and id 14 (red diamond striped).'}
+hard,0,4,19,"('consume', 13)",1,14,{'feedback': 'Step 19: Consumed id 13 (red diamond dotted) for 1 points.'}
+hard,0,4,20,"('combine', 14, 15)",0,14,{'feedback': 'Step 20: Failed to combine id 14 (red diamond striped) and id 15 (red diamond checkered).'}
+hard,0,4,21,"('consume', 14)",1,15,{'feedback': 'Step 21: Consumed id 14 (red diamond striped) for 1 points.'}
+hard,0,4,22,"('combine', 15, 16)",0,15,"{'new_object': {'id': 30, 'shape': 'diamond', 'texture': 'plain', 'color': 'yellow'}}"
+hard,0,4,23,"('consume', 30)",10,25,{'feedback': 'Step 23: Consumed id 30 (yellow diamond plain) for 10 points.'}
+hard,0,4,24,"('combine', 15, 16)",0,25,{'feedback': 'Step 24: Failed to combine id 15 (None) and id 16 (None).'}
+hard,0,4,25,"('consume', 17)",1,26,{'feedback': 'Step 25: Consumed id 17 (red square dotted) for 1 points.'}
+hard,0,4,26,"('combine', 18, 19)",0,26,{'feedback': 'Step 26: Failed to combine id 18 (red square striped) and id 19 (red square checkered).'}
+hard,0,4,27,"('consume', 18)",1,27,{'feedback': 'Step 27: Consumed id 18 (red square striped) for 1 points.'}
+hard,0,4,28,"('combine', 19, 20)",0,27,{'feedback': 'Step 28: Failed to combine id 19 (red square checkered) and id 20 (red circle plain).'}
+hard,0,4,29,"('combine', 19, 20)",0,27,{'feedback': 'Step 29: Failed to combine id 19 (red square checkered) and id 20 (red circle plain).'}
+hard,0,4,30,"('consume', 19)",1,28,{'feedback': 'Step 30: Consumed id 19 (red square checkered) for 1 points.'}
+hard,0,4,31,"('combine', 22, 23)",0,28,{'feedback': 'Step 31: Failed to combine id 22 (red circle striped) and id 23 (red circle checkered).'}
+hard,0,4,32,"('consume', 22)",1,29,{'feedback': 'Step 32: Consumed id 22 (red circle striped) for 1 points.'}
+hard,0,4,33,"('combine', 24, 25)",0,29,{'feedback': 'Step 33: Failed to combine id 24 (red triangle plain) and id 25 (red triangle dotted).'}
+hard,0,4,34,"('combine', 24, 25)",0,29,{'feedback': 'Step 34: Failed to combine id 24 (red triangle plain) and id 25 (red triangle dotted).'}
+hard,0,4,35,"('consume', 24)",1,30,{'feedback': 'Step 35: Consumed id 24 (red triangle plain) for 1 points.'}
+hard,0,4,36,"('combine', 21, 23)",0,30,{'feedback': 'Step 36: Failed to combine id 21 (red circle dotted) and id 23 (red circle checkered).'}
+hard,0,4,37,"('consume', 21)",1,31,{'feedback': 'Step 37: Consumed id 21 (red circle dotted) for 1 points.'}
+hard,0,4,38,"('consume', 26)",1,32,{'feedback': 'Step 38: Consumed id 26 (red triangle striped) for 1 points.'}
+hard,0,4,39,"('combine', 28, 29)",0,32,{'feedback': 'Step 39: Failed to combine id 28 (red diamond plain) and id 29 (red diamond dotted).'}
+hard,0,4,40,"('consume', 20)",1,33,{'feedback': 'Step 40: Consumed id 20 (red circle plain) for 1 points.'}
+hard,0,4,41,message_to_next_player,0,33,"{'message': ""**Advice for Success in the Grid-World Game:**\n\n1. **Prioritize Consumption:** Focus on consuming objects first before attempting combinations. Each object consumed will give you 1 point, contributing steadily to your score.\n\n2. **Experiment with Combinations:** Not all combinations will succeed, but keep trying different pairs. Be strategic about which items you combine based on their types for potential higher-value creations. The combination that worked for me was a new yellow diamond that netted 10 points.\n\n3. **Stay Updated on IDs:** Keep track of the IDs of objects you've used and what combinations have failed. This will save you time and effort when trying to find valid pairings.\n\n4. **Utilize Variety:** Don't get stuck on a specific shape or color. Mix and match the different shapes (squares, circles, triangles, diamonds) and colors to explore combinations.\n\n5. **Note Patterns in Failures:** If certain object types consistently fail to combine, it may be wise to consume them instead of wasting moves on failing combinations.\n\nBy following these strategies and remaining adaptable, you'll maximize your points effectively. Good luck!""}"
+hard,1,4,1,"('consume', 0)",1,1,{'feedback': 'Step 1: Consumed id 0 (red square plain) for 1 points.'}
+hard,1,4,2,"('combine', 1, 2)",0,1,{'feedback': 'Step 2: Failed to combine id 1 (red square dotted) and id 2 (red square striped).'}
+hard,1,4,3,"('consume', 1)",1,2,{'feedback': 'Step 3: Consumed id 1 (red square dotted) for 1 points.'}
+hard,1,4,4,"('combine', 2, 3)",0,2,{'feedback': 'Step 4: Failed to combine id 2 (red square striped) and id 3 (red square checkered).'}
+hard,1,4,5,"('consume', 2)",1,3,{'feedback': 'Step 5: Consumed id 2 (red square striped) for 1 points.'}
+hard,1,4,6,"('consume', 3)",1,4,{'feedback': 'Step 6: Consumed id 3 (red square checkered) for 1 points.'}
+hard,1,4,7,"('consume', 4)",1,5,{'feedback': 'Step 7: Consumed id 4 (red circle plain) for 1 points.'}
+hard,1,4,8,"('consume', 5)",1,6,{'feedback': 'Step 8: Consumed id 5 (red circle dotted) for 1 points.'}
+hard,1,4,9,"('consume', 6)",1,7,{'feedback': 'Step 9: Consumed id 6 (red circle striped) for 1 points.'}
+hard,1,4,10,"('consume', 7)",1,8,{'feedback': 'Step 10: Consumed id 7 (red circle checkered) for 1 points.'}
+hard,1,4,11,"('consume', 8)",1,9,{'feedback': 'Step 11: Consumed id 8 (red triangle plain) for 1 points.'}
+hard,1,4,12,"('consume', 9)",1,10,{'feedback': 'Step 12: Consumed id 9 (red triangle dotted) for 1 points.'}
+hard,1,4,13,"('consume', 10)",1,11,{'feedback': 'Step 13: Consumed id 10 (red triangle striped) for 1 points.'}
+hard,1,4,14,"('combine', 12, 13)",0,11,{'feedback': 'Step 14: Failed to combine id 12 (red diamond plain) and id 13 (red diamond dotted).'}
+hard,1,4,15,"('consume', 12)",1,12,{'feedback': 'Step 15: Consumed id 12 (red diamond plain) for 1 points.'}
+hard,1,4,16,"('consume', 14)",1,13,{'feedback': 'Step 16: Consumed id 14 (red diamond striped) for 1 points.'}
+hard,1,4,17,"('combine', 13, 15)",0,13,{'feedback': 'Step 17: Failed to combine id 13 (red diamond dotted) and id 15 (red diamond checkered).'}
+hard,1,4,18,"('consume', 13)",1,14,{'feedback': 'Step 18: Consumed id 13 (red diamond dotted) for 1 points.'}
+hard,1,4,19,"('combine', 15, 16)",0,14,"{'new_object': {'id': 29, 'shape': 'diamond', 'texture': 'plain', 'color': 'yellow'}}"
+hard,1,4,20,"('consume', 29)",10,24,{'feedback': 'Step 20: Consumed id 29 (yellow diamond plain) for 10 points.'}
+hard,1,4,21,"('combine', 17, 18)",0,24,{'feedback': 'Step 21: Failed to combine id 17 (red square dotted) and id 18 (red square striped).'}
+hard,1,4,22,"('consume', 17)",1,25,{'feedback': 'Step 22: Consumed id 17 (red square dotted) for 1 points.'}
+hard,1,4,23,"('consume', 18)",1,26,{'feedback': 'Step 23: Consumed id 18 (red square striped) for 1 points.'}
+hard,1,4,24,"('combine', 19, 20)",0,26,{'feedback': 'Step 24: Failed to combine id 19 (red square checkered) and id 20 (red circle plain).'}
+hard,1,4,25,"('combine', 19, 20)",0,26,{'feedback': 'Step 25: Failed to combine id 19 (red square checkered) and id 20 (red circle plain).'}
+hard,1,4,26,"('consume', 19)",1,27,{'feedback': 'Step 26: Consumed id 19 (red square checkered) for 1 points.'}
+hard,1,4,27,"('combine', 20, 21)",0,27,{'feedback': 'Step 27: Failed to combine id 20 (red circle plain) and id 21 (red circle dotted).'}
+hard,1,4,28,"('consume', 20)",1,28,{'feedback': 'Step 28: Consumed id 20 (red circle plain) for 1 points.'}
+hard,1,4,29,"('combine', 21, 22)",0,28,{'feedback': 'Step 29: Failed to combine id 21 (red circle dotted) and id 22 (red circle striped).'}
+hard,1,4,30,"('combine', 21, 22)",0,28,{'feedback': 'Step 30: Failed to combine id 21 (red circle dotted) and id 22 (red circle striped).'}
+hard,1,4,31,"('consume', 21)",1,29,{'feedback': 'Step 31: Consumed id 21 (red circle dotted) for 1 points.'}
+hard,1,4,32,"('combine', 22, 23)",0,29,{'feedback': 'Step 32: Failed to combine id 22 (red circle striped) and id 23 (red circle checkered).'}
+hard,1,4,33,"('consume', 22)",1,30,{'feedback': 'Step 33: Consumed id 22 (red circle striped) for 1 points.'}
+hard,1,4,34,"('consume', 23)",1,31,{'feedback': 'Step 34: Consumed id 23 (red circle checkered) for 1 points.'}
+hard,1,4,35,"('consume', 24)",1,32,{'feedback': 'Step 35: Consumed id 24 (red triangle plain) for 1 points.'}
+hard,1,4,36,"('consume', 25)",1,33,{'feedback': 'Step 36: Consumed id 25 (red triangle dotted) for 1 points.'}
+hard,1,4,37,"('combine', 27, 28)",0,33,{'feedback': 'Step 37: Failed to combine id 27 (red diamond plain) and id 28 (red diamond striped).'}
+hard,1,4,38,"('consume', 27)",1,34,{'feedback': 'Step 38: Consumed id 27 (red diamond plain) for 1 points.'}
+hard,1,4,39,"('consume', 28)",1,35,{'feedback': 'Step 39: Consumed id 28 (red diamond striped) for 1 points.'}
+hard,1,4,40,"('combine', 11, 26)",0,35,{'feedback': 'Step 40: Failed to combine id 11 (red triangle checkered) and id 26 (red triangle striped).'}
+hard,1,4,41,message_to_next_player,0,35,"{'message': ""Hey there! Here are some strategies and patterns that can help you succeed in the grid-world game:\n\n1. **Prioritize Consumption**: Consuming objects gives you consistent points (1 point per item). Don't hesitate to consume simple items rather than trying to combine them, especially if you’re unsure of the combination potential.\n\n2. **Learn Combinations Early**: Pay attention to which combinations fail frequently; it might save you time and resources. Experiment with different pairs, but don't get stuck trying to combine items that clearly don't work together.\n\n3. **Combine Unique Items**: When you successfully combine items, it often results in a new, higher-value item. Focus on combinations that yield new types rather than ones that just give you incremental points.\n\n4. **Explore All Types**: Try to consume and combine all shapes and colors. Certain combinations seem more successful, and you want to keep your options open.\n\n5. **Track Your Points**: Keep an eye on your score after each move. This helps you identify which strategies are yielding better points, so you can adjust your approach accordingly.\n\nEnjoy your game, and good luck maximizing those points!""}"
