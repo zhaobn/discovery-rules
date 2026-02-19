@@ -3,8 +3,7 @@ const MAX_ACTIONS = 40;
 const gridSize = 15;
 const conditions = ['easy', 'medium', 'hard'];
 const pilot_conditions = ['hard-1', 'hard-2'];
-const COND = pilot_conditions[Math.floor(Math.random() * pilot_conditions.length)];
-
+const COND = 'test' //pilot_conditions[Math.floor(Math.random() * pilot_conditions.length)];
 
 /** Global variables */
 let items = [];

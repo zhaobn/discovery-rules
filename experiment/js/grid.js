@@ -403,7 +403,7 @@ function combineItem(heldItem, targetItem) {
       yieldItem = newObj(heldItem, targetItem)
     }
 
-    if (COND == 'hard-2' && modRule2([heldItem, targetItem])) {
+    if (COND == 'test' && modRule2([heldItem, targetItem])) {
       yieldItem = newObj(heldItem, targetItem)
     }
 
