@@ -4,11 +4,11 @@ import numpy as np
 import json
 
 # %%
-file_path = "../data/gridrulesMain.tsv"
+file_path = "../data/grid_pilot_1.tsv"
 
 data = pd.read_csv(file_path, sep="\t")
-data = data[data['worker'].str.len() > 4]
-data = data[data['id'] < 121]
+data = data[data['worker'].str.len() > 10]
+#data = data[data['assignment'] == 'hard-1']
 
 data['subject'] = data['subject'].str.replace(r'{\\prolific', '"{\\"prolific', regex=True)
 data['actions'] = data['actions'].str.replace(r'\\\\', r'\\', regex=True)
@@ -17,6 +17,8 @@ data['events'] = data['events'].str.replace(r'{\\event-1', '"{\\\"event-1', rege
 
 
 # %%
+batch_name = 'pilot_newhard_full'
+
 data['subject_parsed'] = data['subject'].apply(json.loads)
 
 def extract_json_fields(json_str):
@@ -27,10 +29,12 @@ def extract_json_fields(json_str):
     return pd.Series([None] * len(data.columns))
 
 subject_data = data['subject_parsed'].apply(extract_json_fields)
-subject_full_data = pd.concat([data[['id', 'assignment', 'version']], subject_data], axis=1)
+subject_full_data = pd.concat([data[['id', 'assignment']], subject_data], axis=1)
 
 prolific_ids = subject_full_data[['id', 'prolific_id']]
-prolific_ids.to_csv("../data/id_data.csv", index=False)
+prolific_ids.to_csv(f"../data/{batch_name}_id_data.csv", index=False)
+
+#prolific_ids.shape[0]
 
 # %% calc bonus
 bonus_data = subject_data[['prolific_id', 'total_points']]
@@ -45,18 +49,18 @@ def calculate_bonus(points, max_digits, min_bonus=0, max_bonus=1):
 max_digits = len(str(int(bonus_data['total_points'].max())))
 bonus_data['bonus'] = bonus_data['total_points'].apply(lambda x: calculate_bonus(x, max_digits))
 
-bonus_data[['prolific_id', 'bonus']].to_csv("../data/bonus_data.csv", index=False)
+bonus_data[['prolific_id', 'bonus']].to_csv(f"../data/{batch_name}_bonus_data.csv", index=False)
 bonus_data['bonus'].mean()
 
 # %% output self reports
 message_data = subject_full_data[['id', 'condition', 'messageHow', 'messageRules', 'total_points']]
-message_data.to_csv("../data/message_data.csv", index=False)
+message_data.to_csv(f"../data/{batch_name}_message_data.csv", index=False)
 
 
 # %% save anonymized data
 subject_full_data.reset_index(drop=True, inplace=True)
-subject_full_data.drop(columns=['prolific_id', 'version', 'allow_regeneration'], inplace=True)
-subject_full_data.to_csv("../data/subject_data.csv", index=False)
+subject_full_data.drop(columns=['prolific_id', 'allow_regeneration'], inplace=True)
+subject_full_data.to_csv(f"../data/{batch_name}_subject_data.csv", index=False)
 
 
 # %%
@@ -79,7 +83,7 @@ merged_df = expanded_actions_df.merge(id_token, on='token', how='left')
 
 cols = ['id', 'action_id'] + [col for col in merged_df.columns if col not in ['id', 'action_id']]
 merged_df = merged_df[cols]
-merged_df.to_csv("../data/action_data.csv", index=False)
+merged_df.to_csv(f"../data/{batch_name}_action_data.csv", index=False)
 
 
 # %%
@@ -109,17 +113,17 @@ expanded_df = pd.json_normalize(expanded_data.explode())
 merged_df = expanded_df.merge(id_token, on='token', how='left')
 cols = ['id', 'event_id'] + [col for col in merged_df.columns if col not in ['id', 'event_id']]
 merged_df = merged_df[cols]
-merged_df.to_csv("../data/events_data.csv", index=False)
+merged_df.to_csv(f"../data/{batch_name}_events_data.csv", index=False)
 
 
 
 # %% Pilot Jan 13 has different message columns
 p3_data = data[data['version']==0.4]
 subject_data = p3_data['subject_parsed'].apply(extract_json_fields)
-subject_full_data = pd.concat([p3_data[['id', 'assignment', 'version']], subject_data], axis=1)
+subject_full_data = pd.concat([p3_data[['id', 'assignment']], subject_data], axis=1)
 
 subject_full_data.reset_index(drop=True, inplace=True)
-subject_full_data.to_csv("../data/subject_data.csv", index=False)
+subject_full_data.to_csv(f"../data/{batch_name}_subject_data.csv", index=False)
 
 # %%
 expanded_actions = p3_data['actions_parsed'].apply(extract_actions)
