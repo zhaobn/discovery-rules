@@ -1,20 +1,21 @@
 library(dplyr)
 library(tidyr)
 library(ggplot2)
-library(gghalves)
 
 library(effectsize)
 options(scipen=999)
 
 
+
 subject_data = read.csv('../data/pilot_newhardrule/subject_data.csv')
 
-# subject_data = subject_data %>%
-#   mutate(condition=ifelse(condition=='test', 'low-2', 'low-1'),
-#          id=id+200) %>%
-#   select(id, condition, messageHow, messageRules, total_points, 
-#          age, sex, engagement, difficulty, feedback, date, time, duration=task_duration)
-# write.csv(subject_data, file = '../data/pilot_newhardrule/subject_data.csv')
+subject_data = subject_data %>%
+  mutate(condition=ifelse(condition=='test', 'hard-2', condition),
+         id=id+200) %>%
+  mutate(condition = sub("hard-", "low-", condition, fixed = TRUE)) %>%
+  select(id, condition, messageHow, messageRules, total_points,
+         age, sex, engagement, difficulty, feedback, date, time, duration=task_duration)
+write.csv(subject_data, file = '../data/pilot_newhardrule/subject_data.csv')
 
 
 #### Demographics ####
@@ -32,11 +33,12 @@ reportStats(subject_data$sex=='female')
 main_subject_data = read.csv('../data/subject_data.csv')
 
 
-set.seed(123) 
+set.seed(42) 
 sampled_main_subject_data <- main_subject_data %>%
   group_by(condition) %>%
-  slice_sample(n = 10) %>%
+  slice_sample(n = 20) %>%
   ungroup() %>%
+  mutate(batch=0) %>%
   select(colnames(subject_data))
 
 test_subject_data = rbind(sampled_main_subject_data, subject_data)
@@ -45,8 +47,8 @@ test_subject_data = rbind(sampled_main_subject_data, subject_data)
 
 # Points per condition
 test_subject_data$total_points_log = log(test_subject_data$total_points)
-cond_levels = c("high", "medium", "low", "low-1", "low-2")
 
+cond_levels = c("high", "medium", "low", "low-1", "low-2")
 test_subject_data$condition <- factor(
   test_subject_data$condition,
   levels = cond_levels
@@ -71,7 +73,8 @@ main_action_data = read.csv('../data/action_data.csv') %>%
 
 pilot_action_data = read.csv('../data/pilot_newhardrule/action_data.csv')
 # pilot_action_data = pilot_action_data %>%
-#   mutate(condition=ifelse(assignment=='test', 'low-2', 'low-1')) %>%
+#   mutate(condition=ifelse(assignment=='test', 'hard-2', 'hard-1')) %>%
+#   mutate(condition = sub("hard-", "low-", condition, fixed = TRUE)) %>%
 #   mutate(id=id+200) %>%
 #   select(-assignment) %>%
 #   filter(action_id < 41)
@@ -87,13 +90,14 @@ test_action_data = test_action_data %>%
   mutate(total_points = cumsum(points)) %>%
   mutate(total_points_log = ifelse(total_points < 1, 0, ifelse(total_points == 1, 0.1, log(total_points))))
 action_data_summary = test_action_data %>%
+  #filter(id<230) %>%
   group_by(action_id, condition) %>%
   summarise(
     mean_total_points_log = mean(total_points_log, na.rm = TRUE),
     se_total_points_log = sd(total_points_log, na.rm = TRUE) / sqrt(n())
   )
 action_data_summary %>%
-  filter(condition %in% c('high', 'medium', 'low-2')) %>%
+  #filter(condition %in% c('high', 'medium', 'low-1')) %>%
   ggplot(aes(x = action_id, y = mean_total_points_log, color = condition)) +
   geom_line() +
   geom_ribbon(aes(ymin = mean_total_points_log - se_total_points_log, 
