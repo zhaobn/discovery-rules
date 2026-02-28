@@ -3,7 +3,7 @@ const MAX_ACTIONS = 40;
 const gridSize = 15;
 const conditions = ['easy', 'medium', 'hard'];
 const pilot_conditions = ['hard-1', 'hard-2'];
-const COND = (Math.random() < 0.5) ? pilot_conditions[0] : pilot_conditions[1];
+const COND = 'hard-3' //(Math.random() < 0.5) ? pilot_conditions[0] : pilot_conditions[1];
 
 /** Global variables */
 let items = [];
@@ -88,8 +88,15 @@ function modRule2(item_list) {
   const shapeMatch = (shapes.indexOf(getShape(item_list[0])) % 2 === 0) || (shapes.indexOf(getShape(item_list[1])) % 2 === 0);
   return shapeMatch && textureMatch;
 }
+function modRule3(item_list) {
+  const shapeMatch = shapes.indexOf(getShape(item_list[0])) + shapes.indexOf(getShape(item_list[1])) === 3;
+  const textureMatch = (textures.indexOf(getTexture(item_list[0])) % 2 === 0) || (textures.indexOf(getTexture(item_list[1])) % 2 === 1);
+  return shapeMatch && textureMatch;
+}
 
-/** Transitions functions archive */
+
+
+// /** Transitions functions archive */
 // function isDiffShapeAndPlain(item_list) {
 //   return getShape(item_list[0]) !== getShape(item_list[1]) && getTexture(item_list[0]) === "plain";
 // }

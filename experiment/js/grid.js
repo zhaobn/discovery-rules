@@ -407,6 +407,10 @@ function combineItem(heldItem, targetItem) {
       yieldItem = newObj(heldItem, targetItem)
     }
 
+    if (COND == 'hard-3' && modRule3([heldItem, targetItem])) {
+      yieldItem = newObj(heldItem, targetItem)
+    }
+
     let record = {'held': heldItem, 'target': targetItem, 'yield': yieldItem}
     transitions.push(record);
 

@@ -43,6 +43,11 @@ def test_rule_2 (pair):
     (m, n) = pair
     return m[1] + n[1] == 3 and ( m[0] % 2 == 0 or n[0] % 2 == 0 ) 
 
+def test_rule_3 (pair):
+    (m, n) = pair
+    return m[1] + n[1] == 3 and ( m[0] % 2 == 1 or n[0] % 2 == 0 ) 
+
+
 
 def task_func(task, pair):
     if task == 'simple':
@@ -63,6 +68,7 @@ get_coverage(med_task)      #48
 get_coverage(hard_task)     #40
 get_coverage(test_rule)     #48
 get_coverage(test_rule_2)   #48
+get_coverage(test_rule_3)   #48
 
 # %%
 def update_state(condition, state, action):
