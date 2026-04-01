@@ -1,42 +1,16 @@
 id,condition,messageHow,messageRules,total_points
-9,test,none,none,147
-10,test,Try combining solid shapes with shapes with dots on. Also try square patterned shapes with diagonal patterned shapes. ,"Solid shapes combine with dotty shapes. 
-Square patterned shapes combine with diagonal patterned shapes. ",221
-11,test,JUST PAY ATTENTION TO MOVES YOU HAVE PREVIOUSLY DONE ITS HARD TO WRTIE A GUIDE ,DIDNT NOTICE ,100013
-12,test,"Shapes that contain stripes seem to be able to be paired with shapes that contain squares. Try holding on to the combined shape. If it contains stripes, pick up a different shape that contains squares and vice-versa until this stops working.","Shapes containing stripes paired with different shapes containing squares. Whichever pattern within the shape was picked up last, would be the pattern taken on by the new combined crystal.",0
-13,test,"Square and triangle make orange, that's as far as I got. ","Sorry, not sure",34
-14,test,keep dumping no winners,spots and squarers are good,135
-15,test,Once you have created the next stage in triangles keep merging with the red triangles that will keep creating the next stages,I found it very random so just kept trying different combinations,35
-16,test,Look at the combinations of the different sha`pes and patterns and just try different combinations,I didnt notice any pattern ,200011
-17,test,If you find a combination that works try to recreate this combination (eg. full red circle + red dotted square = orange dotted circle) ,I did not notice any rules or patterns ,1000
-18,test,Just try your best,Circle and triangle increases value,22
-20,hard-1,Don't stick with the same symbol after it has combined keep trying different recipes,I did not notice any rules or patterns,10001
-21,hard-1,Squares + Circles seem to fuse well using different patterns also triangle an diamonds,Squares + Circles seem to fuse well using different patterns also triangle an diamonds,1320
-22,hard-1,"Good luck, make sure though you replace the original crytsal held when you get the next one and so on","None noticed, seemed very random",0
-23,hard-1,I'm afraid I don't have any tips or strategies as I scored 0 points!,I didn't notice any rules or patterns at all.,10
-24,hard-1,I did not observe any rules unfortunately - remember that you are carrying one crystal at all times and make sure you make your final move outside a crystal field - I lost all my points from violet crystal as I was not paying attention.,I suspect pointy shapes with same pattern may be a good starting point. Keep trying!,110
-25,hard-1,combine triangles and tilted squares,the second shape's pattern will be in the new shape you create,100000
-26,hard-1,Remember to drop crystals,Diagonal stripes seemed to fuse well,100028
-27,hard-1,Merging a square with a circle seemed to be key.,Merging a square with a circle of a contrasting pattern.,110000
-28,hard-1,red circles and squares will give you an orange. good luck,i couldnt see any patterns as i felt under pressure to finish the game . with hindsight i realise i could have just taken my time. it looks like red circles and square produce a orange,73
-29,hard-1,good luck,checked red triangle and solid red diamond makes orange triangle...orange triangle and checked diamond makes lime triangle....checked red diamond and orange triangle makes lime diamond.....dotted red triangle and striped red diamond makes striped orange triangle....combine this with lime diamond gets green triangle,1141
-30,hard-1,no idea what i was doing ,no pattern or rules that i could notice,0
-31,hard-1,Try everything,The patterns combine with the non patterns but not the same shapes. ,100045
-32,hard-1,I just tried random combos,I didn't notice any,100000
-33,hard-2,I just tried to make new items,None,11
-34,hard-2,"Honestly i was not sure, so i just aimed for picking up in as few moves as possible",I found a different shape for each set best,0
-35,hard-1,Be more keen on finding recipes and stick to it.,match each symbols with that which is similar in shape.,16
-36,hard-2,remember to press the d key to drop when you need to- look at the results on right hand of screen so you can repeat combinations which have been successful if shapes come up again,Combining stripe pattern and criss cross pattern might gain you more points,1
-37,hard-2,I struggled but squares ma be worth picking up and seeing if you can expand that theory,I struggled to work out pattens but try a plain diamond followed by a dotted square. Squares may go well togeher,101000
-38,hard-2,drop the crystals close to each other,didn't notice a pattern,10000
-39,hard-2,I just tried fusing with as many other crystals as possible systematically. Sorry I can't help more!,I didn't really notice any patterns. It's probably something to do with the crystal patterns but I don't know what.,10000
-40,hard-1,Combining yellow tilted rectangle with triangle with stripes will get a 1000 points,Just use your strategy,1055
-41,hard-2,I tried to make as many permutations as I can. Try different shapes together,Different shapes and different patterns work together,50
-42,hard-1,"try to collect points by double cliking on a coordinate with a gem, to earn point",none,48
-43,hard-2,I had no real strategy. I was a bit random about it. ,I didn't notice any,101
-44,hard-1,Haard to work out the recipes in such short time space,diamond seemed to need to be in the recipe.,111
-45,hard-1,"The rules seem to change depending on which colour the shapes are, it will not be the same patterns all of the way through. ",Diagonal line and flat colour reds (of different shapes) combine to make orange. The same is true of oranges to make lime green. You can make dark green by combining red grids and flat colour lime greens (seems to need different shapes again).,0
-46,hard-1,diamond and triangles seem to give results,A plain and a patterned gives results,152
-47,hard-1,"I found some success with the sequence of starting with diagnol striped square and then going with a further diagnol striped shape, then a shape with a grid and then a plain shape then a spotted shape.",I repeated the sequence described in the previous answer and it seemed to work a second time.,200010
-48,hard-2,try a few things out and follow your found recipes ,i didnt notice any patterns ,100
-49,hard-2,"if you find a pattern that works eg dotted square and plain triangle, do it the other way round too like plain square and dotted triangle",dont forget to drop items,2121
+51,hard-3,I tried to recreate the same combinations,similar seemed to make a higher score,110
+52,hard-3,its all a bit random but circles seem to do better,a did not spot much at all,58
+53,hard-3,Striped triangle and striped diamond make an orange striped triangle,Both shapes had the same pattern,26
+54,hard-3,watch the gains on the right side panel and work from them,I was acting too quickly to really notice. ,0
+55,hard-3,was just picking randomly,didnt notice any pattern,0
+56,hard-3,"Combine diamond + triangle to make a better diamond, then another triangle, then another triangle, to get to a blue diamond for high points. Don't forget to harvest. Do the same with circle + square, + square, etc. Pattern doesn't matter.",Diamonds and triangles go together. Circles and squares go together,110301
+57,hard-3,I matched the fuse together priortizing the high values first.,Fusing the only identical shapes,26
+58,hard-3,"Ensure to notice each crystals combination that generates points in previous periods of picking up crystals, fusing and harvesting which would assist in earning more energy points eventually. However, every points is worth it throughout the overall moves.","There are each crystal that matches the other which assisted me in picking a present crystal, fuse and harvest crystals for energy points. hence, I used my previous pattern to guauge on present which in turns assisted me in combining the perfect crystals for energy points earnings",92
+59,hard-3,Take a look around the board first to ensure you know where each gem is before starting. ,I didn't find a pattern that was easy ,21
+60,hard-3,I can't really suggest any tips or strategies as I didn't really understand the game,"You have to harvested crystals
+move spaces by using arrow keys
+pick up crystals using spacebar
+to fuse crystals hold a crystal on top of another and press spacebar
+To harvest crystals press spacebar. This means you can earn energy points
+To drop crystals press D",1

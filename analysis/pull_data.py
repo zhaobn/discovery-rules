@@ -1,6 +1,5 @@
 # %%
 import pandas as pd
-import numpy as np
 import json
 
 # %%
@@ -9,7 +8,7 @@ file_path = f"../data/{batch_name}/grid_pilot_1.tsv"
 
 data = pd.read_csv(file_path, sep="\t")
 data = data[data['worker'].str.len() > 10]
-#data = data[data['assignment'] == 'hard-1']
+data = data[data['assignment'] == 'hard-3']
 
 data['subject'] = data['subject'].str.replace(r'{\\prolific', '"{\\"prolific', regex=True)
 data['actions'] = data['actions'].str.replace(r'\\\\', r'\\', regex=True)

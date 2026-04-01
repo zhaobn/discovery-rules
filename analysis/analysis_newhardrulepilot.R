@@ -9,14 +9,14 @@ options(scipen=999)
 
 subject_data = read.csv('../data/pilot_newhardrule/subject_data.csv')
 
-subject_data = subject_data %>%
-  mutate(condition=ifelse(condition=='test', 'hard-2', condition),
-         id=id+200) %>%
-  mutate(condition = sub("hard-", "low-", condition, fixed = TRUE)) %>%
-  select(id, condition, messageHow, messageRules, total_points,
-         age, sex, engagement, difficulty, feedback, date, time, duration=task_duration)
-write.csv(subject_data, file = '../data/pilot_newhardrule/subject_data.csv')
-
+# subject_data = subject_data %>%
+#   mutate(condition=ifelse(condition=='test', 'hard-2', condition),
+#          id=id+200) %>%
+#   mutate(condition = sub("hard-", "low-", condition, fixed = TRUE)) %>%
+#   select(id, condition, messageHow, messageRules, total_points,
+#          age, sex, engagement, difficulty, feedback, date, time, duration=task_duration)
+# write.csv(subject_data, file = '../data/pilot_newhardrule/subject_data.csv')
+# 
 
 #### Demographics ####
 reportStats <- function(vec, digits=2) {
@@ -33,7 +33,7 @@ reportStats(subject_data$sex=='female')
 main_subject_data = read.csv('../data/subject_data.csv')
 
 
-set.seed(42) 
+set.seed(123) 
 sampled_main_subject_data <- main_subject_data %>%
   group_by(condition) %>%
   slice_sample(n = 20) %>%
@@ -48,7 +48,7 @@ test_subject_data = rbind(sampled_main_subject_data, subject_data)
 # Points per condition
 test_subject_data$total_points_log = log(test_subject_data$total_points)
 
-cond_levels = c("high", "medium", "low", "low-1", "low-2")
+cond_levels = c("high", "medium", "low", "low-3")
 test_subject_data$condition <- factor(
   test_subject_data$condition,
   levels = cond_levels
@@ -73,14 +73,14 @@ main_action_data = read.csv('../data/action_data.csv') %>%
 
 pilot_action_data = read.csv('../data/pilot_newhardrule/action_data.csv')
 # pilot_action_data = pilot_action_data %>%
-#   mutate(condition=ifelse(assignment=='test', 'hard-2', 'hard-1')) %>%
+#   mutate(condition=ifelse(assignment=='test', 'hard-2', assignment)) %>%
 #   mutate(condition = sub("hard-", "low-", condition, fixed = TRUE)) %>%
 #   mutate(id=id+200) %>%
 #   select(-assignment) %>%
 #   filter(action_id < 41)
 # 
-# pilot_action_data = pilot_action_data %>%
-#   select(id, action_id, action, held, target, yield, points, token, condition)
+pilot_action_data = pilot_action_data %>%
+  select(id, action_id, action, held, target, yield, points, token, condition)
 # write.csv(pilot_action_data, file = '../data/pilot_newhardrule/action_data.csv')
 
 test_action_data = rbind(main_action_data, pilot_action_data)
@@ -226,10 +226,6 @@ ggplot(subject_data, aes(x = condition, y = message_diff, fill = condition)) +  
   labs(title = "Rules Nchar per Condition",
        x = "Condition", y = "Nchar") +
   theme(legend.position = "none")
-
-
-
-
 
 
 # Points and lengths
