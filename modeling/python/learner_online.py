@@ -249,14 +249,18 @@ actions = 40
 n_seeds = 40
 save_path = 'simulation_results/base_online_sim.pkl'
 
+df_existing = pd.read_pickle(save_path)
+existing_seeds = df_existing['seed'].unique()
+next_seed = int(existing_seeds.max()) + 1
+n_new_seeds = 100 - n_seeds  # add this many more seeds
+
+
 results = []
 for condition in ['simple', 'med', 'hard']:
-    for seed in range(n_seeds):
-        (condition_name, log_cum_rewards, highst_levels, 
+    for seed in range(next_seed, next_seed + n_new_seeds):
+        (condition_name, log_cum_rewards, highst_levels,
          epi_probs, recover_rate) = run_condition_online(
-            'base', condition, actions, seed)            
-        
-        # Create one row per action (step)
+            'base', condition, actions, seed)
         for action_idx in range(actions):
             results.append({
                 'condition': condition_name,
@@ -268,7 +272,7 @@ for condition in ['simple', 'med', 'hard']:
                 'recover_rate': recover_rate[action_idx],
             })
 
-df = pd.DataFrame(results)
+df = pd.concat([df_existing, pd.DataFrame(results)], ignore_index=True)
 df.to_pickle(save_path)
 
 
@@ -276,15 +280,18 @@ df.to_pickle(save_path)
 actions = 40
 n_seeds = 40
 save_path = 'simulation_results/pcfg_online_sim_2.pkl'
+df_existing = pd.read_pickle(save_path)
+existing_seeds = df_existing['seed'].unique()
+next_seed = int(existing_seeds.max()) + 1
+n_new_seeds = 100 - n_seeds  # add this many more seeds
+
 
 results = []
 for condition in ['simple', 'med', 'hard']:
-    for seed in range(n_seeds):
-        (condition_name, log_cum_rewards, highst_levels, 
+    for seed in range(next_seed, next_seed + n_new_seeds):
+        (condition_name, log_cum_rewards, highst_levels,
          epi_probs, recover_rate) = run_condition_online(
-            'pcfg', condition, actions, seed)            
-        
-        # Create one row per action (step)
+            'pcfg', condition, actions, seed)
         for action_idx in range(actions):
             results.append({
                 'condition': condition_name,
@@ -296,20 +303,21 @@ for condition in ['simple', 'med', 'hard']:
                 'recover_rate': recover_rate[action_idx],
             })
 
-df = pd.DataFrame(results)
-df.to_csv('simulation_results/pcfg_online_sim.csv', index=False)
+df = pd.concat([df_existing, pd.DataFrame(results)], ignore_index=True)
 df.to_pickle(save_path)
 
-# %%
-# save_path = 'simulation_results/base_psrl_sim_cogsci.pkl'
-# save_path = 'simulation_results/base_psrl_sim_new.pkl'
-# save_path = 'simulation_results/pcfg_psrl_sim_4.pkl'
 
-# df = pd.read_pickle(save_path)
+# %%
+# save_path = 'simulation_results/base_online_sim.pkl'
+# save_path = 'simulation_results/pcfg_online_sim.pkl'
+
+df = pd.read_pickle(save_path)
+df['mean_log_cum_rewards'] = df['mean_log_cum_rewards'].clip(lower=0)
 sns.set_style("whitegrid")
 
 fig, axes = plt.subplots(2, 2, figsize=(14, 10))
-metrics = ['log_cum_rewards', 'highest_levels', 'epi_probs', 'recover_rate']
+# metrics = ['log_cum_rewards', 'highest_levels', 'epi_probs', 'recover_rate']
+metrics = ['mean_log_cum_rewards', 'mean_highest_levels', 'epi_probs', 'recover_rate']
 titles = ['Cumulative Rewards (log)', 'Highest Levels', 'Epistemic Uncertainty', 'Recovery Rate']
 
 for ax, metric, title in zip(axes.flat, metrics, titles):
@@ -319,14 +327,43 @@ for ax, metric, title in zip(axes.flat, metrics, titles):
         y=metric, 
         hue='condition', 
         ax=ax, 
-        errorbar='sd'  # Shows standard deviation across seeds
+        errorbar=('ci', 95)
     )
     ax.set_title(title)
     ax.set_xlabel('Action Step')
     ax.set_ylabel(title)
     ax.legend(title='Condition')
 
+# %%
 plt.tight_layout()
-plt.savefig('simulation_results/pcfg_online_results.png', dpi=300, bbox_inches='tight')
+plt.savefig('simulation_results/base_online_results.png', dpi=300, bbox_inches='tight')
 plt.show()
+
+# %%
+save_path = 'simulation_results/base_online_sim.pkl'
+#save_path = 'simulation_results/pcfg_online_sim.pkl'
+
+df = pd.read_pickle(save_path)
+df['log_cum_rewards'] = df['log_cum_rewards'].clip(lower=0)
+
+metrics = ['log_cum_rewards', 'highest_levels', 'epi_probs', 'recover_rate']
+
+summary = (
+    df.groupby(['condition', 'action'])[metrics]
+    .agg(['mean', 'sem'])
+)
+summary.columns = ['_'.join(col) for col in summary.columns]
+summary = summary.reset_index()
+
+n = df.groupby(['condition', 'action'])['seed'].nunique().reset_index(name='n')
+summary = summary.merge(n, on=['condition', 'action'])
+
+z = 1.96
+for metric in metrics:
+    summary[f'{metric}_ci_lo'] = summary[f'{metric}_mean'] - z * summary[f'{metric}_sem']
+    summary[f'{metric}_ci_hi'] = summary[f'{metric}_mean'] + z * summary[f'{metric}_sem']
+    summary = summary.drop(columns=[f'{metric}_sem'])
+
+summary.to_csv('simulation_results/base_online_sim_summary.csv', index=False)
+
 # %%
